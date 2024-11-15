@@ -1,31 +1,98 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=10 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="PackedScene" uid="uid://cbw83s0b8mxod" path="res://scenes/prefabs/square_wall.tscn" id="1_3bfrm"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_jejc7"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_jbfyv"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o3b7d"]
+[sub_resource type="Sky" id="Sky_kt5km"]
+sky_material = SubResource("ProceduralSkyMaterial_p021t")
+
+[sub_resource type="Environment" id="Environment_ttdlb"]
+background_mode = 2
+sky = SubResource("Sky_kt5km")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_43ikr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20tmq"]
+size = Vector3(10.0042, 1, 10.0046)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6tcwm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p6mlt"]
 
 [node name="TestScene" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ttdlb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
 [node name="TestWall2" parent="." instance=ExtResource("1_3bfrm")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.34366, 0, 0.939094, 0, 1, 0, -0.939094, 0, -0.34366, 1.8, 1.6, -0.3)
-fov = 90.0
+[node name="Test_floors" type="Node" parent="."]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -0.2)
-light_color = Color(1, 0.694118, 0.0352941, 1)
-light_energy = 5.0
-omni_range = 50.0
-omni_attenuation = 2.0
+[node name="Test_floor" type="StaticBody3D" parent="Test_floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0824, 0, -0.0467415)
 
-[node name="Player" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80222, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Test_floor"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_43ikr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Test_floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="Test_floor2" type="StaticBody3D" parent="Test_floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0667, 0, -0.0467415)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Test_floor2"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_43ikr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Test_floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="Test_floor3" type="StaticBody3D" parent="Test_floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0667, 0, 9.955)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Test_floor3"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_43ikr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Test_floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="Test_floor4" type="StaticBody3D" parent="Test_floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1024, 0, 9.955)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Test_floor4"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_43ikr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Test_floor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 18.7083, 4.1847, 5.1183)
+script = ExtResource("2_jejc7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("CapsuleMesh_jbfyv")
+mesh = SubResource("CapsuleMesh_6tcwm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_o3b7d")
+shape = SubResource("CapsuleShape3D_p6mlt")
+
+[node name="Neck" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532167, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Neck"]
