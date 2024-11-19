@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=10 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="PackedScene" uid="uid://cbw83s0b8mxod" path="res://scenes/prefabs/square_wall.tscn" id="1_3bfrm"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
-[ext_resource type="Script" path="res://scenes/levels/center_container.gd" id="3_510o5"]
+[ext_resource type="Texture2D" uid="uid://cqh6j4acs6glp" path="res://assets/crosshair.png" id="4_2njw6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -21,6 +21,24 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_20tmq"]
 size = Vector3(10.0042, 1, 10.0046)
+
+[sub_resource type="GDScript" id="GDScript_kug5p"]
+script/source = "extends CenterContainer
+
+@export var DOT_RADIUS: float =1.0
+@export var DOT_COLOR:Color = Color.WHITE
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	queue_redraw()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _draw():
+	draw_circle(Vector2(0,0),DOT_RADIUS,DOT_COLOR)
+"
 
 [node name="TestScene" type="Node3D"]
 
@@ -103,4 +121,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_510o5")
+script = SubResource("GDScript_kug5p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/CenterContainer"]
+texture = ExtResource("4_2njw6")
