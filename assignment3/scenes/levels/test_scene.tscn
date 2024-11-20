@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=19 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="PackedScene" uid="uid://cbw83s0b8mxod" path="res://scenes/prefabs/square_wall.tscn" id="1_3bfrm"]
+[ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="2_iunop"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
+[ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="3_jq8r7"]
+[ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="4_x5p6s"]
+[ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="5_w8fcj"]
+[ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="6_7lkwk"]
+[ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="7_yvnhb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,6 +21,32 @@ background_mode = 2
 sky = SubResource("Sky_kt5km")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4pejo"]
+noise_type = 5
+seed = 24
+frequency = 0.0001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7nlvh"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_4pejo")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0dn2u"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gpvrm"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_0dn2u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frumr"]
+albedo_texture = ExtResource("2_iunop")
+roughness_texture = ExtResource("7_yvnhb")
+emission_enabled = true
+emission_texture = ExtResource("4_x5p6s")
+normal_enabled = true
+normal_texture = ExtResource("6_7lkwk")
+ao_enabled = true
+ao_texture = ExtResource("3_jq8r7")
+heightmap_texture = ExtResource("5_w8fcj")
 
 [sub_resource type="BoxMesh" id="BoxMesh_43ikr"]
 
@@ -31,6 +63,12 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="TestWall2" parent="." instance=ExtResource("1_3bfrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.496, 0)
+noise_img = SubResource("NoiseTexture2D_7nlvh")
+
+[node name="TestWall3" parent="." instance=ExtResource("1_3bfrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.496, 2)
+noise_img = SubResource("NoiseTexture2D_gpvrm")
 
 [node name="Test_floors" type="Node" parent="."]
 
@@ -39,6 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0824, 0, -0.0467415)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Test_floor"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_frumr")
 mesh = SubResource("BoxMesh_43ikr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Test_floor"]
@@ -79,3 +118,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
 shape = SubResource("BoxShape3D_20tmq")
 
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2, 0)
