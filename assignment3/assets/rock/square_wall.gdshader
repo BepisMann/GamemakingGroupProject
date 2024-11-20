@@ -41,6 +41,7 @@ uniform vec3 uv2_offset;
 
 void vertex() {
 	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	
 	float amplitude = 0.3;
 	if (UV.x < 0.1) {
 		amplitude = 0.0;
@@ -54,7 +55,8 @@ void vertex() {
 	else {
 		amplitude = 0.0;
 	}
-	VERTEX.x += texture(noise_img, UV).r * amplitude;
+	
+	VERTEX.x += ((texture(noise_img, UV).r + texture(noise_img, UV).g + texture(noise_img, UV).b) / 3.0) * amplitude;
 }
 
 void fragment() {

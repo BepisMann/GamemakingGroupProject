@@ -64,9 +64,9 @@ shader_parameter/noise_img = SubResource("NoiseTexture2D_0fcnx")
 
 [sub_resource type="BoxMesh" id="BoxMesh_hxi6n"]
 size = Vector3(0.25, 2, 2)
-subdivide_width = 39
-subdivide_height = 39
-subdivide_depth = 4
+subdivide_width = 399
+subdivide_height = 399
+subdivide_depth = 99
 
 [node name="TestWall" type="Node3D"]
 script = ExtResource("1_ckbca")

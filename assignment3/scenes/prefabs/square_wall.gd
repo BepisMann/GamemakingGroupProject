@@ -7,7 +7,6 @@ var noise_img: NoiseTexture2D
 func _ready() -> void:
 	if noise_img == null:
 		print("Error: 'noise_img' is not assigned!")
-		return
 
 	# Load the shader
 	var shader = load("res://assets/rock/square_wall.gdshader")
