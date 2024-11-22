@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dppr8h85kj08i"]
+[gd_scene load_steps=4 format=3 uid="uid://cj6dsyfd611s7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hb760"]
+[ext_resource type="PackedScene" uid="uid://56fmjplm314r" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6tcwm"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p6mlt"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_m3jx0"]
+size = Vector3(2.035, 6.98, 1.05)
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 18.7083, 4.1847, 5.1183)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 18.7083, 4.1847, 5.1183)
 script = ExtResource("1_hb760")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_6tcwm")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_p6mlt")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.54649, 0)
+shape = SubResource("BoxShape3D_m3jx0")
 
-[node name="Neck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532167, 0)
+[node name="Indiana_jones_like_character_final_attempt3" parent="." instance=ExtResource("2_hnyfr")]
 
-[node name="Camera3D" type="Camera3D" parent="Neck"]
+[node name="Neck" type="Node3D" parent="Indiana_jones_like_character_final_attempt3"]
+transform = Transform3D(-1, 8.74228e-08, -2.94026e-15, 8.63057e-08, 0.987223, 0.159347, 1.39306e-08, 0.159347, -0.987223, 0, 6.13, 0.601)
+
+[node name="Camera3D" type="Camera3D" parent="Indiana_jones_like_character_final_attempt3/Neck"]

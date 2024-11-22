@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=9 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="PackedScene" uid="uid://cbw83s0b8mxod" path="res://scenes/prefabs/square_wall.tscn" id="1_3bfrm"]
-[ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
+[ext_resource type="PackedScene" uid="uid://cj6dsyfd611s7" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,7 +16,10 @@ sky = SubResource("Sky_kt5km")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5uqo"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_43ikr"]
+material = SubResource("StandardMaterial3D_d5uqo")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_20tmq"]
 size = Vector3(10.0042, 1, 10.0046)
@@ -79,3 +82,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
 shape = SubResource("BoxShape3D_20tmq")
 
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 18.7083, 1.1847, 5.1183)
