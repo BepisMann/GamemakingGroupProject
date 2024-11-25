@@ -39,24 +39,11 @@ uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
+uniform float max_amplitude : hint_range(0.0, 1.0, 0.01);
+
 void vertex() {
 	UV = UV * uv1_scale.xy + uv1_offset.xy;
-	
-	float amplitude = 0.3;
-	if (UV.x < 0.1) {
-		amplitude = 0.0;
-	}
-	else if (UV.x < 0.5) {
-		amplitude = min(UV.x*UV.x, amplitude);
-	}
-	else if (UV.x < 0.9) {
-		amplitude = min((1.0-UV.x)*(1.0-UV.x), amplitude);
-	}
-	else {
-		amplitude = 0.0;
-	}
-	
-	VERTEX.x += ((texture(noise_img, UV).r + texture(noise_img, UV).g + texture(noise_img, UV).b) / 3.0) * amplitude;
+	VERTEX.x += ((texture(noise_img, UV).r + texture(noise_img, UV).g + texture(noise_img, UV).b) / 3.0) * max_amplitude;
 }
 
 void fragment() {
