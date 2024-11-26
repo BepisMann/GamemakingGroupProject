@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cbw83s0b8mxod" path="res://scenes/prefabs/square_wall.tscn" id="1_3bfrm"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
-[ext_resource type="Texture2D" uid="uid://cqh6j4acs6glp" path="res://assets/crosshair.png" id="4_2njw6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -22,23 +21,9 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_20tmq"]
 size = Vector3(10.0042, 1, 10.0046)
 
-[sub_resource type="GDScript" id="GDScript_kug5p"]
-script/source = "extends CenterContainer
+[sub_resource type="SphereShape3D" id="SphereShape3D_lexfb"]
 
-@export var DOT_RADIUS: float =1.0
-@export var DOT_COLOR:Color = Color.WHITE
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	queue_redraw()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _draw():
-	draw_circle(Vector2(0,0),DOT_RADIUS,DOT_COLOR)
-"
+[sub_resource type="SphereMesh" id="SphereMesh_7fy70"]
 
 [node name="TestScene" type="Node3D"]
 
@@ -97,31 +82,26 @@ mesh = SubResource("BoxMesh_43ikr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
 shape = SubResource("BoxShape3D_20tmq")
 
+[node name="Sphere1" type="StaticBody3D" parent="Test_floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.97784)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Sphere1"]
+shape = SubResource("SphereShape3D_lexfb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Sphere1"]
+mesh = SubResource("SphereMesh_7fy70")
+skeleton = NodePath("")
+
+[node name="Sphere2" type="StaticBody3D" parent="Test_floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.9557)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Sphere2"]
+shape = SubResource("SphereShape3D_lexfb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Sphere2"]
+mesh = SubResource("SphereMesh_7fy70")
+skeleton = NodePath("")
+
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_kug5p")
-
-[node name="Sprite2D" type="Sprite2D" parent="Control/CenterContainer"]
-texture = ExtResource("4_2njw6")

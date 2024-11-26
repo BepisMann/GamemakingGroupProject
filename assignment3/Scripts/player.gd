@@ -6,6 +6,13 @@ const JUMP_VELOCITY = 4.5
 
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
+@onready var raycast := $Neck/Camera3D/RayCast3D
+@onready var label := $Control/Label
+@onready var control := $Control/CenterContainer
+
+func _ready() -> void:
+	if control:
+		control.set_raycast(raycast)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -26,6 +33,12 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	if Input.is_action_just_pressed("click"):
+		if raycast.is_colliding():
+			var item = raycast.get_collider()
+			label.show_pickup_message("Picked up " + item.name)
+			item.queue_free()
+			
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
