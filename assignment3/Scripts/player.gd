@@ -4,18 +4,24 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@export var left: String = ""
+@export var right: String = ""
 @onready var player := $Indiana_jones_like_character_final_attempt3
 @onready var neck := $Indiana_jones_like_character_final_attempt3/Neck
 @onready var camera := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D
 @onready var hat := $Indiana_jones_like_character_final_attempt3/Armature/Skeleton3D/hat_001
 @onready var hair := $Indiana_jones_like_character_final_attempt3/Armature/Skeleton3D/hair
+@onready var raycast := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast3D
+@onready var label := $Control/Label
+@onready var control := $Control/CenterContainer
 
 @onready var anim := $Indiana_jones_like_character_final_attempt3/AnimationPlayer
 
 var is_jumping: bool = false
 
 func _ready() -> void:
-	pass
+	if control:
+		control.set_raycast(raycast)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -46,6 +52,14 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	if Input.is_action_just_pressed("left_click"):
+		if left == "" and raycast.is_colliding():
+			pickup("left")
+	if Input.is_action_just_pressed("right_click"):
+		if right == "" and raycast.is_colliding():
+			pickup("right")
+			
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -65,3 +79,13 @@ func _physics_process(delta: float) -> void:
 			anim.play("Idle_1")
 
 	move_and_slide()
+
+func pickup(hand):
+	var item = raycast.get_collider()
+	if hand == "left":
+		self.left = item.name
+	else:
+		self.right = item.name
+	label.show_pickup_message("Picked up " + item.name + str(hand))
+	item.queue_free() #this should be changed to transporting it to the corresponding hand
+	
