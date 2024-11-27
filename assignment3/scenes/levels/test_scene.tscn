@@ -21,10 +21,9 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_20tmq"]
 size = Vector3(10.0042, 1, 10.0046)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_doc54"]
-size = Vector3(0.5, 0.1, 0.3)
+[sub_resource type="SphereShape3D" id="SphereShape3D_1pnu1"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_m3185"]
+[sub_resource type="SphereMesh" id="SphereMesh_ioq6l"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lexfb"]
 
@@ -92,11 +91,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.97784)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Sphere1"]
-shape = SubResource("BoxShape3D_doc54")
+shape = SubResource("SphereShape3D_1pnu1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Sphere1"]
 custom_aabb = AABB(0, 0, 0, 2, 1.5, 2)
-mesh = SubResource("BoxMesh_m3185")
+mesh = SubResource("SphereMesh_ioq6l")
 skeleton = NodePath("")
 
 [node name="Sphere2" type="StaticBody3D" parent="Test_floors"]
