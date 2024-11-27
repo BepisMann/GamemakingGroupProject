@@ -63,3 +63,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0ubcf")
 
 [node name="Cube_001" parent="." index="5"]
 surface_material_override/0 = SubResource("StandardMaterial3D_3o58i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.524074, 2.40116, 0.00172633)
+light_color = Color(0.984314, 0.717647, 0.254902, 1)
+light_energy = 5.0
+omni_range = 100.0
+omni_attenuation = 2.0
