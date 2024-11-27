@@ -3,11 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hb760"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6tcwm"]
+height = 1.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p6mlt"]
+height = 1.8
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 18.7083, 4.1847, 5.1183)
 script = ExtResource("1_hb760")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
