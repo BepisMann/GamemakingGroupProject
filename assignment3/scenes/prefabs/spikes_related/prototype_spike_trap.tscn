@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bc1cfjmr4myrs"]
+
+[ext_resource type="PackedScene" uid="uid://d314rs5vcue2j" path="res://scenes/prefabs/spikes_related/Prototype Spike trap.glb" id="1_rq3ee"]
+[ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="2_mcivl"]
+[ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="3_fikf8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxsyf"]
+albedo_texture = ExtResource("2_mcivl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77nid"]
+albedo_color = Color(0.709804, 0.752941, 0.788235, 1)
+metallic = 0.95
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1k6o"]
+albedo_color = Color(0.94, 0.59314, 0.1692, 1)
+albedo_texture = ExtResource("3_fikf8")
+
+[node name="Prototype Spike trap" instance=ExtResource("1_rq3ee")]
+
+[node name="Ceiling Square" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wxsyf")
+
+[node name="Spike holder" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_001" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_002" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_003" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_004" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_005" parent="." index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_006" parent="." index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_007" parent="." index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spike holder_008" parent="." index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
+
+[node name="Spikes" parent="." index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h1k6o")

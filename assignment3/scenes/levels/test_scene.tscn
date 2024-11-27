@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=30 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="2_iunop"]
 [ext_resource type="PackedScene" uid="uid://cj6dsyfd611s7" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="7_yvnhb"]
 [ext_resource type="Script" path="res://scenes/prefabs/wall.gd" id="8_j4gff"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="9_ei255"]
+[ext_resource type="PackedScene" uid="uid://bc1cfjmr4myrs" path="res://scenes/prefabs/spikes_related/prototype_spike_trap.tscn" id="10_l0wtg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -171,6 +172,9 @@ noise_img = SubResource("NoiseTexture2D_kqgp8")
 maximum_amplitude = 0.2
 UV_ratio = 5.0
 
+[node name="Prototype Spike trap" parent="Test_walls/Wall1" instance=ExtResource("10_l0wtg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.25671, 4.76837e-07, -11.3334)
+
 [node name="Wall2" type="StaticBody3D" parent="Test_walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -5)
 
@@ -193,7 +197,6 @@ noise_img = SubResource("NoiseTexture2D_kqgp8")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.25, 0)
 
@@ -205,4 +208,3 @@ omni_attenuation = 2.0
 
 [node name="final_torch" parent="." instance=ExtResource("3_qpgye")]
 transform = Transform3D(0.988907, -0.148534, 0, 0.148534, 0.988907, 0, 0, 0, 1, 0, 0, 3.84517)
-
