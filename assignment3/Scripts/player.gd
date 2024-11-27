@@ -4,6 +4,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@export var left: String = ""
+@export var right: String = ""
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
 @onready var raycast := $Neck/Camera3D/RayCast3D
@@ -33,11 +35,13 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if Input.is_action_just_pressed("click"):
-		if raycast.is_colliding():
-			var item = raycast.get_collider()
-			label.show_pickup_message("Picked up " + item.name)
-			item.queue_free()
+	
+	if Input.is_action_just_pressed("left_click"):
+		if left == "" and raycast.is_colliding():
+			pickup("left")
+	if Input.is_action_just_pressed("right_click"):
+		if right == "" and raycast.is_colliding():
+			pickup("right")
 			
 
 	# Handle jump.
@@ -54,3 +58,13 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func pickup(hand):
+	var item = raycast.get_collider()
+	if hand == "left":
+		self.left = item.name
+	else:
+		self.right = item.name
+	label.show_pickup_message("Picked up " + item.name + str(hand))
+	item.queue_free() #this should be changed to transporting it to the corresponding hand
+	

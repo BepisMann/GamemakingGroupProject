@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=12 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="PackedScene" uid="uid://cbw83s0b8mxod" path="res://scenes/prefabs/square_wall.tscn" id="1_3bfrm"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
@@ -20,6 +20,11 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_20tmq"]
 size = Vector3(10.0042, 1, 10.0046)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_doc54"]
+size = Vector3(0.5, 0.1, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m3185"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lexfb"]
 
@@ -87,10 +92,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.97784)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors/Sphere1"]
-shape = SubResource("SphereShape3D_lexfb")
+shape = SubResource("BoxShape3D_doc54")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors/Sphere1"]
-mesh = SubResource("SphereMesh_7fy70")
+custom_aabb = AABB(0, 0, 0, 2, 1.5, 2)
+mesh = SubResource("BoxMesh_m3185")
 skeleton = NodePath("")
 
 [node name="Sphere2" type="StaticBody3D" parent="Test_floors"]
