@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://56fmjplm314r" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m3jx0"]
-size = Vector3(2.035, 6.98, 1.05)
+size = Vector3(2.035, 6.98, 2.3)
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
