@@ -17,7 +17,6 @@ func _ready() -> void:
 	if holder_collider:
 		holder_collider.collision_layer = 2
 		holder_collider.collision_mask = 2
-	
 	update_holder_collider()
 		
 func get_is_occupied() -> bool:
@@ -58,4 +57,3 @@ func update_holder_collider():
 	var raycast = get_node("../Player/Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast3D")
 	if raycast:
 		raycast.force_raycast_update()
-

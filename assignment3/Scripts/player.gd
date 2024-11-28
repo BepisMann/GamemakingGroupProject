@@ -106,26 +106,27 @@ func try_place_torch(hand):
 
 func pickup(hand):
 	var item = raycast.get_collider()
-	if item and item is StaticBody3D:
-		var collision_shape = item.get_node("CollisionShape3D")
-		if collision_shape:
-			collision_shape.disabled = true
-			
-			var parent = item.get_parent()
-			if parent:
-				if parent.has_method("remove_torch"):
-					parent.remove_torch()
-				parent.remove_child(item)
-			
-	if hand == "left":
-		self.left = item.name
-		left_hand_position.add_child(item)
-	else:
-		self.right = item.name
-		right_hand_position.add_child(item)
-	
-	reset_item_rotation(item)
-	label.show_pickup_message("Picked up " + item.name + str(hand))
+	if item and item.name!="HolderCollider":
+		if item:
+			var collision_shape = item.get_node("CollisionShape3D")
+			if collision_shape:
+				collision_shape.disabled = true
+				
+				var parent = item.get_parent()
+				if parent:
+					if parent.has_method("remove_torch"):
+						parent.remove_torch()
+					parent.remove_child(item)
+				
+		if hand == "left":
+			self.left = item.name
+			left_hand_position.add_child(item)
+		else:
+			self.right = item.name
+			right_hand_position.add_child(item)
+		
+		reset_item_rotation(item)
+		label.show_pickup_message("Picked up " + item.name + str(hand))
 	
 
 func reset_item_rotation(item):
