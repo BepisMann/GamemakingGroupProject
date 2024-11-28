@@ -4,18 +4,27 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@export var left: String = ""
+@export var right: String = ""
 @onready var player := $Indiana_jones_like_character_final_attempt3
 @onready var neck := $Indiana_jones_like_character_final_attempt3/Neck
 @onready var camera := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D
 @onready var hat := $Indiana_jones_like_character_final_attempt3/Armature/Skeleton3D/hat_001
 @onready var hair := $Indiana_jones_like_character_final_attempt3/Armature/Skeleton3D/hair
+@onready var raycast := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast3D
+@onready var label := $Control/Label
+@onready var control := $Control/CenterContainer
+
+@onready var left_hand_position := $Indiana_jones_like_character_final_attempt3/LeftHandPosition
+@onready var right_hand_position := $Indiana_jones_like_character_final_attempt3/RightHandPosition
 
 @onready var anim := $Indiana_jones_like_character_final_attempt3/AnimationPlayer
 
 var is_jumping: bool = false
 
 func _ready() -> void:
-	pass
+	if control:
+		control.set_raycast(raycast)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -46,6 +55,19 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	if Input.is_action_just_pressed("left_click"):
+		if left == "" and raycast.is_colliding():
+			pickup("left")
+		elif left != "" and raycast.is_colliding():
+			try_place_torch("left")
+			
+	if Input.is_action_just_pressed("right_click"):
+		if right == "" and raycast.is_colliding():
+			pickup("right")
+		elif right != "" and raycast.is_colliding():
+			try_place_torch("right")
+			
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -65,3 +87,49 @@ func _physics_process(delta: float) -> void:
 			anim.play("Idle_1")
 
 	move_and_slide()
+	
+
+func try_place_torch(hand):
+	var item = raycast.get_collider()
+	if item and item.name == "HolderCollider":
+		var holder = item.get_parent()
+		
+		if holder and holder.has_method("get_is_occupied") and not holder.get_is_occupied():
+			var torch = (left_hand_position if hand == "left" else right_hand_position).get_child(0)
+			holder.place_torch(torch)
+			torch.get_parent().remove_child(torch) 
+			if hand == "left":
+				left = "" 
+			else:
+				right = "" 
+
+
+func pickup(hand):
+	var item = raycast.get_collider()
+	if item and item.name!="HolderCollider":
+		if item:
+			var collision_shape = item.get_node("CollisionShape3D")
+			if collision_shape:
+				collision_shape.disabled = true
+				
+				var parent = item.get_parent()
+				if parent:
+					if parent.has_method("remove_torch"):
+						parent.remove_torch()
+					parent.remove_child(item)
+				
+		if hand == "left":
+			self.left = item.name
+			left_hand_position.add_child(item)
+		else:
+			self.right = item.name
+			right_hand_position.add_child(item)
+		
+		reset_item_rotation(item)
+		label.show_pickup_message("Picked up " + item.name + str(hand))
+	
+
+func reset_item_rotation(item):
+	item.transform = Transform3D.IDENTITY
+	item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))  # Rotate on X-axis
+	item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))  # Rotate on Y-axis (if needed)
