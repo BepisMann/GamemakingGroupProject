@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d314rs5vcue2j"
-path="res://.godot/imported/Prototype Spike trap.glb-31c71ef5c47ee372234de12247dffafe.scn"
+uid="uid://cf255ti0hspku"
+path="res://.godot/imported/torch_holder.glb-7ae14bed38bb0e703d70ca72218f9150.scn"
 
 [deps]
 
-source_file="res://scenes/prefabs/spikes_related/Prototype Spike trap.glb"
-dest_files=["res://.godot/imported/Prototype Spike trap.glb-31c71ef5c47ee372234de12247dffafe.scn"]
+source_file="res://scenes/prefabs/Holders_of_objects_prefabs/torch_holder.glb"
+dest_files=["res://.godot/imported/torch_holder.glb-7ae14bed38bb0e703d70ca72218f9150.scn"]
 
 [params]
 
