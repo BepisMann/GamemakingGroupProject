@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=33 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="2_iunop"]
 [ext_resource type="PackedScene" uid="uid://cj6dsyfd611s7" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="7_yvnhb"]
 [ext_resource type="Script" path="res://scenes/prefabs/wall.gd" id="8_j4gff"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="9_ei255"]
+[ext_resource type="PackedScene" uid="uid://puy5dd31bsvw" path="res://scenes/prefabs/Medallion scarab.glb" id="12_qf4iv"]
+[ext_resource type="PackedScene" uid="uid://6yk1xn61wsq4" path="res://scenes/prefabs/Medallion Bird.glb" id="13_xoou0"]
+[ext_resource type="PackedScene" uid="uid://bjdwranu8j784" path="res://scenes/prefabs/Medallion Fish.glb" id="14_bnsgw"]
+[ext_resource type="PackedScene" uid="uid://sirn0qddw3is" path="res://scenes/prefabs/Medallion Snake.glb" id="15_2ygce"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -193,7 +197,6 @@ noise_img = SubResource("NoiseTexture2D_kqgp8")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.25, 0)
 
@@ -206,3 +209,14 @@ omni_attenuation = 2.0
 [node name="final_torch" parent="." instance=ExtResource("3_qpgye")]
 transform = Transform3D(0.988907, -0.148534, 0, 0.148534, 0.988907, 0, 0, 0, 1, 0, 0, 3.84517)
 
+[node name="Medallion scarab" parent="." instance=ExtResource("12_qf4iv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9352, 0.125, -0.967164)
+
+[node name="Medallion Bird" parent="." instance=ExtResource("13_xoou0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4534, 0.125, 0.114827)
+
+[node name="Medallion Fish" parent="." instance=ExtResource("14_bnsgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0353, 0.125, 2.60145)
+
+[node name="Medallion Snake" parent="." instance=ExtResource("15_2ygce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9322, 0.125, 2.87946)
