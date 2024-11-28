@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=33 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="2_iunop"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
@@ -7,11 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="4_x5p6s"]
 [ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="5_w8fcj"]
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="6_7lkwk"]
-[ext_resource type="Script" path="res://scenes/prefabs/floor.gd" id="7_ig8ja"]
+[ext_resource type="Script" path="res://Scripts/floor.gd" id="7_ig8ja"]
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="7_yvnhb"]
-[ext_resource type="Script" path="res://scenes/prefabs/wall.gd" id="8_j4gff"]
+[ext_resource type="Script" path="res://Scripts/wall.gd" id="8_j4gff"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="9_ei255"]
 [ext_resource type="PackedScene" uid="uid://bc1cfjmr4myrs" path="res://scenes/prefabs/spikes_related/prototype_spike_trap.tscn" id="10_l0wtg"]
+[ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="13_uy2sg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -120,9 +121,10 @@ subdivide_width = 50
 subdivide_height = 440
 subdivide_depth = 2200
 
-[sub_resource type="SphereMesh" id="SphereMesh_hukoj"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6hqg"]
+size = Vector3(1.2616, 2.07184, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_0xg1c"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbyxa"]
 
 [node name="TestScene" type="Node3D"]
 
@@ -202,7 +204,7 @@ maximum_amplitude = 0.1
 UV_ratio = 5.0
 
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.25, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.44375, 0.25, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 6.30761, 0)
@@ -210,15 +212,49 @@ light_energy = 0.1
 omni_range = 1.0
 omni_attenuation = 2.0
 
-[node name="final_torch" parent="." instance=ExtResource("3_qpgye")]
-transform = Transform3D(0.988907, -0.148534, 0, 0.148534, 0.988907, 0, 0, 0, 1, 0, 0, 3.84517)
+[node name="Final_torch holder" parent="." instance=ExtResource("13_uy2sg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0760868, 1.39404, 4.3942)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.02723)
+[node name="Torch" type="StaticBody3D" parent="Final_torch holder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
 collision_layer = 3
+collision_mask = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("SphereMesh_hukoj")
+[node name="final_torch" parent="Final_torch holder/Torch" instance=ExtResource("3_qpgye")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("SphereShape3D_0xg1c")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final_torch holder/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Final_torch holder"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final_torch holder/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder2" parent="." instance=ExtResource("13_uy2sg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0760868, 1.39404, -4.63567)
+
+[node name="Torch" type="StaticBody3D" parent="Final_torch holder2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Final_torch holder2/Torch" instance=ExtResource("3_qpgye")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final_torch holder2/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Final_torch holder2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final_torch holder2/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Test" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, -1.6, -0.544)
