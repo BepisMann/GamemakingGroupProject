@@ -71,4 +71,10 @@ script = ExtResource("3_2wlrg")
 wait_time = 2.0
 one_shot = true
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.30761, 0)
+light_energy = 0.001
+omni_range = 0.8
+omni_attenuation = 2.0
+
 [connection signal="timeout" from="Control/Label/PickupTimer" to="Control/Label" method="_on_pickup_timer_timeout"]
