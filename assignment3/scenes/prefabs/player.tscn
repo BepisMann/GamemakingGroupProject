@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dppr8h85kj08i"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hb760"]
-[ext_resource type="PackedScene" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
+[ext_resource type="PackedScene" uid="uid://bqmn6paej6ff7" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
 [ext_resource type="Script" path="res://Scripts/hover_cursor.gd" id="2_wx7vr"]
 [ext_resource type="Script" path="res://Scripts/pickupmessage.gd" id="3_2wlrg"]
 
@@ -22,7 +22,7 @@ shape = SubResource("BoxShape3D_m3jx0")
 transform = Transform3D(-1, 8.74228e-08, -2.94026e-15, 8.63057e-08, 0.987223, 0.159347, 1.39306e-08, 0.159347, -0.987223, 0, 6.13, 0.601)
 
 [node name="Camera3D" type="Camera3D" parent="Indiana_jones_like_character_final_attempt3/Neck"]
-transform = Transform3D(0.666667, 2.43139e-14, 3.37508e-14, 3.66374e-15, 0.666666, 7.45058e-09, 0, -7.45058e-09, 0.666666, 0, 0, 0)
+transform = Transform3D(0.666667, 2.08722e-14, 3.4639e-14, 3.88578e-15, 0.666667, 1.49012e-08, -1.77636e-15, -1.49012e-08, 0.666667, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Indiana_jones_like_character_final_attempt3/Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

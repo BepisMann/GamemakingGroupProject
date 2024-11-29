@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl2g4e0bpgtwn"]
+
+[ext_resource type="PackedScene" uid="uid://puy5dd31bsvw" path="res://scenes/prefabs/Medaillon_related_stuff/Medallion scarab.glb" id="1_ogfvu"]
+
+[node name="Medallion scarab" instance=ExtResource("1_ogfvu")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

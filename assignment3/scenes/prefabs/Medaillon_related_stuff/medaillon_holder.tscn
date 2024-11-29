@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://divc73ew0qsia"]
+
+[ext_resource type="PackedScene" uid="uid://dygta8twn8y0w" path="res://scenes/prefabs/Medaillon_related_stuff/Medaillon_holder.glb" id="1_ygrnk"]
+[ext_resource type="Script" path="res://scenes/prefabs/Medaillon_related_stuff/medaillon_holder.gd" id="2_e6lug"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hurii"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.55
+metallic_specular = 1.0
+roughness = 0.45
+
+[node name="Medaillon_holder" instance=ExtResource("1_ygrnk")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("2_e6lug")
+
+[node name="Cylinder" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hurii")
+
+[node name="HoldingPosition" type="Node3D" parent="." index="1"]
