@@ -24,6 +24,7 @@ sky_material = SubResource("ProceduralSkyMaterial_p021t")
 [sub_resource type="Environment" id="Environment_ttdlb"]
 background_mode = 2
 sky = SubResource("Sky_kt5km")
+ambient_light_source = 1
 tonemap_mode = 2
 glow_enabled = true
 
@@ -151,7 +152,7 @@ normal_texture = ExtResource("6_7lkwk")
 ambient_occlusion_texture = ExtResource("3_jq8r7")
 heightmap_texture = ExtResource("5_w8fcj")
 noise_img = SubResource("NoiseTexture2D_c73a5")
-maximum_amplitude = 0.05
+maximum_amplitude = 0.5
 UV_ratio = 5.0
 
 [node name="Test_walls" type="Node" parent="."]
@@ -205,12 +206,6 @@ UV_ratio = 5.0
 
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.44375, 0.25, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 6.30761, 0)
-light_energy = 0.1
-omni_range = 1.0
-omni_attenuation = 2.0
 
 [node name="Final_torch holder" parent="." instance=ExtResource("13_uy2sg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0760868, 1.39404, 4.3942)
