@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsjsna83lrrla"]
+
+[ext_resource type="PackedScene" uid="uid://bjdwranu8j784" path="res://scenes/prefabs/Medaillon_related_stuff/Medallion Fish.glb" id="1_xqdyp"]
+
+[node name="Medallion Fish" instance=ExtResource("1_xqdyp")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
