@@ -29,8 +29,9 @@ func _ready() -> void:
 	if roughness_texture == null:
 		print("Error: 'roughness_texture' is not assigned for object ", $".".name)
 	
-	if emission_texture == null:
-		print("Error: 'emission_texture' is not assigned for object ", $".".name)
+	#Not there for all materials
+	#if emission_texture == null:
+		#print("Error: 'emission_texture' is not assigned for object ", $".".name)
 	
 	if normal_texture == null:
 		print("Error: 'normal_texture' is not assigned for object ", $".".name)
