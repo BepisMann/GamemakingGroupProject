@@ -66,7 +66,7 @@ func _ready() -> void:
 	shader_material.set_shader_parameter("metallic_texture_channel", Vector4(1.0, 0.0, 0.0, 0.0))
 	shader_material.set_shader_parameter("metallic", 0)
 	shader_material.set_shader_parameter("emission", Color(0.0, 0.0, 0.0, 1.0))
-	shader_material.set_shader_parameter("emission_energy", 0.2)
+	shader_material.set_shader_parameter("emission_energy", 0.0008)
 	shader_material.set_shader_parameter("normal_scale", 2)
 	
 	shader_material.set_shader_parameter("ao_texture_channel", Vector4(1.0, 0.0, 0.0, 0.0))
