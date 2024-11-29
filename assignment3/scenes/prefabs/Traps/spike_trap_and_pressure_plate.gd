@@ -1,4 +1,5 @@
 extends Node3D
+signal bodyEnteredSpikes
 
 @export
 var is_deadly_spike: bool = false
@@ -23,3 +24,27 @@ func _on_spike_plate_detection_area_body_entered(body: Node3D) -> void:
 	if is_deadly_pit && body.name == "Player" && !plate_deleted:
 		plate_deleted = true
 		$Plate.queue_free()
+
+
+func _on_pit_spike_area_1_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		emit_signal("bodyEnteredSpikes")
+
+
+func _on_pit_spike_area_2_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		emit_signal("bodyEnteredSpikes")
+
+
+func _on_pit_spike_area_3_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		emit_signal("bodyEnteredSpikes")
+
+
+func _on_pit_spike_area_4_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		emit_signal("bodyEnteredSpikes")
+
+
+func _on_prototype_spike_trap_body_entered_ceiling_spikes() -> void:
+	emit_signal("bodyEnteredSpikes")

@@ -133,3 +133,7 @@ func reset_item_rotation(item):
 	item.transform = Transform3D.IDENTITY
 	item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))  # Rotate on X-axis
 	item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))  # Rotate on Y-axis (if needed)
+
+
+func _on_trap_body_entered_spikes() -> void:
+	print("U dead")

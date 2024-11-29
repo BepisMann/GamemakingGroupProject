@@ -56,7 +56,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_77nid")
 [node name="Spikes" parent="." index="10"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h1k6o")
 
-[node name="Area3D" type="Area3D" parent="Spikes" index="0"]
+[node name="SpikeArea" type="Area3D" parent="Spikes" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes/Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes/SpikeArea" index="0"]
 shape = SubResource("BoxShape3D_kybtr")
+
+[connection signal="body_entered" from="Spikes/SpikeArea" to="." method="_on_spike_area_body_entered"]

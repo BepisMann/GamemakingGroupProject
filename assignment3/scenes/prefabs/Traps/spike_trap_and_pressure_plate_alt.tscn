@@ -351,3 +351,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_i4p35")
 shape = SubResource("BoxShape3D_tpygn")
 
 [connection signal="body_entered" from="SpikePlateDetectionArea" to="." method="_on_spike_plate_detection_area_body_entered"]
+[connection signal="body_entered" from="PitSpikes/Spikes/PitSpikeArea1" to="." method="_on_pit_spike_area_1_body_entered"]
+[connection signal="body_entered" from="PitSpikes/Spikes2/PitSpikeArea2" to="." method="_on_pit_spike_area_2_body_entered"]
+[connection signal="body_entered" from="PitSpikes/Spikes3/PitSpikeArea3" to="." method="_on_pit_spike_area_3_body_entered"]
+[connection signal="body_entered" from="PitSpikes/Spikes4/PitSpikeArea4" to="." method="_on_pit_spike_area_4_body_entered"]
