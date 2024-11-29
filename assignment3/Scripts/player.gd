@@ -103,6 +103,10 @@ func try_place_torch(hand):
 		
 		if holder and holder.has_method("get_is_occupied") and not holder.get_is_occupied():
 			var torch = (left_hand_position if hand == "left" else right_hand_position).get_child(0)
+			
+			if not torch.name.begins_with("Torch"):
+				return
+			
 			holder.place_torch(torch)
 			torch.get_parent().remove_child(torch) 
 			if hand == "left":
@@ -124,8 +128,13 @@ func try_place_medallion(hand):
 			if hand_position.get_child_count() > 0:
 				print("part 4")
 				var medallion = hand_position.get_child(0)
+				
+				if not medallion.name.begins_with("Medallion"):
+					print("Error: Only medallions can be placed in this holder.")
+					return
+				
 				holder.place_medallion(medallion)
-				medallion.get_parent().remove_child(medallion)
+				hand_position.remove_child(medallion)
 				if hand == "left":
 					left = "" 
 				else:
@@ -147,7 +156,9 @@ func pickup(hand):
 			var parent = item.get_parent()
 			if parent and parent.has_method("remove_medallion"):
 				print("Removing medallion from holder.")
-				parent.remove_medallion()
+				var medallion_from_holder = parent.remove_medallion()
+				if medallion_from_holder:
+					item = medallion_from_holder
 			if parent and parent.has_method("remove_torch"):
 				print("Removing torch from holder.")
 				parent.remove_torch()
@@ -155,15 +166,17 @@ func pickup(hand):
 				
 			if hand == "left":
 				print("Adding item to left hand.")
-				self.left = item.name
 				left_hand_position.add_child(item)
+				self.left = item.name
+				reset_item_rotation_left(item)
 			else:
 				print("Adding item to right hand.")
-				self.right = item.name
 				right_hand_position.add_child(item)
+				self.right = item.name
+				reset_item_rotation_right(item)
 			
 			print("Item parent after pickup:", item.get_parent().name)
-			reset_item_rotation(item)
+			
 			item.visible = true
 			item.collision_layer = 2
 			item.collision_mask = 2
@@ -173,7 +186,58 @@ func pickup(hand):
 			print("Error: No valid item to pick up!")
 	
 
-func reset_item_rotation(item):
+func reset_item_rotation_left(item):
 	item.transform = Transform3D.IDENTITY
-	item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))  # Rotate on X-axis
-	item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))  # Rotate on Y-axis (if needed)
+	
+	match item.name:
+		"Torch":
+			item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))
+		
+		"MedallionBird":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(0, 1.5, 0)
+			
+		"MedallionSnake":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionFish":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionScarab":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(-0.15, 1.5, 0)
+
+func reset_item_rotation_right(item):
+	item.transform = Transform3D.IDENTITY
+	
+	match item.name:
+		"Torch":
+			item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))
+		
+		"MedallionBird":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionSnake":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionFish":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionScarab":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)

@@ -17,6 +17,10 @@ func _process(delta: float) -> void:
 			DOT_COLOR = Color.RED
 		elif collider and collider.name == "HolderCollider":
 			DOT_COLOR = Color.RED
+		elif collider and (collider.name.begins_with("Medallion") or (collider.name == "HolderColliderMedallion" and collider.get_parent().has_method("is_occupied") and not collider.get_parent().is_occupied())):
+			DOT_COLOR = Color.RED
+		elif collider and collider.name == "HolderColliderMedallion":
+			DOT_COLOR = Color.RED
 		else:
 			DOT_COLOR = Color.WHITE
 		
