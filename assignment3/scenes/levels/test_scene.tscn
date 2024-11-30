@@ -58,12 +58,12 @@ subdivide_width = 500
 subdivide_height = 3
 subdivide_depth = 100
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5b6b1"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qdjrg"]
 noise_type = 3
 seed = -10
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c73a5"]
-noise = SubResource("FastNoiseLite_5b6b1")
+noise = SubResource("FastNoiseLite_qdjrg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l64hc"]
 size = Vector3(0.25, 2.4, 2.4)
@@ -72,7 +72,7 @@ size = Vector3(0.25, 2.4, 2.4)
 noise_type = 3
 seed = 9
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0fcnx"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c83tk"]
 normalize = false
 noise = SubResource("FastNoiseLite_xyx5d")
 
@@ -105,7 +105,7 @@ shader_parameter/texture_emission = ExtResource("4_x5p6s")
 shader_parameter/texture_normal = ExtResource("6_7lkwk")
 shader_parameter/texture_ambient_occlusion = ExtResource("3_jq8r7")
 shader_parameter/texture_heightmap = ExtResource("5_w8fcj")
-shader_parameter/noise_img = SubResource("NoiseTexture2D_0fcnx")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_c83tk")
 
 [sub_resource type="BoxMesh" id="BoxMesh_o1c8i"]
 size = Vector3(0.25, 2.4, 2.4)
@@ -113,12 +113,12 @@ subdivide_width = 3
 subdivide_height = 120
 subdivide_depth = 120
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ndet"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m601k"]
 noise_type = 3
 seed = 5
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kqgp8"]
-noise = SubResource("FastNoiseLite_4ndet")
+noise = SubResource("FastNoiseLite_m601k")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uypey"]
 size = Vector3(0.25, 2.4, 12)
@@ -300,7 +300,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223999, 0.096756, 0)
 shape = SubResource("BoxShape3D_w0j1j")
 
 [node name="MedallionFish" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5538, 0.194567, 1.14165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5538, 0.673395, 1.14165)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("14_og7gm")
