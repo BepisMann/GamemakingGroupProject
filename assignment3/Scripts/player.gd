@@ -12,7 +12,8 @@ const JUMP_VELOCITY = 4.5
 @onready var camera := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D
 @onready var hat := $Indiana_jones_like_character_final_attempt3/Armature/Skeleton3D/hat_001
 @onready var hair := $Indiana_jones_like_character_final_attempt3/Armature/Skeleton3D/hair
-@onready var raycast := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast3D
+@onready var raycast1 := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1
+@onready var raycast2 := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast2
 @onready var label := $Control/Label
 @onready var control := $Control/CenterContainer
 
@@ -25,7 +26,8 @@ var is_jumping: bool = false
 
 func _ready() -> void:
 	if control:
-		control.set_raycast(raycast)
+		control.set_raycast(raycast1, 1)
+		control.set_raycast(raycast2, 2)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -58,21 +60,21 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if Input.is_action_just_pressed("left_click"):
-		if left == "" and raycast.is_colliding():
+		if left == "" and raycast2.is_colliding():
 			pickup("left")
-		elif left != "" and raycast.is_colliding():
-			if raycast.get_collider().name == "HolderCollider":
+		elif left != "" and raycast2.is_colliding():
+			if raycast2.get_collider().name == "HolderCollider":
 				try_place_torch("left")
-			elif raycast.get_collider().name == "HolderColliderMedallion":
+			elif raycast2.get_collider().name == "HolderColliderMedallion":
 				try_place_medallion("left")
 			
 	if Input.is_action_just_pressed("right_click"):
-		if right == "" and raycast.is_colliding():
+		if right == "" and raycast2.is_colliding():
 			pickup("right")
-		elif right != "" and raycast.is_colliding():
-			if raycast.get_collider().name == "HolderCollider":
+		elif right != "" and raycast2.is_colliding():
+			if raycast2.get_collider().name == "HolderCollider":
 				try_place_torch("right")
-			elif raycast.get_collider().name == "HolderColliderMedallion":
+			elif raycast2.get_collider().name == "HolderColliderMedallion":
 				try_place_medallion("right")
 			
 
@@ -97,7 +99,7 @@ func _physics_process(delta: float) -> void:
 	
 
 func try_place_torch(hand):
-	var item = raycast.get_collider()
+	var item = raycast2.get_collider()
 	if item and item.name == "HolderCollider":
 		var holder = item.get_parent()
 		
@@ -116,7 +118,7 @@ func try_place_torch(hand):
 				
 func try_place_medallion(hand):
 	print("part 1")
-	var item = raycast.get_collider()
+	var item = raycast2.get_collider()
 	if item and item.name == "HolderColliderMedallion":
 		print("part 2")
 		var holder = item.get_parent()
@@ -145,7 +147,7 @@ func try_place_medallion(hand):
 
 
 func pickup(hand):
-	var item = raycast.get_collider()
+	var item = raycast2.get_collider()
 	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion":
 		if item:
 			print("Picking up item:", item.name)
