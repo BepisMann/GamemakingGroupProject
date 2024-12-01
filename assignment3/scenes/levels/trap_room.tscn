@@ -1,10 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://0oxnfp6yw3f7"]
+[gd_scene load_steps=34 format=3 uid="uid://bn36rmhg2gmsk"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_k0f7i"]
-[ext_resource type="PackedScene" uid="uid://cnup24j44fx40" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.tscn" id="2_77481"]
+[ext_resource type="PackedScene" uid="uid://cfpw3t5w6c0ch" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.tscn" id="2_77481"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_w3htk"]
 [ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="3_5c1xf"]
-[ext_resource type="PackedScene" uid="uid://d1qcj4c6r7mft" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate_alt.tscn" id="3_ie2wq"]
+[ext_resource type="PackedScene" uid="uid://dhxopdyortb3b" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate_alt.tscn" id="3_ie2wq"]
 [ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="4_wbq6i"]
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="5_hs5pa"]
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="6_t3o03"]
@@ -142,11 +142,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 12.5)
 [node name="Line1" type="Node3D" parent="TrapTiles"]
 
 [node name="Column1Trap" parent="TrapTiles/Line1" instance=ExtResource("2_77481")]
-is_deadly_spike = true
 
 [node name="Column2Trap" parent="TrapTiles/Line1" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
-is_deadly_pit = true
+is_deadly_spike = true
 
 [node name="Column3Trap" parent="TrapTiles/Line1" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -156,9 +155,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
 [node name="Column5Trap" parent="TrapTiles/Line1" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_pit = true
 
 [node name="Column6Trap" parent="TrapTiles/Line1" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+is_deadly_pit = true
 
 [node name="Line2" type="Node3D" parent="TrapTiles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
@@ -170,20 +171,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 
 [node name="Column3Trap" parent="TrapTiles/Line2" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_pit = true
 
 [node name="Column4Trap" parent="TrapTiles/Line2" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+is_deadly_spike = true
 
 [node name="Column5Trap" parent="TrapTiles/Line2" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Column6Trap" parent="TrapTiles/Line2" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+is_deadly_spike = true
 
 [node name="Line3" type="Node3D" parent="TrapTiles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 
 [node name="Column1Trap" parent="TrapTiles/Line3" instance=ExtResource("2_77481")]
+is_deadly_pit = true
 
 [node name="Column2Trap" parent="TrapTiles/Line3" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
@@ -193,6 +198,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="Column4Trap" parent="TrapTiles/Line3" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+is_deadly_pit = true
 
 [node name="Column5Trap" parent="TrapTiles/Line3" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -204,12 +210,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
 
 [node name="Column1Trap" parent="TrapTiles/Line4" instance=ExtResource("3_ie2wq")]
+is_deadly_spike = true
 
 [node name="Column2Trap" parent="TrapTiles/Line4" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+is_deadly_pit = true
 
 [node name="Column3Trap" parent="TrapTiles/Line4" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_spike = true
 
 [node name="Column4Trap" parent="TrapTiles/Line4" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
@@ -224,18 +233,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Column1Trap" parent="TrapTiles/Line5" instance=ExtResource("2_77481")]
+is_deadly_pit = true
 
 [node name="Column2Trap" parent="TrapTiles/Line5" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 
 [node name="Column3Trap" parent="TrapTiles/Line5" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_spike = true
 
 [node name="Column4Trap" parent="TrapTiles/Line5" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+is_deadly_pit = true
 
 [node name="Column5Trap" parent="TrapTiles/Line5" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_spike = true
 
 [node name="Column6Trap" parent="TrapTiles/Line5" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
@@ -256,6 +269,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
 [node name="Column5Trap" parent="TrapTiles/Line6" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_spike = true
 
 [node name="Column6Trap" parent="TrapTiles/Line6" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
@@ -267,9 +281,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
 
 [node name="Column2Trap" parent="TrapTiles/Line7" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+is_deadly_spike = true
 
 [node name="Column3Trap" parent="TrapTiles/Line7" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_pit = true
 
 [node name="Column4Trap" parent="TrapTiles/Line7" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
@@ -290,20 +306,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 
 [node name="Column3Trap" parent="TrapTiles/Line8" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_pit = true
 
 [node name="Column4Trap" parent="TrapTiles/Line8" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+is_deadly_spike = true
 
 [node name="Column5Trap" parent="TrapTiles/Line8" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_spike = true
 
 [node name="Column6Trap" parent="TrapTiles/Line8" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+is_deadly_pit = true
 
 [node name="Line9" type="Node3D" parent="TrapTiles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
 
 [node name="Column1Trap" parent="TrapTiles/Line9" instance=ExtResource("2_77481")]
+is_deadly_spike = true
 
 [node name="Column2Trap" parent="TrapTiles/Line9" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
@@ -316,6 +337,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
 [node name="Column5Trap" parent="TrapTiles/Line9" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_pit = true
 
 [node name="Column6Trap" parent="TrapTiles/Line9" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)

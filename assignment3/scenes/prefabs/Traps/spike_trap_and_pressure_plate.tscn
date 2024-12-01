@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cnup24j44fx40"]
+[gd_scene load_steps=37 format=4 uid="uid://cfpw3t5w6c0ch"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_33hvq"]
 [ext_resource type="Script" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.gd" id="1_gvquf"]
@@ -13,8 +13,11 @@
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="11_n4ams"]
 [ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="12_lss32"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2xec7"]
-size = Vector3(5, 0.25, 5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_r6o10"]
+size = Vector3(3.5, 0.25, 3.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prng8"]
+size = Vector3(4.2, 0.25, 4.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_udchg"]
 size = Vector3(5, 0.25, 5)
@@ -45,6 +48,9 @@ seed = -10
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whu7t"]
 noise = SubResource("FastNoiseLite_qkdqv")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xec7"]
+size = Vector3(4, 0.25, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyd2h"]
 albedo_texture = ExtResource("1_33hvq")
@@ -172,12 +178,19 @@ size = Vector3(34, 2.2, 34)
 [node name="SpikeTrapAndPressurePlate" type="Node3D"]
 script = ExtResource("1_gvquf")
 
-[node name="SpikePlateDetectionArea" type="Area3D" parent="."]
+[node name="PitDetectionArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.047)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpikePlateDetectionArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PitDetectionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0.0713465, 0.00256348)
-shape = SubResource("BoxShape3D_2xec7")
+shape = SubResource("BoxShape3D_r6o10")
+
+[node name="SpikeDetectionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.047)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpikeDetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0.0713465, 0.00256348)
+shape = SubResource("BoxShape3D_prng8")
 
 [node name="Plate" type="StaticBody3D" parent="."]
 
@@ -223,7 +236,7 @@ UV_ratio = 1.0
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Wall1" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -2.5, 2.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -2.5, 2.6)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls/Wall1"]
 shape = SubResource("BoxShape3D_cnqrw")
@@ -243,7 +256,7 @@ maximum_amplitude = 0.03
 UV_ratio = 1.0
 
 [node name="Wall2" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, -2.5, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls/Wall2"]
 shape = SubResource("BoxShape3D_cnqrw")
@@ -263,7 +276,7 @@ maximum_amplitude = 0.03
 UV_ratio = 1.0
 
 [node name="Wall3" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -2.5, -2.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -2.5, -2.6)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls/Wall3"]
 shape = SubResource("BoxShape3D_cnqrw")
@@ -283,7 +296,7 @@ maximum_amplitude = 0.03
 UV_ratio = 1.0
 
 [node name="Wall4" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, -2.5, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls/Wall4"]
 shape = SubResource("BoxShape3D_cnqrw")
@@ -348,7 +361,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j2cav")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PitSpikes/Spikes4/PitSpikeArea4"]
 shape = SubResource("BoxShape3D_p5ivx")
 
-[connection signal="body_entered" from="SpikePlateDetectionArea" to="." method="_on_spike_plate_detection_area_body_entered"]
+[connection signal="body_entered" from="PitDetectionArea" to="." method="_on_pit_detection_area_body_entered"]
+[connection signal="body_entered" from="SpikeDetectionArea" to="." method="_on_spike_detection_area_body_entered"]
 [connection signal="bodyEnteredCeilingSpikes" from="Prototype Spike trap" to="." method="_on_prototype_spike_trap_body_entered_ceiling_spikes"]
 [connection signal="body_entered" from="PitSpikes/Spikes/PitSpikeArea1" to="." method="_on_pit_spike_area_1_body_entered"]
 [connection signal="body_entered" from="PitSpikes/Spikes2/PitSpikeArea2" to="." method="_on_pit_spike_area_2_body_entered"]

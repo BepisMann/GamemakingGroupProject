@@ -18,9 +18,11 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_spike_plate_detection_area_body_entered(body: Node3D) -> void:
+func _on_spike_detection_area_body_entered(body: Node3D) -> void:
 	if is_deadly_spike && body.name == "Player":
 		$"Prototype Spike trap".activate()
+		
+func _on_pit_detection_area_body_entered(body: Node3D) -> void:
 	if is_deadly_pit && body.name == "Player" && !plate_deleted:
 		plate_deleted = true
 		$Plate.queue_free()
