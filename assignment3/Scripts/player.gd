@@ -193,10 +193,14 @@ func pickup(hand):
 
 func _on_trap_body_entered_spikes() -> void:
 	emit_signal("player_died")
+	$Control/CenterContainer.hide()
 	can_control = false
 	velocity.x = move_toward(velocity.x, 0, SPEED)
 	velocity.z = move_toward(velocity.z, 0, SPEED)
 	anim.play("Idle_1")
+	
+func show_cursor():
+	$Control/CenterContainer.show()
 	
 func reset_item_rotation_left(item):
 	item.transform = Transform3D.IDENTITY

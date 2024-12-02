@@ -20,6 +20,7 @@ func _on_death_respawn() -> void:
 	$Player.position = $PlayerRespawnPoint.position
 	$Death.hide()
 	$Player.can_control = true
+	$Player.show_cursor()
 
 func _on_death_timer_timeout() -> void:
 	$Death.show()
