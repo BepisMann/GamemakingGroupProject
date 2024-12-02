@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://gubnpbmfc62b"]
+[gd_scene load_steps=49 format=3 uid="uid://d4bnxj55wl48d"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -19,6 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://xol1c0oba240" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_snake.tscn" id="17_sfy8x"]
 [ext_resource type="PackedScene" uid="uid://dsjsna83lrrla" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_fish.tscn" id="18_67mn0"]
 [ext_resource type="PackedScene" uid="uid://cl2g4e0bpgtwn" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_scarab.tscn" id="19_41gfi"]
+[ext_resource type="PackedScene" uid="uid://bye837x87ohw1" path="res://scenes/prefabs/Traps/trapmap_pitfall.tscn" id="20_bndpi"]
+[ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
+[ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
+[ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="23_ey4ku"]
+[ext_resource type="Texture2D" uid="uid://c7ysw21kx8leo" path="res://Images/Schermafbeelding 2024-12-02 183814.png" id="24_dd0ao"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7iijs"]
 size = Vector3(24, 0.25, 10)
@@ -133,6 +138,12 @@ size = Vector3(0.25, 3.5, 4)
 size = Vector3(1.2616, 2.07184, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_766m4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8kwb"]
+size = Vector3(1.26031, 2.854, 0.201187)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsoth"]
+size = Vector3(1.70703, 1.50455, 0.206848)
 
 [node name="Node3D" type="Node3D"]
 
@@ -555,3 +566,97 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Final_torch holder4/HolderCollider"]
 shape = SubResource("BoxShape3D_766m4")
+
+[node name="Trap_map_holder" parent="room 1" instance=ExtResource("20_lbb6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.83873, -0.227675, 4.73533)
+script = ExtResource("21_emc1s")
+
+[node name="TrapMap1" type="StaticBody3D" parent="room 1/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="trapmap" parent="room 1/Trap_map_holder/TrapMap1" instance=ExtResource("20_bndpi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder/TrapMap1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00991821, 0.927002, 0.0351791)
+shape = SubResource("BoxShape3D_k8kwb")
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="room 1/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 2.05033, 0.0951657)
+shape = SubResource("BoxShape3D_jsoth")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TrapMapUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 616.0
+offset_right = 40.0
+offset_bottom = 656.0
+
+[node name="Pit_trap_left" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -0.17
+offset_top = -331.755
+offset_right = 326.83
+offset_bottom = 151.245
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("23_ey4ku")
+
+[node name="Pit_trap_right" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 892.55
+offset_top = -331.795
+offset_right = 1219.55
+offset_bottom = 151.205
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("23_ey4ku")
+
+[node name="Spike_trap_left" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -0.17
+offset_top = -332.54
+offset_right = 326.83
+offset_bottom = 152.46
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("24_dd0ao")
+
+[node name="Spike_trap_right" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 892.585
+offset_top = -333.05
+offset_right = 1219.59
+offset_bottom = 151.95
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("24_dd0ao")

@@ -60,28 +60,26 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if Input.is_action_just_pressed("left_click"):
-		if raycast2.has_method("get_collision_layer"):
-			var collider_layer = raycast2.collision_layer
-			if collider_layer & (1<<1):
-				if left == "" and raycast2.is_colliding():
-					pickup("left")
-				elif left != "" and raycast2.is_colliding():
-					if raycast2.get_collider().name == "HolderCollider":
-						try_place_torch("left")
-					elif raycast2.get_collider().name == "HolderColliderMedallion":
-						try_place_medallion("left")
+		if left == "" and raycast2.is_colliding():
+			pickup("left")
+		elif left != "" and raycast2.is_colliding():
+			if raycast2.get_collider().name == "HolderCollider":
+				try_place_torch("left")
+			elif raycast2.get_collider().name == "HolderColliderMedallion":
+				try_place_medallion("left")
+			elif raycast2.get_collider().name == "HolderColliderMap":
+				try_place_trap_map("left")
 			
 	if Input.is_action_just_pressed("right_click"):
-		if raycast2.has_method("get_collision_layer"):
-			var collider_layer = raycast2.collision_layer
-			if collider_layer & (1<<1):
-				if right == "" and raycast2.is_colliding():
-					pickup("right")
-				elif right != "" and raycast2.is_colliding():
-					if raycast2.get_collider().name == "HolderCollider":
-						try_place_torch("right")
-					elif raycast2.get_collider().name == "HolderColliderMedallion":
-						try_place_medallion("right")
+		if right == "" and raycast2.is_colliding():
+			pickup("right")
+		elif right != "" and raycast2.is_colliding():
+			if raycast2.get_collider().name == "HolderCollider":
+				try_place_torch("right")
+			elif raycast2.get_collider().name == "HolderColliderMedallion":
+				try_place_medallion("right")
+			elif raycast2.get_collider().name == "HolderColliderMap":
+				try_place_trap_map("right")
 			
 
 	# Handle jump.
@@ -103,6 +101,36 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+func try_place_trap_map(hand):
+	var item = raycast2.get_collider()
+	if item and item.name == "HolderColliderMap":
+		var holder = item.get_parent()
+		
+		if holder and holder.has_method("get_is_occupied") and not holder.get_is_occupied():
+			if hand == "left":
+				if self.left == "TrapMap1":
+					$"../UI/TrapMapUI/Pit_trap_left".visible = false
+				elif self.left == "TrapMap2":
+					$"../UI/TrapMapUI/Spike_trap_left".visible = false
+			else:
+				if self.right == "TrapMap1":
+					$"../UI/TrapMapUI/Pit_trap_right".visible = false
+				elif self.right == "TrapMap2":
+					$"../UI/TrapMapUI/Spike_trap_right".visible = false
+			
+			
+			var map = (left_hand_position if hand == "left" else right_hand_position).get_child(0)
+			
+			if not map.name.begins_with("TrapMap"):
+				return
+			
+			holder.place_map(map)
+			map.get_parent().remove_child(map)
+			if hand == "left":
+				left = "" 
+			else:
+				right = "" 
+
 
 func try_place_torch(hand):
 	var item = raycast2.get_collider()
@@ -154,44 +182,51 @@ func try_place_medallion(hand):
 
 func pickup(hand):
 	var item = raycast2.get_collider()
-	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion":
-		if item:
-			print("Picking up item:", item.name)
-			var collision_shape = item.get_node("CollisionShape3D")
-			if collision_shape:
-				collision_shape.disabled = true
+	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap":
+		if not item.name.begins_with("Wall") and not item.name.begins_with("Floor") and not item.name.begins_with("ceiling"):
+			if item:
+				print("Picking up item:", item.name)
+				var collision_shape = item.get_node("CollisionShape3D")
+				if collision_shape:
+					collision_shape.disabled = true
+					
+				var parent = item.get_parent()
+				if parent and parent.has_method("remove_medallion"):
+					print("Removing medallion from holder.")
+					var medallion_from_holder = parent.remove_medallion()
+					if medallion_from_holder:
+						item = medallion_from_holder
+				if parent and parent.has_method("remove_torch"):
+					print("Removing torch from holder.")
+					parent.remove_torch()
+				if parent and parent.has_method("remove_map"):
+					print("Removing map from holder.")
+					parent.remove_map()
 				
-			var parent = item.get_parent()
-			if parent and parent.has_method("remove_medallion"):
-				print("Removing medallion from holder.")
-				var medallion_from_holder = parent.remove_medallion()
-				if medallion_from_holder:
-					item = medallion_from_holder
-			if parent and parent.has_method("remove_torch"):
-				print("Removing torch from holder.")
-				parent.remove_torch()
-			parent.remove_child(item)
+				parent.remove_child(item)
+					
+				if hand == "left":
+						print("Adding item to left hand.")
+						left_hand_position.add_child(item)
+						self.left = item.name
+						reset_item_rotation_left(item)
 				
-			if hand == "left":
-				print("Adding item to left hand.")
-				left_hand_position.add_child(item)
-				self.left = item.name
-				reset_item_rotation_left(item)
+				else:
+					print("Adding item to right hand.")
+					right_hand_position.add_child(item)
+					self.right = item.name
+					reset_item_rotation_right(item)
+				
+				print("Item parent after pickup:", item.get_parent().name)
+				
+				item.visible = true
+				
+				item.collision_layer = 2
+				item.collision_mask = 2
+				
+				label.show_pickup_message("Picked up " + item.name + str(hand))
 			else:
-				print("Adding item to right hand.")
-				right_hand_position.add_child(item)
-				self.right = item.name
-				reset_item_rotation_right(item)
-			
-			print("Item parent after pickup:", item.get_parent().name)
-			
-			item.visible = true
-			item.collision_layer = 2
-			item.collision_mask = 2
-			
-			label.show_pickup_message("Picked up " + item.name + str(hand))
-		else:
-			print("Error: No valid item to pick up!")
+				print("Error: No valid item to pick up!")
 	
 
 func reset_item_rotation_left(item):
@@ -221,6 +256,12 @@ func reset_item_rotation_left(item):
 			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
 			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
 			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"TrapMap1":
+			$"../UI/TrapMapUI/Pit_trap_left".visible = true
+		
+		"TrapMap2":
+			$"../UI/TrapMapUI/Spike_trap_left".visible = true
 
 func reset_item_rotation_right(item):
 	item.transform = Transform3D.IDENTITY
@@ -249,3 +290,9 @@ func reset_item_rotation_right(item):
 			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
 			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
 			item.position += Vector3(-0.15, 1.5, 0)
+		
+		"TrapMap1":
+			$"../UI/TrapMapUI/Pit_trap_right".visible = true
+			
+		"TrapMap2":
+			$"../UI/TrapMapUI/Pit_trap_right".visible = true
