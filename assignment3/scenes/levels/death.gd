@@ -21,4 +21,5 @@ func _on_show_respawn_button_timer_timeout() -> void:
 
 
 func _on_respawn_button_pressed() -> void:
+	$RespawnButton.hide()
 	emit_signal("respawn")

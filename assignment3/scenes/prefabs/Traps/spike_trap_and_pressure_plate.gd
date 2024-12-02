@@ -22,11 +22,16 @@ func _on_spike_detection_area_body_entered(body: Node3D) -> void:
 	if is_deadly_spike && body.name == "Player":
 		$"Prototype Spike trap".activate()
 		
+func rearm():
+	$Plate.show()
+	$Plate/CollisionShape3D.set_deferred("disabled", false)
+	plate_deleted = false
+		
 func _on_pit_detection_area_body_entered(body: Node3D) -> void:
 	if is_deadly_pit && body.name == "Player" && !plate_deleted:
 		plate_deleted = true
-		$Plate.queue_free()
-
+		$Plate/CollisionShape3D.set_deferred("disabled", true)
+		$Plate.hide()
 
 func _on_pit_spike_area_1_body_entered(body: Node3D) -> void:
 	if body.name == "Player":

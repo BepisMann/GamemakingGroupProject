@@ -11,10 +11,13 @@ func _process(delta: float) -> void:
 
 
 func _on_player_player_died() -> void:
-	print("Player ded")
 	$DeathTimer.start()
 	
 func _on_death_respawn() -> void:
+	for line in $TrapTiles.get_children():
+		for trap in line.get_children():
+			trap.rearm()
+	
 	$Player.position = $PlayerRespawnPoint.position
 	$Death.hide()
 
