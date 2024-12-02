@@ -10,3 +10,9 @@ albedo_texture = ExtResource("2_ti4pe")
 
 [node name="Plane" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_e1m2c")
+
+[node name="Pointy frame" parent="." index="2"]
+visible = false
+
+[node name="holder" parent="." index="3"]
+visible = false
