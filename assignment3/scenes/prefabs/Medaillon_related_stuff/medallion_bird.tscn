@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx532qeyvcpsd"]
+
+[ext_resource type="PackedScene" uid="uid://6yk1xn61wsq4" path="res://scenes/prefabs/Medaillon_related_stuff/Medallion Bird.glb" id="1_7on3o"]
+
+[node name="Medallion Bird" instance=ExtResource("1_7on3o")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

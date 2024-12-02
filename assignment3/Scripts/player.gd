@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 
 @export var left: String = ""
 @export var right: String = ""
+
 @onready var player := $Indiana_jones_like_character_final_attempt3
 @onready var neck := $Indiana_jones_like_character_final_attempt3/Neck
 @onready var camera := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D
@@ -65,13 +66,19 @@ func _physics_process(delta: float) -> void:
 			if left == "" and raycast.is_colliding():
 				pickup("left")
 			elif left != "" and raycast.is_colliding():
-				try_place_torch("left")
+				if raycast.get_collider().name == "HolderCollider":
+					try_place_torch("left")
+				elif raycast.get_collider().name == "HolderColliderMedallion":
+					try_place_medallion("left")
 				
 		if Input.is_action_just_pressed("right_click"):
 			if right == "" and raycast.is_colliding():
 				pickup("right")
 			elif right != "" and raycast.is_colliding():
-				try_place_torch("right")
+				if raycast.get_collider().name == "HolderCollider":
+					try_place_torch("right")
+				elif raycast.get_collider().name == "HolderColliderMedallion":
+					try_place_medallion("right")
 			
 
 	# Handle jump and movement.
@@ -102,44 +109,87 @@ func try_place_torch(hand):
 		
 		if holder and holder.has_method("get_is_occupied") and not holder.get_is_occupied():
 			var torch = (left_hand_position if hand == "left" else right_hand_position).get_child(0)
+			
+			if not torch.name.begins_with("Torch"):
+				return
+			
 			holder.place_torch(torch)
 			torch.get_parent().remove_child(torch) 
 			if hand == "left":
 				left = "" 
 			else:
 				right = "" 
+				
+func try_place_medallion(hand):
+	print("part 1")
+	var item = raycast.get_collider()
+	if item and item.name == "HolderColliderMedallion":
+		print("part 2")
+		var holder = item.get_parent()
+		
+		if holder and holder.has_method("get_is_occupied") and not holder.get_is_occupied():
+			print("part 3")
+			var hand_position = left_hand_position if hand == "left" else right_hand_position
+			print(hand_position.get_child_count())
+			if hand_position.get_child_count() > 0:
+				print("part 4")
+				var medallion = hand_position.get_child(0)
+				
+				if not medallion.name.begins_with("Medallion"):
+					print("Error: Only medallions can be placed in this holder.")
+					return
+				
+				holder.place_medallion(medallion)
+				hand_position.remove_child(medallion)
+				if hand == "left":
+					left = "" 
+				else:
+					right = "" 
+				
+				print("medallion placed")
+		
 
 
 func pickup(hand):
 	var item = raycast.get_collider()
-	if item and item.name!="HolderCollider":
+	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion":
 		if item:
+			print("Picking up item:", item.name)
 			var collision_shape = item.get_node("CollisionShape3D")
 			if collision_shape:
 				collision_shape.disabled = true
 				
-				var parent = item.get_parent()
-				if parent:
-					if parent.has_method("remove_torch"):
-						parent.remove_torch()
-					parent.remove_child(item)
+			var parent = item.get_parent()
+			if parent and parent.has_method("remove_medallion"):
+				print("Removing medallion from holder.")
+				var medallion_from_holder = parent.remove_medallion()
+				if medallion_from_holder:
+					item = medallion_from_holder
+			if parent and parent.has_method("remove_torch"):
+				print("Removing torch from holder.")
+				parent.remove_torch()
+			parent.remove_child(item)
 				
-		if hand == "left":
-			self.left = item.name
-			left_hand_position.add_child(item)
+			if hand == "left":
+				print("Adding item to left hand.")
+				left_hand_position.add_child(item)
+				self.left = item.name
+				reset_item_rotation_left(item)
+			else:
+				print("Adding item to right hand.")
+				right_hand_position.add_child(item)
+				self.right = item.name
+				reset_item_rotation_right(item)
+			
+			print("Item parent after pickup:", item.get_parent().name)
+			
+			item.visible = true
+			item.collision_layer = 2
+			item.collision_mask = 2
+			
+			label.show_pickup_message("Picked up " + item.name + str(hand))
 		else:
-			self.right = item.name
-			right_hand_position.add_child(item)
-		
-		reset_item_rotation(item)
-		label.show_pickup_message("Picked up " + item.name + str(hand))
-	
-
-func reset_item_rotation(item):
-	item.transform = Transform3D.IDENTITY
-	item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))  # Rotate on X-axis
-	item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))  # Rotate on Y-axis (if needed)
-
+			print("Error: No valid item to pick up!")
 
 func _on_trap_body_entered_spikes() -> void:
 	emit_signal("player_died")
@@ -147,3 +197,59 @@ func _on_trap_body_entered_spikes() -> void:
 	velocity.x = move_toward(velocity.x, 0, SPEED)
 	velocity.z = move_toward(velocity.z, 0, SPEED)
 	anim.play("Idle_1")
+	
+func reset_item_rotation_left(item):
+	item.transform = Transform3D.IDENTITY
+	
+	match item.name:
+		"Torch":
+			item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))
+		
+		"MedallionBird":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(0, 1.5, 0)
+			
+		"MedallionSnake":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionFish":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionScarab":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-120))
+			item.position += Vector3(-0.15, 1.5, 0)
+
+func reset_item_rotation_right(item):
+	item.transform = Transform3D.IDENTITY
+	
+	match item.name:
+		"Torch":
+			item.rotate_object_local(Vector3(1, 0, 0), deg_to_rad(0))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-150))
+		
+		"MedallionBird":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionSnake":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionFish":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)
+			
+		"MedallionScarab":
+			item.rotate_object_local(Vector3(0, 0, 1), deg_to_rad(-30))
+			item.rotate_object_local(Vector3(0, 1, 0), deg_to_rad(150))
+			item.position += Vector3(-0.15, 1.5, 0)
