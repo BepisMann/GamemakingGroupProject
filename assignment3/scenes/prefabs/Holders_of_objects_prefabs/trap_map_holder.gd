@@ -25,6 +25,7 @@ func get_is_occupied() -> bool:
 
 func place_map(map_instance):
 	if not is_occupied:
+		
 		var new_map = map_instance.duplicate()
 		new_map.name = map_instance.name
 		add_child(new_map)
@@ -37,6 +38,7 @@ func place_map(map_instance):
 		
 		new_map.collision_layer = 2
 		new_map.collision_mask = 2
+		new_map.visible = true
 		
 		map_instance.queue_free()
 		map = new_map

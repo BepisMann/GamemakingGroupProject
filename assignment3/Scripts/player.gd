@@ -210,16 +210,21 @@ func pickup(hand):
 						left_hand_position.add_child(item)
 						self.left = item.name
 						reset_item_rotation_left(item)
+						if item.name.begins_with("TrapMap"):
+							item.visible = false
 				
 				else:
 					print("Adding item to right hand.")
 					right_hand_position.add_child(item)
 					self.right = item.name
 					reset_item_rotation_right(item)
+					if item.name.begins_with("TrapMap"):
+						item.visible = false
 				
 				print("Item parent after pickup:", item.get_parent().name)
 				
-				item.visible = true
+				if not item.name.begins_with("TrapMap"):
+					item.visible = true
 				
 				item.collision_layer = 2
 				item.collision_mask = 2
