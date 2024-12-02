@@ -9,7 +9,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_player_player_died() -> void:
 	$DeathTimer.start()
 	
@@ -20,6 +19,7 @@ func _on_death_respawn() -> void:
 	
 	$Player.position = $PlayerRespawnPoint.position
 	$Death.hide()
+	$Player.can_control = true
 
 func _on_death_timer_timeout() -> void:
 	$Death.show()
