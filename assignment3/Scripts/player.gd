@@ -60,22 +60,28 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if Input.is_action_just_pressed("left_click"):
-		if left == "" and raycast2.is_colliding():
-			pickup("left")
-		elif left != "" and raycast2.is_colliding():
-			if raycast2.get_collider().name == "HolderCollider":
-				try_place_torch("left")
-			elif raycast2.get_collider().name == "HolderColliderMedallion":
-				try_place_medallion("left")
+		if raycast2.has_method("get_collision_layer"):
+			var collider_layer = raycast2.collision_layer
+			if collider_layer & (1<<1):
+				if left == "" and raycast2.is_colliding():
+					pickup("left")
+				elif left != "" and raycast2.is_colliding():
+					if raycast2.get_collider().name == "HolderCollider":
+						try_place_torch("left")
+					elif raycast2.get_collider().name == "HolderColliderMedallion":
+						try_place_medallion("left")
 			
 	if Input.is_action_just_pressed("right_click"):
-		if right == "" and raycast2.is_colliding():
-			pickup("right")
-		elif right != "" and raycast2.is_colliding():
-			if raycast2.get_collider().name == "HolderCollider":
-				try_place_torch("right")
-			elif raycast2.get_collider().name == "HolderColliderMedallion":
-				try_place_medallion("right")
+		if raycast2.has_method("get_collision_layer"):
+			var collider_layer = raycast2.collision_layer
+			if collider_layer & (1<<1):
+				if right == "" and raycast2.is_colliding():
+					pickup("right")
+				elif right != "" and raycast2.is_colliding():
+					if raycast2.get_collider().name == "HolderCollider":
+						try_place_torch("right")
+					elif raycast2.get_collider().name == "HolderColliderMedallion":
+						try_place_medallion("right")
 			
 
 	# Handle jump.
