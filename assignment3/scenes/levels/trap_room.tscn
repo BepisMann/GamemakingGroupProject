@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://bn36rmhg2gmsk"]
+[gd_scene load_steps=36 format=3 uid="uid://bn36rmhg2gmsk"]
 
+[ext_resource type="Script" path="res://scenes/levels/trap_room.gd" id="1_53yes"]
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_k0f7i"]
 [ext_resource type="PackedScene" uid="uid://cfpw3t5w6c0ch" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.tscn" id="2_77481"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_w3htk"]
@@ -14,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="11_h5opv"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="12_kp8n6"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="13_gmn0p"]
+[ext_resource type="PackedScene" uid="uid://b1udg0j27o23v" path="res://scenes/levels/death.tscn" id="15_0kn40"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -129,9 +131,19 @@ subdivide_height = 48
 subdivide_depth = 240
 
 [node name="TrapRoom" type="Node3D"]
+script = ExtResource("1_53yes")
+
+[node name="Death" parent="." instance=ExtResource("15_0kn40")]
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ttdlb")
+
+[node name="PlayerRespawnPoint" type="Node3D" parent="."]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 1.48002, 0.25, 12.8543)
 
 [node name="Player" parent="." instance=ExtResource("11_h5opv")]
 transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 1.48002, 0.25, 12.8543)
@@ -517,6 +529,9 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w2/HolderCollider"]
 shape = SubResource("BoxShape3D_qbyxa")
 
+[connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
 [connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
 [connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]

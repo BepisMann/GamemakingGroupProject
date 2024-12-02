@@ -20,6 +20,8 @@ const JUMP_VELOCITY = 4.5
 
 @onready var anim := $Indiana_jones_like_character_final_attempt3/AnimationPlayer
 
+signal player_died
+
 var is_jumping: bool = false
 
 func _ready() -> void:
@@ -136,4 +138,4 @@ func reset_item_rotation(item):
 
 
 func _on_trap_body_entered_spikes() -> void:
-	print("U dead")
+	emit_signal("player_died")
