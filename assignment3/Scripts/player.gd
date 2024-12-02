@@ -63,28 +63,28 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-  if (can_control):
-    if Input.is_action_just_pressed("left_click"):
-      if left == "" and raycast2.is_colliding():
-        pickup("left")
-      elif left != "" and raycast2.is_colliding():
-        if raycast2.get_collider().name == "HolderCollider":
-          try_place_torch("left")
-        elif raycast2.get_collider().name == "HolderColliderMedallion":
-          try_place_medallion("left")
-        elif raycast2.get_collider().name == "HolderColliderMap":
-          try_place_trap_map("left")
+	if (can_control):
+		if Input.is_action_just_pressed("left_click"):
+			if left == "" and raycast2.is_colliding():
+				pickup("left")
+			elif left != "" and raycast2.is_colliding():
+				if raycast2.get_collider().name == "HolderCollider":
+					try_place_torch("left")
+				elif raycast2.get_collider().name == "HolderColliderMedallion":
+					try_place_medallion("left")
+				elif raycast2.get_collider().name == "HolderColliderMap":
+					try_place_trap_map("left")
 
-    if Input.is_action_just_pressed("right_click"):
-      if right == "" and raycast2.is_colliding():
-        pickup("right")
-      elif right != "" and raycast2.is_colliding():
-        if raycast2.get_collider().name == "HolderCollider":
-          try_place_torch("right")
-        elif raycast2.get_collider().name == "HolderColliderMedallion":
-          try_place_medallion("right")
-        elif raycast2.get_collider().name == "HolderColliderMap":
-          try_place_trap_map("right")
+		if Input.is_action_just_pressed("right_click"):
+			if right == "" and raycast2.is_colliding():
+				pickup("right")
+			elif right != "" and raycast2.is_colliding():
+				if raycast2.get_collider().name == "HolderCollider":
+					try_place_torch("right")
+				elif raycast2.get_collider().name == "HolderColliderMedallion":
+					try_place_medallion("right")
+				elif raycast2.get_collider().name == "HolderColliderMap":
+					try_place_trap_map("right")
 			
 
 	# Handle jump and movement.
@@ -212,12 +212,12 @@ func pickup(hand):
 				parent.remove_child(item)
 					
 				if hand == "left":
-						print("Adding item to left hand.")
-						left_hand_position.add_child(item)
-						self.left = item.name
-						reset_item_rotation_left(item)
-						if item.name.begins_with("TrapMap"):
-							item.visible = false
+					print("Adding item to left hand.")
+					left_hand_position.add_child(item)
+					self.left = item.name
+					reset_item_rotation_left(item)
+					if item.name.begins_with("TrapMap"):
+						item.visible = false
 				
 				else:
 					print("Adding item to right hand.")
