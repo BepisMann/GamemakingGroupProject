@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dxg18kl1inwgv"
-path="res://.godot/imported/trapmap.glb-ef58e3098509f9ef824f0936c64f37e0.scn"
+uid="uid://bjdwranu8j784"
+path="res://.godot/imported/Medallion Fish.glb-e6e55cdf8a0a2a52c84d818f9a4ad0fc.scn"
 
 [deps]
 
-source_file="res://scenes/prefabs/Traps/trapmap.glb"
-dest_files=["res://.godot/imported/trapmap.glb-ef58e3098509f9ef824f0936c64f37e0.scn"]
+source_file="res://scenes/prefabs/Medaillon_related_stuff/Medallion Fish.glb"
+dest_files=["res://.godot/imported/Medallion Fish.glb-e6e55cdf8a0a2a52c84d818f9a4ad0fc.scn"]
 
 [params]
 

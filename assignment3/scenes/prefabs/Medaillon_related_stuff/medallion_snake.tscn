@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xol1c0oba240"]
+
+[ext_resource type="PackedScene" uid="uid://sirn0qddw3is" path="res://scenes/prefabs/Medaillon_related_stuff/Medallion Snake.glb" id="1_vyc75"]
+
+[node name="Medallion Snake" instance=ExtResource("1_vyc75")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

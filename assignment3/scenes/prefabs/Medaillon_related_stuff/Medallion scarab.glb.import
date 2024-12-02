@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dxg18kl1inwgv"
-path="res://.godot/imported/trapmap.glb-ef58e3098509f9ef824f0936c64f37e0.scn"
+uid="uid://puy5dd31bsvw"
+path="res://.godot/imported/Medallion scarab.glb-2759824749147bf8f22c16686e4f31f3.scn"
 
 [deps]
 
-source_file="res://scenes/prefabs/Traps/trapmap.glb"
-dest_files=["res://.godot/imported/trapmap.glb-ef58e3098509f9ef824f0936c64f37e0.scn"]
+source_file="res://scenes/prefabs/Medaillon_related_stuff/Medallion scarab.glb"
+dest_files=["res://.godot/imported/Medallion scarab.glb-2759824749147bf8f22c16686e4f31f3.scn"]
 
 [params]
 

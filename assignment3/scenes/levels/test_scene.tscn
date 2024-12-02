@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cqn66sbjtacfr"]
+[gd_scene load_steps=45 format=3 uid="uid://cqn66sbjtacfr"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="2_iunop"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="2_yuy3u"]
@@ -13,6 +13,13 @@
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="9_ei255"]
 [ext_resource type="PackedScene" uid="uid://bc1cfjmr4myrs" path="res://scenes/prefabs/spikes_related/prototype_spike_trap.tscn" id="10_l0wtg"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="13_uy2sg"]
+[ext_resource type="Script" path="res://Scripts/medallion.gd" id="14_og7gm"]
+[ext_resource type="PackedScene" uid="uid://divc73ew0qsia" path="res://scenes/prefabs/Medaillon_related_stuff/medaillon_holder.tscn" id="14_wifq0"]
+[ext_resource type="PackedScene" uid="uid://xol1c0oba240" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_snake.tscn" id="15_kaneo"]
+[ext_resource type="PackedScene" uid="uid://dsjsna83lrrla" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_fish.tscn" id="16_re573"]
+[ext_resource type="PackedScene" uid="uid://cl2g4e0bpgtwn" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_scarab.tscn" id="17_82p66"]
+[ext_resource type="PackedScene" uid="uid://bx532qeyvcpsd" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_bird.tscn" id="18_7p83v"]
+[ext_resource type="Script" path="res://scenes/levels/puzzle_manager_medallions.gd" id="19_apvx0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -126,6 +133,21 @@ subdivide_depth = 2200
 size = Vector3(1.2616, 2.07184, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbyxa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jeile"]
+size = Vector3(0.709076, 0.760925, 0.0996094)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0j1j"]
+size = Vector3(0.784302, 0.206329, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kmnnf"]
+size = Vector3(0.78894, 0.18689, 0.803345)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37jew"]
+size = Vector3(0.81842, 0.240479, 0.778809)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hv0sc"]
+size = Vector3(2.10132, 1.24593, 0.840698)
 
 [node name="TestScene" type="Node3D"]
 
@@ -251,5 +273,105 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final_torch holder2/HolderCollider"]
 shape = SubResource("BoxShape3D_qbyxa")
 
-[node name="Test" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, -1.6, -0.544)
+[node name="MedallionBird" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 9.7868, 1.78864, -1.94063)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_og7gm")
+medallion_type = "bird"
+
+[node name="Medallion Bird" parent="MedallionBird" instance=ExtResource("18_7p83v")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MedallionBird"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0177155, 0.0712891, 0.00375366)
+shape = SubResource("BoxShape3D_jeile")
+
+[node name="MedallionSnake" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8039, 0.7613, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_og7gm")
+medallion_type = "snake"
+
+[node name="Medallion Snake" parent="MedallionSnake" instance=ExtResource("15_kaneo")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MedallionSnake"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223999, 0.096756, 0)
+shape = SubResource("BoxShape3D_w0j1j")
+
+[node name="MedallionFish" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5538, 0.194567, 1.14165)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_og7gm")
+medallion_type = "fish"
+
+[node name="Medallion Fish" parent="MedallionFish" instance=ExtResource("16_re573")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MedallionFish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171509, 0.0852661, -0.00994873)
+shape = SubResource("BoxShape3D_kmnnf")
+
+[node name="MedallionScarab" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.349, 1.586, -4.783)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_og7gm")
+medallion_type = "scarab"
+
+[node name="Medallion scarab" parent="MedallionScarab" instance=ExtResource("17_82p66")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MedallionScarab"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0284119, 0.0865479, 0.00854492)
+shape = SubResource("BoxShape3D_37jew")
+
+[node name="PuzzleManagerMedallions" type="Node3D" parent="."]
+script = ExtResource("19_apvx0")
+
+[node name="Medaillon_holder" parent="PuzzleManagerMedallions" instance=ExtResource("14_wifq0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.60214, 1.44803, -4.72908)
+required_type = "bird"
+
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PuzzleManagerMedallions/Medaillon_holder/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_hv0sc")
+
+[node name="Medaillon_holder2" parent="PuzzleManagerMedallions" instance=ExtResource("14_wifq0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.13911, 1.44803, -4.72908)
+required_type = "snake"
+
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PuzzleManagerMedallions/Medaillon_holder2/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_hv0sc")
+
+[node name="Medaillon_holder3" parent="PuzzleManagerMedallions" instance=ExtResource("14_wifq0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.6184, 1.44803, -4.72908)
+required_type = "fish"
+
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PuzzleManagerMedallions/Medaillon_holder3/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_hv0sc")
+
+[node name="Medaillon_holder4" parent="PuzzleManagerMedallions" instance=ExtResource("14_wifq0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.25965, 1.44803, -4.72908)
+required_type = "scarab"
+
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PuzzleManagerMedallions/Medaillon_holder4/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_hv0sc")
