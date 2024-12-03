@@ -3,7 +3,7 @@ extends CenterContainer
 @export var DOT_RADIUS: float = 3.0
 @export var DOT_COLOR: Color = Color.WHITE
 @onready var raycast1 := get_node("../../Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1")
-@onready var raycast2 := get_node("../../Indiana_jones_like_character_final_attampt3/Neck/Camera3D/Raycast2")
+@onready var raycast2 := get_node("../../Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast2")
 
 
 func set_raycast(raycast_node: RayCast3D, ray):
