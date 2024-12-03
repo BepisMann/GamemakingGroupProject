@@ -1,0 +1,809 @@
+[gd_scene load_steps=36 format=3 uid="uid://dber2oye1u5ig"]
+
+[ext_resource type="Script" path="res://scenes/levels/trap_room.gd" id="1_53yes"]
+[ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_k0f7i"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.tscn" id="2_77481"]
+[ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_w3htk"]
+[ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="3_5c1xf"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate_alt.tscn" id="3_ie2wq"]
+[ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="4_wbq6i"]
+[ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="5_hs5pa"]
+[ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="6_t3o03"]
+[ext_resource type="Script" path="res://Scripts/floor.gd" id="7_nf63a"]
+[ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="8_tbg3j"]
+[ext_resource type="Script" path="res://Scripts/wall.gd" id="9_70knm"]
+[ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="11_h5opv"]
+[ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="12_kp8n6"]
+[ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="13_gmn0p"]
+[ext_resource type="PackedScene" path="res://scenes/levels/death.tscn" id="15_0kn40"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kt5km"]
+sky_material = SubResource("ProceduralSkyMaterial_p021t")
+
+[sub_resource type="Environment" id="Environment_ttdlb"]
+background_mode = 2
+sky = SubResource("Sky_kt5km")
+ambient_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20tmq"]
+size = Vector3(12, 0.25, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frumr"]
+albedo_texture = ExtResource("1_k0f7i")
+roughness_texture = ExtResource("6_t3o03")
+emission_enabled = true
+emission_texture = ExtResource("3_5c1xf")
+normal_enabled = true
+normal_texture = ExtResource("5_hs5pa")
+ao_enabled = true
+ao_texture = ExtResource("2_w3htk")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("4_wbq6i")
+uv1_scale = Vector3(0.4, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_43ikr"]
+size = Vector3(12, 0.25, 30)
+subdivide_width = 100
+subdivide_height = 3
+subdivide_depth = 100
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cbeie"]
+noise_type = 3
+seed = -10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c73a5"]
+noise = SubResource("FastNoiseLite_cbeie")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l64hc"]
+size = Vector3(0.25, 8, 69)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xyx5d"]
+noise_type = 3
+seed = 9
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_poa6l"]
+normalize = false
+noise = SubResource("FastNoiseLite_xyx5d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wj0fd"]
+render_priority = 0
+shader = ExtResource("8_tbg3j")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 0.2
+shader_parameter/normal_scale = 2.0
+shader_parameter/ao_texture_channel = null
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/heightmap_scale = 5.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(5, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/max_amplitude = null
+shader_parameter/texture_albedo = ExtResource("1_k0f7i")
+shader_parameter/texture_roughness = ExtResource("6_t3o03")
+shader_parameter/texture_emission = ExtResource("3_5c1xf")
+shader_parameter/texture_normal = ExtResource("5_hs5pa")
+shader_parameter/texture_ambient_occlusion = ExtResource("2_w3htk")
+shader_parameter/texture_heightmap = ExtResource("4_wbq6i")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_poa6l")
+
+[sub_resource type="BoxMesh" id="BoxMesh_o1c8i"]
+size = Vector3(0.25, 8, 69)
+subdivide_width = 5
+subdivide_height = 48
+subdivide_depth = 240
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g30gv"]
+noise_type = 3
+seed = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kqgp8"]
+noise = SubResource("FastNoiseLite_g30gv")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6hqg"]
+size = Vector3(1.2616, 2.07184, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbyxa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uypey"]
+size = Vector3(0.25, 8, 69)
+
+[sub_resource type="BoxMesh" id="BoxMesh_on01l"]
+size = Vector3(0.25, 8, 69)
+subdivide_width = 5
+subdivide_height = 48
+subdivide_depth = 240
+
+[node name="TrapRoom" type="Node3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("1_53yes")
+
+[node name="Death" parent="." instance=ExtResource("15_0kn40")]
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ttdlb")
+
+[node name="PlayerRespawnPoint" type="Node3D" parent="."]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 1.48002, 0.25, 12.8543)
+
+[node name="Player" parent="." instance=ExtResource("11_h5opv")]
+transform = Transform3D(-7.2998e-09, 0, -0.167, 0, 0.167, 0, 0.167, 0, -7.2998e-09, 3, 0.25, 12.854)
+
+[node name="TrapTiles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 12.5)
+
+[node name="Line1" type="Node3D" parent="TrapTiles"]
+
+[node name="Column1Trap" parent="TrapTiles/Line1" instance=ExtResource("2_77481")]
+
+[node name="Column2Trap" parent="TrapTiles/Line1" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+is_deadly_spike = true
+
+[node name="Column3Trap" parent="TrapTiles/Line1" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Column4Trap" parent="TrapTiles/Line1" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="Column5Trap" parent="TrapTiles/Line1" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_pit = true
+
+[node name="Column6Trap" parent="TrapTiles/Line1" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+is_deadly_pit = true
+
+[node name="Line2" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line2" instance=ExtResource("3_ie2wq")]
+
+[node name="Column2Trap" parent="TrapTiles/Line2" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Column3Trap" parent="TrapTiles/Line2" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_pit = true
+
+[node name="Column4Trap" parent="TrapTiles/Line2" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+is_deadly_spike = true
+
+[node name="Column5Trap" parent="TrapTiles/Line2" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Column6Trap" parent="TrapTiles/Line2" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+is_deadly_spike = true
+
+[node name="Line3" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line3" instance=ExtResource("2_77481")]
+is_deadly_pit = true
+
+[node name="Column2Trap" parent="TrapTiles/Line3" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Column3Trap" parent="TrapTiles/Line3" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Column4Trap" parent="TrapTiles/Line3" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="Column5Trap" parent="TrapTiles/Line3" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_pit = true
+
+[node name="Column6Trap" parent="TrapTiles/Line3" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Line4" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line4" instance=ExtResource("3_ie2wq")]
+is_deadly_spike = true
+
+[node name="Column2Trap" parent="TrapTiles/Line4" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+is_deadly_pit = true
+
+[node name="Column3Trap" parent="TrapTiles/Line4" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_spike = true
+
+[node name="Column4Trap" parent="TrapTiles/Line4" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="Column5Trap" parent="TrapTiles/Line4" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Column6Trap" parent="TrapTiles/Line4" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Line5" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line5" instance=ExtResource("2_77481")]
+is_deadly_pit = true
+
+[node name="Column2Trap" parent="TrapTiles/Line5" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Column3Trap" parent="TrapTiles/Line5" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_spike = true
+
+[node name="Column4Trap" parent="TrapTiles/Line5" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+is_deadly_pit = true
+
+[node name="Column5Trap" parent="TrapTiles/Line5" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_spike = true
+
+[node name="Column6Trap" parent="TrapTiles/Line5" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Line6" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line6" instance=ExtResource("3_ie2wq")]
+
+[node name="Column2Trap" parent="TrapTiles/Line6" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Column3Trap" parent="TrapTiles/Line6" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Column4Trap" parent="TrapTiles/Line6" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="Column5Trap" parent="TrapTiles/Line6" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_spike = true
+
+[node name="Column6Trap" parent="TrapTiles/Line6" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Line7" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line7" instance=ExtResource("2_77481")]
+
+[node name="Column2Trap" parent="TrapTiles/Line7" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+is_deadly_spike = true
+
+[node name="Column3Trap" parent="TrapTiles/Line7" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_pit = true
+
+[node name="Column4Trap" parent="TrapTiles/Line7" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="Column5Trap" parent="TrapTiles/Line7" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Column6Trap" parent="TrapTiles/Line7" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Line8" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line8" instance=ExtResource("3_ie2wq")]
+
+[node name="Column2Trap" parent="TrapTiles/Line8" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Column3Trap" parent="TrapTiles/Line8" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+is_deadly_pit = true
+
+[node name="Column4Trap" parent="TrapTiles/Line8" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+is_deadly_spike = true
+
+[node name="Column5Trap" parent="TrapTiles/Line8" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_spike = true
+
+[node name="Column6Trap" parent="TrapTiles/Line8" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+is_deadly_pit = true
+
+[node name="Line9" type="Node3D" parent="TrapTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="Column1Trap" parent="TrapTiles/Line9" instance=ExtResource("2_77481")]
+is_deadly_spike = true
+
+[node name="Column2Trap" parent="TrapTiles/Line9" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Column3Trap" parent="TrapTiles/Line9" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Column4Trap" parent="TrapTiles/Line9" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="Column5Trap" parent="TrapTiles/Line9" instance=ExtResource("2_77481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_pit = true
+
+[node name="Column6Trap" parent="TrapTiles/Line9" instance=ExtResource("3_ie2wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Test_floors_and_ceilings" type="Node3D" parent="."]
+
+[node name="Floor1" type="StaticBody3D" parent="Test_floors_and_ceilings"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors_and_ceilings/Floor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors_and_ceilings/Floor1"]
+material_override = SubResource("StandardMaterial3D_frumr")
+mesh = SubResource("BoxMesh_43ikr")
+script = ExtResource("7_nf63a")
+albedo_texture = ExtResource("1_k0f7i")
+roughness_texture = ExtResource("6_t3o03")
+emission_texture = ExtResource("3_5c1xf")
+normal_texture = ExtResource("5_hs5pa")
+ambient_occlusion_texture = ExtResource("2_w3htk")
+heightmap_texture = ExtResource("4_wbq6i")
+noise_img = SubResource("NoiseTexture2D_c73a5")
+maximum_amplitude = 0.1
+UV_ratio = 0.4
+
+[node name="Floor2" type="StaticBody3D" parent="Test_floors_and_ceilings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, -0.029)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors_and_ceilings/Floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors_and_ceilings/Floor2"]
+material_override = SubResource("StandardMaterial3D_frumr")
+mesh = SubResource("BoxMesh_43ikr")
+script = ExtResource("7_nf63a")
+albedo_texture = ExtResource("1_k0f7i")
+roughness_texture = ExtResource("6_t3o03")
+emission_texture = ExtResource("3_5c1xf")
+normal_texture = ExtResource("5_hs5pa")
+ambient_occlusion_texture = ExtResource("2_w3htk")
+heightmap_texture = ExtResource("4_wbq6i")
+noise_img = SubResource("NoiseTexture2D_c73a5")
+maximum_amplitude = 0.1
+UV_ratio = 0.4
+
+[node name="Ceiling1" type="StaticBody3D" parent="Test_floors_and_ceilings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors_and_ceilings/Ceiling1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors_and_ceilings/Ceiling1"]
+material_override = SubResource("StandardMaterial3D_frumr")
+mesh = SubResource("BoxMesh_43ikr")
+script = ExtResource("7_nf63a")
+albedo_texture = ExtResource("1_k0f7i")
+roughness_texture = ExtResource("6_t3o03")
+emission_texture = ExtResource("3_5c1xf")
+normal_texture = ExtResource("5_hs5pa")
+ambient_occlusion_texture = ExtResource("2_w3htk")
+heightmap_texture = ExtResource("4_wbq6i")
+noise_img = SubResource("NoiseTexture2D_c73a5")
+maximum_amplitude = 0.1
+UV_ratio = 0.4
+
+[node name="Ceiling2" type="StaticBody3D" parent="Test_floors_and_ceilings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 7.8, -0.029)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_floors_and_ceilings/Ceiling2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
+shape = SubResource("BoxShape3D_20tmq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_floors_and_ceilings/Ceiling2"]
+material_override = SubResource("StandardMaterial3D_frumr")
+mesh = SubResource("BoxMesh_43ikr")
+script = ExtResource("7_nf63a")
+albedo_texture = ExtResource("1_k0f7i")
+roughness_texture = ExtResource("6_t3o03")
+emission_texture = ExtResource("3_5c1xf")
+normal_texture = ExtResource("5_hs5pa")
+ambient_occlusion_texture = ExtResource("2_w3htk")
+heightmap_texture = ExtResource("4_wbq6i")
+noise_img = SubResource("NoiseTexture2D_c73a5")
+maximum_amplitude = 0.1
+UV_ratio = 0.4
+
+[node name="Test_walls" type="Node3D" parent="."]
+
+[node name="Wall1" type="StaticBody3D" parent="Test_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 15)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Test_walls/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -28.5)
+shape = SubResource("BoxShape3D_l64hc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Test_walls/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -28.5)
+material_override = SubResource("ShaderMaterial_wj0fd")
+mesh = SubResource("BoxMesh_o1c8i")
+script = ExtResource("9_70knm")
+albedo_texture = ExtResource("1_k0f7i")
+roughness_texture = ExtResource("6_t3o03")
+emission_texture = ExtResource("3_5c1xf")
+normal_texture = ExtResource("5_hs5pa")
+ambient_occlusion_texture = ExtResource("2_w3htk")
+heightmap_texture = ExtResource("4_wbq6i")
+noise_img = SubResource("NoiseTexture2D_kqgp8")
+maximum_amplitude = 0.2
+UV_ratio = 5.0
+
+[node name="Final_torch holder_w1" parent="Test_walls/Wall1" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 1, 2)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall1/Final_torch holder_w1/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env" parent="Test_walls/Wall1" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, -6)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall1/Final_torch holder_w1_env/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env2" parent="Test_walls/Wall1" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, -16)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall1/Final_torch holder_w1_env2/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env2/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env2/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env3" parent="Test_walls/Wall1" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, -26)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall1/Final_torch holder_w1_env3/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env3/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env3/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env4" parent="Test_walls/Wall1" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, -36)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall1/Final_torch holder_w1_env4/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env4/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env4/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env5" parent="Test_walls/Wall1" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, -46)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall1/Final_torch holder_w1_env5/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env5/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall1/Final_torch holder_w1_env5"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall1/Final_torch holder_w1_env5/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Wall2" type="StaticBody3D" parent="Test_walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -15)
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="Test_walls/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 28.5)
+shape = SubResource("BoxShape3D_uypey")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Test_walls/Wall2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4, 28.5)
+material_override = SubResource("ShaderMaterial_wj0fd")
+mesh = SubResource("BoxMesh_on01l")
+script = ExtResource("9_70knm")
+albedo_texture = ExtResource("1_k0f7i")
+roughness_texture = ExtResource("6_t3o03")
+emission_texture = ExtResource("3_5c1xf")
+normal_texture = ExtResource("5_hs5pa")
+ambient_occlusion_texture = ExtResource("2_w3htk")
+heightmap_texture = ExtResource("4_wbq6i")
+noise_img = SubResource("NoiseTexture2D_kqgp8")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Final_torch holder_w2" parent="Test_walls/Wall2" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(2.26494e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, 2.26494e-08, 0.364, 1, -2)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall2/Final_torch holder_w2/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w2/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w2/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env" parent="Test_walls/Wall2" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, 6)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall2/Final_torch holder_w1_env/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env2" parent="Test_walls/Wall2" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, 16)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall2/Final_torch holder_w1_env2/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env2/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env2/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env3" parent="Test_walls/Wall2" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, 26)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall2/Final_torch holder_w1_env3/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env3/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env3/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env4" parent="Test_walls/Wall2" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, 36)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall2/Final_torch holder_w1_env4/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env4/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env4/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[node name="Final_torch holder_w1_env5" parent="Test_walls/Wall2" instance=ExtResource("12_kp8n6")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.356, 4, 46)
+
+[node name="Torch" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Test_walls/Wall2/Final_torch holder_w1_env5/Torch" instance=ExtResource("13_gmn0p")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env5/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_w6hqg")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Test_walls/Wall2/Final_torch holder_w1_env5"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_walls/Wall2/Final_torch holder_w1_env5/HolderCollider"]
+shape = SubResource("BoxShape3D_qbyxa")
+
+[connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line1/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line2/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line2/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line2/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line2/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line2/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line2/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line3/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line3/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line3/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line3/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line3/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line3/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line4/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line4/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line4/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line4/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line4/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line4/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line5/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line5/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line5/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line5/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line5/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line5/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line6/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line6/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line6/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line6/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line6/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line6/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line7/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line7/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line7/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line7/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line7/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line7/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line8/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line8/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line8/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line8/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line8/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line8/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line9/Column1Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line9/Column2Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line9/Column3Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line9/Column4Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line9/Column5Trap" to="Player" method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="TrapTiles/Line9/Column6Trap" to="Player" method="_on_trap_body_entered_spikes"]
