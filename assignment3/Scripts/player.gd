@@ -22,7 +22,11 @@ const JUMP_VELOCITY = 4.5
 
 @onready var anim := $Indiana_jones_like_character_final_attempt3/AnimationPlayer
 
+signal player_died
+
 var is_jumping: bool = false
+var can_control: bool = true
+var can_jump: bool = true
 
 func _ready() -> void:
 	if control:
@@ -30,21 +34,22 @@ func _ready() -> void:
 		control.set_raycast(raycast2, 2)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.pressed:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		if event is InputEventMouseMotion:
-			var sensitivity := 0.003
-			
-			rotate_y(-event.relative.x * sensitivity)
-			camera.rotate_x(-event.relative.y * sensitivity)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
-			
-			toggle_hat_visibility(camera.rotation.x)
+	if (can_control):
+		if event is InputEventMouseButton:
+			if event.pressed:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		elif event.is_action_pressed("ui_cancel"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			if event is InputEventMouseMotion:
+				var sensitivity := 0.003
+				
+				rotate_y(-event.relative.x * sensitivity)
+				camera.rotate_x(-event.relative.y * sensitivity)
+				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
+				
+				toggle_hat_visibility(camera.rotation.x)
 			
 func toggle_hat_visibility(pitch: float) -> void:
 	if pitch > deg_to_rad(-5):
@@ -59,45 +64,48 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if Input.is_action_just_pressed("left_click"):
-		if left == "" and raycast2.is_colliding():
-			pickup("left")
-		elif left != "" and raycast2.is_colliding():
-			if raycast2.get_collider().name == "HolderCollider":
-				try_place_torch("left")
-			elif raycast2.get_collider().name == "HolderColliderMedallion":
-				try_place_medallion("left")
-			elif raycast2.get_collider().name == "HolderColliderMap":
-				try_place_trap_map("left")
-			
-	if Input.is_action_just_pressed("right_click"):
-		if right == "" and raycast2.is_colliding():
-			pickup("right")
-		elif right != "" and raycast2.is_colliding():
-			if raycast2.get_collider().name == "HolderCollider":
-				try_place_torch("right")
-			elif raycast2.get_collider().name == "HolderColliderMedallion":
-				try_place_medallion("right")
-			elif raycast2.get_collider().name == "HolderColliderMap":
-				try_place_trap_map("right")
+	if (can_control):
+		if Input.is_action_just_pressed("left_click"):
+			if left == "" and raycast2.is_colliding():
+				pickup("left")
+			elif left != "" and raycast2.is_colliding():
+				if raycast2.get_collider().name == "HolderCollider":
+					try_place_torch("left")
+				elif raycast2.get_collider().name == "HolderColliderMedallion":
+					try_place_medallion("left")
+				elif raycast2.get_collider().name == "HolderColliderMap":
+					try_place_trap_map("left")
+
+		if Input.is_action_just_pressed("right_click"):
+			if right == "" and raycast2.is_colliding():
+				pickup("right")
+			elif right != "" and raycast2.is_colliding():
+				if raycast2.get_collider().name == "HolderCollider":
+					try_place_torch("right")
+				elif raycast2.get_collider().name == "HolderColliderMedallion":
+					try_place_medallion("right")
+				elif raycast2.get_collider().name == "HolderColliderMap":
+					try_place_trap_map("right")
 			
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		anim.play("Jumping")
+	# Handle jump and movement.
+	if (can_control):
+		if (can_jump):
+			if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+				velocity.y = JUMP_VELOCITY
+				anim.play("Jumping")
 
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var direction = (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		anim.play("Walking")
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		if is_on_floor() && !Input.is_action_just_pressed("ui_accept"):
-			anim.play("Idle_1")
+		var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+		var direction = (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+			anim.play("Walking")
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+			if is_on_floor() && !Input.is_action_just_pressed("ui_accept"):
+				anim.play("Idle_1")
 
 	move_and_slide()
 	
@@ -206,12 +214,12 @@ func pickup(hand):
 				parent.remove_child(item)
 					
 				if hand == "left":
-						print("Adding item to left hand.")
-						left_hand_position.add_child(item)
-						self.left = item.name
-						reset_item_rotation_left(item)
-						if item.name.begins_with("TrapMap"):
-							item.visible = false
+					print("Adding item to left hand.")
+					left_hand_position.add_child(item)
+					self.left = item.name
+					reset_item_rotation_left(item)
+					if item.name.begins_with("TrapMap"):
+						item.visible = false
 				
 				else:
 					print("Adding item to right hand.")
@@ -232,8 +240,18 @@ func pickup(hand):
 				label.show_pickup_message("Picked up " + item.name + str(hand))
 			else:
 				print("Error: No valid item to pick up!")
-	
 
+func _on_trap_body_entered_spikes() -> void:
+	emit_signal("player_died")
+	$Control/CenterContainer.hide()
+	can_control = false
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.z = move_toward(velocity.z, 0, SPEED)
+	anim.play("Idle_1")
+	
+func show_cursor():
+	$Control/CenterContainer.show()
+	
 func reset_item_rotation_left(item):
 	item.transform = Transform3D.IDENTITY
 	
