@@ -211,10 +211,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="Column4Trap" parent="TrapTiles/Line3" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
-is_deadly_pit = true
 
 [node name="Column5Trap" parent="TrapTiles/Line3" instance=ExtResource("2_77481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_deadly_pit = true
 
 [node name="Column6Trap" parent="TrapTiles/Line3" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
