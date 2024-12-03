@@ -29,6 +29,7 @@ func rearm():
 		
 func _on_pit_detection_area_body_entered(body: Node3D) -> void:
 	if is_deadly_pit && body.name == "Player" && !plate_deleted:
+		$"../../../Player".can_jump = false
 		plate_deleted = true
 		$Plate/CollisionShape3D.set_deferred("disabled", true)
 		$Plate.hide()
