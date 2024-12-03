@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cv1x3rxptu1pr"]
+[gd_scene load_steps=14 format=3 uid="uid://pw20w8q3rgf0"]
 
-[ext_resource type="PackedScene" uid="uid://dwu871r3jhqkv" path="res://scenes/prefabs/Torch_prefabs/final_torch.glb" id="1_qa47l"]
-[ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="2_uynbu"]
-[ext_resource type="Texture2D" uid="uid://d3ukg28ydrdt3" path="res://scenes/prefabs/Torch_prefabs/torch3_Wooden_part.png" id="3_6l0i5"]
+[ext_resource type="PackedScene" uid="uid://dwu871r3jhqkv" path="res://scenes/prefabs/Torch_prefabs/final_torch.glb" id="1_yqaux"]
+[ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="2_g7ai5"]
+[ext_resource type="Texture2D" uid="uid://d3ukg28ydrdt3" path="res://scenes/prefabs/Torch_prefabs/torch3_Wooden_part.png" id="3_0a5fk"]
 
 [sub_resource type="Gradient" id="Gradient_ddyue"]
 offsets = PackedFloat32Array(0, 0.254098, 0.54918, 0.786885, 1)
@@ -22,10 +22,10 @@ emission = Color(0.839216, 0.423529, 0.0352941, 1)
 emission_energy_multiplier = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnc8t"]
-albedo_texture = ExtResource("2_uynbu")
+albedo_texture = ExtResource("2_g7ai5")
 roughness = 0.5
 normal_enabled = true
-normal_texture = ExtResource("3_6l0i5")
+normal_texture = ExtResource("3_0a5fk")
 
 [sub_resource type="Gradient" id="Gradient_4ptmn"]
 colors = PackedColorArray(1, 0.737255, 0.352941, 1, 0.905882, 0.796078, 0.619608, 1)
@@ -50,7 +50,7 @@ albedo_color = Color(0.658824, 0.509804, 0.396078, 1)
 albedo_texture = SubResource("GradientTexture2D_ldvt2")
 albedo_texture_msdf = true
 
-[node name="final_torch" instance=ExtResource("1_qa47l")]
+[node name="final_torch" instance=ExtResource("1_yqaux")]
 
 [node name="Sphere" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_w78a5")
@@ -69,5 +69,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3o58i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.524074, 2.40116, 0.00172633)
 light_color = Color(0.984314, 0.717647, 0.254902, 1)
 light_energy = 5.0
-omni_range = 100.0
+shadow_enabled = true
+omni_range = 10.0
 omni_attenuation = 2.0

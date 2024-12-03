@@ -54,6 +54,6 @@ func update_holder_collider():
 		var collision_shape = holder_collider.get_node("CollisionShape3D")
 		if collision_shape:
 			collision_shape.disabled = is_occupied
-	var raycast = get_node("../Player/Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast3D")
+	var raycast = get_node("../Player/Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast2")
 	if raycast:
 		raycast.force_raycast_update()
