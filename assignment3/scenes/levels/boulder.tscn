@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6sw6xhhonyxx"]
+
+[ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_7kkp0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pv2x7"]
+
+[node name="World" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7kkp0")]
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 1.55768, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.7193, 31.5095, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(19, 0, 0, 0, 19, 0, 0, 0, 19, 0, 7.07891, 0)
+shape = SubResource("SphereShape3D_pv2x7")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D/CollisionShape3D"]
+use_collision = true
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 0, 4.27197, -7.08923)
+use_collision = true
+size = Vector3(150, 15, 1)
+
+[node name="Floor" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(19.3185, 0.258819, 0, -5.17638, 0.965926, 0, 0, 0, 7, 0, 0, 0)
+use_collision = true
+size = Vector3(8, 1, 2)
+
+[node name="Ceiling" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(19.3185, 0.258819, 0, -5.17638, 0.965926, 0, 0, 0, 7, 0, 11.8849, 0)
+use_collision = true
+size = Vector3(8, 1, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 0, 4.27197, 6.92225)
+use_collision = true
+size = Vector3(150, 15, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
