@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://bomu4kesldakf"]
+
+[ext_resource type="PackedScene" uid="uid://dwu871r3jhqkv" path="res://scenes/prefabs/Torch_prefabs/final_torch.glb" id="1_yqaux"]
+[ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="2_g7ai5"]
+[ext_resource type="Texture2D" uid="uid://d3ukg28ydrdt3" path="res://scenes/prefabs/Torch_prefabs/torch3_Wooden_part.png" id="3_0a5fk"]
+
+[sub_resource type="Gradient" id="Gradient_ddyue"]
+offsets = PackedFloat32Array(0, 0.254098, 0.54918, 0.786885, 1)
+colors = PackedColorArray(1, 0.504, 0.04, 0.807843, 1, 0.608858, 0.0298361, 0.807843, 1, 0.730628, 0.0180328, 0.807843, 1, 0.825339, 0.00885246, 0.807843, 1, 0.916667, 0, 0.807843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r2eps"]
+gradient = SubResource("Gradient_ddyue")
+fill_from = Vector2(0.430108, 0.494624)
+fill_to = Vector2(0.0591398, 0.188172)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w78a5"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_r2eps")
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.839216, 0.423529, 0.0352941, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnc8t"]
+albedo_texture = ExtResource("2_g7ai5")
+roughness = 0.5
+normal_enabled = true
+normal_texture = ExtResource("3_0a5fk")
+
+[sub_resource type="Gradient" id="Gradient_4ptmn"]
+colors = PackedColorArray(1, 0.737255, 0.352941, 1, 0.905882, 0.796078, 0.619608, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rbx2k"]
+gradient = SubResource("Gradient_4ptmn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ubcf"]
+albedo_color = Color(0.905882, 0.796078, 0.619608, 1)
+albedo_texture = SubResource("GradientTexture1D_rbx2k")
+albedo_texture_msdf = true
+
+[sub_resource type="Gradient" id="Gradient_u1jg6"]
+colors = PackedColorArray(0.658824, 0.509804, 0.396078, 1, 0.905882, 0.796078, 0.619608, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ldvt2"]
+gradient = SubResource("Gradient_u1jg6")
+fill_from = Vector2(0.0215054, 0.0322581)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3o58i"]
+albedo_color = Color(0.658824, 0.509804, 0.396078, 1)
+albedo_texture = SubResource("GradientTexture2D_ldvt2")
+albedo_texture_msdf = true
+
+[node name="final_torch" instance=ExtResource("1_yqaux")]
+
+[node name="Sphere" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w78a5")
+
+[node name="Cylinder" parent="." index="3"]
+layers = 3
+surface_material_override/0 = SubResource("StandardMaterial3D_vnc8t")
+
+[node name="Cube" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0ubcf")
+
+[node name="Cube_001" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3o58i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.524074, 2.40116, 0.00172633)
+light_color = Color(0.984314, 0.717647, 0.254902, 1)
+light_energy = 5.0
+shadow_enabled = true
+shadow_bias = 0.2
+omni_range = 20.0
+omni_attenuation = 2.0
