@@ -120,7 +120,7 @@ func try_place_trap_map(hand):
 					$"../UI/TrapMapUI/Pit_trap_left".visible = false
 				elif self.left == "TrapMap2":
 					$"../UI/TrapMapUI/Spike_trap_left".visible = false
-			else:
+			elif hand == "right":
 				if self.right == "TrapMap1":
 					$"../UI/TrapMapUI/Pit_trap_right".visible = false
 				elif self.right == "TrapMap2":
@@ -318,4 +318,4 @@ func reset_item_rotation_right(item):
 			$"../UI/TrapMapUI/Pit_trap_right".visible = true
 			
 		"TrapMap2":
-			$"../UI/TrapMapUI/Pit_trap_right".visible = true
+			$"../UI/TrapMapUI/Spike_trap_right".visible = true

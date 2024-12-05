@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://gubnpbmfc62b"]
+[gd_scene load_steps=69 format=3 uid="uid://d4bnxj55wl48d"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -12,15 +12,16 @@
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_3w4j3"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="10_8gr1k"]
 [ext_resource type="Script" path="res://scenes/levels/puzzle_manager_medallions.gd" id="13_kgqty"]
+[ext_resource type="PackedScene" uid="uid://iu87eppcpw1q" path="res://scenes/prefabs/Traps/trapmap_spikes.tscn" id="13_qa8xl"]
 [ext_resource type="PackedScene" uid="uid://divc73ew0qsia" path="res://scenes/prefabs/Medaillon_related_stuff/medaillon_holder.tscn" id="14_yx8ki"]
 [ext_resource type="Script" path="res://Scripts/medallion.gd" id="15_ii275"]
 [ext_resource type="PackedScene" uid="uid://bx532qeyvcpsd" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_bird.tscn" id="16_m0lrl"]
 [ext_resource type="PackedScene" uid="uid://xol1c0oba240" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_snake.tscn" id="17_sfy8x"]
 [ext_resource type="PackedScene" uid="uid://dsjsna83lrrla" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_fish.tscn" id="18_67mn0"]
 [ext_resource type="PackedScene" uid="uid://cl2g4e0bpgtwn" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_scarab.tscn" id="19_41gfi"]
-[ext_resource type="PackedScene" uid="uid://bomu4kesldakf" path="res://scenes/prefabs/Torch_prefabs/final_torch_shaded.tscn" id="19_blufs"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/Torch_prefabs/final_torch_shaded.tscn" id="19_blufs"]
 [ext_resource type="PackedScene" uid="uid://bye837x87ohw1" path="res://scenes/prefabs/Traps/trapmap_pitfall.tscn" id="20_bndpi"]
-[ext_resource type="PackedScene" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
+[ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
 [ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="23_ey4ku"]
 [ext_resource type="Texture2D" uid="uid://c7ysw21kx8leo" path="res://Images/Schermafbeelding 2024-12-02 183814.png" id="24_dd0ao"]
@@ -202,10 +203,10 @@ size = Vector3(0.25, 3.5, 5)
 size = Vector3(0.25, 3.5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8kwb"]
-size = Vector3(1.26031, 2.854, 0.201187)
+size = Vector3(1.57088, 4, 0.201187)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jsoth"]
-size = Vector3(1.70703, 1.50455, 0.206848)
+size = Vector3(1.70703, 2, 0.206848)
 
 [node name="Node3D" type="Node3D"]
 
@@ -856,4 +857,28 @@ collision_priority = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder/HolderColliderMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 2.05033, 0.0951657)
+shape = SubResource("BoxShape3D_jsoth")
+
+[node name="Trap_map_holder2" parent="room 1" instance=ExtResource("20_lbb6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228, 30.7207)
+script = ExtResource("21_emc1s")
+
+[node name="TrapMap2" type="StaticBody3D" parent="room 1/Trap_map_holder2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/TrapMap2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288935, 0.573, 0)
+shape = SubResource("BoxShape3D_k8kwb")
+
+[node name="trapmap" parent="room 1/Trap_map_holder2/TrapMap2" instance=ExtResource("13_qa8xl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="room 1/Trap_map_holder2"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
 shape = SubResource("BoxShape3D_jsoth")

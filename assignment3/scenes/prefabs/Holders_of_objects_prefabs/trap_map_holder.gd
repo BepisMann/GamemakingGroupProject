@@ -1,6 +1,5 @@
 extends Node3D
-
-@onready var map = $TrapMap1 if $TrapMap1 else $TrapMap2
+@onready var map = null
 @onready var holding_position = $Map_holding_position
 @onready var holder_collider = $HolderColliderMap
 
@@ -8,6 +7,11 @@ var is_occupied = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if has_node("TrapMap1"):
+		map = $TrapMap1
+	elif has_node("TrapMap2"):
+		map = $TrapMap2
+	
 	if map:
 		map.global_transform = holding_position.global_transform
 		map.position += Vector3(0, -1.8, 0)
