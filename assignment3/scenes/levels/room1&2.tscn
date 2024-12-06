@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://d4bnxj55wl48d"]
+[gd_scene load_steps=71 format=3 uid="uid://d4bnxj55wl48d"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -19,8 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://xol1c0oba240" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_snake.tscn" id="17_sfy8x"]
 [ext_resource type="PackedScene" uid="uid://dsjsna83lrrla" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_fish.tscn" id="18_67mn0"]
 [ext_resource type="PackedScene" uid="uid://cl2g4e0bpgtwn" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_scarab.tscn" id="19_41gfi"]
-[ext_resource type="PackedScene" path="res://scenes/prefabs/Torch_prefabs/final_torch_shaded.tscn" id="19_blufs"]
+[ext_resource type="PackedScene" uid="uid://bomu4kesldakf" path="res://scenes/prefabs/Torch_prefabs/final_torch_shaded.tscn" id="19_blufs"]
 [ext_resource type="PackedScene" uid="uid://bye837x87ohw1" path="res://scenes/prefabs/Traps/trapmap_pitfall.tscn" id="20_bndpi"]
+[ext_resource type="Script" path="res://scenes/levels/movable_wall.gd" id="20_gcix2"]
 [ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
 [ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="23_ey4ku"]
@@ -178,6 +179,9 @@ size = Vector3(0.25, 3.5, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_weakm"]
 size = Vector3(0.25, 3.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85e3v"]
+size = Vector3(2, 2.76929, 3.42073)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4814"]
 size = Vector3(1.2616, 2.07184, 1)
@@ -682,6 +686,35 @@ noise_img = SubResource("NoiseTexture2D_u16w5")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
+[node name="MovableWall" type="StaticBody3D" parent="room 1"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0.159281, 0.1, -1.09131)
+script = ExtResource("20_gcix2")
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="room 1/MovableWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_xcaxe")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="room 1/MovableWall"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, 0)
+material_override = SubResource("ShaderMaterial_vhyrj")
+mesh = SubResource("BoxMesh_weakm")
+script = ExtResource("9_3w4j3")
+albedo_texture = ExtResource("1_seyrk")
+roughness_texture = ExtResource("6_2b5if")
+emission_texture = ExtResource("3_odbo2")
+normal_texture = ExtResource("5_3115m")
+ambient_occlusion_texture = ExtResource("2_07y71")
+heightmap_texture = ExtResource("4_de8w0")
+noise_img = SubResource("NoiseTexture2D_u16w5")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Area3D" type="Area3D" parent="room 1/MovableWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/MovableWall/Area3D"]
+transform = Transform3D(1, 0, 1.77636e-13, 0, 1, 0, 0, 0, 1, 1.32362, 0.885, -1.08)
+shape = SubResource("BoxShape3D_85e3v")
+
 [node name="Final_torch holder" parent="room 1" instance=ExtResource("8_42sa2")]
 transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -9.125, 1.25, -4.755)
 
@@ -882,3 +915,6 @@ collision_priority = 2.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/HolderColliderMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
 shape = SubResource("BoxShape3D_jsoth")
+
+[connection signal="body_entered" from="room 1/MovableWall/Area3D" to="room 1/MovableWall" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="room 1/MovableWall/Area3D" to="room 1/MovableWall" method="_on_area_3d_body_exited"]

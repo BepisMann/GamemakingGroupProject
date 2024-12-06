@@ -22,6 +22,8 @@ const JUMP_VELOCITY = 4.5
 
 @onready var anim := $Indiana_jones_like_character_final_attempt3/AnimationPlayer
 
+var held_torch_count: int = 0
+
 signal player_died
 
 var is_jumping: bool = false
@@ -152,7 +154,8 @@ func try_place_torch(hand):
 				return
 			
 			holder.place_torch(torch)
-			torch.get_parent().remove_child(torch) 
+			torch.get_parent().remove_child(torch)
+			held_torch_count -= 1 
 			if hand == "left":
 				left = "" 
 			else:
@@ -220,6 +223,8 @@ func pickup(hand):
 					reset_item_rotation_left(item)
 					if item.name.begins_with("TrapMap"):
 						item.visible = false
+					if item.name.begins_with("Torch"):
+						held_torch_count += 1
 				
 				else:
 					print("Adding item to right hand.")
@@ -228,6 +233,8 @@ func pickup(hand):
 					reset_item_rotation_right(item)
 					if item.name.begins_with("TrapMap"):
 						item.visible = false
+					if item.name.begins_with("Torch"):
+						held_torch_count += 1
 				
 				print("Item parent after pickup:", item.get_parent().name)
 				
