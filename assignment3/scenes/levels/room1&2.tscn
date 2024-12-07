@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://d4bnxj55wl48d"]
+[gd_scene load_steps=74 format=3 uid="uid://gubnpbmfc62b"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="10_8gr1k"]
 [ext_resource type="Script" path="res://scenes/levels/puzzle_manager_medallions.gd" id="13_kgqty"]
 [ext_resource type="PackedScene" uid="uid://iu87eppcpw1q" path="res://scenes/prefabs/Traps/trapmap_spikes.tscn" id="13_qa8xl"]
+[ext_resource type="AudioStream" uid="uid://bde30e67v6odd" path="res://assets/sounds/Door_opening.mp3" id="13_ucx0h"]
+[ext_resource type="AudioStream" uid="uid://bsww4pl2svu3q" path="res://assets/sounds/Drums_for_opening_door.wav" id="14_j0a0q"]
 [ext_resource type="PackedScene" uid="uid://divc73ew0qsia" path="res://scenes/prefabs/Medaillon_related_stuff/medaillon_holder.tscn" id="14_yx8ki"]
 [ext_resource type="Script" path="res://Scripts/medallion.gd" id="15_ii275"]
 [ext_resource type="PackedScene" uid="uid://bx532qeyvcpsd" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_bird.tscn" id="16_m0lrl"]
@@ -24,6 +26,7 @@
 [ext_resource type="Script" path="res://scenes/levels/movable_wall.gd" id="20_gcix2"]
 [ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
+[ext_resource type="AudioStream" uid="uid://c2drme2bmjcsn" path="res://assets/sounds/moving_rock_wall.wav" id="21_fxngg"]
 [ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="23_ey4ku"]
 [ext_resource type="Texture2D" uid="uid://c7ysw21kx8leo" path="res://Images/Schermafbeelding 2024-12-02 183814.png" id="24_dd0ao"]
 
@@ -491,6 +494,24 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
 shape = SubResource("BoxShape3D_a24fv")
 
+[node name="Door_opening_sound" type="AudioStreamPlayer3D" parent="PuzzleManagerMedallions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.944938, 17.9882)
+stream = ExtResource("13_ucx0h")
+volume_db = 5.0
+unit_size = 50.0
+max_db = 6.0
+
+[node name="DelayTimer" type="Timer" parent="PuzzleManagerMedallions/Door_opening_sound"]
+wait_time = 1.8
+one_shot = true
+
+[node name="Drums_of_opening_door" type="AudioStreamPlayer3D" parent="PuzzleManagerMedallions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.944938, 17.9882)
+stream = ExtResource("14_j0a0q")
+volume_db = 5.0
+unit_size = 50.0
+max_db = 6.0
+
 [node name="MedallionBird" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.32686, 0.482068, 16.2989)
 collision_layer = 3
@@ -686,15 +707,17 @@ noise_img = SubResource("NoiseTexture2D_u16w5")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="MovableWall" type="StaticBody3D" parent="room 1"]
+[node name="movable_wall_node" type="Node3D" parent="room 1"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0.159281, 0.1, -1.09131)
+
+[node name="MovableWall" type="StaticBody3D" parent="room 1/movable_wall_node"]
 script = ExtResource("20_gcix2")
 
-[node name="CollisionShape3D22" type="CollisionShape3D" parent="room 1/MovableWall"]
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="room 1/movable_wall_node/MovableWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("BoxShape3D_xcaxe")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="room 1/MovableWall"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="room 1/movable_wall_node/MovableWall"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, 0)
 material_override = SubResource("ShaderMaterial_vhyrj")
 mesh = SubResource("BoxMesh_weakm")
@@ -709,9 +732,15 @@ noise_img = SubResource("NoiseTexture2D_u16w5")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Area3D" type="Area3D" parent="room 1/MovableWall"]
+[node name="Moving_wall_sound" type="AudioStreamPlayer3D" parent="room 1/movable_wall_node/MovableWall"]
+stream = ExtResource("21_fxngg")
+volume_db = 5.0
+unit_size = 30.0
+max_db = 6.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/MovableWall/Area3D"]
+[node name="Area3D" type="Area3D" parent="room 1/movable_wall_node"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/movable_wall_node/Area3D"]
 transform = Transform3D(1, 0, 1.77636e-13, 0, 1, 0, 0, 0, 1, 1.32362, 0.885, -1.08)
 shape = SubResource("BoxShape3D_85e3v")
 
@@ -916,5 +945,6 @@ collision_priority = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
 shape = SubResource("BoxShape3D_jsoth")
 
-[connection signal="body_entered" from="room 1/MovableWall/Area3D" to="room 1/MovableWall" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="room 1/MovableWall/Area3D" to="room 1/MovableWall" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="PuzzleManagerMedallions/Door_opening_sound/DelayTimer" to="PuzzleManagerMedallions" method="_on_delay_timer_timeout"]
+[connection signal="body_entered" from="room 1/movable_wall_node/Area3D" to="room 1/movable_wall_node/MovableWall" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="room 1/movable_wall_node/Area3D" to="room 1/movable_wall_node/MovableWall" method="_on_area_3d_body_exited"]

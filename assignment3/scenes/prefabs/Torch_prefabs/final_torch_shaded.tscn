@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bomu4kesldakf"]
+[gd_scene load_steps=15 format=3 uid="uid://bomu4kesldakf"]
 
 [ext_resource type="PackedScene" uid="uid://dwu871r3jhqkv" path="res://scenes/prefabs/Torch_prefabs/final_torch.glb" id="1_yqaux"]
 [ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="2_g7ai5"]
 [ext_resource type="Texture2D" uid="uid://d3ukg28ydrdt3" path="res://scenes/prefabs/Torch_prefabs/torch3_Wooden_part.png" id="3_0a5fk"]
+[ext_resource type="AudioStream" uid="uid://dmoj23br36eek" path="res://assets/sounds/Torch_fire_sound.wav" id="4_1mnev"]
 
 [sub_resource type="Gradient" id="Gradient_ddyue"]
 offsets = PackedFloat32Array(0, 0.254098, 0.54918, 0.786885, 1)
@@ -73,3 +74,11 @@ shadow_enabled = true
 shadow_bias = 0.2
 omni_range = 20.0
 omni_attenuation = 2.0
+
+[node name="Torch_fire_sound" type="AudioStreamPlayer3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.532609, 2.43161, 0)
+stream = ExtResource("4_1mnev")
+volume_db = -35.0
+unit_size = 2.0
+pitch_scale = 7.0
+autoplay = true

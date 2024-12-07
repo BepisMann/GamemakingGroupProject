@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://bspgan23o4by"]
+[gd_scene load_steps=42 format=4 uid="uid://bspgan23o4by"]
 
 [ext_resource type="Script" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.gd" id="1_osjtp"]
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="2_rsl78"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="11_53wtj"]
 [ext_resource type="Texture2D" uid="uid://psmqjpsp2vhi" path="res://assets/rock2/rock_face_disp_4k.png" id="12_ovsio"]
 [ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="17_g75su"]
+[ext_resource type="AudioStream" uid="uid://b12mueufrllun" path="res://assets/sounds/spikes.mp3" id="18_uesvb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2xec7"]
 size = Vector3(3.5, 0.25, 3.5)
@@ -359,6 +360,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_i4p35")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PitSpikes/Spikes4/PitSpikeArea4"]
 shape = SubResource("BoxShape3D_tpygn")
+
+[node name="spikes_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_uesvb")
 
 [connection signal="body_entered" from="PitDetectionArea" to="." method="_on_pit_detection_area_body_entered"]
 [connection signal="body_entered" from="SpikeDetectionArea" to="." method="_on_spike_detection_area_body_entered"]
