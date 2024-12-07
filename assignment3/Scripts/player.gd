@@ -33,7 +33,7 @@ var can_jump: bool = true
 @onready var pickup_sound = $Pickup_sound
 @onready var placing_sound = $Place_item_sound
 @onready var backgroundMusic1 = $Background_music_1
-@onready var stop_timer = $Background_music_1/Timer
+@onready var stop_timer = $Background_music_1/BackgroundMusicLoopTimer
 @onready var death_sound = $Death_sound
 
 func _ready() -> void:
@@ -44,10 +44,15 @@ func _ready() -> void:
 	backgroundMusic1.play()
 	stop_timer.start()
 
-func _on_timer_timeout() -> void:
+func _on_background_music_loop_timer_timeout() -> void:
 	backgroundMusic1.stop()
 	backgroundMusic1.play()
 	stop_timer.start()
+	
+func _on_death_sound_loop_timer_timeout() -> void:
+	death_sound.stop()
+	death_sound.play()
+	$Death_sound/DeathSoundLoopTimer.start()
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -273,6 +278,18 @@ func _on_trap_body_entered_spikes() -> void:
 	velocity.x = move_toward(velocity.x, 0, SPEED)
 	velocity.z = move_toward(velocity.z, 0, SPEED)
 	anim.play("Idle_1")
+	$Death_sound/DeathSoundDelay.start()
+	backgroundMusic1.stop()
+	
+func _on_death_sound_delay_timeout() -> void:
+	death_sound.play()
+	$Death_sound/DeathSoundLoopTimer.start()
+	
+func respawn() -> void:
+	$Death_sound/DeathSoundLoopTimer.stop()
+	death_sound.stop()
+	backgroundMusic1.play()
+	stop_timer.start()
 	
 func show_cursor():
 	$Control/CenterContainer.show()
@@ -344,5 +361,3 @@ func reset_item_rotation_right(item):
 			
 		"TrapMap2":
 			$"../UI/TrapMapUI/Spike_trap_right".visible = true
-
-

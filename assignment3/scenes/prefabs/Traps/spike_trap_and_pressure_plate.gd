@@ -2,6 +2,7 @@ extends Node3D
 signal bodyEnteredSpikes
 
 @onready var spikes_sound = $"../../Spikes_sound"
+@onready var pit_trap_sound = $"../../Pit_trap_sound"
 
 @export
 var is_deadly_spike: bool = false
@@ -27,6 +28,7 @@ func _on_pit_detection_area_body_entered(body: Node3D) -> void:
 		plate_deleted = true
 		$Plate/CollisionShape3D.set_deferred("disabled", true)
 		$Plate.hide()
+		pit_trap_sound.play()
 
 func _on_pit_spike_area_1_body_entered(body: Node3D) -> void:
 	if body.name == "Player":

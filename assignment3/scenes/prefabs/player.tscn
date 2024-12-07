@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://vrg71l02tmb5" path="res://assets/sounds/pickup_sound.wav" id="5_6danj"]
 [ext_resource type="AudioStream" uid="uid://dfhs8k3x8aco6" path="res://assets/sounds/place_item_sound.wav" id="6_rsshs"]
 [ext_resource type="AudioStream" uid="uid://b08e7r2w14yqm" path="res://assets/sounds/Background_music_1.mp3" id="7_ysna7"]
-[ext_resource type="AudioStream" uid="uid://d0g0eexjqhca1" path="res://assets/sounds/death_sound_effect.wav" id="8_xnnin"]
+[ext_resource type="AudioStream" uid="uid://cisp1jvof2y5d" path="res://assets/sounds/dark-guitar-130435.mp3" id="8_noa7u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m3jx0"]
 size = Vector3(2.035, 6.98, 3.1)
@@ -92,11 +92,20 @@ volume_db = -4.0
 stream = ExtResource("7_ysna7")
 volume_db = -13.0
 
-[node name="Timer" type="Timer" parent="Background_music_1"]
+[node name="BackgroundMusicLoopTimer" type="Timer" parent="Background_music_1"]
 wait_time = 75.0
 
 [node name="Death_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_xnnin")
+stream = ExtResource("8_noa7u")
+
+[node name="DeathSoundLoopTimer" type="Timer" parent="Death_sound"]
+wait_time = 15.35
+
+[node name="DeathSoundDelay" type="Timer" parent="Death_sound"]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="timeout" from="Control/Label/PickupTimer" to="Control/Label" method="_on_pickup_timer_timeout"]
-[connection signal="timeout" from="Background_music_1/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Background_music_1/BackgroundMusicLoopTimer" to="." method="_on_background_music_loop_timer_timeout"]
+[connection signal="timeout" from="Death_sound/DeathSoundLoopTimer" to="." method="_on_death_sound_loop_timer_timeout"]
+[connection signal="timeout" from="Death_sound/DeathSoundDelay" to="." method="_on_death_sound_delay_timeout"]
