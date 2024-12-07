@@ -216,7 +216,7 @@ func try_place_medallion(hand):
 func pickup(hand):
 	var item = raycast2.get_collider()
 	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap":
-		if not item.name.begins_with("Wall") and not item.name.begins_with("Floor") and not item.name.begins_with("ceiling"):
+		if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
 			if item:
 				pickup_sound.playing = true
 				print("Picking up item:", item.name)

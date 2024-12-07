@@ -93,7 +93,7 @@ stream = ExtResource("7_ysna7")
 volume_db = -13.0
 
 [node name="BackgroundMusicLoopTimer" type="Timer" parent="Background_music_1"]
-wait_time = 75.0
+wait_time = 76.0
 
 [node name="Death_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_noa7u")
