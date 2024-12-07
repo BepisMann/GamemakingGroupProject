@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv0y066ay8she"]
+
+[ext_resource type="PackedScene" uid="uid://b61lwwmjmtkha" path="res://scenes/prefabs/Animal_symbols_stuff/Snake_Symbol.glb" id="1_gokle"]
+[ext_resource type="Texture2D" uid="uid://3oab4fj6move" path="res://Images/wooden-tile-wood-texture-can-260nw-1932826514.webp" id="2_0g43s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0uar"]
+albedo_texture = ExtResource("2_0g43s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38og4"]
+albedo_color = Color(0.82, 1, 0.967, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1p6o"]
+albedo_color = Color(0.34902, 0.188235, 0.00392157, 1)
+
+[node name="Snake_Symbol" instance=ExtResource("1_gokle")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_e0uar")
+
+[node name="Plane_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_38og4")
+surface_material_override/3 = SubResource("StandardMaterial3D_g1p6o")

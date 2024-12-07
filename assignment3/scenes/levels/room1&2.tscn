@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://d4bnxj55wl48d"]
+[gd_scene load_steps=75 format=3 uid="uid://d4bnxj55wl48d"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -26,6 +26,10 @@
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
 [ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="23_ey4ku"]
 [ext_resource type="Texture2D" uid="uid://c7ysw21kx8leo" path="res://Images/Schermafbeelding 2024-12-02 183814.png" id="24_dd0ao"]
+[ext_resource type="PackedScene" uid="uid://co36rcc5rkni0" path="res://scenes/prefabs/Animal_symbols_stuff/air_symbol.tscn" id="27_lvrhl"]
+[ext_resource type="PackedScene" uid="uid://coy81eqxwgfvl" path="res://scenes/prefabs/Animal_symbols_stuff/poop_symbol_3.tscn" id="28_yg1jb"]
+[ext_resource type="PackedScene" uid="uid://dv0y066ay8she" path="res://scenes/prefabs/Animal_symbols_stuff/snake_symbol.tscn" id="29_37x2j"]
+[ext_resource type="PackedScene" uid="uid://claka2okk25t2" path="res://scenes/prefabs/Animal_symbols_stuff/water_symbol.tscn" id="30_vby1r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7iijs"]
 size = Vector3(42, 0.25, 36)
@@ -915,6 +919,18 @@ collision_priority = 2.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/HolderColliderMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
 shape = SubResource("BoxShape3D_jsoth")
+
+[node name="Air_Symbol" parent="." instance=ExtResource("27_lvrhl")]
+transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 19.9937, 2.54238, -8.92337)
+
+[node name="Poop_Symbol_3" parent="." instance=ExtResource("28_yg1jb")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20, 2.56357, 8.99622)
+
+[node name="Snake_Symbol" parent="." instance=ExtResource("29_37x2j")]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 29.1586, 2.58798, -0.0282534)
+
+[node name="Water_Symbol" parent="." instance=ExtResource("30_vby1r")]
+transform = Transform3D(2.38498e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.38498e-09, 10.7694, 2.53975, 5.51858)
 
 [connection signal="body_entered" from="room 1/MovableWall/Area3D" to="room 1/MovableWall" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="room 1/MovableWall/Area3D" to="room 1/MovableWall" method="_on_area_3d_body_exited"]
