@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2rc51st1qw34"]
+
+[ext_resource type="PackedScene" uid="uid://etaii53ujon8" path="res://scenes/prefabs/Animal_symbols_stuff/Wooden_Background_Board.glb" id="1_p2opu"]
+[ext_resource type="Texture2D" uid="uid://3oab4fj6move" path="res://Images/wooden-tile-wood-texture-can-260nw-1932826514.webp" id="2_q7xtg"]
+[ext_resource type="Texture2D" uid="uid://d3ukg28ydrdt3" path="res://scenes/prefabs/Torch_prefabs/torch3_Wooden_part.png" id="3_f4j5d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m36fp"]
+albedo_texture = ExtResource("2_q7xtg")
+roughness = 0.8
+normal_texture = ExtResource("3_f4j5d")
+
+[node name="Wooden_Background_Board" instance=ExtResource("1_p2opu")]
+
+[node name="Empty" parent="." index="0"]
+transform = Transform3D(-0.721251, -4.37114e-08, -4.37114e-08, 3.15269e-08, 0, -1, 3.15269e-08, -1, 1.91069e-15, 0, 0, 0.149535)
+
+[node name="Plane" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m36fp")
