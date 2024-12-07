@@ -30,10 +30,25 @@ var is_jumping: bool = false
 var can_control: bool = true
 var can_jump: bool = true
 
+@onready var pickup_sound = $Pickup_sound
+@onready var placing_sound = $Place_item_sound
+@onready var backgroundMusic1 = $Background_music_1
+@onready var stop_timer = $Background_music_1/Timer
+@onready var death_sound = $Death_sound
+
 func _ready() -> void:
 	if control:
 		control.set_raycast(raycast1, 1)
 		control.set_raycast(raycast2, 2)
+	
+	backgroundMusic1.play()
+	stop_timer.start()
+
+func _on_timer_timeout() -> void:
+	backgroundMusic1.stop()
+	backgroundMusic1.play()
+	stop_timer.start()
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (can_control):
@@ -77,6 +92,7 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("left")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("left")
+				placing_sound.playing = true
 
 		if Input.is_action_just_pressed("right_click"):
 			if right == "" and raycast2.is_colliding():
@@ -88,6 +104,7 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("right")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("right")
+				placing_sound.playing = true
 			
 
 	# Handle jump and movement.
@@ -196,6 +213,7 @@ func pickup(hand):
 	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap":
 		if not item.name.begins_with("Wall") and not item.name.begins_with("Floor") and not item.name.begins_with("ceiling"):
 			if item:
+				pickup_sound.playing = true
 				print("Picking up item:", item.name)
 				var collision_shape = item.get_node("CollisionShape3D")
 				if collision_shape:
@@ -326,3 +344,5 @@ func reset_item_rotation_right(item):
 			
 		"TrapMap2":
 			$"../UI/TrapMapUI/Spike_trap_right".visible = true
+
+
