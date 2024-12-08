@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://d4bnxj55wl48d"]
+[gd_scene load_steps=73 format=3 uid="uid://gubnpbmfc62b"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -137,6 +137,12 @@ size = Vector3(0.25, 3.5, 5.23)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_766m4"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8kwb"]
+size = Vector3(1.57088, 4, 0.201187)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsoth"]
+size = Vector3(1.70703, 2, 0.206848)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_a24fv"]
 size = Vector3(2.10132, 1.24593, 0.840698)
 
@@ -173,7 +179,7 @@ size = Vector3(0.25, 3.5, 4)
 size = Vector3(0.25, 3.5, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85e3v"]
-size = Vector3(2, 2.76929, 3.42073)
+size = Vector3(6.26599, 2.76929, 3.42073)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4814"]
 size = Vector3(1.2616, 2.07184, 1)
@@ -195,12 +201,6 @@ size = Vector3(0.25, 3.5, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rdeut"]
 size = Vector3(0.25, 3.5, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k8kwb"]
-size = Vector3(1.57088, 4, 0.201187)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jsoth"]
-size = Vector3(1.70703, 2, 0.206848)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4dmh"]
 size = Vector3(0.709076, 0.760925, 0.0996094)
@@ -462,10 +462,58 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Final_torch holder4/HolderCollider"]
 shape = SubResource("BoxShape3D_766m4")
 
+[node name="Trap_map_holder" parent="room 2" instance=ExtResource("20_lbb6p")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 10.25, -0.228, -5.5)
+script = ExtResource("21_emc1s")
+
+[node name="TrapMap1" type="StaticBody3D" parent="room 2/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="trapmap" parent="room 2/Trap_map_holder/TrapMap1" instance=ExtResource("20_bndpi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder/TrapMap1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00991821, 0.927002, 0.0351791)
+shape = SubResource("BoxShape3D_k8kwb")
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="room 2/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 2.05033, 0.0951657)
+shape = SubResource("BoxShape3D_jsoth")
+
+[node name="Trap_map_holder2" parent="room 2" instance=ExtResource("20_lbb6p")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.75, -0.228, 5.5)
+script = ExtResource("21_emc1s")
+
+[node name="TrapMap2" type="StaticBody3D" parent="room 2/Trap_map_holder2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder2/TrapMap2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288935, 0.573, 0)
+shape = SubResource("BoxShape3D_k8kwb")
+
+[node name="trapmap" parent="room 2/Trap_map_holder2/TrapMap2" instance=ExtResource("13_qa8xl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="room 2/Trap_map_holder2"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder2/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
+shape = SubResource("BoxShape3D_jsoth")
+
 [node name="Player" parent="." instance=ExtResource("10_8gr1k")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.58029, 0, 14.2958)
 
 [node name="PuzzleManagerMedallions" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 script = ExtResource("13_kgqty")
 
 [node name="Medaillon_holder" parent="PuzzleManagerMedallions" instance=ExtResource("14_yx8ki")]
@@ -685,7 +733,7 @@ UV_ratio = 5.0
 [node name="Area3D" type="Area3D" parent="room 1/MovableWall"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/MovableWall/Area3D"]
-transform = Transform3D(1, 0, 1.77636e-13, 0, 1, 0, 0, 0, 1, 1.32362, 0.885, -1.08)
+transform = Transform3D(1, 0, 1.77636e-13, 0, 1, 0, 0, 0, 1, -0.809376, 0.885, -1.08)
 shape = SubResource("BoxShape3D_85e3v")
 
 [node name="Final_torch holder" parent="room 1" instance=ExtResource("8_42sa2")]
@@ -841,53 +889,6 @@ heightmap_texture = ExtResource("4_de8w0")
 noise_img = SubResource("NoiseTexture2D_u16w5")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Trap_map_holder" parent="room 1" instance=ExtResource("20_lbb6p")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 11, -0.228, 11.25)
-script = ExtResource("21_emc1s")
-
-[node name="TrapMap1" type="StaticBody3D" parent="room 1/Trap_map_holder"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="trapmap" parent="room 1/Trap_map_holder/TrapMap1" instance=ExtResource("20_bndpi")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder/TrapMap1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00991821, 0.927002, 0.0351791)
-shape = SubResource("BoxShape3D_k8kwb")
-
-[node name="HolderColliderMap" type="StaticBody3D" parent="room 1/Trap_map_holder"]
-collision_layer = 3
-collision_mask = 3
-collision_priority = 2.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder/HolderColliderMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 2.05033, 0.0951657)
-shape = SubResource("BoxShape3D_jsoth")
-
-[node name="Trap_map_holder2" parent="room 1" instance=ExtResource("20_lbb6p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228, 30.7207)
-script = ExtResource("21_emc1s")
-
-[node name="TrapMap2" type="StaticBody3D" parent="room 1/Trap_map_holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/TrapMap2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288935, 0.573, 0)
-shape = SubResource("BoxShape3D_k8kwb")
-
-[node name="trapmap" parent="room 1/Trap_map_holder2/TrapMap2" instance=ExtResource("13_qa8xl")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="HolderColliderMap" type="StaticBody3D" parent="room 1/Trap_map_holder2"]
-collision_layer = 3
-collision_mask = 3
-collision_priority = 2.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/HolderColliderMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
-shape = SubResource("BoxShape3D_jsoth")
 
 [node name="Medaillon_holder" parent="room 1" instance=ExtResource("14_yx8ki")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -11.95, 1.448, -3)
