@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dber2oye1u5ig"]
+[gd_scene load_steps=38 format=3 uid="uid://buhaug7ka5wrn"]
 
 [ext_resource type="Script" path="res://scenes/levels/trap_room.gd" id="1_53yes"]
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_k0f7i"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bspgan23o4by" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate_alt.tscn" id="3_ie2wq"]
 [ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="4_wbq6i"]
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="5_hs5pa"]
+[ext_resource type="AudioStream" uid="uid://b12mueufrllun" path="res://assets/sounds/spikes.mp3" id="6_lk5u8"]
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="6_t3o03"]
+[ext_resource type="AudioStream" uid="uid://60qtjirl6xuh" path="res://assets/sounds/small-rock-break-194553.mp3" id="7_32j05"]
 [ext_resource type="Script" path="res://Scripts/floor.gd" id="7_nf63a"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="8_tbg3j"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_70knm"]
@@ -354,6 +356,12 @@ is_deadly_pit = true
 
 [node name="Column6Trap" parent="TrapTiles/Line9" instance=ExtResource("3_ie2wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Spikes_sound" type="AudioStreamPlayer" parent="TrapTiles"]
+stream = ExtResource("6_lk5u8")
+
+[node name="Pit_trap_sound" type="AudioStreamPlayer" parent="TrapTiles"]
+stream = ExtResource("7_32j05")
 
 [node name="Test_floors_and_ceilings" type="Node3D" parent="."]
 
