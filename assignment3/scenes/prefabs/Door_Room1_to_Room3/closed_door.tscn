@@ -1,0 +1,59 @@
+[gd_scene load_steps=13 format=3 uid="uid://o64y745r4uar"]
+
+[ext_resource type="PackedScene" uid="uid://8qu14kk7ravm" path="res://scenes/prefabs/Door_Room1_to_Room3/Closed_door.glb" id="1_0m863"]
+[ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="2_p2i5m"]
+[ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_wehmj"]
+[ext_resource type="Texture2D" uid="uid://dr1xwksmqmeid" path="res://scenes/prefabs/Torch_prefabs/torch2_Wooden_part.png" id="4_n2t53"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhq17"]
+albedo_color = Color(0.556863, 0.486275, 0.396078, 1)
+normal_texture = ExtResource("2_wehmj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0vqa"]
+albedo_texture = ExtResource("2_p2i5m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5wkv"]
+albedo_color = Color(0.443137, 0.47451, 0.494118, 1)
+metallic = 0.5
+metallic_specular = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8lyk"]
+albedo_color = Color(0.443137, 0.47451, 0.494118, 1)
+metallic = 0.5
+metallic_specular = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e53mc"]
+albedo_color = Color(0.443137, 0.47451, 0.494118, 1)
+metallic = 0.5
+metallic_specular = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_job50"]
+albedo_texture = ExtResource("4_n2t53")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_631a2"]
+albedo_color = Color(0.443137, 0.47451, 0.494118, 1)
+metallic = 0.5
+metallic_specular = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fimv"]
+albedo_texture = ExtResource("4_n2t53")
+
+[node name="Closed_door" instance=ExtResource("1_0m863")]
+
+[node name="Door" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rhq17")
+surface_material_override/1 = SubResource("StandardMaterial3D_t0vqa")
+
+[node name="links schanieren" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_o5wkv")
+
+[node name="links schanieren_001" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_r8lyk")
+
+[node name="handvat" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_e53mc")
+surface_material_override/1 = SubResource("StandardMaterial3D_job50")
+
+[node name="handvat_003" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_631a2")
+surface_material_override/1 = SubResource("StandardMaterial3D_2fimv")
