@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://gubnpbmfc62b"]
+[gd_scene load_steps=80 format=3 uid="uid://gubnpbmfc62b"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="8_j7sj5"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_3w4j3"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="10_8gr1k"]
+[ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/empty_final_torch_holder.gd" id="11_mos4k"]
 [ext_resource type="Script" path="res://scenes/levels/puzzle_manager_medallions.gd" id="13_kgqty"]
 [ext_resource type="PackedScene" uid="uid://iu87eppcpw1q" path="res://scenes/prefabs/Traps/trapmap_spikes.tscn" id="13_qa8xl"]
 [ext_resource type="AudioStream" uid="uid://bde30e67v6odd" path="res://assets/sounds/Door_opening.mp3" id="13_ucx0h"]
@@ -27,8 +28,13 @@
 [ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
 [ext_resource type="AudioStream" uid="uid://c2drme2bmjcsn" path="res://assets/sounds/moving_rock_wall.wav" id="21_fxngg"]
+[ext_resource type="Script" path="res://Scripts/medaillon_holder_with_medalion.gd" id="22_2w3uv"]
 [ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="23_ey4ku"]
 [ext_resource type="Texture2D" uid="uid://c7ysw21kx8leo" path="res://Images/Schermafbeelding 2024-12-02 183814.png" id="24_dd0ao"]
+[ext_resource type="PackedScene" uid="uid://co36rcc5rkni0" path="res://scenes/prefabs/Animal_symbols_stuff/air_symbol.tscn" id="27_lvrhl"]
+[ext_resource type="PackedScene" uid="uid://coy81eqxwgfvl" path="res://scenes/prefabs/Animal_symbols_stuff/poop_symbol_3.tscn" id="28_yg1jb"]
+[ext_resource type="PackedScene" uid="uid://dv0y066ay8she" path="res://scenes/prefabs/Animal_symbols_stuff/snake_symbol.tscn" id="29_37x2j"]
+[ext_resource type="PackedScene" uid="uid://claka2okk25t2" path="res://scenes/prefabs/Animal_symbols_stuff/water_symbol.tscn" id="30_vby1r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7iijs"]
 size = Vector3(42, 0.25, 36)
@@ -119,10 +125,10 @@ subdivide_height = 440
 subdivide_depth = 2200
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ls2yj"]
-size = Vector3(0.25, 3.5, 12)
+size = Vector3(0.25, 3.5, 7)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ir0c2"]
-size = Vector3(0.25, 3.5, 12.25)
+size = Vector3(0.25, 3.5, 7.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f2a4a"]
 size = Vector3(0.25, 3.5, 9)
@@ -131,10 +137,18 @@ size = Vector3(0.25, 3.5, 9)
 size = Vector3(0.25, 3.5, 9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8f7i5"]
-size = Vector3(0.25, 3.5, 10.25)
+size = Vector3(0.25, 3.5, 5.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rw8v8"]
-size = Vector3(0.25, 3.5, 10.23)
+size = Vector3(0.25, 3.5, 5.23)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_766m4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8kwb"]
+size = Vector3(1.57088, 4, 0.201187)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsoth"]
+size = Vector3(1.70703, 2, 0.206848)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a24fv"]
 size = Vector3(2.10132, 1.24593, 0.840698)
@@ -184,12 +198,10 @@ size = Vector3(0.25, 3.5, 4)
 size = Vector3(0.25, 3.5, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85e3v"]
-size = Vector3(2, 2.76929, 3.42073)
+size = Vector3(6.26599, 2.76929, 3.42073)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4814"]
 size = Vector3(1.2616, 2.07184, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_766m4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xylv"]
 size = Vector3(0.25, 3.5, 12)
@@ -208,12 +220,6 @@ size = Vector3(0.25, 3.5, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rdeut"]
 size = Vector3(0.25, 3.5, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k8kwb"]
-size = Vector3(1.57088, 4, 0.201187)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jsoth"]
-size = Vector3(1.70703, 2, 0.206848)
 
 [node name="Node3D" type="Node3D"]
 
@@ -262,6 +268,7 @@ maximum_amplitude = 0.5
 UV_ratio = 5.0
 
 [node name="room 2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 
 [node name="Wall1" type="StaticBody3D" parent="room 2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 0.1, -9.75)
@@ -315,7 +322,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("BoxShape3D_oi3cw")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="room 2/Wall3"]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, 0)
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.35, 0)
 material_override = SubResource("ShaderMaterial_vhyrj")
 mesh = SubResource("BoxMesh_kskfo")
 skeleton = NodePath("../../Wall3")
@@ -331,7 +338,7 @@ maximum_amplitude = 0.1
 UV_ratio = 5.0
 
 [node name="Wall4" type="StaticBody3D" parent="room 2"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.1, -1.125)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5, 0.1, -1.125)
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="room 2/Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -397,7 +404,7 @@ maximum_amplitude = 0.1
 UV_ratio = 5.0
 
 [node name="Wall7" type="StaticBody3D" parent="room 2"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0.1, 1.125)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0.1, 1.125)
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="room 2/Wall7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -419,7 +426,7 @@ maximum_amplitude = 0.1
 UV_ratio = 5.0
 
 [node name="Wall8" type="StaticBody3D" parent="room 2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.1, 2.5)
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="room 2/Wall8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -440,14 +447,84 @@ noise_img = SubResource("NoiseTexture2D_u16w5")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
+[node name="Final_torch holder3" parent="room 2" instance=ExtResource("8_42sa2")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 10.25, 1.25, -2.75)
+script = ExtResource("11_mos4k")
+
+[node name="HolderCollider" type="StaticBody3D" parent="room 2/Final_torch holder3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Final_torch holder3/HolderCollider"]
+shape = SubResource("BoxShape3D_766m4")
+
+[node name="Final_torch holder4" parent="room 2" instance=ExtResource("8_42sa2")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 29.75, 1.25, 2.75)
+script = ExtResource("11_mos4k")
+
+[node name="HolderCollider" type="StaticBody3D" parent="room 2/Final_torch holder4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Final_torch holder4/HolderCollider"]
+shape = SubResource("BoxShape3D_766m4")
+
+[node name="Trap_map_holder" parent="room 2" instance=ExtResource("20_lbb6p")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 10.25, -0.228, -5.5)
+script = ExtResource("21_emc1s")
+
+[node name="TrapMap1" type="StaticBody3D" parent="room 2/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="trapmap" parent="room 2/Trap_map_holder/TrapMap1" instance=ExtResource("20_bndpi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder/TrapMap1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00991821, 0.927002, 0.0351791)
+shape = SubResource("BoxShape3D_k8kwb")
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="room 2/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 2.05033, 0.0951657)
+shape = SubResource("BoxShape3D_jsoth")
+
+[node name="Trap_map_holder2" parent="room 2" instance=ExtResource("20_lbb6p")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.75, -0.228, 5.5)
+script = ExtResource("21_emc1s")
+
+[node name="TrapMap2" type="StaticBody3D" parent="room 2/Trap_map_holder2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder2/TrapMap2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288935, 0.573, 0)
+shape = SubResource("BoxShape3D_k8kwb")
+
+[node name="trapmap" parent="room 2/Trap_map_holder2/TrapMap2" instance=ExtResource("13_qa8xl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="room 2/Trap_map_holder2"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/Trap_map_holder2/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
+shape = SubResource("BoxShape3D_jsoth")
+
 [node name="Player" parent="." instance=ExtResource("10_8gr1k")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.58029, 0, 14.2958)
 
 [node name="PuzzleManagerMedallions" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 script = ExtResource("13_kgqty")
 
 [node name="Medaillon_holder" parent="PuzzleManagerMedallions" instance=ExtResource("14_yx8ki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 20, 1.448, -9.5)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 20, 1.35, -9.5)
 required_type = "bird"
 
 [node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder"]
@@ -459,7 +536,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796
 shape = SubResource("BoxShape3D_a24fv")
 
 [node name="Medaillon_holder2" parent="PuzzleManagerMedallions" instance=ExtResource("14_yx8ki")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 29.75, 1.448, 0)
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 29.75, 1.35, 0)
 required_type = "snake"
 
 [node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder2"]
@@ -471,7 +548,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796
 shape = SubResource("BoxShape3D_a24fv")
 
 [node name="Medaillon_holder3" parent="PuzzleManagerMedallions" instance=ExtResource("14_yx8ki")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 10.25, 1.448, 5.5)
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 10.25, 1.35, 5.5)
 required_type = "fish"
 
 [node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder3"]
@@ -483,7 +560,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796
 shape = SubResource("BoxShape3D_a24fv")
 
 [node name="Medaillon_holder4" parent="PuzzleManagerMedallions" instance=ExtResource("14_yx8ki")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 20, 1.448, 9.5)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 20, 1.35, 9.5)
 required_type = "scarab"
 
 [node name="HolderColliderMedallion" type="StaticBody3D" parent="PuzzleManagerMedallions/Medaillon_holder4"]
@@ -898,52 +975,124 @@ noise_img = SubResource("NoiseTexture2D_u16w5")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Trap_map_holder" parent="room 1" instance=ExtResource("20_lbb6p")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 11, -0.228, 11.25)
-script = ExtResource("21_emc1s")
+[node name="Medaillon_holder" parent="room 1" instance=ExtResource("14_yx8ki")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -11.95, 1.448, -3)
+script = ExtResource("22_2w3uv")
+required_type = "bird"
 
-[node name="TrapMap1" type="StaticBody3D" parent="room 1/Trap_map_holder"]
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Medaillon_holder"]
 collision_layer = 3
 collision_mask = 3
 
-[node name="trapmap" parent="room 1/Trap_map_holder/TrapMap1" instance=ExtResource("20_bndpi")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_a24fv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder/TrapMap1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00991821, 0.927002, 0.0351791)
-shape = SubResource("BoxShape3D_k8kwb")
-
-[node name="HolderColliderMap" type="StaticBody3D" parent="room 1/Trap_map_holder"]
+[node name="MedallionBird" type="StaticBody3D" parent="room 1/Medaillon_holder"]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
 collision_layer = 3
 collision_mask = 3
-collision_priority = 2.0
+script = ExtResource("15_ii275")
+medallion_type = "bird"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder/HolderColliderMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 2.05033, 0.0951657)
-shape = SubResource("BoxShape3D_jsoth")
+[node name="Medallion Bird" parent="room 1/Medaillon_holder/MedallionBird" instance=ExtResource("16_m0lrl")]
 
-[node name="Trap_map_holder2" parent="room 1" instance=ExtResource("20_lbb6p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228, 30.7207)
-script = ExtResource("21_emc1s")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder/MedallionBird"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0177155, 0.0712891, 0.00375366)
+shape = SubResource("BoxShape3D_i4dmh")
 
-[node name="TrapMap2" type="StaticBody3D" parent="room 1/Trap_map_holder2"]
+[node name="Medaillon_holder2" parent="room 1" instance=ExtResource("14_yx8ki")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -11.95, 1.448, -1)
+script = ExtResource("22_2w3uv")
+required_type = "snake"
+
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Medaillon_holder2"]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/TrapMap2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288935, 0.573, 0)
-shape = SubResource("BoxShape3D_k8kwb")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder2/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_a24fv")
 
-[node name="trapmap" parent="room 1/Trap_map_holder2/TrapMap2" instance=ExtResource("13_qa8xl")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="HolderColliderMap" type="StaticBody3D" parent="room 1/Trap_map_holder2"]
+[node name="MedallionSnake" type="StaticBody3D" parent="room 1/Medaillon_holder2"]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
 collision_layer = 3
 collision_mask = 3
-collision_priority = 2.0
+script = ExtResource("15_ii275")
+medallion_type = "snake"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Trap_map_holder2/HolderColliderMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017736, 1.74593, 0.0951653)
-shape = SubResource("BoxShape3D_jsoth")
+[node name="Medallion Snake" parent="room 1/Medaillon_holder2/MedallionSnake" instance=ExtResource("17_sfy8x")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder2/MedallionSnake"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223999, 0.096756, 0)
+shape = SubResource("BoxShape3D_uuolf")
+
+[node name="Medaillon_holder3" parent="room 1" instance=ExtResource("14_yx8ki")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -11.95, 1.448, 1)
+script = ExtResource("22_2w3uv")
+required_type = "fish"
+
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Medaillon_holder3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder3/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_a24fv")
+
+[node name="MedallionFish" type="StaticBody3D" parent="room 1/Medaillon_holder3"]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("15_ii275")
+medallion_type = "fish"
+
+[node name="Medallion Fish" parent="room 1/Medaillon_holder3/MedallionFish" instance=ExtResource("18_67mn0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder3/MedallionFish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171509, 0.0852661, -0.00994873)
+shape = SubResource("BoxShape3D_j5uok")
+
+[node name="Medaillon_holder4" parent="room 1" instance=ExtResource("14_yx8ki")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -11.95, 1.448, 3)
+script = ExtResource("22_2w3uv")
+required_type = "scarab"
+
+[node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Medaillon_holder4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder4/HolderColliderMedallion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
+shape = SubResource("BoxShape3D_a24fv")
+
+[node name="MedallionScarab" type="StaticBody3D" parent="room 1/Medaillon_holder4"]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("15_ii275")
+medallion_type = "scarab"
+
+[node name="Medallion scarab" parent="room 1/Medaillon_holder4/MedallionScarab" instance=ExtResource("19_41gfi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Medaillon_holder4/MedallionScarab"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087, 0)
+shape = SubResource("BoxShape3D_ye50e")
+
+[node name="room 1_MovableWall_Area3D#CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 1.77636e-13, 0, 1, 0, 0, 0, 1, -0.809376, 0.885, -1.08)
+
+[node name="Air_Symbol" parent="." instance=ExtResource("27_lvrhl")]
+transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 14.962, 2.4, -8.85382)
+
+[node name="Poop_Symbol_3" parent="." instance=ExtResource("28_yg1jb")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 15.0054, 2.4, 8.90991)
+
+[node name="Snake_Symbol" parent="." instance=ExtResource("29_37x2j")]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 24.061, 2.4, -0.0342713)
+
+[node name="Water_Symbol" parent="." instance=ExtResource("30_vby1r")]
+transform = Transform3D(2.38498e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.38498e-09, 6, 2.4, 5.53)
 
 [connection signal="timeout" from="PuzzleManagerMedallions/Door_opening_sound/DelayTimer" to="PuzzleManagerMedallions" method="_on_delay_timer_timeout"]
 [connection signal="body_entered" from="room 1/movable_wall_node/Area3D" to="room 1/movable_wall_node/MovableWall" method="_on_area_3d_body_entered"]

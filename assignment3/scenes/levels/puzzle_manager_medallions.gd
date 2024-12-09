@@ -13,6 +13,9 @@ func update_puzzle_state():
 	 
 	#For whoever is coding this, all is setup already, just code the wall destruction/removal/movement here
 	print("All medallions are correctly placed! Open wall code here!")
+	for child in get_children():
+		if !child.name.to_lower().contains("sound") && !child.name.to_lower().contains("drums"):
+			child.lock()
 	drums.play()
 	delay_timer.start()
 	
