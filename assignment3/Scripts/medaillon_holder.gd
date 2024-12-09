@@ -7,6 +7,7 @@ extends Node3D
 
 var is_occupied = false
 var medallion: Node = null
+var is_locked = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,7 +24,7 @@ func place_medallion(medallion_instance):
 		print("Error: Attempted to place a non-medallion item in a medallion holder.")
 		return
 	
-	if not is_occupied and medallion_instance:
+	if not is_occupied and medallion_instance and not is_locked:
 		var new_medallion = medallion_instance.duplicate()
 		new_medallion.name = medallion_instance.name
 		add_child(new_medallion)
@@ -51,7 +52,7 @@ func notify_puzzle_manager():
 		puzzle_manager.update_puzzle_state()
 
 func remove_medallion():
-	if medallion:
+	if medallion and not is_locked:
 		is_occupied = false
 		update_holder_collider()
 		var temp = medallion
@@ -71,3 +72,6 @@ func update_holder_collider():
 		var collision_shape = holder_collider.get_node("CollisionShape3D")
 		if collision_shape:
 			collision_shape.disabled = is_occupied
+
+func lock():
+	is_locked = true

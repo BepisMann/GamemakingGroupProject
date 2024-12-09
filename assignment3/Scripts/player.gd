@@ -30,6 +30,7 @@ var is_jumping: bool = false
 var can_control: bool = true
 var can_jump: bool = true
 
+
 func _ready() -> void:
 	if control:
 		control.set_raycast(raycast1, 1)
@@ -207,44 +208,45 @@ func pickup(hand):
 					var medallion_from_holder = parent.remove_medallion()
 					if medallion_from_holder:
 						item = medallion_from_holder
+					else:
+						item = null
 				if parent and parent.has_method("remove_torch"):
 					print("Removing torch from holder.")
 					parent.remove_torch()
 				if parent and parent.has_method("remove_map"):
 					print("Removing map from holder.")
 					parent.remove_map()
-				
-				parent.remove_child(item)
+				if not item == null:
+					parent.remove_child(item)
+					if hand == "left":
+						print("Adding item to left hand.")
+						left_hand_position.add_child(item)
+						self.left = item.name
+						reset_item_rotation_left(item)
+						if item.name.begins_with("TrapMap"):
+							item.visible = false
+						if item.name.begins_with("Torch"):
+							held_torch_count += 1
 					
-				if hand == "left":
-					print("Adding item to left hand.")
-					left_hand_position.add_child(item)
-					self.left = item.name
-					reset_item_rotation_left(item)
-					if item.name.begins_with("TrapMap"):
-						item.visible = false
-					if item.name.begins_with("Torch"):
-						held_torch_count += 1
+					else:
+						print("Adding item to right hand.")
+						right_hand_position.add_child(item)
+						self.right = item.name
+						reset_item_rotation_right(item)
+						if item.name.begins_with("TrapMap"):
+							item.visible = false
+						if item.name.begins_with("Torch"):
+							held_torch_count += 1
 				
-				else:
-					print("Adding item to right hand.")
-					right_hand_position.add_child(item)
-					self.right = item.name
-					reset_item_rotation_right(item)
-					if item.name.begins_with("TrapMap"):
-						item.visible = false
-					if item.name.begins_with("Torch"):
-						held_torch_count += 1
+					print("Item parent after pickup:", item.get_parent().name)
 				
-				print("Item parent after pickup:", item.get_parent().name)
+					if not item.name.begins_with("TrapMap"):
+						item.visible = true
 				
-				if not item.name.begins_with("TrapMap"):
-					item.visible = true
+					item.collision_layer = 2
+					item.collision_mask = 2
 				
-				item.collision_layer = 2
-				item.collision_mask = 2
-				
-				label.show_pickup_message("Picked up " + item.name + str(hand))
+					label.show_pickup_message("Picked up " + item.name + str(hand))
 			else:
 				print("Error: No valid item to pick up!")
 

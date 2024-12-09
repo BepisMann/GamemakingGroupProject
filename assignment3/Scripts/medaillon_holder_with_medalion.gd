@@ -7,6 +7,7 @@ extends Node3D
 
 var is_occupied = true
 var medallion: Node = null
+var is_locked = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
