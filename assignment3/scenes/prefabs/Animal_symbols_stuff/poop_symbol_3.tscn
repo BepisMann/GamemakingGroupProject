@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://coy81eqxwgfvl"]
+
+[ext_resource type="PackedScene" uid="uid://b3squ2thptyja" path="res://scenes/prefabs/Animal_symbols_stuff/Poop_Symbol_3.glb" id="1_a36mx"]
+[ext_resource type="Texture2D" uid="uid://3oab4fj6move" path="res://Images/wooden-tile-wood-texture-can-260nw-1932826514.webp" id="2_dlnpm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vbhn"]
+albedo_texture = ExtResource("2_dlnpm")
+
+[node name="Poop_Symbol_3" instance=ExtResource("1_a36mx")]
+
+[node name="Board" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4vbhn")
