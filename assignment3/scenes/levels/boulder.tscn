@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="7_m8j38"]
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="8_bp18q"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_8jbc7"]
-[ext_resource type="PackedScene" uid="uid://c7b1tmyvakgyl" path="res://assets/box/Crate/box.tscn" id="11_o67se"]
+[ext_resource type="PackedScene" uid="uid://r37ooq822q6i" path="res://assets/box/Crate/box.tscn" id="11_o67se"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pv2x7"]
 
@@ -88,7 +88,7 @@ size = Vector3(0.25, 30, 30)
 transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_7kkp0")]
-transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, -309.119, 76.8008, 0)
+transform = Transform3D(-6.55671e-08, 5.96046e-08, -1.5, 3.55271e-15, 1.5, 5.96046e-08, 1.5, 0, -6.55671e-08, -208.585, 49.8627, 0)
 
 [node name="Boulder" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -448.486, 125.804, 0)
@@ -107,6 +107,10 @@ material = SubResource("StandardMaterial3D_84iig")
 
 [node name="Trap1" parent="Traps" instance=ExtResource("5_yumb0")]
 transform = Transform3D(3.8637, 1.03528, 0, -1.03528, 3.8637, 0, 0, 0, 4, -273.348, 55.9328, -10.7538)
+is_deadly_pit = true
+
+[node name="Trap2" parent="Traps" instance=ExtResource("5_yumb0")]
+transform = Transform3D(3.8637, 1.03528, 0, -1.03528, 3.8637, 0, 0, 0, 4, -60.8667, -1.00136, 12.3872)
 is_deadly_pit = true
 
 [node name="Hallway" type="Node3D" parent="."]
@@ -217,6 +221,27 @@ noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
 UV_ratio = 20.0
 
+[node name="Floor4" type="StaticBody3D" parent="Hallway"]
+transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, -20.0327, -3.54243, -13.7595)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor4"]
+shape = SubResource("BoxShape3D_82vmv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor4"]
+transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 0, -1.49012e-08, -1.06581e-14, 1, 0.0743933, 7.18721, -10.8551)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_j221j")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.5
+UV_ratio = 20.0
+
 [node name="Wall2" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(-4.37114e-08, 0.25882, 0.965926, 0, 0.965926, -0.25882, -1, -1.13134e-08, -4.22219e-08, -0.647048, 4.56186, 11.3388)
 
@@ -263,6 +288,7 @@ UV_ratio = 20.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
 
 [node name="Obstacles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7066, -6.35218, 0)
 
 [node name="Box1" parent="Obstacles" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -158.466, 27.5431, 18.6485)
@@ -278,3 +304,21 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 
 [node name="Box5" parent="Obstacles" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -157.16, 32.4178, 9.12381)
+
+[node name="Obstacles2" type="Node3D" parent="."]
+transform = Transform3D(0.999092, 0.000243023, 0.0425878, 0.000243098, 0.999934, -0.0114114, -0.0425878, 0.0114114, 0.999028, -52.8434, 14.1593, -21.5525)
+
+[node name="Box1" parent="Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -158.466, 27.5431, 18.6485)
+
+[node name="Box2" parent="Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.951252, 0.254887, 0.173648, -0.258819, 0.965927, 0, -0.167731, -0.0449435, 0.984808, -157.316, 32.4998, 15.5541)
+
+[node name="Box3" parent="Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.818506, 0.291359, 0.495134, -0.2563, 0.956526, -0.139173, -0.514158, -0.012989, 0.857597, -158.424, 27.701, 5.53971)
+
+[node name="Box4" parent="Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.879688, 0.258819, 0.398952, -0.235712, 0.965926, -0.106899, -0.413025, -8.73672e-10, 0.91072, -158.424, 27.701, 12.1776)
+
+[node name="Box5" parent="Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.944211, 0.258819, -0.203663, -0.253, 0.965926, 0.0545712, 0.210847, -8.73672e-10, 0.977519, -157.16, 32.4178, 9.12381)
