@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7b1tmyvakgyl"]
+
+[ext_resource type="Texture2D" uid="uid://bj6hrj5a4nbw4" path="res://assets/box/Crate/crate_1.jpg" id="1_0ephx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tibr"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf8wn"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw2d1"]
+albedo_texture = ExtResource("1_0ephx")
+uv1_scale = Vector3(3, 2, 3)
+uv1_offset = Vector3(10, 30, 0)
+
+[node name="Box1" type="StaticBody3D"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1tibr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yf8wn")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_aw2d1")

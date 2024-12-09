@@ -22,38 +22,16 @@ const JUMP_VELOCITY = 4.5
 
 @onready var anim := $Indiana_jones_like_character_final_attempt3/AnimationPlayer
 
-var held_torch_count: int = 0
-
 signal player_died
 
 var is_jumping: bool = false
 var can_control: bool = true
 var can_jump: bool = true
 
-@onready var pickup_sound = $Pickup_sound
-@onready var placing_sound = $Place_item_sound
-@onready var backgroundMusic1 = $Background_music_1
-@onready var stop_timer = $Background_music_1/BackgroundMusicLoopTimer
-@onready var death_sound = $Death_sound
-
 func _ready() -> void:
 	if control:
 		control.set_raycast(raycast1, 1)
 		control.set_raycast(raycast2, 2)
-	
-	backgroundMusic1.play()
-	stop_timer.start()
-
-func _on_background_music_loop_timer_timeout() -> void:
-	backgroundMusic1.stop()
-	backgroundMusic1.play()
-	stop_timer.start()
-	
-func _on_death_sound_loop_timer_timeout() -> void:
-	death_sound.stop()
-	death_sound.play()
-	$Death_sound/DeathSoundLoopTimer.start()
-	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (can_control):
@@ -97,7 +75,6 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("left")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("left")
-				placing_sound.playing = true
 
 		if Input.is_action_just_pressed("right_click"):
 			if right == "" and raycast2.is_colliding():
@@ -109,7 +86,6 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("right")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("right")
-				placing_sound.playing = true
 			
 
 	# Handle jump and movement.
@@ -144,7 +120,7 @@ func try_place_trap_map(hand):
 					$"../UI/TrapMapUI/Pit_trap_left".visible = false
 				elif self.left == "TrapMap2":
 					$"../UI/TrapMapUI/Spike_trap_left".visible = false
-			elif hand == "right":
+			else:
 				if self.right == "TrapMap1":
 					$"../UI/TrapMapUI/Pit_trap_right".visible = false
 				elif self.right == "TrapMap2":
@@ -176,8 +152,7 @@ func try_place_torch(hand):
 				return
 			
 			holder.place_torch(torch)
-			torch.get_parent().remove_child(torch)
-			held_torch_count -= 1 
+			torch.get_parent().remove_child(torch) 
 			if hand == "left":
 				left = "" 
 			else:
@@ -216,9 +191,8 @@ func try_place_medallion(hand):
 func pickup(hand):
 	var item = raycast2.get_collider()
 	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap":
-		if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
+		if not item.name.begins_with("Wall") and not item.name.begins_with("Floor") and not item.name.begins_with("ceiling"):
 			if item:
-				pickup_sound.playing = true
 				print("Picking up item:", item.name)
 				var collision_shape = item.get_node("CollisionShape3D")
 				if collision_shape:
@@ -246,8 +220,6 @@ func pickup(hand):
 					reset_item_rotation_left(item)
 					if item.name.begins_with("TrapMap"):
 						item.visible = false
-					if item.name.begins_with("Torch"):
-						held_torch_count += 1
 				
 				else:
 					print("Adding item to right hand.")
@@ -256,8 +228,6 @@ func pickup(hand):
 					reset_item_rotation_right(item)
 					if item.name.begins_with("TrapMap"):
 						item.visible = false
-					if item.name.begins_with("Torch"):
-						held_torch_count += 1
 				
 				print("Item parent after pickup:", item.get_parent().name)
 				
@@ -278,18 +248,6 @@ func _on_trap_body_entered_spikes() -> void:
 	velocity.x = move_toward(velocity.x, 0, SPEED)
 	velocity.z = move_toward(velocity.z, 0, SPEED)
 	anim.play("Idle_1")
-	$Death_sound/DeathSoundDelay.start()
-	backgroundMusic1.stop()
-	
-func _on_death_sound_delay_timeout() -> void:
-	death_sound.play()
-	$Death_sound/DeathSoundLoopTimer.start()
-	
-func respawn() -> void:
-	$Death_sound/DeathSoundLoopTimer.stop()
-	death_sound.stop()
-	backgroundMusic1.play()
-	stop_timer.start()
 	
 func show_cursor():
 	$Control/CenterContainer.show()
@@ -360,4 +318,4 @@ func reset_item_rotation_right(item):
 			$"../UI/TrapMapUI/Pit_trap_right".visible = true
 			
 		"TrapMap2":
-			$"../UI/TrapMapUI/Spike_trap_right".visible = true
+			$"../UI/TrapMapUI/Pit_trap_right".visible = true

@@ -22,7 +22,6 @@ func _on_death_respawn() -> void:
 	$Player.can_control = true
 	$Player.can_jump = true
 	$Player.show_cursor()
-	$Player.respawn()
 
 func _on_death_timer_timeout() -> void:
 	$Death.show()
