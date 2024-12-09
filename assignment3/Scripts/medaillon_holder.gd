@@ -59,6 +59,8 @@ func remove_medallion():
 		medallion = null
 		return temp
 		notify_puzzle_manager()
+	if medallion and is_locked:
+		return -1
 
 func check_correct_medallion() -> bool:
 	if not is_occupied or not medallion:
