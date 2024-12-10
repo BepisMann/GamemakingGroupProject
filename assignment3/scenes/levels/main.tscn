@@ -79,7 +79,7 @@ size = Vector3(0.25, 5.5, 3)
 size = Vector3(0.25, 8, 13.7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hpnm6"]
-size = Vector3(0.25, 3.5, 4.1)
+size = Vector3(0.25, 3.5, 6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wc56b"]
 size = Vector3(0.25, 3.5, 6)
