@@ -113,6 +113,10 @@ is_deadly_pit = true
 transform = Transform3D(3.8637, 1.03528, 0, -1.03528, 3.8637, 0, 0, 0, 4, -60.8667, -1.00136, 12.3872)
 is_deadly_pit = true
 
+[node name="Trap3" parent="Traps" instance=ExtResource("5_yumb0")]
+transform = Transform3D(3.8637, 1.03528, 0, -1.03528, 3.8637, 0, 0, 0, 4, 151.41, -57.8808, 12.3872)
+is_deadly_pit = true
+
 [node name="Hallway" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
@@ -176,8 +180,8 @@ normal_texture = ExtResource("7_m8j38")
 ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
-maximum_amplitude = 0.5
-UV_ratio = 20.0
+maximum_amplitude = 0.2
+UV_ratio = 10.0
 
 [node name="Floor2" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, -83.6528, 13.5044, 0.17152)
@@ -197,11 +201,11 @@ normal_texture = ExtResource("7_m8j38")
 ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
-maximum_amplitude = 0.5
-UV_ratio = 20.0
+maximum_amplitude = 0.2
+UV_ratio = 10.0
 
 [node name="Floor3" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, -126.384, 24.9543, 0.17152)
+transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, -126.383, 24.9573, 0.17152)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor3"]
 shape = SubResource("BoxShape3D_82vmv")
@@ -218,11 +222,11 @@ normal_texture = ExtResource("7_m8j38")
 ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
-maximum_amplitude = 0.5
-UV_ratio = 20.0
+maximum_amplitude = 0.2
+UV_ratio = 10.0
 
 [node name="Floor4" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, -20.0327, -3.54243, -13.7595)
+transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, -20.049, -3.60319, -13.7595)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor4"]
 shape = SubResource("BoxShape3D_82vmv")
@@ -239,8 +243,71 @@ normal_texture = ExtResource("7_m8j38")
 ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
-maximum_amplitude = 0.5
-UV_ratio = 20.0
+maximum_amplitude = 0.2
+UV_ratio = 10.0
+
+[node name="Floor5" type="StaticBody3D" parent="Hallway"]
+transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, 22.5474, -14.9519, 0.17152)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor5"]
+shape = SubResource("BoxShape3D_82vmv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor5"]
+transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 2.4869e-14, -1.49012e-08, -1.06581e-14, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_t12n1")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.2
+UV_ratio = 10.0
+
+[node name="Floor6" type="StaticBody3D" parent="Hallway"]
+transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, 86.1675, -32.0638, -13.7595)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor6"]
+shape = SubResource("BoxShape3D_82vmv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor6"]
+transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 0, -1.49012e-08, -1.06581e-14, 1, 0.0743933, 7.18721, -10.8551)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_j221j")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.2
+UV_ratio = 10.0
+
+[node name="Floor7" type="StaticBody3D" parent="Hallway"]
+transform = Transform3D(0.258819, 3.23981e-08, 0.965926, 0.965926, -4.2222e-08, -0.258819, 3.23981e-08, 1, -4.2222e-08, 128.753, -43.4096, 0.17152)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor7"]
+shape = SubResource("BoxShape3D_82vmv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor7"]
+transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 2.4869e-14, -1.49012e-08, -1.06581e-14, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_t12n1")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.2
+UV_ratio = 10.0
 
 [node name="Wall2" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(-4.37114e-08, 0.25882, 0.965926, 0, 0.965926, -0.25882, -1, -1.13134e-08, -4.22219e-08, -0.647048, 4.56186, 11.3388)
@@ -321,4 +388,76 @@ transform = Transform3D(0.818506, 0.291359, 0.495134, -0.2563, 0.956526, -0.1391
 transform = Transform3D(0.879688, 0.258819, 0.398952, -0.235712, 0.965926, -0.106899, -0.413025, -8.73672e-10, 0.91072, -158.424, 27.701, 12.1776)
 
 [node name="Box5" parent="Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.944211, 0.258819, -0.203663, -0.253, 0.965926, 0.0545712, 0.210847, -8.73672e-10, 0.977519, -157.16, 32.4178, 9.12381)
+
+[node name="Obstacles3" type="Node3D" parent="."]
+transform = Transform3D(0.999091, 0.000243247, 0.0425878, 0.000243098, 0.999934, -0.0114114, -0.0425878, 0.0114114, 0.999028, 143.946, -38.5701, -30.7599)
+
+[node name="Box1" parent="Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -158.466, 27.5431, 18.6485)
+
+[node name="Box2" parent="Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.951252, 0.254887, 0.173648, -0.258819, 0.965927, 0, -0.167731, -0.0449435, 0.984808, -157.316, 32.4998, 15.5541)
+
+[node name="Box3" parent="Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.955323, 0.292888, -0.0396942, -0.29296, 0.956116, 0.00413366, 0.0391628, 0.00767963, 0.999203, -158.424, 27.701, 5.53971)
+
+[node name="Box4" parent="Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.879688, 0.258819, 0.398952, -0.235712, 0.965926, -0.106899, -0.413025, -8.73672e-10, 0.91072, -158.424, 27.701, 12.1776)
+
+[node name="Box5" parent="Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.944211, 0.258819, -0.203663, -0.253, 0.965926, 0.0545712, 0.210847, -8.73672e-10, 0.977519, -157.16, 32.4178, 9.12381)
+
+[node name="Obstacles4" type="Node3D" parent="."]
+transform = Transform3D(0.999091, 0.000243291, 0.0425878, 0.000243142, 0.999934, -0.0114114, -0.0425878, 0.0114114, 0.999028, 174.899, -46.864, -5.80493)
+
+[node name="Box1" parent="Obstacles4" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, -3.72529e-09, -0.258819, 0.965926, 0, -3.72529e-09, 6.56995e-10, 1, -160.635, 28.1242, 18.5494)
+
+[node name="Box2" parent="Obstacles4" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.951252, 0.254887, 0.173648, -0.258819, 0.965927, 1.58325e-08, -0.167731, -0.0449435, 0.984808, -166.337, 29.7373, 15.2011)
+
+[node name="Box3" parent="Obstacles4" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.955323, 0.292888, -0.0396942, -0.29296, 0.956116, 0.00413366, 0.0391628, 0.00767963, 0.999203, -158.424, 27.701, 5.53971)
+
+[node name="Box4" parent="Obstacles4" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.879688, 0.258819, 0.398952, -0.235712, 0.965926, -0.106899, -0.413025, -8.73672e-10, 0.91072, -158.424, 27.701, 12.1776)
+
+[node name="Box5" parent="Obstacles4" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.944211, 0.258819, -0.203663, -0.253, 0.965926, 0.0545712, 0.210847, -8.73672e-10, 0.977519, -157.16, 32.4178, 9.12381)
+
+[node name="Obstacles5" type="Node3D" parent="."]
+transform = Transform3D(0.999091, 0.000243276, 0.0425878, 0.000243157, 0.999934, -0.0114114, -0.0425878, 0.0114114, 0.999028, 207.102, -55.4927, -20.8419)
+
+[node name="Box1" parent="Obstacles5" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -158.466, 27.5431, 18.6485)
+
+[node name="Box2" parent="Obstacles5" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.951252, 0.254887, 0.173648, -0.258819, 0.965927, 0, -0.167731, -0.0449435, 0.984808, -157.316, 32.4998, 15.5541)
+
+[node name="Box3" parent="Obstacles5" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.573227, 0.274628, -0.772004, -0.190578, 0.961009, 0.200355, 0.796926, 0.0322774, 0.603213, -158.424, 27.701, 5.53971)
+
+[node name="Box4" parent="Obstacles5" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.879688, 0.258819, 0.398952, -0.235712, 0.965926, -0.106899, -0.413025, -8.73672e-10, 0.91072, -158.424, 27.701, 12.1776)
+
+[node name="Box5" parent="Obstacles5" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.944211, 0.258819, -0.203663, -0.253, 0.965926, 0.0545712, 0.210847, -8.73672e-10, 0.977519, -157.16, 32.4178, 9.12381)
+
+[node name="Obstacles6" type="Node3D" parent="."]
+transform = Transform3D(0.999091, 0.000243276, 0.0425878, 0.000243157, 0.999934, -0.0114114, -0.0425878, 0.0114114, 0.999028, 253.869, -68.024, -28.3203)
+
+[node name="Box1" parent="Obstacles6" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -158.466, 27.5431, 18.6485)
+
+[node name="Box2" parent="Obstacles6" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.951252, 0.254887, 0.173648, -0.258819, 0.965927, 0, -0.167731, -0.0449435, 0.984808, -165.184, 29.2867, 15.2554)
+
+[node name="Box3" parent="Obstacles6" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.573227, 0.274628, -0.772004, -0.190578, 0.961009, 0.200355, 0.796926, 0.0322774, 0.603213, -158.424, 27.701, 5.53971)
+
+[node name="Box4" parent="Obstacles6" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.879688, 0.258819, 0.398952, -0.235712, 0.965926, -0.106899, -0.413025, -8.73672e-10, 0.91072, -158.424, 27.701, 12.1776)
+
+[node name="Box5" parent="Obstacles6" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.944211, 0.258819, -0.203663, -0.253, 0.965926, 0.0545712, 0.210847, -8.73672e-10, 0.977519, -157.16, 32.4178, 9.12381)
