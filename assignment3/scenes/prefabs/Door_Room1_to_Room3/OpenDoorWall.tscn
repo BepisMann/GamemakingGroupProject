@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_carur"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ru8j5"]
-size = Vector3(0.25, 3.5, 2)
+size = Vector3(0.25, 3.5, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ttnp3"]
 noise_type = 3
@@ -130,7 +130,7 @@ transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.6
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.45, 0, 0)
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="WallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("BoxShape3D_ru8j5")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="WallLeft"]

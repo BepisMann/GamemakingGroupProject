@@ -60,7 +60,7 @@ size = Vector3(0.25, 3.5, 4.1)
 noise_type = 3
 seed = 9
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_khc3h"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_86dko"]
 normalize = false
 noise = SubResource("FastNoiseLite_5me36")
 
@@ -93,17 +93,17 @@ shader_parameter/texture_emission = ExtResource("3_odbo2")
 shader_parameter/texture_normal = ExtResource("5_3115m")
 shader_parameter/texture_ambient_occlusion = ExtResource("2_07y71")
 shader_parameter/texture_heightmap = ExtResource("4_de8w0")
-shader_parameter/noise_img = SubResource("NoiseTexture2D_khc3h")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_86dko")
 
 [sub_resource type="BoxMesh" id="BoxMesh_scfer"]
 size = Vector3(0.25, 3.5, 4.1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7fijl"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q48x2"]
 noise_type = 3
 seed = 43278521
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3lgbe"]
-noise = SubResource("FastNoiseLite_7fijl")
+noise = SubResource("FastNoiseLite_q48x2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4814"]
 size = Vector3(1.2616, 2.07184, 1)
@@ -334,18 +334,18 @@ size = Vector3(2.25, 0.25, 7.1)
 [sub_resource type="BoxMesh" id="BoxMesh_11obq"]
 size = Vector3(2.25, 0.25, 7.1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_52iug"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ct3ex"]
 seed = 12345676
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j86cj"]
-noise = SubResource("FastNoiseLite_52iug")
+noise = SubResource("FastNoiseLite_ct3ex")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_e3lx2"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kgtov"]
 noise_type = 3
 seed = 32134
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_idh0m"]
-noise = SubResource("FastNoiseLite_e3lx2")
+noise = SubResource("FastNoiseLite_kgtov")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jlo7j"]
 size = Vector3(2, 0.25, 5.1)
