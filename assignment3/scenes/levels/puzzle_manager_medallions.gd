@@ -6,6 +6,8 @@ extends Node3D
 @onready var drums = $Drums_of_opening_door
 @onready var delay_timer = $Door_opening_sound/DelayTimer
 
+@onready var closed_door_wall = $"../../room 1/ClosedDoorWall"
+
 func get_medallion_holders() -> Array[Object]:
 	var holders: Array[Object] = []
 	holders.append($Wall4/Medaillon_holder)
@@ -26,6 +28,16 @@ func update_puzzle_state():
 		child.lock()
 	drums.play()
 	delay_timer.start()
+	
+	var parent = closed_door_wall.get_parent()
+	var wall_transform = closed_door_wall.transform
+	var open_wall = preload("res://scenes/prefabs/Door_Room1_to_Room3/OpenDoorWall.tscn")
+	var open_wall_instance = open_wall.instantiate()
+	closed_door_wall.queue_free()
+	
+	parent.add_child(open_wall_instance)
+	open_wall_instance.transform = wall_transform
+	
 	
 
 func _on_delay_timer_timeout() -> void:
