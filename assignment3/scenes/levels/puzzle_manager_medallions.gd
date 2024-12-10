@@ -1,10 +1,19 @@
 extends Node3D
 
-@onready var medallion_holders := get_children()
+@onready var medallion_holders := get_medallion_holders()
 
 @onready var door_opening_sound = $Door_opening_sound
 @onready var drums = $Drums_of_opening_door
 @onready var delay_timer = $Door_opening_sound/DelayTimer
+
+func get_medallion_holders() -> Array[Object]:
+	var holders: Array[Object] = []
+	holders.append($Wall4/Medaillon_holder)
+	holders.append($Wall5/Medaillon_holder2)
+	holders.append($Wall6/Medaillon_holder4)
+	holders.append($Wall7/Medaillon_holder3)
+	return holders
+	
 
 func update_puzzle_state():
 	for holder in medallion_holders:
@@ -13,9 +22,8 @@ func update_puzzle_state():
 	 
 	#For whoever is coding this, all is setup already, just code the wall destruction/removal/movement here
 	print("All medallions are correctly placed! Open wall code here!")
-	for child in get_children():
-		if !child.name.to_lower().contains("sound") && !child.name.to_lower().contains("drums"):
-			child.lock()
+	for child in medallion_holders:
+		child.lock()
 	drums.play()
 	delay_timer.start()
 	
