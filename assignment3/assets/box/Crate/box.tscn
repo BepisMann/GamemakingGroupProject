@@ -3,14 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://bj6hrj5a4nbw4" path="res://assets/box/crate_1.jpg" id="1_nhqea"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1tibr"]
-size = Vector3(5, 5, 5)
+size = Vector3(0.75, 0.75, 0.75)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umj1e"]
 albedo_texture = ExtResource("1_nhqea")
 uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yf8wn"]
-size = Vector3(5, 5, 5)
+size = Vector3(0.75, 0.75, 0.75)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw2d1"]
 uv1_scale = Vector3(3, 2, 3)
@@ -19,9 +19,11 @@ uv1_offset = Vector3(10, 30, 0)
 [node name="Box1" type="StaticBody3D"]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 shape = SubResource("BoxShape3D_1tibr")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 material_override = SubResource("StandardMaterial3D_umj1e")
 mesh = SubResource("BoxMesh_yf8wn")
 skeleton = NodePath("")
