@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://buhaug7ka5wrn"]
+[gd_scene load_steps=36 format=3 uid="uid://dber2oye1u5ig"]
 
 [ext_resource type="Script" path="res://scenes/levels/trap_room.gd" id="1_53yes"]
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_k0f7i"]
