@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://qex7lpjveo70"]
+[gd_scene load_steps=39 format=3 uid="uid://qex7lpjveo70"]
 
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_7kkp0"]
+[ext_resource type="Script" path="res://scenes/levels/boulder_room.gd" id="1_oinhh"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="2_ednmt"]
 [ext_resource type="Script" path="res://scenes/levels/boulder.gd" id="2_tsr2h"]
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="3_g5n8i"]
@@ -26,7 +27,7 @@ emission_texture = ExtResource("5_a3g01")
 radius = 15.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvbou"]
-size = Vector3(0.25, 30, 205)
+size = Vector3(0.25, 30, 265)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5g4d2"]
 noise_type = 3
@@ -68,7 +69,7 @@ shader_parameter/texture_heightmap = ExtResource("6_8org4")
 shader_parameter/noise_img = SubResource("NoiseTexture2D_0fcnx")
 
 [sub_resource type="BoxMesh" id="BoxMesh_cvj24"]
-size = Vector3(0.25, 30, 205)
+size = Vector3(0.25, 30, 265)
 subdivide_width = 5
 subdivide_height = 48
 subdivide_depth = 240
@@ -84,19 +85,37 @@ noise = SubResource("FastNoiseLite_4ndet")
 size = Vector3(0.25, 30, 205)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bkwbq"]
-size = Vector3(0.25, 30, 205)
+size = Vector3(0.25, 30, 265)
 subdivide_width = 5
 subdivide_height = 48
 subdivide_depth = 240
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_17v18"]
-size = Vector3(0.25, 30, 95)
+[sub_resource type="BoxShape3D" id="BoxShape3D_k5m6c"]
+size = Vector3(0.25, 30, 30)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_82vmv"]
-size = Vector3(0.25, 30, 20)
+[sub_resource type="BoxMesh" id="BoxMesh_75j74"]
+size = Vector3(0.25, 30, 30)
+subdivide_width = 5
+subdivide_height = 48
+subdivide_depth = 240
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_88vto"]
+size = Vector3(0.25, 30, 235)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oives"]
+size = Vector3(0.25, 30, 235)
+subdivide_width = 5
+subdivide_height = 48
+subdivide_depth = 240
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2vdoo"]
+size = Vector3(0.25, 30, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t12n1"]
-size = Vector3(0.25, 30, 40)
+size = Vector3(0.25, 30, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hpotf"]
+size = Vector3(1, 30, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hvhdf"]
 size = Vector3(0.25, 15, 15)
@@ -107,15 +126,25 @@ size = Vector3(0.25, 15, 15)
 [sub_resource type="BoxShape3D" id="BoxShape3D_fmshs"]
 size = Vector3(0.25, 30, 40)
 
-[node name="World" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_d23k8"]
+size = Vector3(0.25, 30, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p25hg"]
+size = Vector3(0.25, 30, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rhck1"]
+size = Vector3(0.25, 30, 40)
+
+[node name="BoulderRoom" type="Node3D"]
+script = ExtResource("1_oinhh")
 
 [node name="Player" parent="." instance=ExtResource("1_7kkp0")]
-transform = Transform3D(-1.09278e-08, 9.9341e-09, -0.25, 5.92118e-16, 0.25, 9.9341e-09, 0.25, -1.57885e-16, -1.09278e-08, 49.7506, 1.74114, 2.4856)
+transform = Transform3D(-1.09278e-08, 9.9341e-09, -0.25, 5.92118e-16, 0.25, 9.9341e-09, 0.25, -1.57885e-16, -1.09278e-08, 3.60541, 1.74114, 2.4856)
 collision_layer = 3
 collision_mask = 3
 
 [node name="Boulder" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 11, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6049, 41.8743, 0)
 collision_layer = 3
 collision_mask = 3
 mass = 2000.0
@@ -140,7 +169,7 @@ shape = SubResource("SphereShape3D_moclx")
 transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Wall1" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 102.5, 15, -15)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 132.5, 15, -15)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Wall1"]
 shape = SubResource("BoxShape3D_gvbou")
@@ -161,7 +190,7 @@ maximum_amplitude = 0.5
 UV_ratio = 20.0
 
 [node name="Wall2" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 102.5, 15, 15)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 132.5, 15, 15)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Wall2"]
 shape = SubResource("BoxShape3D_h7ma4")
@@ -181,16 +210,145 @@ noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
 UV_ratio = 20.0
 
+[node name="Ceiling_Breakable" type="StaticBody3D" parent="Hallway"]
+transform = Transform3D(1.49012e-08, 4.37114e-08, 1, 1, -4.37114e-08, -1.49012e-08, 4.37114e-08, 1, -4.37114e-08, 15, 29.4, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Ceiling_Breakable"]
+shape = SubResource("BoxShape3D_k5m6c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Ceiling_Breakable"]
+transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_75j74")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.5
+UV_ratio = 20.0
+
+[node name="Boulder Support" type="Node3D" parent="Hallway"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="Boulder Support1" type="StaticBody3D" parent="Hallway/Boulder Support"]
+transform = Transform3D(1, -2.64698e-23, -7.45058e-08, -7.45058e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 30, 14.722, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/Boulder Support1"]
+shape = SubResource("BoxShape3D_k5m6c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/Boulder Support1"]
+transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_75j74")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.5
+UV_ratio = 20.0
+
+[node name="Boulder Support2" type="StaticBody3D" parent="Hallway/Boulder Support"]
+transform = Transform3D(-4.37114e-08, 1, -2.98023e-08, -8.88178e-16, -4.47035e-08, -1, -1, -4.37114e-08, 1.91069e-15, 15, 14.722, -15)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/Boulder Support2"]
+shape = SubResource("BoxShape3D_k5m6c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/Boulder Support2"]
+transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_75j74")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.5
+UV_ratio = 20.0
+
+[node name="Boulder Support3" type="StaticBody3D" parent="Hallway/Boulder Support"]
+transform = Transform3D(1.19249e-08, -1, 4.47035e-08, 0, -5.96046e-08, -1, 1, 1.19249e-08, -5.21253e-16, 15, 14.722, 15)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/Boulder Support3"]
+shape = SubResource("BoxShape3D_k5m6c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/Boulder Support3"]
+transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_75j74")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.5
+UV_ratio = 20.0
+
+[node name="BoulderSupport4" type="StaticBody3D" parent="Hallway/Boulder Support"]
+transform = Transform3D(2.98023e-08, 4.37114e-08, 1, 1, -4.37114e-08, -2.98023e-08, 4.37114e-08, 1, -4.37114e-08, 15.0587, 29.5661, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/BoulderSupport4"]
+shape = SubResource("BoxShape3D_k5m6c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/BoulderSupport4"]
+transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_75j74")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.5
+UV_ratio = 20.0
+
+[node name="Boulder Support5" type="StaticBody3D" parent="Hallway/Boulder Support"]
+transform = Transform3D(1, -2.64698e-23, -8.9407e-08, -8.9407e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, -4.76837e-07, 14.722, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/Boulder Support5"]
+shape = SubResource("BoxShape3D_k5m6c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/Boulder Support5"]
+transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ykw24")
+mesh = SubResource("BoxMesh_75j74")
+script = ExtResource("9_8jbc7")
+albedo_texture = ExtResource("3_g5n8i")
+roughness_texture = ExtResource("8_bp18q")
+emission_texture = ExtResource("5_a3g01")
+normal_texture = ExtResource("7_m8j38")
+ambient_occlusion_texture = ExtResource("4_21t3h")
+heightmap_texture = ExtResource("6_8org4")
+noise_img = SubResource("NoiseTexture2D_ilvqe")
+maximum_amplitude = 0.5
+UV_ratio = 20.0
+
 [node name="Ceiling" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 102.5, 29.4, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 147.5, 29.4, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Ceiling"]
-shape = SubResource("BoxShape3D_17v18")
+shape = SubResource("BoxShape3D_88vto")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Ceiling"]
 transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_ykw24")
-mesh = SubResource("BoxMesh_bkwbq")
+mesh = SubResource("BoxMesh_oives")
 script = ExtResource("9_8jbc7")
 albedo_texture = ExtResource("3_g5n8i")
 roughness_texture = ExtResource("8_bp18q")
@@ -203,10 +361,10 @@ maximum_amplitude = 0.5
 UV_ratio = 20.0
 
 [node name="Floor1" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 20, 0, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 50, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor1"]
-shape = SubResource("BoxShape3D_82vmv")
+shape = SubResource("BoxShape3D_2vdoo")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor1"]
 transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 2.4869e-14, -1.49012e-08, -1.06581e-14, 1, 0, 0, 0)
@@ -223,8 +381,14 @@ noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
 UV_ratio = 10.0
 
+[node name="BoulderDropArea" type="Area3D" parent="Hallway"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 40, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/BoulderDropArea"]
+shape = SubResource("BoxShape3D_hpotf")
+
 [node name="FloorWithTrap2" type="Node3D" parent="Hallway"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.5, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="Hallway/FloorWithTrap2"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 7.5)
@@ -253,7 +417,7 @@ transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, -7.5)
 is_deadly_pit = true
 
 [node name="Floor3" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 75, 0, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 135, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor3"]
 transform = Transform3D(1, -2.66454e-13, 1.11173e-20, 2.66454e-13, 1, -2.66454e-13, 8.57621e-21, 2.66454e-13, 1, -0.0601196, -0.00474238, 0.0698395)
@@ -262,7 +426,7 @@ shape = SubResource("BoxShape3D_fmshs")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor3"]
 transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 2.4869e-14, -1.49012e-08, -1.06581e-14, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_ykw24")
-mesh = SubResource("BoxMesh_t12n1")
+mesh = SubResource("BoxMesh_d23k8")
 script = ExtResource("9_8jbc7")
 albedo_texture = ExtResource("3_g5n8i")
 roughness_texture = ExtResource("8_bp18q")
@@ -293,7 +457,7 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
 [node name="FloorWithTrap4" type="Node3D" parent="Hallway"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 162.5, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="Hallway/FloorWithTrap4"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, -7.5)
@@ -322,7 +486,7 @@ transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, 7.5)
 is_deadly_pit = true
 
 [node name="Floor5" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 130, 0, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 190, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor5"]
 transform = Transform3D(1, -2.66454e-13, 1.11173e-20, 2.66454e-13, 1, -2.66454e-13, 8.57621e-21, 2.66454e-13, 1, -0.0601196, -0.00474238, 0.0698395)
@@ -331,7 +495,7 @@ shape = SubResource("BoxShape3D_fmshs")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor5"]
 transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 2.4869e-14, -1.49012e-08, -1.06581e-14, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_ykw24")
-mesh = SubResource("BoxMesh_t12n1")
+mesh = SubResource("BoxMesh_p25hg")
 script = ExtResource("9_8jbc7")
 albedo_texture = ExtResource("3_g5n8i")
 roughness_texture = ExtResource("8_bp18q")
@@ -362,7 +526,7 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
 [node name="FloorWithTrap6" type="Node3D" parent="Hallway"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 217.5, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="Hallway/FloorWithTrap6"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 7.5)
@@ -391,7 +555,7 @@ transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, -7.5)
 is_deadly_pit = true
 
 [node name="Floor7" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 185, 0, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 245, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor7"]
 transform = Transform3D(1, -2.66454e-13, 1.11173e-20, 2.66454e-13, 1, -2.66454e-13, 8.57621e-21, 2.66454e-13, 1, -0.0601196, -0.00474238, 0.0698395)
@@ -400,7 +564,7 @@ shape = SubResource("BoxShape3D_fmshs")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Floor7"]
 transform = Transform3D(1, 2.79397e-08, 1.49012e-08, -2.79397e-08, 1, 2.4869e-14, -1.49012e-08, -1.06581e-14, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_ykw24")
-mesh = SubResource("BoxMesh_t12n1")
+mesh = SubResource("BoxMesh_rhck1")
 script = ExtResource("9_8jbc7")
 albedo_texture = ExtResource("3_g5n8i")
 roughness_texture = ExtResource("8_bp18q")
@@ -431,3 +595,4 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
 [connection signal="body_entered" from="Boulder/Area3D" to="Boulder" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Hallway/BoulderDropArea" to="." method="_on_boulder_drop_area_body_entered"]
