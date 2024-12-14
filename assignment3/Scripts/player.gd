@@ -2,9 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 5.0
-const MAX_SPEED = 12.0
 const JUMP_VELOCITY = 4.5
-const ACCELERATION_FACTOR = 0.002
 
 @export var left: String = ""
 @export var right: String = ""
@@ -24,18 +22,38 @@ const ACCELERATION_FACTOR = 0.002
 
 @onready var anim := $Indiana_jones_like_character_final_attempt3/AnimationPlayer
 
+var held_torch_count: int = 0
+
 signal player_died
 
 var is_jumping: bool = false
-var is_running: bool = false
-var current_speed: float = 5.0
 var can_control: bool = true
 var can_jump: bool = true
+
+@onready var pickup_sound = $Pickup_sound
+@onready var placing_sound = $Place_item_sound
+@onready var backgroundMusic1 = $Background_music_1
+@onready var stop_timer = $Background_music_1/BackgroundMusicLoopTimer
+@onready var death_sound = $Death_sound
 
 func _ready() -> void:
 	if control:
 		control.set_raycast(raycast1, 1)
 		control.set_raycast(raycast2, 2)
+	
+	backgroundMusic1.play()
+	stop_timer.start()
+
+func _on_background_music_loop_timer_timeout() -> void:
+	backgroundMusic1.stop()
+	backgroundMusic1.play()
+	stop_timer.start()
+	
+func _on_death_sound_loop_timer_timeout() -> void:
+	death_sound.stop()
+	death_sound.play()
+	$Death_sound/DeathSoundLoopTimer.start()
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (can_control):
@@ -79,6 +97,7 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("left")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("left")
+				placing_sound.playing = true
 
 		if Input.is_action_just_pressed("right_click"):
 			if right == "" and raycast2.is_colliding():
@@ -90,6 +109,7 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("right")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("right")
+				placing_sound.playing = true
 			
 
 	# Handle jump and movement.
@@ -102,18 +122,9 @@ func _physics_process(delta: float) -> void:
 		var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 		var direction = (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 		if direction:
-			if is_running:
-				current_speed = sqrt(velocity.x * velocity.x + velocity.z* velocity.z)
-				current_speed = max(current_speed, SPEED)
-				current_speed = min(current_speed + SPEED * ACCELERATION_FACTOR, MAX_SPEED)
-				print(current_speed)
-				velocity.x = direction.x * current_speed
-				velocity.z = direction.z * current_speed
-				anim.play("Walking")
-			else:
-				velocity.x = direction.x * SPEED
-				velocity.z = direction.z * SPEED
-				anim.play("Walking")
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+			anim.play("Walking")
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -133,7 +144,7 @@ func try_place_trap_map(hand):
 					$"../UI/TrapMapUI/Pit_trap_left".visible = false
 				elif self.left == "TrapMap2":
 					$"../UI/TrapMapUI/Spike_trap_left".visible = false
-			else:
+			elif hand == "right":
 				if self.right == "TrapMap1":
 					$"../UI/TrapMapUI/Pit_trap_right".visible = false
 				elif self.right == "TrapMap2":
@@ -165,7 +176,8 @@ func try_place_torch(hand):
 				return
 			
 			holder.place_torch(torch)
-			torch.get_parent().remove_child(torch) 
+			torch.get_parent().remove_child(torch)
+			held_torch_count -= 1 
 			if hand == "left":
 				left = "" 
 			else:
@@ -204,63 +216,88 @@ func try_place_medallion(hand):
 func pickup(hand):
 	var item = raycast2.get_collider()
 	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap":
-		if not item.name.begins_with("Wall") and not item.name.begins_with("Floor") and not item.name.begins_with("ceiling"):
-			if item:
-				print("Picking up item:", item.name)
-				var collision_shape = item.get_node("CollisionShape3D")
-				if collision_shape:
-					collision_shape.disabled = true
+		if !("is_locked" in item) || (item.is_locked == false):
+			if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
+				if item:
+					pickup_sound.playing = true
+					print("Picking up item:", item.name)
+					var collision_shape = item.get_node("CollisionShape3D")
+					if collision_shape:
+						collision_shape.disabled = true
+						
+					var parent = item.get_parent()
+					if parent and parent.has_method("remove_medallion"):
+						print("Removing medallion from holder.")
+						label.show_pickup_message("It's stuck in place!")
+						var medallion_from_holder = parent.remove_medallion()
+						if medallion_from_holder:
+							print(type_string(typeof(medallion_from_holder)))
+							if type_string(typeof(medallion_from_holder)) == "int":
+								label.show_pickup_message("It's stuck in place!")
+								item = null
+							else:
+								item = medallion_from_holder
+						else:
+							item = null
+					if parent and parent.has_method("remove_torch"):
+						print("Removing torch from holder.")
+						parent.remove_torch()
+					if parent and parent.has_method("remove_map"):
+						print("Removing map from holder.")
+						parent.remove_map()
+					if not item == null:
+						parent.remove_child(item)
+						if hand == "left":
+							print("Adding item to left hand.")
+							left_hand_position.add_child(item)
+							self.left = item.name
+							reset_item_rotation_left(item)
+							if item.name.begins_with("TrapMap"):
+								item.visible = false
+							if item.name.begins_with("Torch"):
+								held_torch_count += 1
+						
+						else:
+							print("Adding item to right hand.")
+							right_hand_position.add_child(item)
+							self.right = item.name
+							reset_item_rotation_right(item)
+							if item.name.begins_with("TrapMap"):
+								item.visible = false
+							if item.name.begins_with("Torch"):
+								held_torch_count += 1
 					
-				var parent = item.get_parent()
-				if parent and parent.has_method("remove_medallion"):
-					print("Removing medallion from holder.")
-					var medallion_from_holder = parent.remove_medallion()
-					if medallion_from_holder:
-						item = medallion_from_holder
-				if parent and parent.has_method("remove_torch"):
-					print("Removing torch from holder.")
-					parent.remove_torch()
-				if parent and parent.has_method("remove_map"):
-					print("Removing map from holder.")
-					parent.remove_map()
-				
-				parent.remove_child(item)
+						print("Item parent after pickup:", item.get_parent().name)
 					
-				if hand == "left":
-					print("Adding item to left hand.")
-					left_hand_position.add_child(item)
-					self.left = item.name
-					reset_item_rotation_left(item)
-					if item.name.begins_with("TrapMap"):
-						item.visible = false
-				
+						if not item.name.begins_with("TrapMap"):
+							item.visible = true
+					
+						item.collision_layer = 2
+						item.collision_mask = 2
+					
+						label.show_pickup_message("Picked up " + item.name + str(hand))
 				else:
-					print("Adding item to right hand.")
-					right_hand_position.add_child(item)
-					self.right = item.name
-					reset_item_rotation_right(item)
-					if item.name.begins_with("TrapMap"):
-						item.visible = false
-				
-				print("Item parent after pickup:", item.get_parent().name)
-				
-				if not item.name.begins_with("TrapMap"):
-					item.visible = true
-				
-				item.collision_layer = 2
-				item.collision_mask = 2
-				
-				label.show_pickup_message("Picked up " + item.name + str(hand))
-			else:
-				print("Error: No valid item to pick up!")
+					print("Error: No valid item to pick up!")
 
-func _on_trap_body_entered_spikes() -> void:
+func _on_trap_room_room_3_player_died() -> void:
 	emit_signal("player_died")
 	$Control/CenterContainer.hide()
 	can_control = false
 	velocity.x = move_toward(velocity.x, 0, SPEED)
 	velocity.z = move_toward(velocity.z, 0, SPEED)
 	anim.play("Idle_1")
+	$Death_sound/DeathSoundDelay.start()
+	backgroundMusic1.stop()
+	
+func _on_death_sound_delay_timeout() -> void:
+	death_sound.play()
+	$Death_sound/DeathSoundLoopTimer.start()
+	
+func respawn() -> void:
+	$Death_sound/DeathSoundLoopTimer.stop()
+	death_sound.stop()
+	backgroundMusic1.play()
+	stop_timer.start()
 	
 func show_cursor():
 	$Control/CenterContainer.show()
@@ -331,4 +368,4 @@ func reset_item_rotation_right(item):
 			$"../UI/TrapMapUI/Pit_trap_right".visible = true
 			
 		"TrapMap2":
-			$"../UI/TrapMapUI/Pit_trap_right".visible = true
+			$"../UI/TrapMapUI/Spike_trap_right".visible = true
