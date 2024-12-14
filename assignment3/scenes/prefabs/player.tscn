@@ -76,6 +76,10 @@ scale = Vector2(1.2, 1.2)
 horizontal_alignment = 1
 script = ExtResource("3_2wlrg")
 
+[node name="PickupTimer" type="Timer" parent="Control/Label"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Pickup_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6danj")
 volume_db = -9.0
@@ -99,11 +103,6 @@ wait_time = 15.35
 
 [node name="DeathSoundDelay" type="Timer" parent="Death_sound"]
 wait_time = 0.5
-one_shot = true
-
-
-[node name="PickupTimer" type="Timer" parent="Control/Label"]
-wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="Control/Label/PickupTimer" to="Control/Label" method="_on_pickup_timer_timeout"]

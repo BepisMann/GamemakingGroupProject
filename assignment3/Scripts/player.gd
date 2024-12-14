@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 
 const SPEED = 5.0
+const MAX_SPEED = 12.0
 const JUMP_VELOCITY = 4.5
+const ACCELERATION_FACTOR = 0.002
 
 @export var left: String = ""
 @export var right: String = ""
@@ -27,6 +29,8 @@ var held_torch_count: int = 0
 signal player_died
 
 var is_jumping: bool = false
+var is_running: float = true
+var current_speed: float = SPEED
 var can_control: bool = true
 var can_jump: bool = true
 
@@ -122,9 +126,17 @@ func _physics_process(delta: float) -> void:
 		var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 		var direction = (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-			anim.play("Walking")
+			if is_running:
+				current_speed = sqrt(velocity.x * velocity.x + velocity.z * velocity.z)
+				current_speed = max(SPEED, current_speed)
+				current_speed = min(current_speed + SPEED * ACCELERATION_FACTOR, MAX_SPEED)
+				velocity.x = direction.x * current_speed
+				velocity.z = direction.z * current_speed
+				anim.play("Walking")
+			else:
+				velocity.x = direction.x * SPEED
+				velocity.z = direction.z * SPEED
+				anim.play("Walking")
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
