@@ -279,7 +279,7 @@ func pickup(hand):
 				else:
 					print("Error: No valid item to pick up!")
 
-func _on_trap_body_entered_spikes() -> void:
+func _on_trap_room_room_3_player_died() -> void:
 	emit_signal("player_died")
 	$Control/CenterContainer.hide()
 	can_control = false

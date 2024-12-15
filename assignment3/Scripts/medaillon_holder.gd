@@ -47,7 +47,7 @@ func place_medallion(medallion_instance):
 		notify_puzzle_manager()
 		
 func notify_puzzle_manager():
-	var puzzle_manager = get_parent()
+	var puzzle_manager = get_parent().get_parent()
 	if puzzle_manager and puzzle_manager.has_method("update_puzzle_state"):
 		puzzle_manager.update_puzzle_state()
 
