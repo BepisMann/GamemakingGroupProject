@@ -11,7 +11,7 @@
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="8_j7sj5"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_3w4j3"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/empty_final_torch_holder.gd" id="11_mos4k"]
-[ext_resource type="PackedScene" path="res://scenes/prefabs/Door_Room1_to_Room3/Closed_door_wall.tscn" id="12_1ek2i"]
+[ext_resource type="PackedScene" uid="uid://cuhghkugei7vf" path="res://scenes/prefabs/Door_Room1_to_Room3/Closed_door_wall.tscn" id="12_1ek2i"]
 [ext_resource type="Script" path="res://scenes/levels/puzzle_manager_medallions.gd" id="13_kgqty"]
 [ext_resource type="PackedScene" uid="uid://iu87eppcpw1q" path="res://scenes/prefabs/Traps/trapmap_spikes.tscn" id="13_qa8xl"]
 [ext_resource type="AudioStream" uid="uid://bde30e67v6odd" path="res://assets/sounds/Door_opening.mp3" id="13_ucx0h"]

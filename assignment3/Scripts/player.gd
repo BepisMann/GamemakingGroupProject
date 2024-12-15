@@ -33,6 +33,7 @@ var is_running: float = true
 var current_speed: float = SPEED
 var can_control: bool = true
 var can_jump: bool = true
+var spawn_point = 1
 
 @onready var pickup_sound = $Pickup_sound
 @onready var placing_sound = $Place_item_sound
@@ -224,6 +225,11 @@ func try_place_medallion(hand):
 				print("medallion placed")
 		
 
+func set_spawn_point_2():
+	spawn_point = 2
+	
+func get_respawn_point() -> int:
+	return spawn_point
 
 func pickup(hand):
 	var item = raycast2.get_collider()

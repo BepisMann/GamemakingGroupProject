@@ -1,18 +1,18 @@
 [gd_scene load_steps=39 format=3 uid="uid://qex7lpjveo70"]
 
-[ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_7kkp0"]
 [ext_resource type="Script" path="res://scenes/levels/boulder_room.gd" id="1_oinhh"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="2_ednmt"]
 [ext_resource type="Script" path="res://scenes/levels/boulder.gd" id="2_tsr2h"]
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="3_g5n8i"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="4_21t3h"]
 [ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="5_a3g01"]
-[ext_resource type="PackedScene" path="res://scenes/prefabs/Traps/boulder_trap.tscn" id="5_yumb0"]
+[ext_resource type="PackedScene" uid="uid://dmis7k4ifmsw7" path="res://scenes/prefabs/Traps/boulder_trap.tscn" id="5_yumb0"]
 [ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="6_8org4"]
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="7_m8j38"]
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="8_bp18q"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_8jbc7"]
 [ext_resource type="PackedScene" uid="uid://r37ooq822q6i" path="res://assets/box/Crate/box.tscn" id="11_o67se"]
+[ext_resource type="Script" path="res://scenes/prefabs/Traps/boulder_room_spike_trap.gd" id="12_8rpwh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pv2x7"]
 radius = 14.5
@@ -137,11 +137,6 @@ size = Vector3(0.25, 30, 40)
 
 [node name="BoulderRoom" type="Node3D"]
 script = ExtResource("1_oinhh")
-
-[node name="Player" parent="." instance=ExtResource("1_7kkp0")]
-transform = Transform3D(-1.09278e-08, 9.9341e-09, -0.25, 5.92118e-16, 0.25, 9.9341e-09, 0.25, -1.57885e-16, -1.09278e-08, 3.60541, 1.74114, 2.4856)
-collision_layer = 3
-collision_mask = 3
 
 [node name="Boulder" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6049, 41.8743, 0)
@@ -414,7 +409,7 @@ UV_ratio = 10.0
 
 [node name="Trap" parent="Hallway/FloorWithTrap2" instance=ExtResource("5_yumb0")]
 transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, -7.5)
-is_deadly_pit = true
+script = ExtResource("12_8rpwh")
 
 [node name="Floor3" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 135, 0, 0)
@@ -483,7 +478,7 @@ UV_ratio = 10.0
 
 [node name="Trap" parent="Hallway/FloorWithTrap4" instance=ExtResource("5_yumb0")]
 transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, 7.5)
-is_deadly_pit = true
+script = ExtResource("12_8rpwh")
 
 [node name="Floor5" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 190, 0, 0)
@@ -552,7 +547,7 @@ UV_ratio = 10.0
 
 [node name="Trap" parent="Hallway/FloorWithTrap6" instance=ExtResource("5_yumb0")]
 transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, -7.5)
-is_deadly_pit = true
+script = ExtResource("12_8rpwh")
 
 [node name="Floor7" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 245, 0, 0)
@@ -594,5 +589,9 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 [node name="Box5" parent="Hallway/Floor7/Obstacles" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
+[connection signal="player_crushed" from="Boulder" to="." method="_on_boulder_player_crushed"]
 [connection signal="body_entered" from="Boulder/Area3D" to="Boulder" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Hallway/BoulderDropArea" to="." method="_on_boulder_drop_area_body_entered"]
+[connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap2/Trap" to="." method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap4/Trap" to="." method="_on_trap_body_entered_spikes"]
+[connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap6/Trap" to="." method="_on_trap_body_entered_spikes"]

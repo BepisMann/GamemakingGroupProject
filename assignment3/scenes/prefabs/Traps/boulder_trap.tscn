@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=4 uid="uid://dmis7k4ifmsw7"]
+[gd_scene load_steps=31 format=4 uid="uid://dmis7k4ifmsw7"]
 
 [ext_resource type="Script" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.gd" id="1_q07ko"]
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="5_5prmd"]
 [ext_resource type="Script" path="res://Scripts/floor.gd" id="7_ju8bb"]
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="8_2581s"]
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="11_ocgbg"]
+[ext_resource type="AudioStream" uid="uid://b12mueufrllun" path="res://assets/sounds/spikes.mp3" id="12_sbfvs"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="12_xh2r7"]
 [ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="13_pmtfx"]
 [ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="14_skj0q"]
@@ -13,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://oyonfcq87r1t" path="res://scenes/prefabs/Torch_prefabs/final_torch_Wood.png" id="17_uq0s7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2xec7"]
-size = Vector3(3.5, 0.25, 3.5)
+size = Vector3(5, 0.25, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tx5a6"]
 size = Vector3(4.2, 0.25, 4.2)
@@ -305,6 +306,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_i4p35")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PitSpikes/Spikes4/PitSpikeArea4"]
 shape = SubResource("BoxShape3D_tpygn")
+
+[node name="Spikes_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_sbfvs")
 
 [connection signal="body_entered" from="PitDetectionArea" to="." method="_on_pit_detection_area_body_entered"]
 [connection signal="body_entered" from="SpikeDetectionArea" to="." method="_on_spike_detection_area_body_entered"]
