@@ -19,6 +19,7 @@ uv1_scale = Vector3(3, 2, 3)
 uv1_offset = Vector3(10, 30, 0)
 
 [node name="Box1" type="RigidBody3D"]
+input_ray_pickable = false
 script = ExtResource("1_5hgce")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]

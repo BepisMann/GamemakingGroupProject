@@ -81,8 +81,8 @@ seed = 5
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ilvqe"]
 noise = SubResource("FastNoiseLite_4ndet")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h7ma4"]
-size = Vector3(0.25, 30, 205)
+[sub_resource type="BoxShape3D" id="BoxShape3D_qqdpm"]
+size = Vector3(0.25, 30, 265)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bkwbq"]
 size = Vector3(0.25, 30, 265)
@@ -164,7 +164,7 @@ shape = SubResource("SphereShape3D_moclx")
 transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Wall1" type="StaticBody3D" parent="Hallway"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 132.5, 15, -15)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 132.5, 15, -15)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Wall1"]
 shape = SubResource("BoxShape3D_gvbou")
@@ -182,13 +182,13 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 8.833
 
 [node name="Wall2" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 132.5, 15, 15)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Wall2"]
-shape = SubResource("BoxShape3D_h7ma4")
+shape = SubResource("BoxShape3D_qqdpm")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Wall2"]
 transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -203,7 +203,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 8.833
 
 [node name="Ceiling_Breakable" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(1.49012e-08, 4.37114e-08, 1, 1, -4.37114e-08, -1.49012e-08, 4.37114e-08, 1, -4.37114e-08, 15, 29.4, 0)
@@ -212,7 +212,7 @@ transform = Transform3D(1.49012e-08, 4.37114e-08, 1, 1, -4.37114e-08, -1.49012e-
 shape = SubResource("BoxShape3D_k5m6c")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Ceiling_Breakable"]
-transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 2.79397e-08, -1.49012e-08, -2.79397e-08, 1, 0, 1.49012e-08, 7.10543e-15, 1, 0.00946045, 1.93148e-09, 0.0536461)
 material_override = SubResource("ShaderMaterial_ykw24")
 mesh = SubResource("BoxMesh_75j74")
 script = ExtResource("9_8jbc7")
@@ -224,19 +224,19 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 1.0
 
 [node name="Boulder Support" type="Node3D" parent="Hallway"]
 transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 30, 0)
 
 [node name="Boulder Support1" type="StaticBody3D" parent="Hallway/Boulder Support"]
-transform = Transform3D(1, -2.64698e-23, -7.45058e-08, -7.45058e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 30, 14.722, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 30, 14.722, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/Boulder Support1"]
 shape = SubResource("BoxShape3D_k5m6c")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/Boulder Support1"]
-transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 2.79397e-08, 3.03453e-37, -2.79397e-08, 1, -2.11758e-22, -5.33841e-23, 5.78422e-16, 1, 0.0516834, -5.60045e-16, 0.293114)
 material_override = SubResource("ShaderMaterial_ykw24")
 mesh = SubResource("BoxMesh_75j74")
 script = ExtResource("9_8jbc7")
@@ -248,10 +248,10 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 1.0
 
 [node name="Boulder Support2" type="StaticBody3D" parent="Hallway/Boulder Support"]
-transform = Transform3D(-4.37114e-08, 1, -2.98023e-08, -8.88178e-16, -4.47035e-08, -1, -1, -4.37114e-08, 1.91069e-15, 15, 14.722, -15)
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 15, 14.722, -15)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/Boulder Support2"]
 shape = SubResource("BoxShape3D_k5m6c")
@@ -269,10 +269,10 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 1.0
 
 [node name="Boulder Support3" type="StaticBody3D" parent="Hallway/Boulder Support"]
-transform = Transform3D(1.19249e-08, -1, 4.47035e-08, 0, -5.96046e-08, -1, 1, 1.19249e-08, -5.21253e-16, 15, 14.722, 15)
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 15, 14.722, 15)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Boulder Support/Boulder Support3"]
 shape = SubResource("BoxShape3D_k5m6c")
@@ -290,7 +290,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 1.0
 
 [node name="BoulderSupport4" type="StaticBody3D" parent="Hallway/Boulder Support"]
 transform = Transform3D(2.98023e-08, 4.37114e-08, 1, 1, -4.37114e-08, -2.98023e-08, 4.37114e-08, 1, -4.37114e-08, 15.0587, 29.5661, 0)
@@ -299,7 +299,7 @@ transform = Transform3D(2.98023e-08, 4.37114e-08, 1, 1, -4.37114e-08, -2.98023e-
 shape = SubResource("BoxShape3D_k5m6c")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/BoulderSupport4"]
-transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 2.79397e-08, -1.91069e-15, -2.79397e-08, 1, 7.10543e-15, -6.89403e-16, 3.55271e-15, 1, -0.0528526, 2.71689e-09, 0.00931644)
 material_override = SubResource("ShaderMaterial_ykw24")
 mesh = SubResource("BoxMesh_75j74")
 script = ExtResource("9_8jbc7")
@@ -311,7 +311,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 1.0
 
 [node name="Boulder Support5" type="StaticBody3D" parent="Hallway/Boulder Support"]
 transform = Transform3D(1, -2.64698e-23, -8.9407e-08, -8.9407e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, -4.76837e-07, 14.722, 0)
@@ -320,7 +320,7 @@ transform = Transform3D(1, -2.64698e-23, -8.9407e-08, -8.9407e-08, 1.91069e-15, 
 shape = SubResource("BoxShape3D_k5m6c")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/Boulder Support/Boulder Support5"]
-transform = Transform3D(1, 2.79397e-08, 0, -2.79397e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 2.79397e-08, 3.54029e-37, -2.79397e-08, 1, -2.11758e-22, -5.33841e-23, 5.78422e-16, 1, 0.0739651, -8.0149e-16, 0.419479)
 material_override = SubResource("ShaderMaterial_ykw24")
 mesh = SubResource("BoxMesh_75j74")
 script = ExtResource("9_8jbc7")
@@ -332,7 +332,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 1.0
 
 [node name="Ceiling" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 147.5, 29.4, 0)
@@ -353,7 +353,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
-UV_ratio = 20.0
+UV_ratio = 7.833
 
 [node name="Floor1" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 50, 0, 0)
@@ -374,7 +374,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
-UV_ratio = 10.0
+UV_ratio = 3.333
 
 [node name="BoulderDropArea" type="Area3D" parent="Hallway"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 40, 0, 0)
@@ -405,7 +405,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
-UV_ratio = 10.0
+UV_ratio = 1.0
 
 [node name="Trap" parent="Hallway/FloorWithTrap2" instance=ExtResource("5_yumb0")]
 transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, -7.5)
@@ -431,7 +431,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
-UV_ratio = 10.0
+UV_ratio = 1.333
 
 [node name="Obstacles" type="Node3D" parent="Hallway/Floor3"]
 transform = Transform3D(0.258819, 0.965925, 4.2222e-08, 3.55271e-15, -4.37114e-08, 1, 0.965925, -0.258819, -1.13133e-08, 0.463741, 0, -0.124259)
@@ -474,7 +474,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
-UV_ratio = 10.0
+UV_ratio = 1.0
 
 [node name="Trap" parent="Hallway/FloorWithTrap4" instance=ExtResource("5_yumb0")]
 transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, 7.5)
@@ -500,7 +500,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
-UV_ratio = 10.0
+UV_ratio = 1.333
 
 [node name="Obstacles" type="Node3D" parent="Hallway/Floor5"]
 transform = Transform3D(0.258819, 0.965925, 4.2222e-08, 3.55271e-15, -4.37114e-08, 1, 0.965925, -0.258819, -1.13133e-08, 0.463741, 0, -0.124259)
@@ -543,7 +543,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
-UV_ratio = 10.0
+UV_ratio = 1.0
 
 [node name="Trap" parent="Hallway/FloorWithTrap6" instance=ExtResource("5_yumb0")]
 transform = Transform3D(2.75, 0, 0, 0, 2.75, 0, 0, 0, 2.75, 0, 0, -7.5)
@@ -569,7 +569,7 @@ ambient_occlusion_texture = ExtResource("4_21t3h")
 heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.2
-UV_ratio = 10.0
+UV_ratio = 1.333
 
 [node name="Obstacles" type="Node3D" parent="Hallway/Floor7"]
 transform = Transform3D(0.258819, 0.965925, 4.2222e-08, 3.55271e-15, -4.37114e-08, 1, 0.965925, -0.258819, -1.13133e-08, 0.463741, 0, -0.124259)
