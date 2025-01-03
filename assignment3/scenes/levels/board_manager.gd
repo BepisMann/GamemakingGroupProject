@@ -1,32 +1,40 @@
 extends Node3D
 
 @onready
-var board = $"../Board"
+var board: Object = $"../Board"
 
-var move_log = []
-var white_move_log = []
-var black_move_log = []
+var white_to_move: bool = true
+var move_log: Array = []
+var white_move_log: Array = []
+var black_move_log: Array = []
+
+var selected_piece: Object = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	hide_move_here_indicators()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-	
 ## GENERAL HELPER METHODS
-func get_tile(row:int, column: int) -> Object:
+func get_tile(row: int, column: int) -> Object:
 	var board_row = board.get_child(row-1)
 	var tile = board_row.get_child(column-1)
 	return tile
 	
 func get_tile_piece(tile: Object) -> Object:
-	if tile.get_children().size() <= 2:
+	if tile.get_children().size() <= 3:
 		return null
-	return tile.get_child(2)
+	return tile.get_child(3)
+	
+func get_move_here_indicator(row: int, column: int) -> Object:
+	var board_row = board.get_child(row-1)
+	var tile = board_row.get_child(column-1)
+	var move_here_indicator = tile.get_child(2)
+	return move_here_indicator
 	
 func get_column_letter(col: int) -> String:
 	match col:
@@ -49,6 +57,124 @@ func get_column_letter(col: int) -> String:
 		_:
 			return "?"
 			
+func get_column_number(col: String) -> int:
+	match col:
+		"a":
+			return 1
+		"b":
+			return 2
+		"c":
+			return 3
+		"d":
+			return 4
+		"e":
+			return 5
+		"f":
+			return 6
+		"g":
+			return 7
+		"h":
+			return 8
+		_:
+			return -1
+			
+## GAME PROCESSING
+func hide_move_here_indicators():
+	for i in range(8):
+		for j in range(8):
+			var indicator = get_move_here_indicator(i+1, j+1)
+			var collision: CollisionShape3D = indicator.get_child(0).get_child(1)
+			collision.disabled = true
+			
+			indicator.hide()
+			
+func get_destination_from_notation(move: String) -> Array:
+	# Is this a piece move or a pawn move
+	if move.begins_with("R") || move.begins_with("N") || move.begins_with("B") || move.begins_with("Q") || move.begins_with("K"):
+		# Does move involve a capture?
+		if move.contains("x"):
+			return [move[4].to_int(), get_column_number(move[5])]
+		else:
+			return [move[3].to_int(), get_column_number(move[4])]
+	else:
+		# Does move involve a capture?
+		if move.contains("x"):
+			return [move[3].to_int(), get_column_number(move[4])]
+		else:
+			return [move[2].to_int(), get_column_number(move[3])]
+		
+			
+func show_move_indicators(moves: Array):
+	for move in moves:
+		var dest = get_destination_from_notation(move)
+		var row = dest[0]
+		var col = dest[1]
+		
+		var indicator = get_move_here_indicator(row, col)
+		indicator.show()
+		
+		var collision: CollisionShape3D = indicator.get_child(0).get_child(1)
+		collision.disabled = false
+		
+		var animation_player: AnimationPlayer = indicator.get_child(1)
+		animation_player.play("float_indicator", -1, 2.0)
+			
+func _on_player_piece_touched(body: Object) -> void:
+	var piece: Object = body.get_parent()
+	selected_piece = piece
+	var tile: Object = piece.get_parent()
+	var row_obj: Object = tile.get_parent()
+	
+	var row: int = row_obj.name.to_int()
+	var col: int = get_column_number(tile.name)
+	
+	if piece.name.to_lower().contains("black"):
+		print("That is not your piece!")
+	
+	elif !white_to_move:
+		print("It's not your turn! Wait!")
+		
+	else:
+		# Hide other indicators
+		hide_move_here_indicators()
+		
+		var moves = []
+		match piece.name:
+			"WhitePawn":
+				moves = compute_white_pawn_moves(row, col)
+			"WhiteRook":
+				moves = compute_white_rook_moves(row, col)
+			"WhiteKnight":
+				moves = compute_white_knight_moves(row, col)
+			"WhiteBishop":
+				moves = compute_black_bishop_moves(row, col)
+			"WhiteQueen":
+				moves = compute_white_queen_moves(row, col)
+			"WhiteKing":
+				moves = compute_white_king_moves(row, col)
+		print(moves)
+		show_move_indicators(moves)
+			
+func _on_player_piece_moved(body: Object) -> void:
+	var indicator = body.get_parent()
+	var tile = indicator.get_parent()
+	var row_obj = tile.get_parent()
+	
+	var row: int = row_obj.name.to_int()
+	var col: int = get_column_number(tile.name)
+	
+	# Check if piece already at destination, if so remove
+	var piece_at_dest: Object = get_tile_piece(get_tile(row, col))
+	if piece_at_dest != null:
+		piece_at_dest.queue_free()
+		
+	# Move selected piece to destination
+	selected_piece.first_move = false
+	selected_piece.reparent(tile, false)
+	selected_piece = null
+	hide_move_here_indicators()
+
+
 
 ## POSSIBLE MOVES
 func compute_white_pawn_moves(row: int, column: int) -> Array:
@@ -80,7 +206,7 @@ func compute_white_pawn_moves(row: int, column: int) -> Array:
 				
 		# Otherwise just move ahead
 		else:
-			moves.append(str(row, column, row+1, column))
+			moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column)))
 			
 	# Capturing left
 	if (column > 1):
@@ -467,7 +593,7 @@ func compute_black_rook_moves(row: int, column: int) -> Array:
 			if (row_iter <= 8):
 				piece_ahead = get_tile_piece(get_tile(row_iter, column))
 		
-		if row_iter <= 8 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if row_iter <= 8 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(column)))
 	
 	# Move right
@@ -481,7 +607,7 @@ func compute_black_rook_moves(row: int, column: int) -> Array:
 			if (col_iter <= 8):
 				piece_ahead = get_tile_piece(get_tile(row, col_iter))
 		
-		if col_iter <= 8 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if col_iter <= 8 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row, get_column_letter(col_iter)))
 	
 	# Move down
@@ -495,7 +621,7 @@ func compute_black_rook_moves(row: int, column: int) -> Array:
 			if (row_iter >= 1):
 				piece_ahead = get_tile_piece(get_tile(row_iter, column))
 		
-		if row_iter >= 1 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if row_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(column)))
 	
 	# Move left
@@ -509,7 +635,7 @@ func compute_black_rook_moves(row: int, column: int) -> Array:
 			if (col_iter >= 1):
 				piece_ahead = get_tile_piece(get_tile(row, col_iter))
 		
-		if col_iter >= 1 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row, get_column_letter(col_iter)))
 	
 	# TODO:: Castling
@@ -535,14 +661,14 @@ func compute_white_bishop_moves(row: int, column: int) -> Array:
 		var piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 		
 		while row <= 8 && col_iter >= 1 && piece_ahead == null:
-			moves.append(str(symbol, row, column, row_iter, col_iter))
+			moves.append(str(symbol, row, get_column_letter(column), row_iter, get_column_letter(col_iter)))
 			row += 1
 			col_iter -= 1
 			if (row <= 8 && col_iter >= 1):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row <= 8 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.contains("black"):
-			moves.append(str(symbol, row, column, "x", row_iter, col_iter))
+		if row <= 8 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("black"):
+			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	# Move up-right
 	if (row < 8 && column < 8):
@@ -551,14 +677,14 @@ func compute_white_bishop_moves(row: int, column: int) -> Array:
 		var piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 		
 		while row <= 8 && col_iter <= 8 && piece_ahead == null:
-			moves.append(str(symbol, row, column, row_iter, col_iter))
+			moves.append(str(symbol, row, get_column_letter(column), row_iter, get_column_letter(col_iter)))
 			row += 1
 			col_iter += 1
 			if (row <= 8 && col_iter <= 8):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row <= 8 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.contains("black"):
-			moves.append(str(symbol, row, column, "x", row_iter, col_iter))
+		if row <= 8 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.to_lower().contains("black"):
+			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	# Move down-right
 	if (row > 1 && column < 8):
@@ -567,14 +693,14 @@ func compute_white_bishop_moves(row: int, column: int) -> Array:
 		var piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 		
 		while row >= 1 && col_iter <= 8 && piece_ahead == null:
-			moves.append(str(symbol, row, column, row_iter, col_iter))
+			moves.append(str(symbol, row, get_column_letter(column), row_iter, get_column_letter(col_iter)))
 			row -= 1
 			col_iter += 1
 			if (row >= 1 && col_iter <= 8):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row >= 1 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.contains("black"):
-			moves.append(str(symbol, row, column, "x", row_iter, col_iter))
+		if row >= 1 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.to_lower().contains("black"):
+			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	# Move down-left
 	if (row > 1 && column > 1):
@@ -583,14 +709,14 @@ func compute_white_bishop_moves(row: int, column: int) -> Array:
 		var piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 		
 		while row >= 1 && col_iter >= 1 && piece_ahead == null:
-			moves.append(str(symbol, row, column, row_iter, col_iter))
+			moves.append(str(symbol, row, get_column_letter(column), row_iter, get_column_letter(col_iter)))
 			row -= 1
 			col_iter -= 1
 			if (row >= 1 && col_iter >= 1):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row >= 1 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.contains("black"):
-			moves.append(str(symbol, row, column, "x", row_iter, col_iter))
+		if row >= 1 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("black"):
+			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	return moves
 	
@@ -619,7 +745,7 @@ func compute_black_bishop_moves(row: int, column: int) -> Array:
 			if (row <= 8 && col_iter >= 1):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row <= 8 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if row <= 8 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	# Move up-right
@@ -635,7 +761,7 @@ func compute_black_bishop_moves(row: int, column: int) -> Array:
 			if (row <= 8 && col_iter <= 8):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row <= 8 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if row <= 8 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	# Move down-right
@@ -651,7 +777,7 @@ func compute_black_bishop_moves(row: int, column: int) -> Array:
 			if (row >= 1 && col_iter <= 8):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row >= 1 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if row >= 1 && col_iter <= 8 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	# Move down-left
@@ -667,7 +793,7 @@ func compute_black_bishop_moves(row: int, column: int) -> Array:
 			if (row >= 1 && col_iter >= 1):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
-		if row >= 1 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.contains("white"):
+		if row >= 1 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
 	
 	return moves
@@ -726,7 +852,7 @@ func compute_white_knight_moves(row: int, column: int) -> Array:
 				
 				if piece_at_place == null:
 					moves.append(str("N", row, get_column_letter(column), row + row_move, get_column_letter(column + col_move)))
-				elif piece_at_place.name.contains("black"):
+				elif piece_at_place.name.to_lower().contains("black"):
 					moves.append(str("N", row, get_column_letter(column), "x", row + row_move, get_column_letter(column + col_move)))
 	
 	return moves
@@ -753,7 +879,7 @@ func compute_black_knight_moves(row: int, column: int) -> Array:
 				
 				if piece_at_place == null:
 					moves.append(str("N", row, get_column_letter(column), row + row_move, get_column_letter(column + col_move)))
-				elif piece_at_place.name.contains("white"):
+				elif piece_at_place.name.to_lower().contains("white"):
 					moves.append(str("N", row, get_column_letter(column), "x", row + row_move, get_column_letter(column + col_move)))
 	
 	return moves
