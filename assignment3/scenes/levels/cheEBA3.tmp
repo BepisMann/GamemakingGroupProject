@@ -246,7 +246,7 @@ noise = SubResource("FastNoiseLite_52iug")
 [node name="ChessRoom" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("14_knduy")]
-transform = Transform3D(-1.99918, 0, 0.0574136, 0, 2, 0, -0.0574136, 0, -1.99918, 18.3069, 2.09242, 13.0171)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18.3069, 2.09242, 13.0171)
 
 [node name="BoardManager" type="Node3D" parent="."]
 script = ExtResource("1_wx36i")
@@ -2353,6 +2353,8 @@ libraries = {
 
 [node name="h" type="StaticBody3D" parent="Board/6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, -2.5)
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Board/6/h"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
@@ -2375,8 +2377,6 @@ UV_ratio = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="RigidBody3D" type="StaticBody3D" parent="Board/6/h/CanMoveHereIndicator"]
-collision_layer = 9
-collision_mask = 9
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Board/6/h/CanMoveHereIndicator/RigidBody3D"]
 mesh = SubResource("TorusMesh_sl42g")
@@ -3175,6 +3175,8 @@ mesh = SubResource("TextMesh_4j2bk")
 
 [node name="g" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 0, -2.5)
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/g"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
