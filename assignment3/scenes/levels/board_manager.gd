@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
 	
 ## GENERAL HELPER METHODS
 func get_tile(row: int, column: int) -> Object:
-	print(str("get_tile: row = ", row, "; col = ", column))
 	var board_row = board.get_child(row-1)
 	var tile = board_row.get_child(column-1)
 	return tile
@@ -136,11 +135,34 @@ func _on_player_piece_touched(body: Object) -> void:
 	var row: int = row_obj.name.to_int()
 	var col: int = get_column_number(tile.name)
 	
-	if piece.name.to_lower().contains("black"):
-		print("That is not your piece!")
+	if piece.name.to_lower().contains("black") && white_to_move:
+		print("White to move!")
+	elif piece.name.to_lower().contains("white") && !white_to_move:
+		print("Black to move!")
 	
 	elif !white_to_move:
-		print("It's not your turn! Wait!")
+		# Hide other indicators
+		hide_move_here_indicators()
+		
+		var moves = []
+		match piece.name:
+			"BlackPawn":
+				moves = compute_black_pawn_moves(row, col)
+			"BlackRook":
+				moves = compute_black_rook_moves(row, col)
+			"BlackKnight":
+				moves = compute_black_knight_moves(row, col)
+			"BlackBishop":
+				moves = compute_black_bishop_moves(row, col)
+			"BlackQueen":
+				moves = compute_black_queen_moves(row, col)
+			"BlackKing":
+				moves = compute_black_king_moves(row, col)
+			_:
+				print("INVALID PIECE")
+		print(moves)
+		show_move_indicators(moves)
+		current_black_moves = moves
 		
 	else:
 		# Hide other indicators
@@ -174,14 +196,25 @@ func _on_player_piece_moved(body: Object) -> void:
 	var row: int = row_obj.name.to_int()
 	var col: int = get_column_number(tile.name)
 	
-	for move in current_white_moves:
-		var dest = get_destination_from_notation(move)
-		
-		# TODO:: Pawn promotion?
-		
-		if dest[0] == row && dest[1] == col:
-			resolve_move(move)
-			return
+	if (white_to_move):
+		for move in current_white_moves:
+			var dest = get_destination_from_notation(move)
+			
+			# TODO:: Pawn promotion?
+			
+			if dest[0] == row && dest[1] == col:
+				resolve_move(move)
+				return
+	
+	else:
+		for move in current_black_moves:
+			var dest = get_destination_from_notation(move)
+			
+			# TODO:: Pawn promotion?
+			
+			if dest[0] == row && dest[1] == col:
+				resolve_move(move)
+				return
 	
 func resolve_move(move: String) -> void:
 	var dest = get_destination_from_notation(move)
@@ -213,6 +246,7 @@ func resolve_move(move: String) -> void:
 		white_move_log.append(move)
 	else:
 		black_move_log.append(move)
+	white_to_move = !white_to_move
 		
 
 
@@ -455,7 +489,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row+1, get_column_letter(column-1)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row+1, get_column_letter(column-1)))
 	
 	# Up
@@ -466,7 +500,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row+1, get_column_letter(column)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row+1, get_column_letter(column)))
 	
 	# Up-right
@@ -477,7 +511,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row+1, get_column_letter(column+1)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row+1, get_column_letter(column+1)))
 	
 	# Right
@@ -488,7 +522,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row, get_column_letter(column+1)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row, get_column_letter(column+1)))
 	
 	# Right-down
@@ -499,7 +533,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row-1, get_column_letter(column+1)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row-1, get_column_letter(column+1)))
 	
 	# Down
@@ -510,7 +544,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row-1, get_column_letter(column)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row-1, get_column_letter(column)))
 	
 	# Down-left
@@ -521,7 +555,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row-1, get_column_letter(column-1)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row-1, get_column_letter(column-1)))
 	
 	# Left
@@ -532,7 +566,7 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			moves.append(str("K", row, get_column_letter(column), row, get_column_letter(column-1)))
 		else:
 			# If enemy piece, capture
-			if piece.name.to_lower.contains("white"):
+			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row, get_column_letter(column-1)))
 				
 	# TODO:: Castling
