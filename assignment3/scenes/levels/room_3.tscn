@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bbdafhr7bvph2"]
+[gd_scene load_steps=31 format=3 uid="uid://bbdafhr7bvph2"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_ey5jh"]
@@ -41,7 +41,7 @@ seed = -10
 noise = SubResource("FastNoiseLite_5b6b1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bevkq"]
-size = Vector3(0.25, 3.5, 5)
+size = Vector3(0.25, 3.5, 7)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0c6dj"]
 noise_type = 3
@@ -91,6 +91,9 @@ seed = 5
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3g254"]
 noise = SubResource("FastNoiseLite_4ndet")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gomqg"]
+size = Vector3(0.25, 3.5, 7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0r56v"]
 size = Vector3(0.25, 3.5, 20)
@@ -217,6 +220,50 @@ noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
+[node name="Wall8" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76067, 0.411634, -0.425714)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_bevkq")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall8"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, 0)
+material_override = SubResource("ShaderMaterial_tabsw")
+mesh = SubResource("BoxMesh_gomqg")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_3g254")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Wall12" type="StaticBody3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.66134, 0.411634, -3.8966)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_bevkq")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall12"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, 0)
+material_override = SubResource("ShaderMaterial_tabsw")
+mesh = SubResource("BoxMesh_gomqg")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_3g254")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
 [node name="Wall2" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.55353, 0.411634, 6.97835)
 
@@ -247,6 +294,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("BoxShape3D_0r56v")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall3"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.35, 0)
+material_override = SubResource("ShaderMaterial_2ooe2")
+mesh = SubResource("BoxMesh_xcwct")
+skeleton = NodePath("../../Wall3")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_on4nd")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Wall9" type="StaticBody3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.1604, 0.18984, 2.97153)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_0r56v")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall9"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.35, 0)
 material_override = SubResource("ShaderMaterial_2ooe2")
 mesh = SubResource("BoxMesh_xcwct")
@@ -314,6 +384,94 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("BoxShape3D_bevkq")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall6"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, -1.07643)
+material_override = SubResource("ShaderMaterial_tabsw")
+mesh = SubResource("BoxMesh_xgsvx")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_3g254")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Wall7" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28768, 0.411634, 2.18145)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_bevkq")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall7"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, -1.07643)
+material_override = SubResource("ShaderMaterial_tabsw")
+mesh = SubResource("BoxMesh_xgsvx")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_3g254")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Wall10" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0764, 0.349719, 2.15164)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_bevkq")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall10"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, -1.07643)
+material_override = SubResource("ShaderMaterial_tabsw")
+mesh = SubResource("BoxMesh_xgsvx")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_3g254")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Wall13" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0764, 0.349719, -4.69144)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_bevkq")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall13"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, -1.07643)
+material_override = SubResource("ShaderMaterial_tabsw")
+mesh = SubResource("BoxMesh_xgsvx")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_3g254")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Wall11" type="StaticBody3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.26302, 0.411634, -0.786836)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_bevkq")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall11"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, -1.07643)
 material_override = SubResource("ShaderMaterial_tabsw")
 mesh = SubResource("BoxMesh_xgsvx")
