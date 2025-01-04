@@ -112,11 +112,11 @@ uv1_scale = Vector3(5, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_dk3pv"]
 size = Vector3(4, 0.25, 6)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_52iug"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l7oxd"]
 seed = 12345676
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ctdvr"]
-noise = SubResource("FastNoiseLite_52iug")
+noise = SubResource("FastNoiseLite_l7oxd")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_e3lx2"]
 noise_type = 3
