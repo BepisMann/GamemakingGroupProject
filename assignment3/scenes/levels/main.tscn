@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="9_bj6qn"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="10_5ibgx"]
 [ext_resource type="Script" path="res://Scripts/floor.gd" id="11_60ma2"]
+[ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
+[ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
 [ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="14_2jr0b"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="15_4j0oe"]
 [ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="15_bym0h"]
@@ -413,13 +415,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -0.17
-offset_top = -331.755
-offset_right = 326.83
-offset_bottom = 151.245
+offset_top = -377.0
+offset_right = 327.0
+offset_bottom = 174.0
 grow_vertical = 0
 scale = Vector2(0.67, 0.67)
-texture = ExtResource("15_bym0h")
+texture = ExtResource("15_387hy")
 
 [node name="Pit_trap_right" type="TextureRect" parent="UI/TrapMapUI"]
 visible = false
@@ -429,14 +430,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 892.55
-offset_top = -331.795
-offset_right = 1219.55
-offset_bottom = 151.205
+offset_left = 893.0
+offset_top = -377.0
+offset_right = 1220.0
+offset_bottom = 174.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.67, 0.67)
-texture = ExtResource("15_bym0h")
+texture = ExtResource("15_387hy")
 
 [node name="Spike_trap_left" type="TextureRect" parent="UI/TrapMapUI"]
 visible = false
@@ -444,13 +445,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -0.17
-offset_top = -332.54
-offset_right = 326.83
-offset_bottom = 152.46
+offset_top = -375.0
+offset_right = 327.0
+offset_bottom = 173.0
 grow_vertical = 0
 scale = Vector2(0.67, 0.67)
-texture = ExtResource("16_pjx0w")
+texture = ExtResource("16_xhins")
 
 [node name="Spike_trap_right" type="TextureRect" parent="UI/TrapMapUI"]
 visible = false
@@ -460,14 +460,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 892.585
-offset_top = -333.05
-offset_right = 1219.59
-offset_bottom = 151.95
+offset_left = 893.0
+offset_top = -375.0
+offset_right = 1220.0
+offset_bottom = 173.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.67, 0.67)
-texture = ExtResource("16_pjx0w")
+texture = ExtResource("16_xhins")
 
 [node name="Corridor 3 - 4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -109.477)

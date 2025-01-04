@@ -32,6 +32,10 @@ signal player_died
 signal piece_touched
 signal piece_moved
 
+var pressed_buttons: Array = []
+var correct_code: Array = []
+
+
 var is_jumping: bool = false
 var is_running: float = true
 var current_speed: float = SPEED
@@ -54,6 +58,14 @@ func _ready() -> void:
 	
 	backgroundMusic1.play()
 	stop_timer.start()
+	
+	correct_code = ["Button3", "Button13", "Button15", "Button6"]
+	for button_name in correct_code:
+		var button = $"../Rooms 1&2/CodeBoard/BackGroundBoard".get_node(button_name)
+		if button:
+			button.is_locked = false
+	
+
 
 func _on_background_music_loop_timer_timeout() -> void:
 	backgroundMusic1.stop()
@@ -71,6 +83,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if event.pressed:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 		elif event.is_action_pressed("ui_cancel"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
@@ -83,7 +96,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
 				
 				toggle_hat_visibility(camera.rotation.x)
-			
+
+func interact_with_button(button: StaticBody3D) -> void:
+	if button.has_method("is_pressed"):
+		button.is_pressed = true
+		print("Button pressed:", button.name)
+
 func toggle_hat_visibility(pitch: float) -> void:
 	if pitch > deg_to_rad(-5):
 		hat.visible = false
@@ -254,6 +272,14 @@ func get_respawn_point() -> int:
 func pickup(hand):
 	var item = raycast2.get_collider()
 	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap":
+		if item.name.to_lower().contains("button"):
+			var button_name = String(item.name)
+			if not pressed_buttons.has(button_name):
+				item.is_pressed = true
+				pressed_buttons.append(button_name)
+				print(pressed_buttons)
+				check_code()
+			return
 		if !("is_locked" in item) || (item.is_locked == false):
 			if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
 				if item:
@@ -316,6 +342,36 @@ func pickup(hand):
 						label.show_pickup_message("Picked up " + item.name + str(hand))
 				else:
 					print("Error: No valid item to pick up!")
+
+func check_code():
+	if pressed_buttons.size() == 4:
+		print("Pressed buttons:", pressed_buttons)
+		print("Correct code:", correct_code)
+		if pressed_buttons == correct_code:
+			print("Final door opened!")
+			lock_correct_buttons()
+		else:
+			reset_buttons()
+			
+func lock_correct_buttons():
+	for button_name in pressed_buttons:
+		var button_path = NodePath("../Rooms 1&2/CodeBoard/BackGroundBoard/" + button_name)
+		var button = get_node(button_path)
+		if button:
+			button.is_locked = true  # Prevent further interaction
+	print("Correct buttons are locked!")
+	pressed_buttons.clear()
+
+func reset_buttons():
+	for button_name in pressed_buttons:
+		var button_path = NodePath("../Rooms 1&2/CodeBoard/BackGroundBoard/" + button_name)
+		var button = get_node(button_path)
+		if button:
+			button.is_pressed = false
+			button.global_transform.origin = button.initial_position  # Reset position
+	pressed_buttons.clear()
+	print("Buttons reset after incorrect attempt!")
+
 
 func _on_trap_room_room_3_player_died() -> void:
 	emit_signal("player_died")
