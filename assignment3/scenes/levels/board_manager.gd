@@ -93,8 +93,34 @@ func hide_move_here_indicators():
 			indicator.hide()
 			
 func get_destination_from_notation(move: String) -> Array:
+	# Is this castling kingside?
+	if move == "0-0":
+		if white_to_move:
+			if castleFromKing:
+				return [1,8]
+			else:
+				return [1,5]
+		else:
+			if castleFromKing:
+				return [8, 8]
+			else:
+				return [8, 5]
+	
+	# Is this castling queenside?
+	elif move == "0-0-0":
+		if white_to_move:
+			if castleFromKing:
+				return [1,1]
+			else:
+				return [1,5]
+		else:
+			if castleFromKing:
+				return [8, 1]
+			else:
+				return [8, 5]
+				
 	# Is this a piece move or a pawn move
-	if move.begins_with("R") || move.begins_with("N") || move.begins_with("B") || move.begins_with("Q") || move.begins_with("K"):
+	elif move.begins_with("R") || move.begins_with("N") || move.begins_with("B") || move.begins_with("Q") || move.begins_with("K"):
 		# Does move involve a capture?
 		if move.contains("x"):
 			return [move[4].to_int(), get_column_number(move[5])]
@@ -276,11 +302,65 @@ func resolve_move(move: String) -> void:
 		
 	# Check if move is kingside castle
 	elif move == "0-0":
-		pass # TODO:: Castling
+		if (white_to_move):
+			var rook_tile = get_tile(1,8)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(1,6)
+			
+			var king_tile = get_tile(1,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(1,7)
+			
+			rook.first_move = false
+			king.first_move = false
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			hide_move_here_indicators()
+		else:
+			var rook_tile = get_tile(8,8)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(8,6)
+			
+			var king_tile = get_tile(8,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(8,7)
+			
+			rook.first_move = false
+			king.first_move = false
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			hide_move_here_indicators()
 		
 	# Check if move is queenside castle
 	elif move == "0-0-0":
-		pass # TODO:: Castling
+		if (white_to_move):
+			var rook_tile = get_tile(1,1)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(1,4)
+			
+			var king_tile = get_tile(1,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(1,3)
+			
+			rook.first_move = false
+			king.first_move = false
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			hide_move_here_indicators()
+		else:
+			var rook_tile = get_tile(8,1)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(8,4)
+			
+			var king_tile = get_tile(8,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(8,3)
+			
+			rook.first_move = false
+			king.first_move = false
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			hide_move_here_indicators()
 		
 	#Otherwise it's a normal move
 	else:
