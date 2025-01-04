@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Assignment3"
-run/main_scene="res://scenes/levels/room1&2.tscn"
+run/main_scene="res://scenes/levels/chess.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

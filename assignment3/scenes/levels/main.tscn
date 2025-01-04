@@ -1,0 +1,672 @@
+[gd_scene load_steps=48 format=3 uid="uid://bpqhgl8fn5pw6"]
+
+[ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
+[ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
+[ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_oiqrf"]
+[ext_resource type="PackedScene" uid="uid://dber2oye1u5ig" path="res://scenes/levels/trap_room.tscn" id="2_bwc25"]
+[ext_resource type="PackedScene" uid="uid://b1udg0j27o23v" path="res://scenes/levels/death.tscn" id="2_dhrqi"]
+[ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="3_u1kys"]
+[ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="4_br4te"]
+[ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="5_k6a76"]
+[ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="6_vydj7"]
+[ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="7_msxgo"]
+[ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="8_ron21"]
+[ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="9_bj6qn"]
+[ext_resource type="Script" path="res://Scripts/wall.gd" id="10_5ibgx"]
+[ext_resource type="Script" path="res://Scripts/floor.gd" id="11_60ma2"]
+[ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
+[ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
+[ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="14_2jr0b"]
+[ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="15_4j0oe"]
+[ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="15_bym0h"]
+[ext_resource type="Texture2D" uid="uid://c7ysw21kx8leo" path="res://Images/Schermafbeelding 2024-12-02 183814.png" id="16_pjx0w"]
+[ext_resource type="PackedScene" uid="uid://qex7lpjveo70" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
+[ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
+[ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wsoyi"]
+size = Vector3(0.25, 8, 13.7)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gy5sk"]
+noise_type = 3
+seed = 9
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ngos7"]
+normalize = false
+noise = SubResource("FastNoiseLite_gy5sk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42c47"]
+render_priority = 0
+shader = ExtResource("3_u1kys")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 0.2
+shader_parameter/normal_scale = 2.0
+shader_parameter/ao_texture_channel = null
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/heightmap_scale = 5.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(5, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/max_amplitude = null
+shader_parameter/texture_albedo = ExtResource("4_br4te")
+shader_parameter/texture_roughness = ExtResource("9_bj6qn")
+shader_parameter/texture_emission = ExtResource("6_vydj7")
+shader_parameter/texture_normal = ExtResource("8_ron21")
+shader_parameter/texture_ambient_occlusion = ExtResource("5_k6a76")
+shader_parameter/texture_heightmap = ExtResource("7_msxgo")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_ngos7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7o6ji"]
+size = Vector3(0.25, 8, 13.7)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3rt8f"]
+noise_type = 3
+seed = 43278521
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g7yqn"]
+noise = SubResource("FastNoiseLite_3rt8f")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8u2gd"]
+size = Vector3(0.25, 5.5, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5kjci"]
+size = Vector3(0.25, 5.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cu24w"]
+size = Vector3(0.25, 8, 13.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1dw76"]
+size = Vector3(1.7, 2.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hpnm6"]
+size = Vector3(0.25, 3.5, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wc56b"]
+size = Vector3(0.25, 3.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33vg2"]
+size = Vector3(4, 0.25, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwyp6"]
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_enabled = true
+emission_texture = ExtResource("6_vydj7")
+normal_enabled = true
+normal_texture = ExtResource("8_ron21")
+ao_enabled = true
+ao_texture = ExtResource("5_k6a76")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("7_msxgo")
+uv1_scale = Vector3(5, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dk3pv"]
+size = Vector3(4, 0.25, 6)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l7oxd"]
+seed = 12345676
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ctdvr"]
+noise = SubResource("FastNoiseLite_l7oxd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e3lx2"]
+noise_type = 3
+seed = 32134
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ojle2"]
+noise = SubResource("FastNoiseLite_e3lx2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_50sgt"]
+size = Vector3(1.2616, 2.07184, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lkxbl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7liyt"]
+size = Vector3(0.25, 30, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2yhgf"]
+size = Vector3(0.25, 30, 13)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jomf"]
+size = Vector3(0.25, 27, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8vx6e"]
+size = Vector3(0.25, 27, 4)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_oiqrf")
+
+[node name="Player" parent="." instance=ExtResource("1_essu7")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.2, -107.302)
+
+[node name="Death" parent="." instance=ExtResource("2_dhrqi")]
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="PlayerRespawnPoint1" type="Node3D" parent="."]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0, 0.25, -8)
+
+[node name="Rooms 1&2" parent="." instance=ExtResource("1_deuee")]
+
+[node name="TrapRoom (Room 3)" parent="." instance=ExtResource("2_bwc25")]
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 0, -15)
+
+[node name="Wall1" type="StaticBody3D" parent="TrapRoom (Room 3)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -8.15)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_wsoyi")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="TrapRoom (Room 3)/Wall1"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 4, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_7o6ji")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.712
+
+[node name="Wall2" type="StaticBody3D" parent="TrapRoom (Room 3)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_8u2gd")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="TrapRoom (Room 3)/Wall2"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 4, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_5kjci")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.545
+
+[node name="Wall3" type="StaticBody3D" parent="TrapRoom (Room 3)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8.15)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_cu24w")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="TrapRoom (Room 3)/Wall3"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 4, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_7o6ji")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.712
+
+[node name="Wall4" type="StaticBody3D" parent="TrapRoom (Room 3)"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -63, 0, -8.15)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_wsoyi")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="TrapRoom (Room 3)/Wall4"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 4, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_7o6ji")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.712
+
+[node name="Trap_map_holder" parent="TrapRoom (Room 3)/Wall4" instance=ExtResource("14_2jr0b")]
+transform = Transform3D(8.19961e-09, 0, -1, 0, 1, 0, 1, 0, 8.19961e-09, -0.18, 0.182, -5.808)
+script = ExtResource("15_4j0oe")
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="TrapRoom (Room 3)/Wall4/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall4/Trap_map_holder/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("BoxShape3D_1dw76")
+
+[node name="Wall5" type="StaticBody3D" parent="TrapRoom (Room 3)"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -63, 1, 0)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_8u2gd")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="TrapRoom (Room 3)/Wall5"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 4, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_5kjci")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.545
+
+[node name="Wall6" type="StaticBody3D" parent="TrapRoom (Room 3)"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -63, 0, 8.15)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_cu24w")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="TrapRoom (Room 3)/Wall6"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 4, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_7o6ji")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.712
+
+[node name="Trap_map_holder" parent="TrapRoom (Room 3)/Wall6" instance=ExtResource("14_2jr0b")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -0.18, 0.182, 5.808)
+script = ExtResource("15_4j0oe")
+
+[node name="HolderColliderMap" type="StaticBody3D" parent="TrapRoom (Room 3)/Wall6/Trap_map_holder"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TrapRoom (Room 3)/Wall6/Trap_map_holder/HolderColliderMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("BoxShape3D_1dw76")
+
+[node name="Corridor 1&2 - 3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Wall1" type="StaticBody3D" parent="Corridor 1&2 - 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 1&2 - 3/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("BoxShape3D_hpnm6")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 1&2 - 3/Wall1"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.75, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_wc56b")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.714
+
+[node name="Wall2" type="StaticBody3D" parent="Corridor 1&2 - 3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 1&2 - 3/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("BoxShape3D_hpnm6")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 1&2 - 3/Wall2"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.75, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_wc56b")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.714
+
+[node name="floor" type="StaticBody3D" parent="Corridor 1&2 - 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 1&2 - 3/floor"]
+shape = SubResource("BoxShape3D_33vg2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor 1&2 - 3/floor"]
+material_override = SubResource("StandardMaterial3D_uwyp6")
+mesh = SubResource("BoxMesh_dk3pv")
+script = ExtResource("11_60ma2")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_ctdvr")
+UV_ratio = 0.667
+
+[node name="ceiling" type="StaticBody3D" parent="Corridor 1&2 - 3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.99933, 3.4, -3.22397)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 1&2 - 3/ceiling"]
+shape = SubResource("BoxShape3D_33vg2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor 1&2 - 3/ceiling"]
+material_override = SubResource("StandardMaterial3D_uwyp6")
+mesh = SubResource("BoxMesh_dk3pv")
+script = ExtResource("11_60ma2")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_ojle2")
+UV_ratio = 0.667
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TrapMapUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 616.0
+offset_right = 40.0
+offset_bottom = 656.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Pit_trap_left" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -377.0
+offset_right = 327.0
+offset_bottom = 174.0
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("15_387hy")
+
+[node name="Pit_trap_right" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 893.0
+offset_top = -377.0
+offset_right = 1220.0
+offset_bottom = 174.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("15_387hy")
+
+[node name="Spike_trap_left" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -375.0
+offset_right = 327.0
+offset_bottom = 173.0
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("16_xhins")
+
+[node name="Spike_trap_right" type="TextureRect" parent="UI/TrapMapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 893.0
+offset_top = -375.0
+offset_right = 1220.0
+offset_bottom = 173.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("16_xhins")
+
+[node name="Corridor 3 - 4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -109.477)
+
+[node name="Wall1" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("BoxShape3D_hpnm6")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall1"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.75, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_wc56b")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.714
+
+[node name="Final_torch holder_w1" parent="Corridor 3 - 4/Wall1" instance=ExtResource("19_u0t75")]
+transform = Transform3D(-1.4231e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.4231e-08, 0.356, 1.8, 0)
+
+[node name="Torch" type="StaticBody3D" parent="Corridor 3 - 4/Wall1/Final_torch holder_w1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Corridor 3 - 4/Wall1/Final_torch holder_w1/Torch" instance=ExtResource("20_f674f")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 3 - 4/Wall1/Final_torch holder_w1/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_50sgt")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Corridor 3 - 4/Wall1/Final_torch holder_w1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 3 - 4/Wall1/Final_torch holder_w1/HolderCollider"]
+shape = SubResource("BoxShape3D_lkxbl")
+
+[node name="Wall2" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, -3)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("BoxShape3D_hpnm6")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall2"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.75, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_wc56b")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 1.714
+
+[node name="Final_torch holder_w2" parent="Corridor 3 - 4/Wall2" instance=ExtResource("19_u0t75")]
+transform = Transform3D(-1.4231e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.4231e-08, 0.356, 1.8, 0)
+
+[node name="Torch" type="StaticBody3D" parent="Corridor 3 - 4/Wall2/Final_torch holder_w2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="Corridor 3 - 4/Wall2/Final_torch holder_w2/Torch" instance=ExtResource("20_f674f")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 3 - 4/Wall2/Final_torch holder_w2/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_50sgt")
+
+[node name="HolderCollider" type="StaticBody3D" parent="Corridor 3 - 4/Wall2/Final_torch holder_w2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 3 - 4/Wall2/Final_torch holder_w2/HolderCollider"]
+shape = SubResource("BoxShape3D_lkxbl")
+
+[node name="floor" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 3 - 4/floor"]
+shape = SubResource("BoxShape3D_33vg2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor 3 - 4/floor"]
+material_override = SubResource("StandardMaterial3D_uwyp6")
+mesh = SubResource("BoxMesh_dk3pv")
+script = ExtResource("11_60ma2")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_ctdvr")
+UV_ratio = 0.667
+
+[node name="ceiling" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.4, -3.224)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor 3 - 4/ceiling"]
+shape = SubResource("BoxShape3D_33vg2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor 3 - 4/ceiling"]
+material_override = SubResource("StandardMaterial3D_uwyp6")
+mesh = SubResource("BoxMesh_dk3pv")
+script = ExtResource("11_60ma2")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_ojle2")
+UV_ratio = 0.667
+
+[node name="Wall3" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, 8.5, 0, -5.8819)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+shape = SubResource("BoxShape3D_7liyt")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall3"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 8.88178e-16, 3.72529e-09, 8.88178e-16, 1, 0, 15, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_2yhgf")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.433
+
+[node name="Wall4" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, 0, 3.5, -6.45972)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.25, 0)
+shape = SubResource("BoxShape3D_5jomf")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall4"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 13.25, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_8vx6e")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.148
+
+[node name="Wall5" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, -8.37623, 0, -5.8819)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+shape = SubResource("BoxShape3D_7liyt")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall5"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 8.88178e-16, 3.72529e-09, 8.88178e-16, 1, 0, 15, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_2yhgf")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.433
+
+[node name="PlayerRespawnPoint2" type="Node3D" parent="."]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0, 0.25, -115.164)
+
+[node name="BoulderRoom (Room4)" parent="." instance=ExtResource("17_3cixe")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -115.451)
+
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+[connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="playerDied" from="TrapRoom (Room 3)" to="Player" method="_on_trap_room_room_3_player_died"]
+[connection signal="playerDied" from="BoulderRoom (Room4)" to="Player" method="_on_trap_room_room_3_player_died"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cllqc313jlkbk"]
+[gd_scene load_steps=31 format=4 uid="uid://dmis7k4ifmsw7"]
 
 [ext_resource type="Script" path="res://scenes/prefabs/Traps/spike_trap_and_pressure_plate.gd" id="1_q07ko"]
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="5_5prmd"]
