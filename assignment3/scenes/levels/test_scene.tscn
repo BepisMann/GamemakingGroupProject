@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bx532qeyvcpsd" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_bird.tscn" id="18_7p83v"]
 [ext_resource type="Script" path="res://scenes/levels/puzzle_manager_medallions.gd" id="19_apvx0"]
 [ext_resource type="PackedScene" uid="uid://b2rc51st1qw34" path="res://scenes/prefabs/Animal_symbols_stuff/wooden_background_board.tscn" id="21_sfugy"]
-[ext_resource type="PackedScene" uid="uid://bnc1tt1kq10ws" path="res://scenes/prefabs/Skeleton_related_stuff/Full_Skeleton_test2.glb" id="22_k6dry"]
+[ext_resource type="PackedScene" uid="uid://boxg1lyj0p2jk" path="res://scenes/prefabs/Furniture_stuff/Skeleton chess puzzle with chair and table.glb" id="22_330rh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p021t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -229,7 +229,7 @@ maximum_amplitude = 0.1
 UV_ratio = 5.0
 
 [node name="Player" parent="." instance=ExtResource("2_yuy3u")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.44375, 0.25, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.44375, 0.130931, 0)
 
 [node name="Final_torch holder" parent="." instance=ExtResource("13_uy2sg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0760868, 1.39404, 4.3942)
@@ -381,5 +381,5 @@ shape = SubResource("BoxShape3D_hv0sc")
 [node name="Wooden_Background_Board" parent="." instance=ExtResource("21_sfugy")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2, 1, 3)
 
-[node name="Full_Skeleton_test2" parent="." instance=ExtResource("22_k6dry")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4.88285, 1.55592, 2.45043)
+[node name="Skeleton chess puzzle with chair and table" parent="." instance=ExtResource("22_330rh")]
+transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 3.40953, 0.443722, 1.17738)
