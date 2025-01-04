@@ -100,7 +100,7 @@ func get_destination_from_notation(move: String) -> Array:
 			return [move[3].to_int(), get_column_number(move[4])]
 	else:
 		# Does move involve a capture?
-		if move.contains("x"):
+		if move.contains("x") || move.contains(":"):
 			return [move[3].to_int(), get_column_number(move[4])]
 		else:
 			return [move[2].to_int(), get_column_number(move[3])]
@@ -227,18 +227,38 @@ func resolve_move(move: String) -> void:
 	var col_st = start[1]
 	var tile_st = get_tile(row_st, col_st)
 	
-	# Check if piece already at destination, if so remove
-	var piece_at_dest: Object = get_tile_piece(get_tile(row_dest, col_dest))
-	if piece_at_dest != null:
-		piece_at_dest.queue_free()
+	# Check if move is en passant
+	if move.contains(":"):
+		var pawn_to_remove = get_tile_piece(get_tile(row_st, col_dest))
+		pawn_to_remove.queue_free()
+			
+		var selected_piece: Object = get_tile_piece(get_tile(row_st, col_st))
+		selected_piece.first_move = false
+		selected_piece.reparent(tile_dest, false)
+		hide_move_here_indicators()		
 		
-	# Move selected piece to destination
-	var selected_piece: Object = get_tile_piece(get_tile(row_st, col_st))
-	selected_piece.first_move = false
-	selected_piece.reparent(tile_dest, false)
-	hide_move_here_indicators()
-	
-	# TODO:: Pawn promotion?
+	# Check if move is kingside castle
+	elif move == "0-0":
+		pass # TODO:: Castling
+		
+	# Check if move is queenside castle
+	elif move == "0-0-0":
+		pass # TODO:: Castling
+		
+	#Otherwise it's a normal move
+	else:
+		# Check if piece already at destination, if so remove
+		var piece_at_dest: Object = get_tile_piece(get_tile(row_dest, col_dest))
+		if piece_at_dest != null:
+			piece_at_dest.queue_free()
+			
+		# Move selected piece to destination
+		var selected_piece: Object = get_tile_piece(get_tile(row_st, col_st))
+		selected_piece.first_move = false
+		selected_piece.reparent(tile_dest, false)
+		hide_move_here_indicators()
+		
+		# TODO:: Pawn promotion?
 	
 	move_log.append(move)
 	
@@ -309,7 +329,26 @@ func compute_white_pawn_moves(row: int, column: int) -> Array:
 			else:
 				moves.append(str(row, get_column_letter(column), "x", row+1, get_column_letter(column+1)))
 				
-	# TODO:: En Passant
+	# En Passant - left
+	if (column > 1):
+		var piece_left = get_tile_piece(get_tile(row, column-1))
+		if piece_left != null && piece_left.name.to_lower().contains("blackpawn"):
+			var last_move = move_log[-1]
+			var last_move_start = get_start_from_notation(last_move)
+			var last_move_dest = get_destination_from_notation(last_move)
+			if (row == last_move_dest[0] && column-1 == last_move_dest[1]) && (last_move_start[0] - last_move_dest[0] == 2):
+				moves.append(str(row, get_column_letter(column), ":", row+1, get_column_letter(column-1)))
+	
+	# En Passant - right
+	if (column < 8):
+		var piece_right = get_tile_piece(get_tile(row, column+1))
+		if piece_right != null && piece_right.name.to_lower().contains("blackpawn"):
+			var last_move = move_log[-1]
+			var last_move_start = get_start_from_notation(last_move)
+			var last_move_dest = get_destination_from_notation(last_move)
+			if (row == last_move_dest[0] && column+1 == last_move_dest[1]) && (last_move_start[0] - last_move_dest[0] == 2):
+				moves.append(str(row, get_column_letter(column), ":", row+1, get_column_letter(column+1)))
+	
 		
 	return moves
 	
@@ -371,6 +410,26 @@ func compute_black_pawn_moves(row: int, column: int) -> Array:
 			else:
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column+1)))
 		
+	# En Passant - left
+	if (column > 1):
+		var piece_left = get_tile_piece(get_tile(row, column-1))
+		if piece_left != null && piece_left.name.to_lower().contains("whitepawn"):
+			var last_move = move_log[-1]
+			var last_move_start = get_start_from_notation(last_move)
+			var last_move_dest = get_destination_from_notation(last_move)
+			if (row == last_move_dest[0] && column-1 == last_move_dest[1]) && (last_move_dest[0] - last_move_start[0] == 2):
+				moves.append(str(row, get_column_letter(column), ":", row-1, get_column_letter(column-1)))
+	
+	# En Passant - right
+	if (column < 8):
+		var piece_right = get_tile_piece(get_tile(row, column+1))
+		if piece_right != null && piece_right.name.to_lower().contains("whitepawn"):
+			var last_move = move_log[-1]
+			var last_move_start = get_start_from_notation(last_move)
+			var last_move_dest = get_destination_from_notation(last_move)
+			if (row == last_move_dest[0] && column+1 == last_move_dest[1]) && (last_move_dest[0] - last_move_start[0] == 2):
+				moves.append(str(row, get_column_letter(column), ":", row-1, get_column_letter(column+1)))	
+	
 	return moves
 	
 func compute_white_king_moves(row: int, column: int) -> Array:
