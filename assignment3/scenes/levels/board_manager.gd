@@ -631,6 +631,7 @@ func resolve_move(move: String) -> void:
 		
 		if valid_white_moves.size() == 0:
 			print("BLACK HAS WON BY CHECKMATE")
+			return
 		
 	# Checking if check mate - black
 	if (!white_to_move && black_in_check()):
@@ -639,6 +640,19 @@ func resolve_move(move: String) -> void:
 		
 		if valid_black_moves.size() == 0:
 			print("WHITE HAS WON BY CHECKMATE")
+			return
+			
+	# TODO:: Bot that actually computes stuff
+	if (!white_to_move):
+		await get_tree().create_timer(1.0).timeout
+		var all_black_moves = all_black_moves_no_expose_king_check()
+		var valid_black_moves = validate_moves(all_black_moves)
+		
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		var random_move = rng.randi_range(0, valid_black_moves.size()-1)
+		resolve_move(valid_black_moves[random_move])
+		
 
 
 ## POSSIBLE MOVES
