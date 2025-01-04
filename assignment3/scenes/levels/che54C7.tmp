@@ -3284,46 +3284,6 @@ mesh = SubResource("TextMesh_rqiyk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_urlx5")
 
-[node name="Temp" type="Node3D" parent="Board"]
-
-[node name="temp_tile" type="StaticBody3D" parent="Board/Temp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5065, 0, -2.5)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Temp/temp_tile"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
-shape = SubResource("BoxShape3D_aayl1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/Temp/temp_tile"]
-material_override = SubResource("StandardMaterial3D_2ba1u")
-mesh = SubResource("BoxMesh_h2mtl")
-script = ExtResource("7_65vmq")
-albedo_texture = ExtResource("8_70s3e")
-roughness_texture = ExtResource("6_2p5nt")
-normal_texture = ExtResource("12_m230a")
-ambient_occlusion_texture = ExtResource("9_7k52i")
-heightmap_texture = ExtResource("10_3rd08")
-noise_img = SubResource("NoiseTexture2D_8qwa5")
-UV_ratio = 1.0
-
-[node name="CanMoveHereIndicator" type="Node3D" parent="Board/Temp/temp_tile"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-
-[node name="RigidBody3D" type="StaticBody3D" parent="Board/Temp/temp_tile/CanMoveHereIndicator"]
-collision_layer = 9
-collision_mask = 9
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/Temp/temp_tile/CanMoveHereIndicator/RigidBody3D"]
-mesh = SubResource("TorusMesh_sl42g")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Temp/temp_tile/CanMoveHereIndicator/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
-shape = SubResource("BoxShape3D_ksfii")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Board/Temp/temp_tile/CanMoveHereIndicator"]
-libraries = {
-"": SubResource("AnimationLibrary_nit4g")
-}
-
 [node name="floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 13.2172)
 collision_layer = 3

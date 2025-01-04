@@ -2,6 +2,8 @@ extends Node3D
 
 @onready
 var board: Object = $"../Board"
+@onready
+var temp_tile: Object = $"../Board/Temp/temp_tile"
 
 var white_to_move: bool = true
 var move_log: Array = []
@@ -189,6 +191,112 @@ func show_move_indicators(moves: Array):
 			
 		var animation_player: AnimationPlayer = indicator.get_child(1)
 		animation_player.play("float_indicator", -1, 2.0)
+		
+func all_white_moves_no_expose_king_check() -> Array:
+	var moves = []
+	for i in range(1,9,1):
+		for j in range(1,9,1):
+			var piece = get_tile_piece(get_tile(i, j))
+			if piece != null && piece.name.to_lower().contains("white"):
+				match piece.name:
+					"WhitePawn":
+						moves.append_array(compute_white_pawn_moves(i, j))
+					"WhiteRook":
+						moves.append_array(compute_white_rook_moves(i, j))
+					"WhiteKnight":
+						moves.append_array(compute_white_knight_moves(i, j))
+					"WhiteBishop":
+						moves.append_array(compute_white_bishop_moves(i, j))
+					"WhiteQueen":
+						moves.append_array(compute_white_queen_moves(i, j))
+					"WhiteKing":
+						moves.append_array(compute_white_king_moves(i, j))
+					_:
+						print("INVALID PIECE")
+	return moves
+				
+	
+
+func all_black_moves_no_expose_king_check() -> Array:
+	var moves = []
+	for i in range(1,9,1):
+		for j in range(1,9,1):
+			var piece = get_tile_piece(get_tile(i, j))
+			if piece != null && piece.name.to_lower().contains("black"):
+				match piece.name:
+					"BlackPawn":
+						moves.append_array(compute_black_pawn_moves(i, j))
+					"BlackRook":
+						moves.append_array(compute_black_rook_moves(i, j))
+					"BlackKnight":
+						moves.append_array(compute_black_knight_moves(i, j))
+					"BlackBishop":
+						moves.append_array(compute_black_bishop_moves(i, j))
+					"BlackQueen":
+						moves.append_array(compute_black_queen_moves(i, j))
+					"BlackKing":
+						moves.append_array(compute_black_king_moves(i, j))
+					_:
+						print("INVALID PIECE")
+	return moves
+		
+func white_in_check() -> bool:
+	# Find the white king
+	var i = 1
+	var j = 1
+	var king = null
+	while i <= 8:
+		j = 1
+		while j <= 8:
+			var tile_piece = get_tile_piece(get_tile(i,j))
+			if tile_piece != null && tile_piece.name == "WhiteKing":
+				king = tile_piece
+				break
+			j += 1
+		if king != null:
+			break
+		i += 1
+	
+	# Check if any black pieces have white king as destination in any moves
+	var all_black_moves = all_black_moves_no_expose_king_check()
+	for move in all_black_moves:
+		var dest = get_destination_from_notation(move)
+		if (dest[0] == i && dest[1] == j):
+			return true
+	return false
+	
+func black_in_check() -> bool:
+	# Find the black king
+	var i = 1
+	var j = 1
+	var king = null
+	while i <= 8:
+		j = 1
+		while j <= 8:
+			var tile_piece = get_tile_piece(get_tile(i,j))
+			if tile_piece != null && tile_piece.name == "BlackKing":
+				king = tile_piece
+				break
+			j += 1
+		if king != null:
+			break
+		i += 1
+	
+	# Check if any white pieces have black king as destination in any moves
+	var all_white_moves = all_white_moves_no_expose_king_check()
+	for move in all_white_moves:
+		var dest = get_destination_from_notation(move)
+		if (dest[0] == i && dest[1] == j):
+			return true
+	return false
+	
+func validate_moves(moves: Array) -> Array:
+	var valid_moves = []
+	for move in moves:
+		if validate_move(move):
+			valid_moves.append(move)
+	return valid_moves
+	
 			
 func _on_player_piece_touched(body: Object) -> void:
 	var piece: Object = body.get_parent()
@@ -223,6 +331,8 @@ func _on_player_piece_touched(body: Object) -> void:
 				moves = compute_black_king_moves(row, col)
 			_:
 				print("INVALID PIECE")
+		moves = validate_moves(moves)
+		
 		print(moves)
 		show_move_indicators(moves)
 		current_black_moves = moves
@@ -247,6 +357,9 @@ func _on_player_piece_touched(body: Object) -> void:
 				moves = compute_white_king_moves(row, col)
 			_:
 				print("INVALID PIECE")
+				
+		moves = validate_moves(moves)
+				
 		print(moves)
 		show_move_indicators(moves)
 		current_white_moves = moves
@@ -278,6 +391,132 @@ func _on_player_piece_moved(body: Object) -> void:
 			if dest[0] == row && dest[1] == col:
 				resolve_move(move)
 				return
+				
+func validate_move(move: String) -> bool:
+	var dest = get_destination_from_notation(move)
+	var row_dest = dest[0]
+	var col_dest = dest[1]
+	var tile_dest = get_tile(row_dest, col_dest)
+	
+	var start = get_start_from_notation(move)
+	var row_st = start[0]
+	var col_st = start[1]
+	var tile_st = get_tile(row_st, col_st)
+	
+	# Check if move is en passant
+	if move.contains(":"):
+		var pawn_to_remove_tile = get_tile(row_st, col_dest)
+		var pawn_to_remove = get_tile_piece(pawn_to_remove_tile)
+		pawn_to_remove.reparent(temp_tile, false)
+			
+		var selected_piece: Object = get_tile_piece(get_tile(row_st, col_st))
+		selected_piece.reparent(tile_dest, false)
+		
+		var result = false
+		if white_to_move:
+			result = !white_in_check()
+		else:
+			result = !black_in_check()
+		
+		# Put pieces back and return
+		pawn_to_remove.reparent(pawn_to_remove_tile, false)
+		selected_piece.reparent(tile_st, false)
+		return result
+		
+	# Check if move is kingside castle
+	# TODO:: Check all squares king passes through, not just end square
+	elif move == "0-0":
+		if (white_to_move):
+			var rook_tile = get_tile(1,8)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(1,6)
+			
+			var king_tile = get_tile(1,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(1,7)
+			
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			
+			var result = !white_in_check()
+			king.reparent(king_tile, false)
+			rook.reparent(rook_tile, false)
+			return result
+		else:
+			var rook_tile = get_tile(8,8)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(8,6)
+			
+			var king_tile = get_tile(8,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(8,7)
+			
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			
+			var result = !black_in_check()
+			king.reparent(king_tile, false)
+			rook.reparent(rook_tile, false)
+			return result
+		
+	# Check if move is queenside castle
+	# TODO:: Check all squares king passes through, not just end square
+	elif move == "0-0-0":
+		if (white_to_move):
+			var rook_tile = get_tile(1,1)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(1,4)
+			
+			var king_tile = get_tile(1,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(1,3)
+			
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			
+			var result = !white_in_check()
+			king.reparent(king_tile, false)
+			rook.reparent(rook_tile, false)
+			return result
+		else:
+			var rook_tile = get_tile(8,1)
+			var rook = get_tile_piece(rook_tile)
+			var rook_dest_tile = get_tile(8,4)
+			
+			var king_tile = get_tile(8,5)
+			var king = get_tile_piece(king_tile)
+			var king_dest_tile = get_tile(8,3)
+			
+			king.reparent(king_dest_tile, false)
+			rook.reparent(rook_dest_tile, false)
+			
+			var result = !black_in_check()
+			king.reparent(king_tile, false)
+			rook.reparent(rook_tile, false)
+			return result
+		
+	#Otherwise it's a normal move
+	else:
+		# Check if piece already at destination, if so move to temp tile
+		var piece_at_dest: Object = get_tile_piece(get_tile(row_dest, col_dest))
+		if piece_at_dest != null:
+			piece_at_dest.reparent(temp_tile, false)
+			
+		# Move selected piece to destination
+		var selected_piece: Object = get_tile_piece(get_tile(row_st, col_st))
+		selected_piece.reparent(tile_dest, false)
+		
+		var result = false
+		if white_to_move:
+			result = !white_in_check()
+		else:
+			result = !black_in_check()
+		
+		# Put pieces back and return
+		if piece_at_dest != null:
+			piece_at_dest.reparent(get_tile(row_dest, col_dest), false)
+		selected_piece.reparent(tile_st, false)
+		return result
 	
 func resolve_move(move: String) -> void:
 	var dest = get_destination_from_notation(move)
@@ -384,8 +623,22 @@ func resolve_move(move: String) -> void:
 	else:
 		black_move_log.append(move)
 	white_to_move = !white_to_move
+	
+	# Checking if check mate - white
+	if (white_to_move && white_in_check()):
+		var all_white_moves = all_white_moves_no_expose_king_check()
+		var valid_white_moves = validate_moves(all_white_moves)
 		
-
+		if valid_white_moves.size() == 0:
+			print("BLACK HAS WON BY CHECKMATE")
+		
+	# Checking if check mate - black
+	if (!white_to_move && black_in_check()):
+		var all_black_moves = all_black_moves_no_expose_king_check()
+		var valid_black_moves = validate_moves(all_black_moves)
+		
+		if valid_black_moves.size() == 0:
+			print("WHITE HAS WON BY CHECKMATE")
 
 
 ## POSSIBLE MOVES
@@ -984,7 +1237,6 @@ func compute_black_rook_moves(row: int, column: int) -> Array:
 				if empty:
 					castleFromKing = false
 					moves.append("0-0")
-	
 	return moves
 	
 func compute_white_bishop_moves(row: int, column: int) -> Array:
@@ -1116,7 +1368,7 @@ func compute_black_bishop_moves(row: int, column: int) -> Array:
 		
 		while row_iter >= 1 && col_iter <= 8 && piece_ahead == null:
 			moves.append(str(symbol, row, get_column_letter(column), row_iter, get_column_letter(col_iter)))
-			row -= 1
+			row_iter -= 1
 			col_iter += 1
 			if (row_iter >= 1 && col_iter <= 8):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
@@ -1132,14 +1384,13 @@ func compute_black_bishop_moves(row: int, column: int) -> Array:
 		
 		while row_iter >= 1 && col_iter >= 1 && piece_ahead == null:
 			moves.append(str(symbol, row, get_column_letter(column), row_iter, get_column_letter(col_iter)))
-			row -= 1
+			row_iter -= 1
 			col_iter -= 1
 			if (row_iter >= 1 && col_iter >= 1):
 				piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 				
 		if row_iter >= 1 && col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row_iter, get_column_letter(col_iter)))
-	
 	return moves
 	
 func compute_white_queen_moves(row: int, column: int) -> Array:
