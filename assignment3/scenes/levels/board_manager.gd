@@ -11,6 +11,8 @@ var black_move_log: Array = []
 var current_white_moves: Array = []
 var current_black_moves: Array = []
 
+var castleFromKing: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide_move_here_indicators()
@@ -114,16 +116,51 @@ func get_start_from_notation(move: String) -> Array:
 		
 func show_move_indicators(moves: Array):
 	for move in moves:
-		var dest = get_destination_from_notation(move)
-		var row = dest[0]
-		var col = dest[1]
-		
+		var row = -1
+		var col = -1
+		if (move == "0-0"):
+			if castleFromKing:
+				if white_to_move:
+					row = 1
+					col = 8
+				else:
+					row = 8
+					col = 8
+			else:
+				if white_to_move:
+					row = 1
+					col = 5
+				else:
+					row = 8
+					col = 5 
+				
+		elif (move == "0-0-0"):
+			if castleFromKing:
+				if white_to_move:
+					row = 1
+					col = 1
+				else:
+					row = 8
+					col = 1
+			else:
+				if white_to_move:
+					row = 1
+					col = 5
+				else:
+					row = 8
+					col = 5
+					
+		else:
+			var dest = get_destination_from_notation(move)
+			row = dest[0]
+			col = dest[1]
+			
 		var indicator = get_move_here_indicator(row, col)
 		indicator.show()
-		
+			
 		var collision: CollisionShape3D = indicator.get_child(0).get_child(1)
 		collision.set_deferred("disabled", false)
-		
+			
 		var animation_player: AnimationPlayer = indicator.get_child(1)
 		animation_player.play("float_indicator", -1, 2.0)
 			
@@ -528,7 +565,31 @@ func compute_white_king_moves(row: int, column: int) -> Array:
 			if piece.name.to_lower().contains("black"):
 				moves.append(str("K", row, get_column_letter(column), "x", row, get_column_letter(column-1)))
 				
-	# TODO:: Castling
+	# Castling queenside
+	if king.first_move:
+		var left_rook = get_tile_piece(get_tile(1, 1))
+		if left_rook != null && left_rook.name == "WhiteRook" && left_rook.first_move:
+			var empty = true
+			for i in range(2,5,1):
+				var piece = get_tile_piece(get_tile(1,i))
+				if piece != null:
+					empty = false
+			if empty:
+				castleFromKing = true
+				moves.append("0-0-0")
+	
+	# Castling kingside
+	if king.first_move:
+		var right_rook = get_tile_piece(get_tile(1, 8))
+		if right_rook != null && right_rook.name == "WhiteRook" && right_rook.first_move:
+			var empty = true
+			for i in range(6,8,1):
+				var piece = get_tile_piece(get_tile(1,i))
+				if piece != null:
+					empty = false
+			if empty:
+				castleFromKing = true
+				moves.append("0-0")
 				
 	return moves
 	
@@ -628,7 +689,31 @@ func compute_black_king_moves(row: int, column: int) -> Array:
 			if piece.name.to_lower().contains("white"):
 				moves.append(str("K", row, get_column_letter(column), "x", row, get_column_letter(column-1)))
 				
-	# TODO:: Castling
+	# Castling queenside
+	if king.first_move:
+		var left_rook = get_tile_piece(get_tile(8, 1))
+		if left_rook != null && left_rook.name == "BlackRook" && left_rook.first_move:
+			var empty = true
+			for i in range(2,5,1):
+				var piece = get_tile_piece(get_tile(8,i))
+				if piece != null:
+					empty = false
+			if empty:
+				castleFromKing = true
+				moves.append("0-0-0")
+	
+	# Castling kingside
+	if king.first_move:
+		var right_rook = get_tile_piece(get_tile(8, 8))
+		if right_rook != null && right_rook.name == "BlackRook" && right_rook.first_move:
+			var empty = true
+			for i in range(6,8,1):
+				var piece = get_tile_piece(get_tile(8,i))
+				if piece != null:
+					empty = false
+			if empty:
+				castleFromKing = true
+				moves.append("0-0")
 				
 	return moves
 	
@@ -700,7 +785,30 @@ func compute_white_rook_moves(row: int, column: int) -> Array:
 		if col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("black"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row, get_column_letter(col_iter)))
 	
-	# TODO:: Castling
+	# Castling
+	if rook.first_move && symbol != "Q":
+		var king = get_tile_piece(get_tile(1, 5))
+		if king != null && king.name == "WhiteKing" && king.first_move:
+			# Left rook
+			if column == 1:
+				var empty = true
+				for i in range(2,5,1):
+					var piece = get_tile_piece(get_tile(1, i))
+					if piece != null:
+						empty = false
+				if empty:
+					castleFromKing = false
+					moves.append("0-0-0")
+			# Right rook
+			else:
+				var empty = true
+				for i in range(6,8,1):
+					var piece = get_tile_piece(get_tile(1, i))
+					if piece != null:
+						empty = false
+				if empty:
+					castleFromKing = false
+					moves.append("0-0")
 	
 	return moves
 	
@@ -772,7 +880,30 @@ func compute_black_rook_moves(row: int, column: int) -> Array:
 		if col_iter >= 1 && piece_ahead != null && piece_ahead.name.to_lower().contains("white"):
 			moves.append(str(symbol, row, get_column_letter(column), "x", row, get_column_letter(col_iter)))
 	
-	# TODO:: Castling
+	# Castling
+	if rook.first_move && symbol != "Q":
+		var king = get_tile_piece(get_tile(1, 5))
+		if king != null && king.name == "BlackKing" && king.first_move:
+			# Left rook
+			if column == 1:
+				var empty = true
+				for i in range(2,5,1):
+					var piece = get_tile_piece(get_tile(8, i))
+					if piece != null:
+						empty = false
+				if empty:
+					castleFromKing = false
+					moves.append("0-0-0")
+			# Right rook
+			else:
+				var empty = true
+				for i in range(6,8,1):
+					var piece = get_tile_piece(get_tile(8, i))
+					if piece != null:
+						empty = false
+				if empty:
+					castleFromKing = false
+					moves.append("0-0")
 	
 	return moves
 	
