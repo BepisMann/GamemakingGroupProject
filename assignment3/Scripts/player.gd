@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 
 const SPEED = 5.0
+const MAX_SPEED = 12.0
 const JUMP_VELOCITY = 4.5
+const ACCELERATION_FACTOR = 0.002
 
 @export var left: String = ""
 @export var right: String = ""
@@ -14,6 +16,8 @@ const JUMP_VELOCITY = 4.5
 @onready var hair := $Indiana_jones_like_character_final_attempt3/Armature/Skeleton3D/hair
 @onready var raycast1 := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1
 @onready var raycast2 := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast2
+@onready var raycast_chess := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCastChess
+@onready var raycast_chess_move_piece := $Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCastChessMovePiece
 @onready var label := $Control/Label
 @onready var control := $Control/CenterContainer
 
@@ -25,14 +29,19 @@ const JUMP_VELOCITY = 4.5
 var held_torch_count: int = 0
 
 signal player_died
+signal piece_touched
+signal piece_moved
 
 var pressed_buttons: Array = []
 var correct_code: Array = []
 
 
 var is_jumping: bool = false
+var is_running: float = true
+var current_speed: float = SPEED
 var can_control: bool = true
 var can_jump: bool = true
+var spawn_point = 1
 
 @onready var pickup_sound = $Pickup_sound
 @onready var placing_sound = $Place_item_sound
@@ -44,6 +53,8 @@ func _ready() -> void:
 	if control:
 		control.set_raycast(raycast1, 1)
 		control.set_raycast(raycast2, 2)
+		control.set_raycast(raycast_chess, 3)
+		control.set_raycast(raycast_chess_move_piece, 4)
 	
 	backgroundMusic1.play()
 	stop_timer.start()
@@ -105,7 +116,12 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if (can_control):
-		if Input.is_action_just_pressed("left_click"):
+		if raycast_chess_move_piece.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")):
+			move_selected_piece_to_location()
+		elif raycast_chess.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")):
+			interact_chess_piece()
+		
+		elif Input.is_action_just_pressed("left_click"):
 			if left == "" and raycast2.is_colliding():
 				pickup("left")
 			elif left != "" and raycast2.is_colliding():
@@ -117,7 +133,7 @@ func _physics_process(delta: float) -> void:
 					try_place_trap_map("left")
 				placing_sound.playing = true
 
-		if Input.is_action_just_pressed("right_click"):
+		elif Input.is_action_just_pressed("right_click"):
 			if right == "" and raycast2.is_colliding():
 				pickup("right")
 			elif right != "" and raycast2.is_colliding():
@@ -140,9 +156,17 @@ func _physics_process(delta: float) -> void:
 		var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 		var direction = (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-			anim.play("Walking")
+			if is_running:
+				current_speed = sqrt(velocity.x * velocity.x + velocity.z * velocity.z)
+				current_speed = max(SPEED, current_speed)
+				current_speed = min(current_speed + SPEED * ACCELERATION_FACTOR, MAX_SPEED)
+				velocity.x = direction.x * current_speed
+				velocity.z = direction.z * current_speed
+				anim.play("Walking")
+			else:
+				velocity.x = direction.x * SPEED
+				velocity.z = direction.z * SPEED
+				anim.play("Walking")
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -230,6 +254,20 @@ func try_place_medallion(hand):
 				print("medallion placed")
 		
 
+
+func interact_chess_piece():
+	var piece = raycast_chess.get_collider()
+	emit_signal("piece_touched", piece)
+	
+func move_selected_piece_to_location():
+	var destination_indicator = raycast_chess_move_piece.get_collider()
+	emit_signal("piece_moved", destination_indicator)
+
+func set_spawn_point_2():
+	spawn_point = 2
+	
+func get_respawn_point() -> int:
+	return spawn_point
 
 func pickup(hand):
 	var item = raycast2.get_collider()
