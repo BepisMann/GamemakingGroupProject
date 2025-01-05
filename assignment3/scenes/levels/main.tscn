@@ -14,12 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="9_bj6qn"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="10_5ibgx"]
 [ext_resource type="Script" path="res://Scripts/floor.gd" id="11_60ma2"]
-[ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
-[ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
 [ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="14_2jr0b"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="15_4j0oe"]
-[ext_resource type="Texture2D" uid="uid://b4kiuty27x6xk" path="res://Images/Schermafbeelding 2024-12-02 183243.png" id="15_bym0h"]
-[ext_resource type="Texture2D" uid="uid://c7ysw21kx8leo" path="res://Images/Schermafbeelding 2024-12-02 183814.png" id="16_pjx0w"]
+[ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
+[ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
 [ext_resource type="PackedScene" uid="uid://qex7lpjveo70" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
@@ -148,7 +146,7 @@ size = Vector3(0.25, 27, 4)
 script = ExtResource("1_oiqrf")
 
 [node name="Player" parent="." instance=ExtResource("1_essu7")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.2, -107.302)
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -15.7214, 0.135655, 26.8108)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
 

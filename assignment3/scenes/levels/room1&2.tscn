@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://gubnpbmfc62b"]
+[gd_scene load_steps=131 format=3 uid="uid://gubnpbmfc62b"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://bde30e67v6odd" path="res://assets/sounds/Door_opening.mp3" id="13_ucx0h"]
 [ext_resource type="AudioStream" uid="uid://bsww4pl2svu3q" path="res://assets/sounds/Drums_for_opening_door.wav" id="14_j0a0q"]
 [ext_resource type="PackedScene" uid="uid://divc73ew0qsia" path="res://scenes/prefabs/Medaillon_related_stuff/medaillon_holder.tscn" id="14_yx8ki"]
+[ext_resource type="PackedScene" uid="uid://b2rc51st1qw34" path="res://scenes/prefabs/Animal_symbols_stuff/wooden_background_board.tscn" id="15_hseau"]
 [ext_resource type="Script" path="res://Scripts/medallion.gd" id="15_ii275"]
+[ext_resource type="PackedScene" uid="uid://cw5rnxecnp25i" path="res://scenes/prefabs/Jumping_Wallcarving.glb" id="15_rkwbc"]
 [ext_resource type="PackedScene" uid="uid://bx532qeyvcpsd" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_bird.tscn" id="16_m0lrl"]
 [ext_resource type="PackedScene" uid="uid://xol1c0oba240" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_snake.tscn" id="17_sfy8x"]
 [ext_resource type="PackedScene" uid="uid://dsjsna83lrrla" path="res://scenes/prefabs/Medaillon_related_stuff/medallion_fish.tscn" id="18_67mn0"]
@@ -695,6 +697,16 @@ UV_ratio = 3.43
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00428772, 1.49899, -0.020889)
 shape = SubResource("BoxShape3D_gvrhe")
 
+[node name="Final_torch holder3" parent="room 1" instance=ExtResource("8_42sa2")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -1.06268, 1.7, 12.8362)
+
+[node name="HolderCollider" type="StaticBody3D" parent="room 1/Final_torch holder3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Final_torch holder3/HolderCollider"]
+shape = SubResource("BoxShape3D_766m4")
+
 [node name="Wall13" type="StaticBody3D" parent="room 1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57011, 0, 14.9871)
 
@@ -782,6 +794,19 @@ UV_ratio = 3.43
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00428772, 1.49899, -0.020889)
 shape = SubResource("BoxShape3D_gvrhe")
+
+[node name="Jumping_Wallcarving" parent="room 1/Wall16" instance=ExtResource("15_rkwbc")]
+transform = Transform3D(-9.61651e-08, 0, -2.2, 0, 2.2, 0, 2.2, 0, -9.61651e-08, -0.193851, 0.876509, -1.17446)
+
+[node name="Wooden_Background_Board7" parent="room 1/Wall16" instance=ExtResource("15_hseau")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, -0.0343533, 1.69294, 0.204401)
+
+[node name="Label3D5" type="Label3D" parent="room 1/Wall16"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.176182, 1.70203, 0.185802)
+pixel_size = 0.0017
+modulate = Color(0.360784, 0.25098, 0.2, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Press spacebar to jump"
 
 [node name="Wall17" type="StaticBody3D" parent="room 1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.9797, 0, 24.6718)
@@ -893,6 +918,83 @@ UV_ratio = 3.43
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00428772, 1.49899, -0.020889)
 shape = SubResource("BoxShape3D_gvrhe")
 
+[node name="Final_torch holder3" parent="room 1/Wall21" instance=ExtResource("8_42sa2")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.209539, 1.61624, 1.71935)
+
+[node name="Torch" type="StaticBody3D" parent="room 1/Wall21/Final_torch holder3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall21/Final_torch holder3/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_i4814")
+
+[node name="final_torch" parent="room 1/Wall21/Final_torch holder3/Torch" instance=ExtResource("19_blufs")]
+transform = Transform3D(-4.32313e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="HolderCollider" type="StaticBody3D" parent="room 1/Wall21/Final_torch holder3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall21/Final_torch holder3/HolderCollider"]
+shape = SubResource("BoxShape3D_766m4")
+
+[node name="Wallcarving_test2" parent="room 1/Wall21" instance=ExtResource("30_l07wr")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0.223314, 0.826634, 0.383323)
+
+[node name="Wallcarving_test3" parent="room 1/Wall21" instance=ExtResource("30_l07wr")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0.169832, 0.826634, 3.10823)
+
+[node name="Wooden_Background_Board2" parent="room 1/Wall21" instance=ExtResource("15_hseau")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0.205818, 1.2776, 1.181)
+
+[node name="Label3D" type="Label3D" parent="room 1/Wall21"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.211357, 1.28239, 1.20504)
+pixel_size = 0.0017
+modulate = Color(0.360784, 0.25098, 0.2, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "You can always place back 
+the item in their holder"
+
+[node name="Wooden_Background_Board3" parent="room 1/Wall21" instance=ExtResource("15_hseau")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0.205818, 1.65305, 1.19681)
+
+[node name="Label3D2" type="Label3D" parent="room 1/Wall21"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.211357, 1.65784, 1.22085)
+pixel_size = 0.0017
+modulate = Color(0.360784, 0.25098, 0.2, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Press right mouse button
+ to pick up items with
+ your right hand"
+
+[node name="Wooden_Background_Board4" parent="room 1/Wall21" instance=ExtResource("15_hseau")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0.205818, 1.65305, 2.29147)
+
+[node name="Wooden_Background_Board5" parent="room 1/Wall21" instance=ExtResource("15_hseau")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0.205818, 1.65305, 2.29147)
+
+[node name="Label3D3" type="Label3D" parent="room 1/Wall21"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.211357, 1.65784, 2.31551)
+pixel_size = 0.0017
+modulate = Color(0.360784, 0.25098, 0.2, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Press left mouse button
+ to pick up items with
+ your left hand"
+
+[node name="Wooden_Background_Board6" parent="room 1/Wall21" instance=ExtResource("15_hseau")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0.205818, 1.2832, 2.29147)
+
+[node name="Label3D4" type="Label3D" parent="room 1/Wall21"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.211357, 1.28799, 2.31551)
+pixel_size = 0.0017
+modulate = Color(0.360784, 0.25098, 0.2, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Only one item can be held 
+in each hand at the time"
+
 [node name="Wall22" type="StaticBody3D" parent="room 1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.3798, 0, 28.9741)
 
@@ -998,10 +1100,6 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall7/Final_torch holder2/HolderCollider"]
 shape = SubResource("BoxShape3D_766m4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00428772, 1.49899, -0.020889)
-shape = SubResource("BoxShape3D_gvrhe")
 
 [node name="Wall6" type="StaticBody3D" parent="room 1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 5)
@@ -1173,6 +1271,10 @@ UV_ratio = 1.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74457, 0, 24.6837)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/floor3"]
+shape = SubResource("BoxShape3D_7cypg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="room 1/floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9996, 0, 0)
 shape = SubResource("BoxShape3D_7cypg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="room 1/floor3"]
