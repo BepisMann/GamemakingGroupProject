@@ -1772,9 +1772,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.702,
 transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 5.60343, 1.12134, 9.31375)
 script = ExtResource("37_7uyje")
 
-[node name="HolderColliderLetter" type="StaticBody3D" parent="LetterHolder"]
+[node name="HolderColliderLetter2" type="StaticBody3D" parent="LetterHolder"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LetterHolder/HolderColliderLetter"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LetterHolder/HolderColliderLetter2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0345917, 1.91664, 0)
 shape = SubResource("BoxShape3D_pfe1e")
 
