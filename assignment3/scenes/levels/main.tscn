@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bpqhgl8fn5pw6"]
+[gd_scene load_steps=50 format=3 uid="uid://dwnyr0lhb6rsk"]
 
 [ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
@@ -19,8 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
 [ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
 [ext_resource type="PackedScene" uid="uid://qex7lpjveo70" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
+[ext_resource type="Texture2D" uid="uid://cis4lqxkm7v51" path="res://Images/ancient_translation_letter.jpg" id="19_o7isg"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
+[ext_resource type="Texture2D" uid="uid://bjymvt56bad17" path="res://Images/Letter_witch_code_sentence.jpg" id="20_p42sn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wsoyi"]
 size = Vector3(0.25, 8, 13.7)
@@ -149,6 +151,10 @@ script = ExtResource("1_oiqrf")
 transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -15.7214, 0.135655, 26.8108)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 2.0
+offset_bottom = -4.0
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -466,6 +472,73 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.67, 0.67)
 texture = ExtResource("16_xhins")
+
+[node name="LetterUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Translation_letter_left" type="TextureRect" parent="UI/LetterUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 288.0
+offset_right = 1080.0
+offset_bottom = 1088.0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("19_o7isg")
+
+[node name="Translation_letter_right" type="TextureRect" parent="UI/LetterUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 680.0
+offset_top = 288.0
+offset_right = 1760.0
+offset_bottom = 1088.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("19_o7isg")
+
+[node name="Code_letter_left" type="TextureRect" parent="UI/LetterUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.10352e-05
+offset_top = 288.0
+offset_right = 1080.0
+offset_bottom = 1088.0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("20_p42sn")
+
+[node name="Code_letter_right" type="TextureRect" parent="UI/LetterUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 680.0
+offset_top = 288.0
+offset_right = 1760.0
+offset_bottom = 1088.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("20_p42sn")
 
 [node name="Corridor 3 - 4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -109.477)

@@ -131,6 +131,8 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("left")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("left")
+				elif raycast2.get_collider().name == "HolderColliderLetter":
+					try_place_letter("left")
 				placing_sound.playing = true
 
 		elif Input.is_action_just_pressed("right_click"):
@@ -143,6 +145,8 @@ func _physics_process(delta: float) -> void:
 					try_place_medallion("right")
 				elif raycast2.get_collider().name == "HolderColliderMap":
 					try_place_trap_map("right")
+				elif raycast2.get_collider().name == "HolderColliderLetter":
+					try_place_letter("right")
 				placing_sound.playing = true
 			
 
@@ -174,7 +178,37 @@ func _physics_process(delta: float) -> void:
 				anim.play("Idle_1")
 
 	move_and_slide()
-	
+
+
+func try_place_letter(hand):
+	var item = raycast2.get_collider()
+	if item and item.name == "HolderColliderLetter":
+		var holder = item.get_parent()
+		
+		if holder and holder.has_method("get_is_occupied") and not holder.get_is_occupied():
+			if hand == "left":
+				if self.left == "Letter_of_code":
+					$"../UI/LetterUI/Code_letter_left".visible = false
+				elif self.left == "Letter_of_translation":
+					$"../UI/LetterUI/Translation_letter_left".visible = false
+			elif hand == "right":
+				if self.right == "Letter_of_code":
+					$"../UI/LetterUI/Code_letter_right".visible = false
+				elif self.right == "Letter_of_translation":
+					$"../UI/LetterUI/Translation_letter_right".visible = false
+					
+			var letter = (left_hand_position if hand == "left" else right_hand_position).get_child(0)
+			
+			if not letter.name.begins_with("Letter"):
+				return
+			
+			holder.place_letter(letter)
+			letter.get_parent().remove_child(letter)
+			if hand == "left":
+				left = "" 
+			else:
+				right = "" 
+
 func try_place_trap_map(hand):
 	var item = raycast2.get_collider()
 	if item and item.name == "HolderColliderMap":
@@ -271,7 +305,7 @@ func get_respawn_point() -> int:
 
 func pickup(hand):
 	var item = raycast2.get_collider()
-	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap":
+	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap" and item.name!= "HolderColliderLetter":
 		if item.name.to_lower().contains("button"):
 			var button_name = String(item.name)
 			if not pressed_buttons.has(button_name):
@@ -309,6 +343,9 @@ func pickup(hand):
 					if parent and parent.has_method("remove_map"):
 						print("Removing map from holder.")
 						parent.remove_map()
+					if parent and parent.has_method("remove_letter"):
+						print("Removing letter from holder.")
+						parent.remove_letter()
 					if not item == null:
 						parent.remove_child(item)
 						if hand == "left":
@@ -317,7 +354,9 @@ func pickup(hand):
 							self.left = item.name
 							reset_item_rotation_left(item)
 							if item.name.begins_with("TrapMap"):
-								item.visible = false
+								item.get_parent().visible = false
+							if item.name.begins_with("Letter"):
+								item.get_parent().visible = false
 							if item.name.begins_with("Torch"):
 								held_torch_count += 1
 						
@@ -327,13 +366,17 @@ func pickup(hand):
 							self.right = item.name
 							reset_item_rotation_right(item)
 							if item.name.begins_with("TrapMap"):
-								item.visible = false
+								item.get_parent().visible = false
+							if item.name.begins_with("Letter"):
+								item.get_parent().visible = false
 							if item.name.begins_with("Torch"):
 								held_torch_count += 1
 					
 						print("Item parent after pickup:", item.get_parent().name)
 					
 						if not item.name.begins_with("TrapMap"):
+							item.visible = true
+						if not item.name.begins_with("Letter"):
 							item.visible = true
 					
 						item.collision_layer = 2
@@ -429,6 +472,12 @@ func reset_item_rotation_left(item):
 		
 		"TrapMap2":
 			$"../UI/TrapMapUI/Spike_trap_left".visible = true
+		
+		"Letter_of_code":
+			$"../UI/LetterUI/Code_letter_left".visible = true
+		
+		"Letter_of_translation":
+			$"../UI/LetterUI/Translation_letter_left".visible = true
 
 func reset_item_rotation_right(item):
 	item.transform = Transform3D.IDENTITY
@@ -463,3 +512,9 @@ func reset_item_rotation_right(item):
 			
 		"TrapMap2":
 			$"../UI/TrapMapUI/Spike_trap_right".visible = true
+			
+		"Letter_of_code":
+			$"../UI/LetterUI/Code_letter_right".visible = true
+		
+		"Letter_of_translation":
+			$"../UI/LetterUI/Translation_letter_right".visible = true
