@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bl7s3u3l6lyml"]
+[gd_scene load_steps=38 format=3 uid="uid://c6h6et1fwxdi4"]
 
 [ext_resource type="Script" path="res://button.gd" id="1_wwuaa"]
 [ext_resource type="Texture2D" uid="uid://h862hss7iq8p" path="res://Images/symbol_1.png" id="2_p48ea"]
@@ -22,7 +22,7 @@
 size = Vector3(1, 1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85lmm"]
-albedo_color = Color(0.6, 0.6, 0.6, 1)
+albedo_color = Color(0.71, 0.55025, 0.071, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rhw38"]
 size = Vector3(0.15, 0.15, 0.1)

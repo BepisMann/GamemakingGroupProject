@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7vcm5whywh6l"]
+
+[ext_resource type="Script" path="res://exit_button.gd" id="1_6a76s"]
+
+[sub_resource type="Gradient" id="Gradient_3m11a"]
+colors = PackedColorArray(0.41, 0.4059, 0.4059, 0.160784, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r5d46"]
+gradient = SubResource("Gradient_3m11a")
+fill_from = Vector2(1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyju8"]
+bg_color = Color(0.42, 0.28896, 0.1176, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e452i"]
+bg_color = Color(0.27, 0.18576, 0.0756, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmy25"]
+bg_color = Color(0.6, 0.415686, 0.168627, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="InputEventKey" id="InputEventKey_d4mca"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_8pxbf"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_nmhcv"]
+events = [SubResource("InputEventKey_d4mca"), SubResource("InputEventKey_8pxbf")]
+
+[node name="Finish screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pop_up_screen" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 115.0
+offset_right = 310.325
+offset_bottom = 179.0
+scale = Vector2(9.08782, 6.00476)
+texture = SubResource("GradientTexture2D_r5d46")
+
+[node name="Exit_button" type="Button" parent="pop_up_screen"]
+layout_mode = 0
+offset_left = 34.0016
+offset_top = 48.1284
+offset_right = 71.0016
+offset_bottom = 79.1284
+scale = Vector2(0.229421, 0.328497)
+theme_override_styles/hover = SubResource("StyleBoxFlat_uyju8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e452i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jmy25")
+shortcut = SubResource("Shortcut_nmhcv")
+text = "Exit"
+script = ExtResource("1_6a76s")
+
+[node name="TextEdit" type="TextEdit" parent="pop_up_screen"]
+layout_mode = 0
+offset_left = 10.5437
+offset_top = 4.49647
+offset_right = 190.544
+offset_bottom = 104.496
+scale = Vector2(0.3, 0.391)
+text = "Congratulations! 
+
+You escaped the cave."
+
+[connection signal="pressed" from="pop_up_screen/Exit_button" to="pop_up_screen/Exit_button" method="_on_pressed"]
