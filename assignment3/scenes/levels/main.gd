@@ -1,5 +1,7 @@
 extends Node3D
+@onready var boulder_instance: Node = $"BoulderRoom (Room4)"
 
+var boulder_scene: PackedScene = preload("res://scenes/levels/boulder.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,6 +12,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_player_player_died() -> void:
+	_on_trap_room_room_3_player_died()
 	$DeathTimer.start()
 	
 func _on_death_respawn() -> void:
@@ -36,4 +39,11 @@ func _on_death_timer_timeout() -> void:
 
 
 func _on_trap_room_room_3_player_died() -> void:
-	pass # Replace with function body.
+	if boulder_instance:
+		boulder_instance.queue_free()
+		
+	boulder_instance = boulder_scene.instantiate()
+	add_child(boulder_instance)
+	
+	boulder_instance.position = $BoulderPlaceholder.position
+	boulder_instance.name = "BoulderRoom (Room4)"

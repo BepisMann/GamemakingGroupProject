@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjdvmhoxho8p5"]
 
 [ext_resource type="Script" path="res://assets/box/Crate/box.gd" id="1_mt5ww"]
-[ext_resource type="Texture2D" path="res://assets/box/crate_1.jpg" id="2_xg4pn"]
-[ext_resource type="AudioStream" path="res://assets/sounds/crate-break-1-93926.mp3" id="3_3irsp"]
+[ext_resource type="Texture2D" uid="uid://bj6hrj5a4nbw4" path="res://assets/box/crate_1.jpg" id="2_xg4pn"]
+[ext_resource type="AudioStream" uid="uid://ga6lu5fogm3y" path="res://assets/sounds/crate-break-1-93926.mp3" id="3_3irsp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1tibr"]
 size = Vector3(0.75, 0.75, 0.75)
