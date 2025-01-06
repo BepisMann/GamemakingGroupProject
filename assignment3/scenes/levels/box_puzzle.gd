@@ -9,6 +9,11 @@ var is_rotating: bool = false
 func _ready():
 	pass
 	
+func _physics_process(delta):
+	var max_speed = 2 # Maximum allowed speed
+	var current_speed = ball.linear_velocity.length()
+	if current_speed > max_speed:
+		ball.linear_velocity = ball.linear_velocity.normalized() * max_speed
 
 func _input(event):
 	if event.is_action_pressed("left") and not is_rotating:
@@ -32,5 +37,6 @@ func rotate_box(target_angle):
 	is_rotating = false
 
 
-func _on_area_3d_area_exited(area):
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	
 	print ("box puzzle solved")
