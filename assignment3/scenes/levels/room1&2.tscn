@@ -35,10 +35,10 @@
 [ext_resource type="PackedScene" uid="uid://cjfeccjc70r1c" path="res://scenes/prefabs/Wallcarving_test2.glb" id="30_l07wr"]
 [ext_resource type="PackedScene" uid="uid://claka2okk25t2" path="res://scenes/prefabs/Animal_symbols_stuff/water_symbol.tscn" id="30_vby1r"]
 [ext_resource type="PackedScene" uid="uid://bl7s3u3l6lyml" path="res://code_board.tscn" id="35_ltyuo"]
-[ext_resource type="PackedScene" uid="uid://owuwwqyjraq0" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="36_5wuen"]
-[ext_resource type="PackedScene" uid="uid://bymk5dwdnaw04" path="res://scenes/prefabs/translation_letter.tscn" id="36_p7t87"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="36_5wuen"]
+[ext_resource type="PackedScene" uid="uid://k2ycrg28s81v" path="res://scenes/prefabs/translation_letter.tscn" id="36_p7t87"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.gd" id="37_7uyje"]
-[ext_resource type="PackedScene" uid="uid://deylrmubt73g8" path="res://scenes/prefabs/letter_of_code.tscn" id="37_licl5"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/letter_of_code.tscn" id="37_licl5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_slq0c"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -1215,6 +1215,10 @@ heightmap_texture = ExtResource("4_de8w0")
 noise_img = SubResource("NoiseTexture2D_q3fo1")
 maximum_amplitude = 0.05
 UV_ratio = 1.2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="room 1/floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.83, 0, 0)
+shape = SubResource("BoxShape3D_7cypg")
 
 [node name="ceiling" type="StaticBody3D" parent="room 1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.4, 5)
