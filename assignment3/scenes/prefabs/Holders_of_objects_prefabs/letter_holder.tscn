@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://owuwwqyjraq0"]
+[gd_scene load_steps=7 format=4 uid="uid://owuwwqyjraq0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrs71"]
 resource_name = "Material.002"
@@ -74,6 +74,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hv4ly")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xtnq"]
+size = Vector3(1.75876, 1.4653, 1)
+
 [node name="letter_holder" type="Node3D"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
@@ -89,3 +92,9 @@ skeleton = NodePath("")
 
 [node name="Letter_holding_position" type="Node3D" parent="."]
 transform = Transform3D(-1, 8.74227e-08, 0, 3.82137e-15, 4.37114e-08, -1, -8.74227e-08, -1, -4.37114e-08, -0.139216, 3.8073, -0.00858522)
+
+[node name="HolderColliderLetter" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HolderColliderLetter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0345917, 1.91664, 0)
+shape = SubResource("BoxShape3D_2xtnq")
