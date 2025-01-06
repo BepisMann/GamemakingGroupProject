@@ -35,6 +35,7 @@ signal piece_moved
 var pressed_buttons: Array = []
 var correct_code: Array = []
 
+var puzzle_solved: bool = false
 
 var is_jumping: bool = false
 var is_running: float = true
@@ -134,6 +135,9 @@ func _physics_process(delta: float) -> void:
 				elif raycast2.get_collider().name == "HolderColliderLetter":
 					try_place_letter("left")
 				placing_sound.playing = true
+				
+				if raycast2.get_collider().name.begins_with("Button"):
+					pickup("left")
 
 		elif Input.is_action_just_pressed("right_click"):
 			if right == "" and raycast2.is_colliding():
@@ -148,6 +152,9 @@ func _physics_process(delta: float) -> void:
 				elif raycast2.get_collider().name == "HolderColliderLetter":
 					try_place_letter("right")
 				placing_sound.playing = true
+				
+				if raycast2.get_collider().name.begins_with("Button"):
+					pickup("right")
 			
 
 	# Handle jump and movement.
@@ -307,6 +314,8 @@ func pickup(hand):
 	var item = raycast2.get_collider()
 	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap" and item.name!= "HolderColliderLetter":
 		if item.name.to_lower().contains("button"):
+			if puzzle_solved:
+				return
 			var button_name = String(item.name)
 			if not pressed_buttons.has(button_name):
 				item.is_pressed = true
@@ -393,15 +402,16 @@ func check_code():
 		if pressed_buttons == correct_code:
 			print("Final door opened!")
 			lock_correct_buttons()
+			puzzle_solved = true
 		else:
 			reset_buttons()
 			
 func lock_correct_buttons():
-	for button_name in pressed_buttons:
-		var button_path = NodePath("../Rooms 1&2/CodeBoard/BackGroundBoard/" + button_name)
-		var button = get_node(button_path)
-		if button:
-			button.is_locked = true  # Prevent further interaction
+	var codeboard = $"../Rooms 1&2/CodeBoard/BackGroundBoard"
+	if codeboard:
+		for button in codeboard.get_children():
+			if button.has_method("is_locked"):  # Check if the button has 'is_locked
+				button.is_locked = true
 	print("Correct buttons are locked!")
 	pressed_buttons.clear()
 

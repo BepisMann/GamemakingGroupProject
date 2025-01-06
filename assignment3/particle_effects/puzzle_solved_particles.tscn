@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1flbjuic6lrh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1waue"]
+albedo_color = Color(0.280348, 0.59, 0.1947, 1)
+metallic = 0.72
+metallic_specular = 0.76
+roughness = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rmclq"]
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_eceka"]
+radius = 0.15
+height = 0.3
+
+[node name="puzzle_solved_particles" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_1waue")
+emitting = false
+amount = 24
+lifetime = 0.8
+one_shot = true
+speed_scale = 0.7
+process_material = SubResource("ParticleProcessMaterial_rmclq")
+draw_pass_1 = SubResource("SphereMesh_eceka")
