@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvepbaqupgvn6"
+uid="uid://fcbs7le566a4"
 path.s3tc="res://.godot/imported/Ulna&radius_Bone color Base Color.png-8937a680b3271a9fab67526f5721ae12.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "e4b47f938f294f71a3511a613c6405ed"
 }
 
 [deps]
