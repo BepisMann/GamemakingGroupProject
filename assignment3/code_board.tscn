@@ -1,0 +1,413 @@
+[gd_scene load_steps=38 format=3 uid="uid://c6h6et1fwxdi4"]
+
+[ext_resource type="Script" path="res://button.gd" id="1_wwuaa"]
+[ext_resource type="Texture2D" uid="uid://h862hss7iq8p" path="res://Images/symbol_1.png" id="2_p48ea"]
+[ext_resource type="Texture2D" uid="uid://bg23ujx7sfnig" path="res://Images/symbol_2.png" id="3_3giv3"]
+[ext_resource type="Texture2D" uid="uid://10dy6o4veo1h" path="res://Images/symbol_3.png" id="4_mw5or"]
+[ext_resource type="Texture2D" uid="uid://p8v1j05gtpuw" path="res://Images/Symbol_4.png" id="5_njaol"]
+[ext_resource type="Texture2D" uid="uid://b1j41oo5pm3gk" path="res://Images/symbol_5.png" id="6_b4iau"]
+[ext_resource type="Texture2D" uid="uid://ttw4wo62egi5" path="res://Images/symbol_6.png" id="7_rcpor"]
+[ext_resource type="Texture2D" uid="uid://cuvy2e32yvynb" path="res://Images/Symbol_7.png" id="8_4432d"]
+[ext_resource type="Texture2D" uid="uid://cu5376wy4bw0o" path="res://Images/symbol_8.png" id="9_ht7bb"]
+[ext_resource type="Texture2D" uid="uid://bvctibv4kyixi" path="res://Images/symbol_9.png" id="10_drrfb"]
+[ext_resource type="Texture2D" uid="uid://ty6jfyhxa4xv" path="res://Images/symbol_10.png" id="11_586tq"]
+[ext_resource type="Texture2D" uid="uid://c0gs08s1q2rsk" path="res://Images/symbol_11.png" id="12_6cabr"]
+[ext_resource type="Texture2D" uid="uid://dfcreeed6dchm" path="res://Images/symbol_12.png" id="13_py1be"]
+[ext_resource type="Texture2D" uid="uid://cy3q80wur54uv" path="res://Images/symbol_13.png" id="14_7gcls"]
+[ext_resource type="Texture2D" uid="uid://dgyfmahypvyi3" path="res://Images/symbol_14.png" id="15_antf1"]
+[ext_resource type="Texture2D" uid="uid://u6nm4x1l1n65" path="res://Images/symbol_15.png" id="16_h3mcu"]
+[ext_resource type="Texture2D" uid="uid://bpdd6lrmioktj" path="res://Images/symbol_16.png" id="17_fy4ux"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3gu0"]
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85lmm"]
+albedo_color = Color(0.71, 0.55025, 0.071, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rhw38"]
+size = Vector3(0.15, 0.15, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jx1xr"]
+albedo_texture = ExtResource("2_p48ea")
+uv1_scale = Vector3(2.5, 2.5, 2.5)
+uv1_offset = Vector3(0.395, -0.15, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvyba"]
+size = Vector3(0.166161, 0.162216, 0.127075)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_018o3"]
+albedo_texture = ExtResource("3_3giv3")
+uv1_scale = Vector3(2.7, 2, 2.5)
+uv1_offset = Vector3(0.255, -0.025, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nywrv"]
+albedo_texture = ExtResource("4_mw5or")
+uv1_scale = Vector3(3, 2, 3)
+uv1_offset = Vector3(0, -0.03, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmhf1"]
+albedo_texture = ExtResource("5_njaol")
+uv1_scale = Vector3(2.99, 2.2, 2.5)
+uv1_offset = Vector3(0.02, 0.91, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfvb7"]
+albedo_texture = ExtResource("6_b4iau")
+uv1_scale = Vector3(2.5, 2.23, 2.23)
+uv1_offset = Vector3(0.43, -0.05, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6osu1"]
+albedo_texture = ExtResource("7_rcpor")
+uv1_scale = Vector3(2.7, 2, 2)
+uv1_offset = Vector3(0.25, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4f7u1"]
+albedo_texture = ExtResource("8_4432d")
+uv1_scale = Vector3(2.8, 2.2, 2.5)
+uv1_offset = Vector3(-0.81, -0.035, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2np4"]
+albedo_texture = ExtResource("9_ht7bb")
+uv1_scale = Vector3(3, 2, 2.5)
+uv1_offset = Vector3(0.045, -0.11, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aj6d2"]
+albedo_texture = ExtResource("10_drrfb")
+uv1_scale = Vector3(2.7, 2, 2.7)
+uv1_offset = Vector3(0.235, 0.015, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5pjh"]
+albedo_texture = ExtResource("11_586tq")
+uv1_scale = Vector3(3, 2, 2)
+uv1_offset = Vector3(-1, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acrrn"]
+albedo_texture = ExtResource("12_6cabr")
+uv1_scale = Vector3(2.5, 2, 2.3)
+uv1_offset = Vector3(0.41, -0.01, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0lnu"]
+albedo_texture = ExtResource("13_py1be")
+uv1_scale = Vector3(2.8, 2.1, 2.8)
+uv1_offset = Vector3(0.185, -0.06, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xenc2"]
+albedo_texture = ExtResource("14_7gcls")
+uv1_scale = Vector3(3, 2, 3)
+uv1_offset = Vector3(0.005, 0.005, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrlmy"]
+albedo_texture = ExtResource("15_antf1")
+uv1_scale = Vector3(2.2, 2.2, 2.2)
+uv1_offset = Vector3(-0.305, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kps1b"]
+albedo_texture = ExtResource("16_h3mcu")
+uv1_scale = Vector3(3, 1.675, 3)
+uv1_offset = Vector3(0.04, 0.045, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ohh2"]
+albedo_texture = ExtResource("17_fy4ux")
+uv1_scale = Vector3(2.8, 2.1, 2.8)
+uv1_offset = Vector3(0.16, -0.03, 0)
+
+[node name="CodeBoard" type="Node3D"]
+
+[node name="BackGroundBoard" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_n3gu0")
+surface_material_override/0 = SubResource("StandardMaterial3D_85lmm")
+
+[node name="Button1" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, 0.383718, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button1"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jx1xr")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button1/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button1/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button1"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button2" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, 0.383718, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00885215, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_018o3")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button2/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button2/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button2"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button3" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, 0.383718, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0189664, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_nywrv")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button3/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button3/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button3"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button4" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, 0.383718, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button4"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qmhf1")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button4/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button4/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button4"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button5" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, 0.14544, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button5"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_rfvb7")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button5/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button5/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button5"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button6" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, 0.14544, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00885215, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6osu1")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button6/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button6/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button6"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button7" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, 0.14544, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0189664, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_4f7u1")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button7/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button7/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button7"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button8" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, 0.14544, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button8"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_s2np4")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button8/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button8/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button8"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button9" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, -0.0985729, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button9"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_aj6d2")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button9/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button9/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button9"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button10" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, -0.0985729, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00885215, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5pjh")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button10/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button10/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button10"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button11" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, -0.0985729, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0189664, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_acrrn")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button11/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button11/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button11"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button12" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, -0.0985729, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button12"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_f0lnu")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button12/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button12/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button12"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button13" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, -0.333896, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button13"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_xenc2")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button13/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button13/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button13"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button14" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, -0.333896, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00885215, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jrlmy")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button14/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button14/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button14"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button15" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, -0.333896, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0189664, 0, 0)
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_kps1b")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button15/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button15/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button15"]
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="Button16" type="StaticBody3D" parent="BackGroundBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, -0.333896, -0.0523027)
+script = ExtResource("1_wwuaa")
+
+[node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button16"]
+mesh = SubResource("BoxMesh_rhw38")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3ohh2")
+
+[node name="Area3D" type="Area3D" parent="BackGroundBoard/Button16/Button1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackGroundBoard/Button16/Button1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_wvyba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button16"]
+shape = SubResource("BoxShape3D_wvyba")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxp3rler6xamr"]
+
+[ext_resource type="PackedScene" uid="uid://b7d6f8nsqs2dh" path="res://scenes/prefabs/Medaillon_related_stuff/New Scarab_Beetle Medallion.glb" id="1_2cs1l"]
+
+[node name="New Scarab_Beetle Medallion" instance=ExtResource("1_2cs1l")]
+transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, -0.4, 0, 0.4, -1.74846e-08, 0, 0, 0)

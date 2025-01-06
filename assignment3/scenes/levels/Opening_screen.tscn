@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://dto7w5agnsb15"]
+
+[ext_resource type="Texture2D" path="res://Images/Cave_image_3.webp" id="1_q38kh"]
+[ext_resource type="StyleBox" uid="uid://gjct8r882top" path="res://colors/new_game_green.tres" id="2_bmuw6"]
+[ext_resource type="Script" path="res://scenes/levels/new_game_button.gd" id="3_3c76i"]
+[ext_resource type="StyleBox" uid="uid://b2opbml2etk6c" path="res://colors/Quit_red.tres" id="3_4opt1"]
+[ext_resource type="Script" path="res://scenes/levels/quit_button.gd" id="5_stlrf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csep4"]
+bg_color = Color(0.309804, 0.721569, 0.309804, 0.756863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o00qt"]
+bg_color = Color(0.909804, 0.352941, 0.352941, 0.784314)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="OpeningScreen" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 1792.0
+offset_bottom = 1024.0
+scale = Vector2(0.64286, 0.632814)
+texture = ExtResource("1_q38kh")
+
+[node name="NewGameButton" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 427.0
+offset_top = 212.0
+offset_right = 699.0
+offset_bottom = 289.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_bmuw6")
+theme_override_styles/hover_pressed = ExtResource("2_bmuw6")
+theme_override_styles/hover_mirrored = ExtResource("2_bmuw6")
+theme_override_styles/hover = ExtResource("2_bmuw6")
+theme_override_styles/pressed_mirrored = ExtResource("2_bmuw6")
+theme_override_styles/pressed = ExtResource("2_bmuw6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_csep4")
+text = "New Game"
+script = ExtResource("3_3c76i")
+
+[node name="QuitButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 298.0
+offset_right = 595.0
+offset_bottom = 348.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_4opt1")
+theme_override_styles/hover_pressed = ExtResource("3_4opt1")
+theme_override_styles/hover_mirrored = ExtResource("3_4opt1")
+theme_override_styles/hover = ExtResource("3_4opt1")
+theme_override_styles/pressed_mirrored = ExtResource("3_4opt1")
+theme_override_styles/pressed = ExtResource("3_4opt1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o00qt")
+text = "Quit"
+script = ExtResource("5_stlrf")
+
+[connection signal="pressed" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/QuitButton" to="Control/QuitButton" method="_on_pressed"]

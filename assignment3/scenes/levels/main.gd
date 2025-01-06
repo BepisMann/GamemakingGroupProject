@@ -17,7 +17,11 @@ func _on_death_respawn() -> void:
 		for trap in line.get_children():
 			trap.rearm()
 	
-	$"Player".position = $PlayerRespawnPoint.position
+	var respawn_point = $"Player".get_respawn_point()
+	if respawn_point == 1:
+		$"Player".position = $PlayerRespawnPoint1.position
+	elif respawn_point == 2:
+		$"Player".position = $PlayerRespawnPoint2.position
 	$Death.hide()
 	$UI.show()
 	$"Player".can_control = true
@@ -29,3 +33,7 @@ func _on_death_timer_timeout() -> void:
 	$UI.hide()
 	$Death.show()
 	$Death.play()
+
+
+func _on_trap_room_room_3_player_died() -> void:
+	pass # Replace with function body.
