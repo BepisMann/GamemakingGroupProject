@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=3 uid="uid://gubnpbmfc62b"]
+[gd_scene load_steps=136 format=3 uid="uid://gubnpbmfc62b"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -26,10 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://bomu4kesldakf" path="res://scenes/prefabs/Torch_prefabs/final_torch_shaded.tscn" id="19_blufs"]
 [ext_resource type="PackedScene" uid="uid://bye837x87ohw1" path="res://scenes/prefabs/Traps/trapmap_pitfall.tscn" id="20_bndpi"]
 [ext_resource type="Script" path="res://scenes/levels/movable_wall.gd" id="20_gcix2"]
-[ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
+[ext_resource type="PackedScene" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
 [ext_resource type="AudioStream" uid="uid://c2drme2bmjcsn" path="res://assets/sounds/moving_rock_wall.wav" id="21_fxngg"]
-[ext_resource type="Script" path="res://Scripts/medaillon_holder_with_medalion.gd" id="22_2w3uv"]
 [ext_resource type="PackedScene" uid="uid://bxp3rler6xamr" path="res://scenes/prefabs/Medaillon_related_stuff/final_scarab_beetle_medallion.tscn" id="22_5l8yr"]
 [ext_resource type="PackedScene" uid="uid://co36rcc5rkni0" path="res://scenes/prefabs/Animal_symbols_stuff/air_symbol.tscn" id="27_lvrhl"]
 [ext_resource type="PackedScene" uid="uid://coy81eqxwgfvl" path="res://scenes/prefabs/Animal_symbols_stuff/poop_symbol_3.tscn" id="28_yg1jb"]
@@ -178,17 +177,8 @@ noise = SubResource("FastNoiseLite_ugosn")
 [sub_resource type="BoxShape3D" id="BoxShape3D_a24fv"]
 size = Vector3(2.10132, 1.24593, 0.840698)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i4dmh"]
-size = Vector3(0.709076, 0.760925, 0.0996094)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_uuolf"]
 size = Vector3(0.784302, 0.206329, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_j5uok"]
-size = Vector3(0.78894, 0.18689, 0.803345)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ye50e"]
-size = Vector3(0.81842, 0.240479, 0.778809)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7cypg"]
 size = Vector3(12, 0.25, 10)
@@ -277,6 +267,9 @@ seed = 9832
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kgdbx"]
 noise = SubResource("FastNoiseLite_jcxsd")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5uok"]
+size = Vector3(0.78894, 0.18689, 0.803345)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cg84t"]
 size = Vector3(0.25, 3.5, 20)
@@ -389,6 +382,12 @@ seed = 898322
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f7rdi"]
 noise = SubResource("FastNoiseLite_7wtcc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i4dmh"]
+size = Vector3(0.709076, 0.760925, 0.0996094)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ye50e"]
+size = Vector3(0.81842, 0.240479, 0.778809)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pfe1e"]
 size = Vector3(1.75876, 1.4653, 1)
@@ -1135,35 +1134,8 @@ noise_img = SubResource("NoiseTexture2D_2p4te")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Medaillon_holder" parent="room 1/Wall6" instance=ExtResource("14_yx8ki")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.18, 1.9, 3)
-script = ExtResource("22_2w3uv")
-required_type = "bird"
-
-[node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Wall6/Medaillon_holder"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall6/Medaillon_holder/HolderColliderMedallion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
-shape = SubResource("BoxShape3D_a24fv")
-
-[node name="MedallionBird" type="StaticBody3D" parent="room 1/Wall6/Medaillon_holder"]
-transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("15_ii275")
-medallion_type = "bird"
-
-[node name="Medallion Bird" parent="room 1/Wall6/Medaillon_holder/MedallionBird" instance=ExtResource("16_m0lrl")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall6/Medaillon_holder/MedallionBird"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0177155, 0.0712891, 0.00375366)
-shape = SubResource("BoxShape3D_i4dmh")
-
 [node name="Medaillon_holder2" parent="room 1/Wall6" instance=ExtResource("14_yx8ki")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.18, 1.9, 1)
-script = ExtResource("22_2w3uv")
 required_type = "snake"
 
 [node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Wall6/Medaillon_holder2"]
@@ -1186,59 +1158,6 @@ medallion_type = "snake"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall6/Medaillon_holder2/MedallionSnake"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223999, 0.096756, 0)
 shape = SubResource("BoxShape3D_uuolf")
-
-[node name="Medaillon_holder3" parent="room 1/Wall6" instance=ExtResource("14_yx8ki")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.18, 1.9, -1)
-script = ExtResource("22_2w3uv")
-required_type = "fish"
-
-[node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Wall6/Medaillon_holder3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall6/Medaillon_holder3/HolderColliderMedallion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
-shape = SubResource("BoxShape3D_a24fv")
-
-[node name="MedallionFish" type="StaticBody3D" parent="room 1/Wall6/Medaillon_holder3"]
-transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("15_ii275")
-medallion_type = "fish"
-
-[node name="Medallion Fish" parent="room 1/Wall6/Medaillon_holder3/MedallionFish" instance=ExtResource("18_67mn0")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall6/Medaillon_holder3/MedallionFish"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171509, 0.0852661, -0.00994873)
-shape = SubResource("BoxShape3D_j5uok")
-
-[node name="Medaillon_holder4" parent="room 1/Wall6" instance=ExtResource("14_yx8ki")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.18, 1.9, -3)
-script = ExtResource("22_2w3uv")
-required_type = "scarab"
-
-[node name="HolderColliderMedallion" type="StaticBody3D" parent="room 1/Wall6/Medaillon_holder4"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall6/Medaillon_holder4/HolderColliderMedallion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
-shape = SubResource("BoxShape3D_a24fv")
-
-[node name="MedallionScarab" type="StaticBody3D" parent="room 1/Wall6/Medaillon_holder4"]
-transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("15_ii275")
-medallion_type = "scarab"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/Wall6/Medaillon_holder4/MedallionScarab"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087, 0)
-shape = SubResource("BoxShape3D_ye50e")
-
-[node name="New Scarab_Beetle Medallion" parent="room 1/Wall6/Medaillon_holder4/MedallionScarab" instance=ExtResource("22_5l8yr")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="floor" type="StaticBody3D" parent="room 1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
@@ -1562,6 +1481,19 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0368795, 0.311501, -0.0796509)
 shape = SubResource("BoxShape3D_a24fv")
 
+[node name="MedallionFish" type="StaticBody3D" parent="room 2/PuzzleManagerMedallions/Wall4/Medaillon_holder"]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 0, 0.6, 0.065)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("15_ii275")
+medallion_type = "fish"
+
+[node name="Medallion Fish" parent="room 2/PuzzleManagerMedallions/Wall4/Medaillon_holder/MedallionFish" instance=ExtResource("18_67mn0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/PuzzleManagerMedallions/Wall4/Medaillon_holder/MedallionFish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171509, 0.0852661, -0.00994873)
+shape = SubResource("BoxShape3D_j5uok")
+
 [node name="Wall5" type="StaticBody3D" parent="room 2/PuzzleManagerMedallions"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 27.25, 0, -2.625)
 
@@ -1871,6 +1803,33 @@ ambient_occlusion_texture = ExtResource("2_07y71")
 heightmap_texture = ExtResource("4_de8w0")
 noise_img = SubResource("NoiseTexture2D_f7rdi")
 UV_ratio = 1.0
+
+[node name="MedallionBird" type="StaticBody3D" parent="room 2"]
+transform = Transform3D(-0.95, 0, 8.30516e-08, 0, 0.95, 0, -8.30516e-08, 0, -0.95, 0.75, 0.213, -3)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("15_ii275")
+medallion_type = "bird"
+
+[node name="Medallion Bird" parent="room 2/MedallionBird" instance=ExtResource("16_m0lrl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/MedallionBird"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0177155, 0.0712891, 0.00375366)
+shape = SubResource("BoxShape3D_i4dmh")
+
+[node name="MedallionScarab" type="StaticBody3D" parent="room 2"]
+transform = Transform3D(-0.95, 0, 8.30516e-08, 0, 0.95, 0, -8.30516e-08, 0, -0.95, 17.375, 0.25, -2.625)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("15_ii275")
+medallion_type = "scarab"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room 2/MedallionScarab"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087, 0)
+shape = SubResource("BoxShape3D_ye50e")
+
+[node name="New Scarab_Beetle Medallion" parent="room 2/MedallionScarab" instance=ExtResource("22_5l8yr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="CodeBoard" parent="." instance=ExtResource("35_ltyuo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.702, 1.727, 7.938)

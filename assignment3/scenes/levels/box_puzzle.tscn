@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b26xq008b5d7s"]
+[gd_scene load_steps=31 format=3 uid="uid://bpda3663a6slq"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_0orrd"]
 [ext_resource type="Script" path="res://scenes/levels/box_puzzle.gd" id="1_4304m"]
@@ -115,7 +115,7 @@ radius = 0.05
 [sub_resource type="BoxShape3D" id="BoxShape3D_ph4ah"]
 size = Vector3(9.5, 1.25, 9.5)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 script = ExtResource("1_4304m")
 
 [node name="floor" type="StaticBody3D" parent="."]

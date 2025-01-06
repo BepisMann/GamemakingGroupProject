@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c8nws4p4syfqh"]
+[gd_scene load_steps=44 format=3 uid="uid://c8nws4p4syfqh"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_ey5jh"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://owuwwqyjraq0" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="11_16kps"]
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="12_83jc2"]
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="13_7isom"]
+[ext_resource type="PackedScene" uid="uid://bpda3663a6slq" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
 size = Vector3(42, 0.25, 36)
@@ -549,6 +550,12 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
+
+[node name="Node3D" type="Node3D" parent="walls/Wall25"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.25, 1.56, 0)
+
+[node name="Node3D2" parent="walls/Wall25/Node3D" instance=ExtResource("14_fg5kh")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="Wall4" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66643, 0.411634, 12.4694)
