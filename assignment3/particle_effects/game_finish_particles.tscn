@@ -14,8 +14,8 @@ initial_velocity_max = 6.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_hclxf"]
-radius = 0.1
-height = 0.2
+radius = 0.012
+height = 0.025
 
 [node name="Game_finish_particles" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_k4kco")
