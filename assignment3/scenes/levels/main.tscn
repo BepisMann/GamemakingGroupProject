@@ -148,7 +148,7 @@ size = Vector3(0.25, 27, 4)
 script = ExtResource("1_oiqrf")
 
 [node name="Player" parent="." instance=ExtResource("1_essu7")]
-transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -15.7214, 0.135655, 26.8108)
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -2.80907, 0.135655, 3.99227)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
 offset_left = 2.0

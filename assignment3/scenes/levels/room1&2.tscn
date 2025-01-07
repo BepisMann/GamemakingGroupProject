@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://gubnpbmfc62b"]
+[gd_scene load_steps=137 format=3 uid="uid://gubnpbmfc62b"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_seyrk"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_07y71"]
@@ -40,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="36_p7t87"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.gd" id="37_7uyje"]
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="37_licl5"]
+[ext_resource type="PackedScene" uid="uid://djg0p82u2eujq" path="res://scenes/prefabs/End_door.tscn" id="41_qjjcf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_slq0c"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -1865,6 +1866,9 @@ shape = SubResource("BoxShape3D_gmag4")
 
 [node name="Letter_of_translation" parent="Letter_of_translation" instance=ExtResource("36_p7t87")]
 transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, 0, 0)
+
+[node name="End door test8" parent="." instance=ExtResource("41_qjjcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.584337, 0.125, 8.55268)
 
 [connection signal="body_entered" from="room 1/movable_wall_node/Area3D" to="room 1/movable_wall_node/MovableWall" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="room 1/movable_wall_node/Area3D" to="room 1/movable_wall_node/MovableWall" method="_on_area_3d_body_exited"]
