@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bomu4kesldakf" path="res://scenes/prefabs/Torch_prefabs/final_torch_shaded.tscn" id="19_blufs"]
 [ext_resource type="PackedScene" uid="uid://bye837x87ohw1" path="res://scenes/prefabs/Traps/trapmap_pitfall.tscn" id="20_bndpi"]
 [ext_resource type="Script" path="res://scenes/levels/movable_wall.gd" id="20_gcix2"]
-[ext_resource type="PackedScene" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
+[ext_resource type="PackedScene" uid="uid://c5mg66pv8h5ft" path="res://Scripts/trap_map_holder.tscn" id="20_lbb6p"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="21_emc1s"]
 [ext_resource type="AudioStream" uid="uid://c2drme2bmjcsn" path="res://assets/sounds/moving_rock_wall.wav" id="21_fxngg"]
 [ext_resource type="PackedScene" uid="uid://bxp3rler6xamr" path="res://scenes/prefabs/Medaillon_related_stuff/final_scarab_beetle_medallion.tscn" id="22_5l8yr"]
