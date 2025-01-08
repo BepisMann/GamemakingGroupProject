@@ -31,8 +31,8 @@ expand_mode = 5
 
 [node name="Instructions" type="Label" parent="."]
 layout_mode = 0
-offset_left = 513.0
-offset_top = 595.0
-offset_right = 642.0
+offset_left = 487.0
+offset_top = 593.0
+offset_right = 687.0
 offset_bottom = 618.0
-text = "Click to continue"
+text = "Press any key to continue"

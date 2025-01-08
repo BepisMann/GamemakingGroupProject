@@ -1,5 +1,6 @@
 extends Control
 
+signal letter_closed
 var is_open: bool = false
 
 
@@ -14,6 +15,6 @@ func _on_mouse_click():
 		emit_signal("letter_closed") 
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.is_pressed():
-		print("Mouse got clicked!")
+	if is_open:
+		print("Letter event")
 		_on_mouse_click()

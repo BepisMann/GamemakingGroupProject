@@ -750,4 +750,5 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="playerDied" from="TrapRoom (Room 3)" to="Player" method="_on_trap_room_room_3_player_died"]
+[connection signal="letter_closed" from="UI/Letter" to="." method="_on_letter_closed"]
 [connection signal="playerDied" from="BoulderRoom (Room4)" to="Player" method="_on_trap_room_room_3_player_died"]
