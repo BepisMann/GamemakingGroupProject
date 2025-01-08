@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dppr8h85kj08i"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hb760"]
-[ext_resource type="PackedScene" uid="uid://bqmn6paej6ff7" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
 [ext_resource type="Script" path="res://Scripts/hover_cursor.gd" id="2_wx7vr"]
 [ext_resource type="Script" path="res://Scripts/pickupmessage.gd" id="3_2wlrg"]
 [ext_resource type="AudioStream" uid="uid://vrg71l02tmb5" path="res://assets/sounds/pickup_sound.wav" id="5_6danj"]
@@ -35,7 +35,7 @@ collision_mask = 3
 
 [node name="RayCast2" type="RayCast3D" parent="Indiana_jones_like_character_final_attempt3/Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -2.25, 0)
 collision_mask = 3
 
 [node name="RayCastChess" type="RayCast3D" parent="Indiana_jones_like_character_final_attempt3/Neck/Camera3D"]
