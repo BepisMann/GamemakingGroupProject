@@ -60,11 +60,11 @@ func _ready() -> void:
 	backgroundMusic1.play()
 	stop_timer.start()
 	
-	#correct_code = ["Button3", "Button13", "Button15", "Button6"]
-	#for button_name in correct_code:
-		#var button = $"../Rooms 1&2/CodeBoard/BackGroundBoard".get_node(button_name)
-		#if button:
-			#button.is_locked = false
+	correct_code = ["Button3", "Button13", "Button15", "Button6"]
+	for button_name in correct_code:
+		var button = $"../room3/walls/Wall9/CodeBoard/BackGroundBoard".get_node(button_name)
+		if button:
+			button.is_locked = false
 	
 
 
@@ -321,13 +321,13 @@ func pickup(hand):
 				var button_name = String(item.name)
 				if not pressed_buttons.has(button_name):
 					item.is_pressed = true
-					$"../Rooms 1&2/CodeBoard/Button_pressed_sound".play()
+					$"../room3/walls/Wall9/CodeBoard/Button_pressed_sound".play()
 					pressed_buttons.append(button_name)
 					print(pressed_buttons)
 					check_code()
 				return
 			if !("is_locked" in item) || (item.is_locked == false):
-				if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
+				if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling") and not item.name.to_lower().contains("end_door"):
 					if item:
 						pickup_sound.playing = true
 						print("Picking up item:", item.name)
@@ -407,11 +407,11 @@ func check_code():
 			$Puzzle_solved_sound.play()
 			lock_correct_buttons()
 			puzzle_solved = true
-			$"../Rooms 1&2/CodeBoard/puzzle_solved_particles".emitting = true
-			$"../Rooms 1&2/Static_end_door/AudioStreamPlayer3D".play()
-			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer2".play("Spike_009Action_001")
-			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer3".play("links schanieren_003Action")
-			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer4".play("rechts schanieren_001Action")
+			$"../room3/walls/Wall9/CodeBoard/puzzle_solved_particles".emitting = true
+			$"../room3/Static_end_door/AudioStreamPlayer3D".play()
+			$"../room3/Static_end_door/End_door/AnimationPlayer2".play("Spike_009Action_001")
+			$"../room3/Static_end_door/End_door/AnimationPlayer3".play("links schanieren_003Action")
+			$"../room3/Static_end_door/End_door/AnimationPlayer4".play("rechts schanieren_001Action")
 			$EndDoorTimer.start()
 			
 		else:
@@ -419,11 +419,11 @@ func check_code():
 			
 
 func _on_end_door_timer_timeout() -> void:
-	$"../Rooms 1&2/Static_end_door/middle_hitbox".disabled = true
+	$"../room3/Static_end_door/middle_hitbox".disabled = true
 
 
 func lock_correct_buttons():
-	var codeboard = $"../Rooms 1&2/CodeBoard/BackGroundBoard"
+	var codeboard = $"../room3/walls/Wall9/CodeBoard/BackGroundBoard"
 	if codeboard:
 		for button in codeboard.get_children():
 			if button.has_method("is_locked"):  # Check if the button has 'is_locked
@@ -433,7 +433,7 @@ func lock_correct_buttons():
 
 func reset_buttons():
 	for button_name in pressed_buttons:
-		var button_path = NodePath("../Rooms 1&2/CodeBoard/BackGroundBoard/" + button_name)
+		var button_path = NodePath("../room3/walls/Wall9/CodeBoard/BackGroundBoard/" + button_name)
 		var button = get_node(button_path)
 		if button:
 			button.is_pressed = false

@@ -17,6 +17,3 @@ func _process(delta: float) -> void:
 		global_transform.origin = global_transform.origin.move_toward(initial_position, move_speed * delta)
 
 	
-
-
-
