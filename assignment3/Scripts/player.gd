@@ -545,5 +545,3 @@ func reset_item_rotation_right(item):
 		
 		"Letter_of_translation":
 			$"../UI/LetterUI/Translation_letter_right".visible = true
-
-

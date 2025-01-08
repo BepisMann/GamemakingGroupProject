@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dwnyr0lhb6rsk"]
+[gd_scene load_steps=59 format=3 uid="uid://dwnyr0lhb6rsk"]
 
 [ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
@@ -18,12 +18,12 @@
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="15_4j0oe"]
 [ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
 [ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
-[ext_resource type="PackedScene" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
+[ext_resource type="PackedScene" uid="uid://qex7lpjveo70" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
 [ext_resource type="Texture2D" uid="uid://cis4lqxkm7v51" path="res://Images/ancient_translation_letter.jpg" id="19_o7isg"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
 [ext_resource type="Texture2D" uid="uid://bjymvt56bad17" path="res://Images/Letter_witch_code_sentence.jpg" id="20_p42sn"]
-[ext_resource type="PackedScene" uid="uid://b7vcm5whywh6l" path="res://scenes/prefabs/UI/finish_screen.tscn" id="21_30gsb"]
+[ext_resource type="PackedScene" uid="uid://c8nws4p4syfqh" path="res://scenes/levels/room_3.tscn" id="24_dvvo5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wsoyi"]
 size = Vector3(0.25, 8, 13.7)
@@ -133,23 +133,47 @@ size = Vector3(1.2616, 2.07184, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lkxbl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7liyt"]
-size = Vector3(0.25, 30, 12)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2yhgf"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_df51w"]
 size = Vector3(0.25, 30, 13)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5jomf"]
+[sub_resource type="BoxMesh" id="BoxMesh_yvlkj"]
+size = Vector3(0.25, 30, 13)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8y6x4"]
 size = Vector3(0.25, 27, 4)
 
-[sub_resource type="BoxMesh" id="BoxMesh_8vx6e"]
+[sub_resource type="BoxMesh" id="BoxMesh_ulc2e"]
 size = Vector3(0.25, 27, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ju06y"]
+size = Vector3(0.25, 30, 13)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nmvff"]
+size = Vector3(0.25, 30, 13)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7liyt"]
+size = Vector3(0.25, 30, 14)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2yhgf"]
+size = Vector3(0.25, 30, 14)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_im2v7"]
+size = Vector3(0.25, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i4p8c"]
+size = Vector3(0.25, 3.6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jomf"]
+size = Vector3(0.25, 27, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8vx6e"]
+size = Vector3(0.25, 27, 3)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_oiqrf")
 
 [node name="Player" parent="." instance=ExtResource("1_essu7")]
-transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -2.80907, 0.135655, 3.99227)
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -2.80907, 0.759546, -103.8)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
 offset_left = 2.0
@@ -541,9 +565,6 @@ grow_vertical = 0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("20_p42sn")
 
-[node name="Finish screen" parent="UI" instance=ExtResource("21_30gsb")]
-visible = false
-
 [node name="Corridor 3 - 4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -109.477)
 
@@ -676,12 +697,12 @@ transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.9
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
-shape = SubResource("BoxShape3D_7liyt")
+shape = SubResource("BoxShape3D_df51w")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall3"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 8.88178e-16, 3.72529e-09, 8.88178e-16, 1, 0, 15, 0)
 material_override = SubResource("ShaderMaterial_42c47")
-mesh = SubResource("BoxMesh_2yhgf")
+mesh = SubResource("BoxMesh_yvlkj")
 script = ExtResource("10_5ibgx")
 albedo_texture = ExtResource("4_br4te")
 roughness_texture = ExtResource("9_bj6qn")
@@ -697,12 +718,12 @@ transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.9
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.25, 0)
-shape = SubResource("BoxShape3D_5jomf")
+shape = SubResource("BoxShape3D_8y6x4")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall4"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 13.25, 0)
 material_override = SubResource("ShaderMaterial_42c47")
-mesh = SubResource("BoxMesh_8vx6e")
+mesh = SubResource("BoxMesh_ulc2e")
 script = ExtResource("10_5ibgx")
 albedo_texture = ExtResource("4_br4te")
 roughness_texture = ExtResource("9_bj6qn")
@@ -718,12 +739,117 @@ transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.9
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
-shape = SubResource("BoxShape3D_7liyt")
+shape = SubResource("BoxShape3D_ju06y")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall5"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 8.88178e-16, 3.72529e-09, 8.88178e-16, 1, 0, 15, 0)
 material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_nmvff")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.433
+
+[node name="Wall6" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, 8.53651, -46.068, -264.935)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+shape = SubResource("BoxShape3D_7liyt")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall6"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 8.88178e-16, 3.72529e-09, 8.88178e-16, 1, 0, 15, 0)
+material_override = SubResource("ShaderMaterial_42c47")
 mesh = SubResource("BoxMesh_2yhgf")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.433
+
+[node name="GapBlock" type="StaticBody3D" parent="Corridor 3 - 4/Wall6"]
+transform = Transform3D(-4.84288e-08, 1.49012e-08, -1, 0.173648, 0.984808, -2.98023e-08, 0.984808, -0.173648, -4.37114e-08, 0, 0, 14.1653)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall6/GapBlock"]
+transform = Transform3D(0.992332, 0.123601, 0, -0.123601, 0.992332, 0, 0, 0, 1, -6.611, 2.778, 0.384)
+shape = SubResource("BoxShape3D_im2v7")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall6/GapBlock"]
+transform = Transform3D(0.986571, 0.163326, 0, -0.163326, 0.986572, 0, -4.65661e-10, -2.98023e-08, 0.999999, -6.66331, 2.78706, 0.383972)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_i4p8c")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.433
+
+[node name="Wall7" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, 0.0365107, -42.568, -265.513)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.25, 0)
+shape = SubResource("BoxShape3D_5jomf")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall7"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 13.25, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_8vx6e")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.148
+
+[node name="Wall8" type="StaticBody3D" parent="Corridor 3 - 4"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, -8.33972, -46.068, -264.935)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+shape = SubResource("BoxShape3D_7liyt")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall8"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 8.88178e-16, 3.72529e-09, 8.88178e-16, 1, 0, 15, 0)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_2yhgf")
+script = ExtResource("10_5ibgx")
+albedo_texture = ExtResource("4_br4te")
+roughness_texture = ExtResource("9_bj6qn")
+emission_texture = ExtResource("6_vydj7")
+normal_texture = ExtResource("8_ron21")
+ambient_occlusion_texture = ExtResource("5_k6a76")
+heightmap_texture = ExtResource("7_msxgo")
+noise_img = SubResource("NoiseTexture2D_g7yqn")
+UV_ratio = 0.433
+
+[node name="GapBlock" type="StaticBody3D" parent="Corridor 3 - 4/Wall8"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Corridor 3 - 4/Wall8/GapBlock"]
+transform = Transform3D(0.973579, 0.228351, 0, -0.228351, 0.973579, 0, 0, 0, 1, -6.611, 2.778, 0.384)
+shape = SubResource("BoxShape3D_im2v7")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="Corridor 3 - 4/Wall8/GapBlock"]
+transform = Transform3D(0.973578, 0.228351, 1.86265e-09, -0.228351, 0.973579, 0, 1.86265e-09, -2.98023e-08, 0.999999, -6.61149, 2.77792, 0.383881)
+material_override = SubResource("ShaderMaterial_42c47")
+mesh = SubResource("BoxMesh_i4p8c")
 script = ExtResource("10_5ibgx")
 albedo_texture = ExtResource("4_br4te")
 roughness_texture = ExtResource("9_bj6qn")
@@ -739,6 +865,9 @@ transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-0
 
 [node name="BoulderRoom (Room4)" parent="." instance=ExtResource("17_3cixe")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -115.451)
+
+[node name="room3" parent="." instance=ExtResource("24_dvvo5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.22266, -45.8524, -386.482)
 
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
