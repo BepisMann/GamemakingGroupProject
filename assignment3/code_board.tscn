@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c6h6et1fwxdi4"]
+[gd_scene load_steps=40 format=3 uid="uid://c6h6et1fwxdi4"]
 
 [ext_resource type="Script" path="res://button.gd" id="1_wwuaa"]
 [ext_resource type="Texture2D" uid="uid://h862hss7iq8p" path="res://Images/symbol_1.png" id="2_p48ea"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dgyfmahypvyi3" path="res://Images/symbol_14.png" id="15_antf1"]
 [ext_resource type="Texture2D" uid="uid://u6nm4x1l1n65" path="res://Images/symbol_15.png" id="16_h3mcu"]
 [ext_resource type="Texture2D" uid="uid://bpdd6lrmioktj" path="res://Images/symbol_16.png" id="17_fy4ux"]
+[ext_resource type="PackedScene" uid="uid://d1flbjuic6lrh" path="res://particle_effects/puzzle_solved_particles.tscn" id="18_afpdu"]
+[ext_resource type="AudioStream" uid="uid://d3a0d3c3agju8" path="res://assets/sounds/button_pressed_sound.mp3" id="19_quqfq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_n3gu0"]
 size = Vector3(1, 1, 0.1)
@@ -411,3 +413,9 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="BackGroundBoard/Button16"]
 shape = SubResource("BoxShape3D_wvyba")
+
+[node name="puzzle_solved_particles" parent="." instance=ExtResource("18_afpdu")]
+
+[node name="Button_pressed_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_quqfq")
+volume_db = 1.0
