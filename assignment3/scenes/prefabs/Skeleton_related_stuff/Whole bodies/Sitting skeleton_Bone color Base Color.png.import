@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvt5acl2h5tfx"
-path.s3tc="res://.godot/imported/12946_Stone_Chess_Queen_Side_B_diff.jpg-9443fcb4aa8cf550328d54242c28f780.s3tc.ctex"
+uid="uid://s0ein1yhxved"
+path.s3tc="res://.godot/imported/Sitting skeleton_Bone color Base Color.png-739f772481515c66265ffe9d09df02a4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "e4b47f938f294f71a3511a613c6405ed"
+}
 
 [deps]
 
-source_file="res://assets/chess_pieces/black/Black_Queen/12946_Stone_Chess_Queen_Side_B_diff.jpg"
-dest_files=["res://.godot/imported/12946_Stone_Chess_Queen_Side_B_diff.jpg-9443fcb4aa8cf550328d54242c28f780.s3tc.ctex"]
+source_file="res://scenes/prefabs/Skeleton_related_stuff/Whole bodies/Sitting skeleton_Bone color Base Color.png"
+dest_files=["res://.godot/imported/Sitting skeleton_Bone color Base Color.png-739f772481515c66265ffe9d09df02a4.s3tc.ctex"]
 
 [params]
 

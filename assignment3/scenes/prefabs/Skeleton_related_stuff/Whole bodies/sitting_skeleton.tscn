@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds5qyk0orx1dx"]
+
+[ext_resource type="PackedScene" uid="uid://tauhgnpr5uey" path="res://scenes/prefabs/Skeleton_related_stuff/Whole bodies/Sitting skeleton.glb" id="1_udpfc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4pn0v"]
+size = Vector3(1.63745, 2.82556, 1.46283)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ojxgl"]
+size = Vector3(1.75287, 1.10742, 2.06543)
+
+[node name="Sitting skeleton" instance=ExtResource("1_udpfc")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="12"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00500488, 1.50983, 0.457733)
+shape = SubResource("BoxShape3D_4pn0v")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0132751, 0.627686, 2.21606)
+shape = SubResource("BoxShape3D_ojxgl")
