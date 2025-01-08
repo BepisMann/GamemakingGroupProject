@@ -736,6 +736,9 @@ transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-0
 [node name="BoulderRoom (Room4)" parent="." instance=ExtResource("17_3cixe")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -115.451)
 
+[node name="BoulderPlaceholder" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -115)
+
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
