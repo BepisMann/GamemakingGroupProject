@@ -187,7 +187,7 @@ size = Vector3(0.25, 27, 3)
 script = ExtResource("1_oiqrf")
 
 [node name="Player" parent="." instance=ExtResource("1_essu7")]
-transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0.667797, -45.5179, -389.335)
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, -45.0775, -378.922)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
 offset_left = 2.0
@@ -977,9 +977,6 @@ transform = Transform3D(0.204032, -0.343353, -0.021909, 0.0194951, 0.0369685, -0
 
 [node name="Leg_left3" parent="." instance=ExtResource("35_2s6m3")]
 transform = Transform3D(0.195974, -0.347962, -0.0227323, 0.0194951, 0.0369685, -0.39781, 0.348158, 0.193793, 0.035071, -1.63179, -45.3829, -374.064)
-
-[node name="room4" parent="." instance=ExtResource("24_dvvo5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.22266, -45.8524, -386.482)
 
 [connection signal="piece_moved" from="Player" to="room3" method="_on_player_piece_moved"]
 [connection signal="piece_touched" from="Player" to="room3" method="_on_player_piece_touched"]
