@@ -38,7 +38,7 @@ collision_mask = 3
 [node name="RayCast2" type="RayCast3D" parent="Indiana_jones_like_character_final_attempt3/Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -2.25, 0)
-collision_mask = 3
+collision_mask = 2
 
 [node name="RayCastChess" type="RayCast3D" parent="Indiana_jones_like_character_final_attempt3/Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

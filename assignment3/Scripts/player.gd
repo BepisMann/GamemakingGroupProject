@@ -60,11 +60,11 @@ func _ready() -> void:
 	backgroundMusic1.play()
 	stop_timer.start()
 	
-	correct_code = ["Button3", "Button13", "Button15", "Button6"]
-	for button_name in correct_code:
-		var button = $"../Rooms 1&2/CodeBoard/BackGroundBoard".get_node(button_name)
-		if button:
-			button.is_locked = false
+	#correct_code = ["Button3", "Button13", "Button15", "Button6"]
+	#for button_name in correct_code:
+		#var button = $"../Rooms 1&2/CodeBoard/BackGroundBoard".get_node(button_name)
+		#if button:
+			#button.is_locked = false
 	
 
 
@@ -94,7 +94,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 				rotate_y(-event.relative.x * sensitivity)
 				camera.rotate_x(-event.relative.y * sensitivity)
-				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
+				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 				
 				toggle_hat_visibility(camera.rotation.x)
 
@@ -312,90 +312,91 @@ func get_respawn_point() -> int:
 	return spawn_point
 
 func pickup(hand):
-	var item = raycast2.get_collider()
-	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap" and item.name!= "HolderColliderLetter":
-		if item.name.to_lower().contains("button"):
-			if puzzle_solved:
+	if raycast2.get_collision_mask_value(2):
+		var item = raycast2.get_collider()
+		if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap" and item.name!= "HolderColliderLetter":
+			if item.name.to_lower().contains("button"):
+				if puzzle_solved:
+					return
+				var button_name = String(item.name)
+				if not pressed_buttons.has(button_name):
+					item.is_pressed = true
+					$"../Rooms 1&2/CodeBoard/Button_pressed_sound".play()
+					pressed_buttons.append(button_name)
+					print(pressed_buttons)
+					check_code()
 				return
-			var button_name = String(item.name)
-			if not pressed_buttons.has(button_name):
-				item.is_pressed = true
-				$"../Rooms 1&2/CodeBoard/Button_pressed_sound".play()
-				pressed_buttons.append(button_name)
-				print(pressed_buttons)
-				check_code()
-			return
-		if !("is_locked" in item) || (item.is_locked == false):
-			if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
-				if item:
-					pickup_sound.playing = true
-					print("Picking up item:", item.name)
-					var collision_shape = item.get_node("CollisionShape3D")
-					if collision_shape:
-						collision_shape.disabled = true
-						
-					var parent = item.get_parent()
-					if parent and parent.has_method("remove_medallion"):
-						print("Removing medallion from holder.")
-						label.show_pickup_message("It's stuck in place!")
-						var medallion_from_holder = parent.remove_medallion()
-						if medallion_from_holder:
-							print(type_string(typeof(medallion_from_holder)))
-							if type_string(typeof(medallion_from_holder)) == "int":
-								label.show_pickup_message("It's stuck in place!")
-								item = null
+			if !("is_locked" in item) || (item.is_locked == false):
+				if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
+					if item:
+						pickup_sound.playing = true
+						print("Picking up item:", item.name)
+						var collision_shape = item.get_node("CollisionShape3D")
+						if collision_shape:
+							collision_shape.disabled = true
+							
+						var parent = item.get_parent()
+						if parent and parent.has_method("remove_medallion"):
+							print("Removing medallion from holder.")
+							label.show_pickup_message("It's stuck in place!")
+							var medallion_from_holder = parent.remove_medallion()
+							if medallion_from_holder:
+								print(type_string(typeof(medallion_from_holder)))
+								if type_string(typeof(medallion_from_holder)) == "int":
+									label.show_pickup_message("It's stuck in place!")
+									item = null
+								else:
+									item = medallion_from_holder
 							else:
-								item = medallion_from_holder
-						else:
-							item = null
-					if parent and parent.has_method("remove_torch"):
-						print("Removing torch from holder.")
-						parent.remove_torch()
-					if parent and parent.has_method("remove_map"):
-						print("Removing map from holder.")
-						parent.remove_map()
-					if parent and parent.has_method("remove_letter"):
-						print("Removing letter from holder.")
-						parent.remove_letter()
-					if not item == null:
-						parent.remove_child(item)
-						if hand == "left":
-							print("Adding item to left hand.")
-							left_hand_position.add_child(item)
-							self.left = item.name
-							reset_item_rotation_left(item)
-							if item.name.begins_with("TrapMap"):
-								item.get_parent().visible = false
-							if item.name.begins_with("Letter"):
-								item.get_parent().visible = false
-							if item.name.begins_with("Torch"):
-								held_torch_count += 1
+								item = null
+						if parent and parent.has_method("remove_torch"):
+							print("Removing torch from holder.")
+							parent.remove_torch()
+						if parent and parent.has_method("remove_map"):
+							print("Removing map from holder.")
+							parent.remove_map()
+						if parent and parent.has_method("remove_letter"):
+							print("Removing letter from holder.")
+							parent.remove_letter()
+						if not item == null:
+							parent.remove_child(item)
+							if hand == "left":
+								print("Adding item to left hand.")
+								left_hand_position.add_child(item)
+								self.left = item.name
+								reset_item_rotation_left(item)
+								if item.name.begins_with("TrapMap"):
+									item.get_parent().visible = false
+								if item.name.begins_with("Letter"):
+									item.get_parent().visible = false
+								if item.name.begins_with("Torch"):
+									held_torch_count += 1
+							
+							else:
+								print("Adding item to right hand.")
+								right_hand_position.add_child(item)
+								self.right = item.name
+								reset_item_rotation_right(item)
+								if item.name.begins_with("TrapMap"):
+									item.get_parent().visible = false
+								if item.name.begins_with("Letter"):
+									item.get_parent().visible = false
+								if item.name.begins_with("Torch"):
+									held_torch_count += 1
 						
-						else:
-							print("Adding item to right hand.")
-							right_hand_position.add_child(item)
-							self.right = item.name
-							reset_item_rotation_right(item)
-							if item.name.begins_with("TrapMap"):
-								item.get_parent().visible = false
-							if item.name.begins_with("Letter"):
-								item.get_parent().visible = false
-							if item.name.begins_with("Torch"):
-								held_torch_count += 1
-					
-						print("Item parent after pickup:", item.get_parent().name)
-					
-						if not item.name.begins_with("TrapMap"):
-							item.visible = true
-						if not item.name.begins_with("Letter"):
-							item.visible = true
-					
-						item.collision_layer = 2
-						item.collision_mask = 2
-					
-						label.show_pickup_message("Picked up " + item.name + str(hand))
-				else:
-					print("Error: No valid item to pick up!")
+							print("Item parent after pickup:", item.get_parent().name)
+						
+							if not item.name.begins_with("TrapMap"):
+								item.visible = true
+							if not item.name.begins_with("Letter"):
+								item.visible = true
+						
+							item.collision_layer = 2
+							item.collision_mask = 2
+						
+							label.show_pickup_message("Picked up " + item.name + str(hand))
+					else:
+						print("Error: No valid item to pick up!")
 
 func check_code():
 	if pressed_buttons.size() == 4:
