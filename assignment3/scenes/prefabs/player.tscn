@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hb760"]
 [ext_resource type="PackedScene" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
-[ext_resource type="Script" path="res://Scripts/hover_cursor.gd" id="2_wx7vr"]
 [ext_resource type="Script" path="res://Scripts/pickupmessage.gd" id="3_2wlrg"]
+[ext_resource type="Script" path="res://Scripts/hover_cursor_without_checks.gd" id="3_ci6d7"]
 [ext_resource type="AudioStream" uid="uid://vrg71l02tmb5" path="res://assets/sounds/pickup_sound.wav" id="5_6danj"]
 [ext_resource type="AudioStream" uid="uid://dfhs8k3x8aco6" path="res://assets/sounds/place_item_sound.wav" id="6_rsshs"]
 [ext_resource type="AudioStream" uid="uid://b08e7r2w14yqm" path="res://assets/sounds/Background_music_1.mp3" id="7_ysna7"]
@@ -76,7 +76,7 @@ offset_right = 21.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_wx7vr")
+script = ExtResource("3_ci6d7")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 2

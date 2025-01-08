@@ -121,7 +121,10 @@ func _physics_process(delta: float) -> void:
 			move_selected_piece_to_location()
 		elif raycast_chess.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")):
 			interact_chess_piece()
-		
+		elif raycast2.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")) and raycast2.get_collider().name == "Box_Puzzle":
+			var item = raycast2.get_collider()
+			item.interact()
+			can_control = false
 		elif Input.is_action_just_pressed("left_click"):
 			if left == "" and raycast2.is_colliding():
 				pickup("left")
@@ -156,7 +159,11 @@ func _physics_process(delta: float) -> void:
 				if raycast2.get_collider().name.begins_with("Button"):
 					pickup("right")
 			
-
+	elif not can_control:
+		if raycast2.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")) and raycast2.get_collider().name == "Box_Puzzle":
+			var item = raycast2.get_collider()
+			item.interact()
+			can_control = true
 	# Handle jump and movement.
 	if (can_control):
 		if (can_jump):

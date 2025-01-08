@@ -554,7 +554,7 @@ UV_ratio = 5.0
 [node name="Node3D" type="Node3D" parent="walls/Wall25"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.25, 1.56, 0)
 
-[node name="Node3D2" parent="walls/Wall25/Node3D" instance=ExtResource("14_fg5kh")]
+[node name="Box_Puzzle" parent="walls/Wall25/Node3D" instance=ExtResource("14_fg5kh")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="Wall4" type="StaticBody3D" parent="walls"]
