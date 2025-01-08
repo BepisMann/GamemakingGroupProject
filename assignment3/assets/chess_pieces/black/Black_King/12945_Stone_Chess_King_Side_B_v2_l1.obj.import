@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dhmhjeo0djuay"
+path="res://.godot/imported/12945_Stone_Chess_King_Side_B_v2_l1.obj-39b604ba2a485bdcb3d8ccc74ad64ca8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/12945_Stone_Chess_King_Side_B_v2_l1.obj-39b604ba2a485bdcb3d8ccc74ad64ca8.mesh"]
+
+source_file="res://assets/chess_pieces/black/Black_King/12945_Stone_Chess_King_Side_B_v2_l1.obj"
+dest_files=["res://.godot/imported/12945_Stone_Chess_King_Side_B_v2_l1.obj-39b604ba2a485bdcb3d8ccc74ad64ca8.mesh", "res://.godot/imported/12945_Stone_Chess_King_Side_B_v2_l1.obj-39b604ba2a485bdcb3d8ccc74ad64ca8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

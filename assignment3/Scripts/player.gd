@@ -60,11 +60,11 @@ func _ready() -> void:
 	backgroundMusic1.play()
 	stop_timer.start()
 	
-	correct_code = ["Button3", "Button13", "Button15", "Button6"]
-	for button_name in correct_code:
-		var button = $"../Rooms 1&2/CodeBoard/BackGroundBoard".get_node(button_name)
-		if button:
-			button.is_locked = false
+	#correct_code = ["Button3", "Button13", "Button15", "Button6"]
+	#for button_name in correct_code:
+		#var button = $"../Rooms 1&2/CodeBoard/BackGroundBoard".get_node(button_name)
+		#if button:
+			#button.is_locked = false
 	
 
 
@@ -545,5 +545,3 @@ func reset_item_rotation_right(item):
 		
 		"Letter_of_translation":
 			$"../UI/LetterUI/Translation_letter_right".visible = true
-
-

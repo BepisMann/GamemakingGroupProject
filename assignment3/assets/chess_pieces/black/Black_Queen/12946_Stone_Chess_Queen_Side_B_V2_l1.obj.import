@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bbjhrcp8m8fwd"
+path="res://.godot/imported/12946_Stone_Chess_Queen_Side_B_V2_l1.obj-002ac3601fe9b899c7a54853d9803103.mesh"
+
+[deps]
+
+files=["res://.godot/imported/12946_Stone_Chess_Queen_Side_B_V2_l1.obj-002ac3601fe9b899c7a54853d9803103.mesh"]
+
+source_file="res://assets/chess_pieces/black/Black_Queen/12946_Stone_Chess_Queen_Side_B_V2_l1.obj"
+dest_files=["res://.godot/imported/12946_Stone_Chess_Queen_Side_B_V2_l1.obj-002ac3601fe9b899c7a54853d9803103.mesh", "res://.godot/imported/12946_Stone_Chess_Queen_Side_B_V2_l1.obj-002ac3601fe9b899c7a54853d9803103.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
