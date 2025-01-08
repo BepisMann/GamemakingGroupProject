@@ -46,4 +46,5 @@ func _on_trap_room_room_3_player_died() -> void:
 	add_child(boulder_instance)
 	
 	boulder_instance.position = $BoulderPlaceholder.position
+	boulder_instance.rotation = $BoulderPlaceholder.rotation
 	boulder_instance.name = "BoulderRoom (Room4)"
