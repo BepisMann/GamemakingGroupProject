@@ -1,5 +1,7 @@
 extends Node3D
 
+signal player_won
+
 @onready
 var board: Object = $"../Board"
 @onready
@@ -624,6 +626,8 @@ func resolve_move(move: String) -> void:
 		black_move_log.append(move)
 	white_to_move = !white_to_move
 	
+	await get_tree().create_timer(1.0).timeout
+	
 	# Checking if check mate - white
 	if (white_to_move && white_in_check()):
 		var all_white_moves = all_white_moves_no_expose_king_check()
@@ -640,6 +644,7 @@ func resolve_move(move: String) -> void:
 		
 		if valid_black_moves.size() == 0:
 			print("WHITE HAS WON BY CHECKMATE")
+			emit_signal("player_won")
 			return
 			
 	# TODO:: Bot that actually computes stuff
@@ -665,30 +670,31 @@ func compute_white_pawn_moves(row: int, column: int) -> Array:
 		return moves
 	
 	# Moving ahead - check if blocked:
-	var piece_ahead = get_tile_piece(get_tile(row+1, column))
-	if piece_ahead == null:
-		# Are we hitting the end and promoting?
-		if row + 1 == 8:
-			moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "Q")) # Promote to queen
-			moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "N")) # Promote to knight
-			moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "R")) # Promote to rook
-			moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "B")) # Promote to bishop
-			
-		# Is this the first move for the pawn
-		elif pawn.first_move:
-			var piece_2_ahead = get_tile_piece(get_tile(row+2, column))
-			if piece_2_ahead == null:
-				moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column)))
-				moves.append(str(row, get_column_letter(column), row+2, get_column_letter(column)))
+	if (row < 8):
+		var piece_ahead = get_tile_piece(get_tile(row+1, column))
+		if piece_ahead == null:
+			# Are we hitting the end and promoting?
+			if row + 1 == 8:
+				moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "Q")) # Promote to queen
+				moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "N")) # Promote to knight
+				moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "R")) # Promote to rook
+				moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column), "=", "B")) # Promote to bishop
+				
+			# Is this the first move for the pawn
+			elif pawn.first_move:
+				var piece_2_ahead = get_tile_piece(get_tile(row+2, column))
+				if piece_2_ahead == null:
+					moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column)))
+					moves.append(str(row, get_column_letter(column), row+2, get_column_letter(column)))
+				else:
+					moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column)))
+					
+			# Otherwise just move ahead
 			else:
 				moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column)))
 				
-		# Otherwise just move ahead
-		else:
-			moves.append(str(row, get_column_letter(column), row+1, get_column_letter(column)))
-			
 	# Capturing left
-	if (column > 1):
+	if (column > 1 && row < 8):
 		var piece_left = get_tile_piece(get_tile(row+1, column-1))
 		if piece_left != null  && piece_left.name.to_lower().contains("black"):
 			# Are we capturing into promote?
@@ -701,7 +707,7 @@ func compute_white_pawn_moves(row: int, column: int) -> Array:
 				moves.append(str(row, get_column_letter(column), "x", row+1, get_column_letter(column-1)))
 				
 	# Capturing right
-	if (column < 8):
+	if (column < 8 && row < 8):
 		var piece_right = get_tile_piece(get_tile(row+1, column+1))
 		if piece_right != null && piece_right.name.to_lower().contains("black"):
 			# Are we capturing into promote?
@@ -714,7 +720,7 @@ func compute_white_pawn_moves(row: int, column: int) -> Array:
 				moves.append(str(row, get_column_letter(column), "x", row+1, get_column_letter(column+1)))
 				
 	# En Passant - left
-	if (column > 1):
+	if (column > 1 && row < 8):
 		var piece_left = get_tile_piece(get_tile(row, column-1))
 		if piece_left != null && piece_left.name.to_lower().contains("blackpawn"):
 			var last_move = move_log[-1]
@@ -724,7 +730,7 @@ func compute_white_pawn_moves(row: int, column: int) -> Array:
 				moves.append(str(row, get_column_letter(column), ":", row+1, get_column_letter(column-1)))
 	
 	# En Passant - right
-	if (column < 8):
+	if (column < 8  && row < 8):
 		var piece_right = get_tile_piece(get_tile(row, column+1))
 		if piece_right != null && piece_right.name.to_lower().contains("blackpawn"):
 			var last_move = move_log[-1]
@@ -747,33 +753,34 @@ func compute_black_pawn_moves(row: int, column: int) -> Array:
 	
 	# Moving ahead - check if blocked:
 	var piece_ahead = get_tile_piece(get_tile(row-1, column))
-	if piece_ahead == null:
-		# Are we hitting the end and promoting?
-		if row - 1 == 1:
-			moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "Q")) # Promote to queen
-			moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "N")) # Promote to knight
-			moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "R")) # Promote to rook
-			moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "B")) # Promote to bishop
-			
-		# Is this the first move for the pawn
-		elif pawn.first_move:
-			var piece_2_ahead = get_tile_piece(get_tile(row-2, column))
-			if piece_2_ahead == null:
-				moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column)))
-				moves.append(str(row, get_column_letter(column), row-2, get_column_letter(column)))
+	if (row > 1):
+		if piece_ahead == null:
+			# Are we hitting the end and promoting?
+			if row - 1 == 1:
+				moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "Q")) # Promote to queen
+				moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "N")) # Promote to knight
+				moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "R")) # Promote to rook
+				moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column), "=", "B")) # Promote to bishop
+				
+			# Is this the first move for the pawn
+			elif pawn.first_move:
+				var piece_2_ahead = get_tile_piece(get_tile(row-2, column))
+				if piece_2_ahead == null:
+					moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column)))
+					moves.append(str(row, get_column_letter(column), row-2, get_column_letter(column)))
+				else:
+					moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column)))
+					
+			# Otherwise just move ahead
 			else:
 				moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column)))
-				
-		# Otherwise just move ahead
-		else:
-			moves.append(str(row, get_column_letter(column), row-1, get_column_letter(column)))
 			
 	# Capturing left
-	if (column > 1):
+	if (column > 1 && row > 1):
 		var piece_left = get_tile_piece(get_tile(row-1, column-1))
 		if piece_left != null && piece_left.name.to_lower().contains("white"):
 			# Are we capturing into promote?
-			if row + 1 == 8:
+			if row - 1 == 1:
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column-1), "=", "Q")) # Promote to queen
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column-1), "=", "N")) # Promote to knight
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column-1), "=", "R")) # Promote to rook
@@ -782,11 +789,11 @@ func compute_black_pawn_moves(row: int, column: int) -> Array:
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column-1)))
 				
 	# Capturing right
-	if (column < 8):
+	if (column < 8 && row > 1):
 		var piece_right = get_tile_piece(get_tile(row-1, column+1))
 		if piece_right != null && piece_right.name.to_lower().contains("white"):
 			# Are we capturing into promote?
-			if row + 1 == 8:
+			if row - 1 == 1:
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column+1), "=", "Q")) # Promote to queen
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column+1), "=", "N")) # Promote to knight
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column+1), "=", "R")) # Promote to rook
@@ -795,7 +802,7 @@ func compute_black_pawn_moves(row: int, column: int) -> Array:
 				moves.append(str(row, get_column_letter(column), "x", row-1, get_column_letter(column+1)))
 		
 	# En Passant - left
-	if (column > 1):
+	if (column > 1 && row > 1):
 		var piece_left = get_tile_piece(get_tile(row, column-1))
 		if piece_left != null && piece_left.name.to_lower().contains("whitepawn"):
 			var last_move = move_log[-1]
@@ -805,7 +812,7 @@ func compute_black_pawn_moves(row: int, column: int) -> Array:
 				moves.append(str(row, get_column_letter(column), ":", row-1, get_column_letter(column-1)))
 	
 	# En Passant - right
-	if (column < 8):
+	if (column < 8 && row > 1):
 		var piece_right = get_tile_piece(get_tile(row, column+1))
 		if piece_right != null && piece_right.name.to_lower().contains("whitepawn"):
 			var last_move = move_log[-1]
@@ -1270,7 +1277,7 @@ func compute_white_bishop_moves(row: int, column: int) -> Array:
 		var col_iter = column - 1
 		var piece_ahead = get_tile_piece(get_tile(row_iter, col_iter))
 		
-		while row <= 8 && col_iter >= 1 && piece_ahead == null:
+		while row_iter <= 8 && col_iter >= 1 && piece_ahead == null:
 			moves.append(str(symbol, row, get_column_letter(column), row_iter, get_column_letter(col_iter)))
 			row_iter += 1
 			col_iter -= 1

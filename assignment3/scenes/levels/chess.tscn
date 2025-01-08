@@ -3251,3 +3251,4 @@ libraries = {
 
 [connection signal="piece_moved" from="." to="BoardManager" method="_on_player_piece_moved"]
 [connection signal="piece_touched" from="." to="BoardManager" method="_on_player_piece_touched"]
+[connection signal="player_won" from="BoardManager" to="." method="_on_board_manager_player_won"]

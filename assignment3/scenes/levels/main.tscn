@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dwnyr0lhb6rsk"]
+[gd_scene load_steps=59 format=3 uid="uid://dwnyr0lhb6rsk"]
 
 [ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
@@ -24,7 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
 [ext_resource type="Texture2D" uid="uid://bjymvt56bad17" path="res://Images/Letter_witch_code_sentence.jpg" id="20_p42sn"]
 [ext_resource type="PackedScene" uid="uid://c8nws4p4syfqh" path="res://scenes/levels/room_3.tscn" id="24_dvvo5"]
-[ext_resource type="Script" path="res://scenes/levels/room_3.gd" id="25_tfdx8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wsoyi"]
 size = Vector3(0.25, 8, 13.7)
@@ -869,7 +868,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="room3" parent="." instance=ExtResource("24_dvvo5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.22266, -45.8524, -386.482)
-script = ExtResource("25_tfdx8")
 
 [connection signal="piece_moved" from="Player" to="room3" method="_on_player_piece_moved"]
 [connection signal="piece_touched" from="Player" to="room3" method="_on_player_piece_touched"]
