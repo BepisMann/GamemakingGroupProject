@@ -228,9 +228,6 @@ noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
 UV_ratio = 1.0
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Hallway/Ceiling_Breakable"]
-stream = ExtResource("11_5522k")
-
 [node name="Boulder Support" type="Node3D" parent="Hallway"]
 transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 30, 0)
 
@@ -668,10 +665,14 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 [node name="Box5" parent="Hallway/Floor7/Obstacles2" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
+[node name="BoulderTrapActivated" type="AudioStreamPlayer3D" parent="Hallway"]
+transform = Transform3D(2.98023e-08, 4.37114e-08, 1, 1, -4.37114e-08, -2.98023e-08, 4.37114e-08, 1, -4.37114e-08, 15, 29.4, 0)
+stream = ExtResource("11_5522k")
+
 [connection signal="player_crushed" from="Boulder" to="." method="_on_boulder_player_crushed"]
 [connection signal="body_entered" from="Boulder/Area3D" to="Boulder" method="_on_area_3d_body_entered"]
-[connection signal="finished" from="Hallway/Ceiling_Breakable/AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
 [connection signal="body_entered" from="Hallway/BoulderDropArea" to="." method="_on_boulder_drop_area_body_entered"]
 [connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap2/Trap" to="." method="_on_trap_body_entered_spikes"]
 [connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap4/Trap" to="." method="_on_trap_body_entered_spikes"]
 [connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap6/Trap" to="." method="_on_trap_body_entered_spikes"]
+[connection signal="finished" from="Hallway/BoulderTrapActivated" to="." method="_on_audio_stream_player_3d_finished"]
