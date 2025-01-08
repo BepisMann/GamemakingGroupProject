@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dwnyr0lhb6rsk"]
+[gd_scene load_steps=51 format=3 uid="uid://dwnyr0lhb6rsk"]
 
 [ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
 [ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
 [ext_resource type="PackedScene" uid="uid://qex7lpjveo70" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
+[ext_resource type="PackedScene" uid="uid://coiqfvcw7t0qd" path="res://letter.tscn" id="17_hpt3b"]
 [ext_resource type="Texture2D" uid="uid://cis4lqxkm7v51" path="res://Images/ancient_translation_letter.jpg" id="19_o7isg"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
@@ -404,6 +405,12 @@ noise_img = SubResource("NoiseTexture2D_ojle2")
 UV_ratio = 0.667
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Letter" parent="UI" instance=ExtResource("17_hpt3b")]
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 3.0
+offset_bottom = -1.0
 
 [node name="TrapMapUI" type="Control" parent="UI"]
 layout_mode = 3

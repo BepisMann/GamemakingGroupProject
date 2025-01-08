@@ -1,10 +1,16 @@
 extends Node3D
 @onready var boulder_instance: Node = $"BoulderRoom (Room4)"
+@onready var letter_ui = $"UI/Letter"
 
 var boulder_scene: PackedScene = preload("res://scenes/levels/boulder.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	letter_ui.show_letter()
+	
+	$Player.can_control = false
+	
+	letter_ui.connect("letter_closed", Callable(self, "_on_letter_closed"))
 	$Death.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,3 +54,6 @@ func _on_trap_room_room_3_player_died() -> void:
 	boulder_instance.position = $BoulderPlaceholder.position
 	boulder_instance.rotation = $BoulderPlaceholder.rotation
 	boulder_instance.name = "BoulderRoom (Room4)"
+	
+func _on_letter_closed():
+	$Player.can_control = true

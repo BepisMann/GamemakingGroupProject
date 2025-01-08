@@ -458,6 +458,42 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 [node name="Box5" parent="Hallway/Floor3/Obstacles" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
+[node name="Obstacles2" type="Node3D" parent="Hallway/Floor3"]
+transform = Transform3D(0.258819, 0.965925, 4.2222e-08, 0, -4.37114e-08, 1, 0.965925, -0.258819, -1.13133e-08, 0.466844, -7.4677, 13.7367)
+
+[node name="Box1" parent="Hallway/Floor3/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.306, 0, 1.90465)
+
+[node name="Box2" parent="Hallway/Floor3/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965927, 0, -3.55271e-15, 0, 1, -0.995681, 0.7, 1.67168)
+
+[node name="Box3" parent="Hallway/Floor3/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.818506, 0.291359, 0.495134, -0.2563, 0.956526, -0.139173, -0.514158, -0.012989, 0.857597, -1.264, 0, 0)
+
+[node name="Box4" parent="Hallway/Floor3/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.264, 0, 1.04982)
+
+[node name="Box5" parent="Hallway/Floor3/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
+
+[node name="Obstacles3" type="Node3D" parent="Hallway/Floor3"]
+transform = Transform3D(0.258819, 0.965925, 4.2222e-08, 0, -4.37114e-08, 1, 0.965925, -0.258819, -1.13133e-08, 0.4546, 10.431, -11.6183)
+
+[node name="Box1" parent="Hallway/Floor3/Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.306, 0, 1.90465)
+
+[node name="Box2" parent="Hallway/Floor3/Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965927, 0, -3.55271e-15, 0, 1, -0.995681, 0.7, 1.67168)
+
+[node name="Box3" parent="Hallway/Floor3/Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.818506, 0.291359, 0.495134, -0.2563, 0.956526, -0.139173, -0.514158, -0.012989, 0.857597, -1.264, 0, 0)
+
+[node name="Box4" parent="Hallway/Floor3/Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.264, 0, 1.04982)
+
+[node name="Box5" parent="Hallway/Floor3/Obstacles3" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
+
 [node name="FloorWithTrap4" type="Node3D" parent="Hallway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 162.5, 0, 0)
 
@@ -527,6 +563,24 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 [node name="Box5" parent="Hallway/Floor5/Obstacles" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
+[node name="Obstacles2" type="Node3D" parent="Hallway/Floor5"]
+transform = Transform3D(0.258819, 0.965925, 4.2222e-08, 0, -4.37114e-08, 1, 0.965925, -0.258819, -1.13133e-08, 0.470936, -3.3899, 12.3937)
+
+[node name="Box1" parent="Hallway/Floor5/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.836516, 0.224144, 0.5, -0.258819, 0.965926, 0, -0.482963, -0.12941, 0.866025, -1.306, 0, 1.90465)
+
+[node name="Box2" parent="Hallway/Floor5/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 3.43165e-15, -0.258819, 0.965927, -9.19508e-16, -3.55271e-15, -7.94094e-22, 1, -0.995681, 0.7, 1.67168)
+
+[node name="Box3" parent="Hallway/Floor5/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.818506, 0.291359, 0.495134, -0.2563, 0.956526, -0.139173, -0.514158, -0.012989, 0.857597, -1.264, 0, 0)
+
+[node name="Box4" parent="Hallway/Floor5/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.264, 0, 1.04982)
+
+[node name="Box5" parent="Hallway/Floor5/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.951251, 0.254887, 0.173648, -0.258819, 0.965926, 0, -0.167731, -0.0449435, 0.984808, -0.89, 0.7, 0.486)
+
 [node name="FloorWithTrap6" type="Node3D" parent="Hallway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 217.5, 0, 0)
 
@@ -594,6 +648,24 @@ transform = Transform3D(0.818506, 0.291359, 0.495134, -0.2563, 0.956526, -0.1391
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.264, 0, 1.04982)
 
 [node name="Box5" parent="Hallway/Floor7/Obstacles" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
+
+[node name="Obstacles2" type="Node3D" parent="Hallway/Floor7"]
+transform = Transform3D(0.258819, 0.965925, 4.2222e-08, 0, -4.37114e-08, 1, 0.965925, -0.258819, -1.13133e-08, 0.473999, 7.17544, -14.8569)
+
+[node name="Box1" parent="Hallway/Floor7/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.306, 0, 1.90465)
+
+[node name="Box2" parent="Hallway/Floor7/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965927, 0, -3.55271e-15, 0, 1, -0.995681, 0.7, 1.67168)
+
+[node name="Box3" parent="Hallway/Floor7/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.818506, 0.291359, 0.495134, -0.2563, 0.956526, -0.139173, -0.514158, -0.012989, 0.857597, -1.264, 0, 0)
+
+[node name="Box4" parent="Hallway/Floor7/Obstacles2" instance=ExtResource("11_o67se")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -1.264, 0, 1.04982)
+
+[node name="Box5" parent="Hallway/Floor7/Obstacles2" instance=ExtResource("11_o67se")]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.89, 0.7, 0.486)
 
 [connection signal="player_crushed" from="Boulder" to="." method="_on_boulder_player_crushed"]
