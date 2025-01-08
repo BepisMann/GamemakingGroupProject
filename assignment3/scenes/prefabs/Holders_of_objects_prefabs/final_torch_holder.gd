@@ -6,8 +6,12 @@ extends Node3D
 
 var is_occupied = true
 
+var raycast: Node
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	raycast = find_raycast_from_group()
+	
 	if torch:
 		torch.global_transform = holding_position.global_transform
 		torch.position += Vector3(-0.02, -1.6, -0.17)
@@ -54,6 +58,13 @@ func update_holder_collider():
 		var collision_shape = holder_collider.get_node("CollisionShape3D")
 		if collision_shape:
 			collision_shape.disabled = is_occupied
-	var raycast = get_node("../../Player/Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1")
+	# var raycast = get_node("../../Player/Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1")
 	if raycast:
 		raycast.force_raycast_update()
+
+
+func find_raycast_from_group() -> Node:
+	var raycasts = get_tree().get_nodes_in_group("raycast_group")
+	if raycasts.size() > 0:
+		return raycasts[0]  # Return the first one found
+	return null
