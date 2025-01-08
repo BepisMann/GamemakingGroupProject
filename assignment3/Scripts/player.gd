@@ -101,6 +101,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func interact_with_button(button: StaticBody3D) -> void:
 	if button.has_method("is_pressed"):
 		button.is_pressed = true
+		
 		print("Button pressed:", button.name)
 
 func toggle_hat_visibility(pitch: float) -> void:
@@ -319,6 +320,7 @@ func pickup(hand):
 			var button_name = String(item.name)
 			if not pressed_buttons.has(button_name):
 				item.is_pressed = true
+				$"../Rooms 1&2/CodeBoard/Button_pressed_sound".play()
 				pressed_buttons.append(button_name)
 				print(pressed_buttons)
 				check_code()
@@ -401,11 +403,24 @@ func check_code():
 		print("Correct code:", correct_code)
 		if pressed_buttons == correct_code:
 			print("Final door opened!")
+			$Puzzle_solved_sound.play()
 			lock_correct_buttons()
 			puzzle_solved = true
+			$"../Rooms 1&2/CodeBoard/puzzle_solved_particles".emitting = true
+			$"../Rooms 1&2/Static_end_door/AudioStreamPlayer3D".play()
+			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer2".play("Spike_009Action_001")
+			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer3".play("links schanieren_003Action")
+			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer4".play("rechts schanieren_001Action")
+			$EndDoorTimer.start()
+			
 		else:
 			reset_buttons()
 			
+
+func _on_end_door_timer_timeout() -> void:
+	$"../Rooms 1&2/Static_end_door/middle_hitbox".disabled = true
+
+
 func lock_correct_buttons():
 	var codeboard = $"../Rooms 1&2/CodeBoard/BackGroundBoard"
 	if codeboard:
@@ -423,6 +438,8 @@ func reset_buttons():
 			button.is_pressed = false
 			button.global_transform.origin = button.initial_position  # Reset position
 	pressed_buttons.clear()
+	$Failed_puzzle_sound.play()
+	
 	print("Buttons reset after incorrect attempt!")
 
 
@@ -528,3 +545,5 @@ func reset_item_rotation_right(item):
 		
 		"Letter_of_translation":
 			$"../UI/LetterUI/Translation_letter_right".visible = true
+
+

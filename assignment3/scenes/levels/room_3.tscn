@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c8nws4p4syfqh"]
+[gd_scene load_steps=53 format=3 uid="uid://c8nws4p4syfqh"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_ey5jh"]
@@ -14,6 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="12_83jc2"]
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="13_7isom"]
 [ext_resource type="PackedScene" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
+[ext_resource type="PackedScene" uid="uid://djg0p82u2eujq" path="res://scenes/prefabs/End_door.tscn" id="15_7f4no"]
+[ext_resource type="AudioStream" uid="uid://dblsyyc12elv4" path="res://assets/sounds/end_door_opening_sound.mp3" id="16_ona5v"]
+[ext_resource type="Script" path="res://scenes/levels/finish_game_area.gd" id="17_l1g4n"]
+[ext_resource type="AudioStream" uid="uid://bmr3rf0xk7e2" path="res://assets/sounds/finishing_game_sound.mp3" id="18_fknua"]
+[ext_resource type="PackedScene" uid="uid://btx8luf6251tf" path="res://particle_effects/game_finish_particles.tscn" id="19_2ah4d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
 size = Vector3(42, 0.25, 36)
@@ -178,6 +183,18 @@ size = Vector3(0.25, 3.5, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uaf4p"]
 size = Vector3(0.25, 3.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1h5m"]
+size = Vector3(1.23451, 8.21259, 3.17221)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85yeu"]
+size = Vector3(1.16078, 8.21259, 2.72656)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynl1y"]
+size = Vector3(3.14058, 6.77942, 2.4873)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7lnef"]
+size = Vector3(5, 5.63379, 3.04797)
 
 [node name="room3" type="Node3D"]
 
@@ -460,13 +477,36 @@ maximum_amplitude = 0.1
 UV_ratio = 5.0
 
 [node name="Wall16" type="StaticBody3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0898, 0.18984, 8.45614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0898, 0.18984, 15.2199)
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33836, 0)
 shape = SubResource("BoxShape3D_pfqir")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall16"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.35, 0)
+material_override = SubResource("ShaderMaterial_2ooe2")
+mesh = SubResource("BoxMesh_brmcq")
+skeleton = NodePath("../../Wall3")
+script = ExtResource("9_r5g5s")
+albedo_texture = ExtResource("1_g24c8")
+roughness_texture = ExtResource("6_moc7v")
+emission_texture = ExtResource("3_1vcoo")
+normal_texture = ExtResource("5_o14mw")
+ambient_occlusion_texture = ExtResource("2_ey5jh")
+heightmap_texture = ExtResource("4_jpxnb")
+noise_img = SubResource("NoiseTexture2D_on4nd")
+maximum_amplitude = 0.1
+UV_ratio = 5.0
+
+[node name="Wall26" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0898, 0.18984, 2.28341)
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33836, 0)
+shape = SubResource("BoxShape3D_pfqir")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall26"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.35, 0)
 material_override = SubResource("ShaderMaterial_2ooe2")
 mesh = SubResource("BoxMesh_brmcq")
@@ -820,3 +860,39 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
+
+[node name="Static_end_door" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 21.8821, 0.144543, 8.75897)
+
+[node name="End_door" parent="Static_end_door" instance=ExtResource("15_7f4no")]
+
+[node name="left_hitbox" type="CollisionShape3D" parent="Static_end_door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22142, 2.5936, 0.510696)
+shape = SubResource("BoxShape3D_t1h5m")
+
+[node name="right_hitbox" type="CollisionShape3D" parent="Static_end_door"]
+transform = Transform3D(0.99952, 0, -0.0309921, 0, 1, 0, 0.0309921, 0, 0.99952, 2.24583, 2.5936, 0.862156)
+shape = SubResource("BoxShape3D_85yeu")
+
+[node name="middle_hitbox" type="CollisionShape3D" parent="Static_end_door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0962753, 2.88971, 0.742676)
+shape = SubResource("BoxShape3D_ynl1y")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Static_end_door"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.13253, 0)
+stream = ExtResource("16_ona5v")
+pitch_scale = 0.5
+
+[node name="Finish_game_area" type="Area3D" parent="Static_end_door"]
+script = ExtResource("17_l1g4n")
+
+[node name="area" type="CollisionShape3D" parent="Static_end_door/Finish_game_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.72529e-07, 2.68311, -4.37738)
+shape = SubResource("BoxShape3D_7lnef")
+
+[node name="Finishing_game_sound" type="AudioStreamPlayer" parent="Static_end_door/Finish_game_area"]
+stream = ExtResource("18_fknua")
+
+[node name="Game_finish_particles" parent="Static_end_door/Finish_game_area" instance=ExtResource("19_2ah4d")]
+
+[connection signal="body_entered" from="Static_end_door/Finish_game_area" to="Static_end_door/Finish_game_area" method="_on_body_entered"]

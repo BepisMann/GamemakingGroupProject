@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dwnyr0lhb6rsk"]
+[gd_scene load_steps=51 format=3 uid="uid://dwnyr0lhb6rsk"]
 
 [ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
 [ext_resource type="Texture2D" uid="uid://bjymvt56bad17" path="res://Images/Letter_witch_code_sentence.jpg" id="20_p42sn"]
+[ext_resource type="PackedScene" uid="uid://b7vcm5whywh6l" path="res://scenes/prefabs/UI/finish_screen.tscn" id="21_30gsb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wsoyi"]
 size = Vector3(0.25, 8, 13.7)
@@ -539,6 +540,9 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("20_p42sn")
+
+[node name="Finish screen" parent="UI" instance=ExtResource("21_30gsb")]
+visible = false
 
 [node name="Corridor 3 - 4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -109.477)
