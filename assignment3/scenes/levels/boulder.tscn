@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://qex7lpjveo70"]
+[gd_scene load_steps=40 format=3 uid="uid://qex7lpjveo70"]
 
 [ext_resource type="Script" path="res://scenes/levels/boulder_room.gd" id="1_oinhh"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="2_ednmt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b0d35aau102f8" path="res://assets/rock/rock_08_nor_gl_4k.png" id="7_m8j38"]
 [ext_resource type="Texture2D" uid="uid://c3rc4er0f1gpj" path="res://assets/rock/rock_08_rough_4k.png" id="8_bp18q"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_8jbc7"]
+[ext_resource type="AudioStream" uid="uid://cei2unsvdxewg" path="res://assets/sounds/stones-falling-6375.mp3" id="11_5522k"]
 [ext_resource type="PackedScene" uid="uid://r37ooq822q6i" path="res://assets/box/Crate/box.tscn" id="11_o67se"]
 [ext_resource type="Script" path="res://scenes/prefabs/Traps/boulder_room_spike_trap.gd" id="12_8rpwh"]
 
@@ -23,7 +24,7 @@ roughness_texture = ExtResource("8_bp18q")
 emission_texture = ExtResource("5_a3g01")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_moclx"]
-radius = 15.5
+radius = 20.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvbou"]
 size = Vector3(0.25, 30, 265)
@@ -155,6 +156,8 @@ rings = 10
 material = SubResource("StandardMaterial3D_84iig")
 
 [node name="Area3D" type="Area3D" parent="Boulder"]
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boulder/Area3D"]
 shape = SubResource("SphereShape3D_moclx")
@@ -224,6 +227,9 @@ heightmap_texture = ExtResource("6_8org4")
 noise_img = SubResource("NoiseTexture2D_ilvqe")
 maximum_amplitude = 0.5
 UV_ratio = 1.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Hallway/Ceiling_Breakable"]
+stream = ExtResource("11_5522k")
 
 [node name="Boulder Support" type="Node3D" parent="Hallway"]
 transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 30, 0)
@@ -356,6 +362,8 @@ UV_ratio = 7.833
 
 [node name="Floor1" type="StaticBody3D" parent="Hallway"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 50, 0, 0)
+collision_layer = 129
+collision_mask = 129
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hallway/Floor1"]
 shape = SubResource("BoxShape3D_2vdoo")
@@ -590,6 +598,7 @@ transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 
 
 [connection signal="player_crushed" from="Boulder" to="." method="_on_boulder_player_crushed"]
 [connection signal="body_entered" from="Boulder/Area3D" to="Boulder" method="_on_area_3d_body_entered"]
+[connection signal="finished" from="Hallway/Ceiling_Breakable/AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
 [connection signal="body_entered" from="Hallway/BoulderDropArea" to="." method="_on_boulder_drop_area_body_entered"]
 [connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap2/Trap" to="." method="_on_trap_body_entered_spikes"]
 [connection signal="bodyEnteredSpikes" from="Hallway/FloorWithTrap4/Trap" to="." method="_on_trap_body_entered_spikes"]

@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="36_p7t87"]
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.gd" id="37_7uyje"]
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="37_licl5"]
-[ext_resource type="PackedScene" uid="uid://djg0p82u2eujq" path="res://scenes/prefabs/End_door.tscn" id="41_qjjcf"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/End_door.tscn" id="41_qjjcf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_slq0c"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://scenes/prefabs/Holders_of_objects_prefabs/trap_map_holder.gd" id="15_4j0oe"]
 [ext_resource type="Texture2D" uid="uid://s6o8rm2iyq7w" path="res://Images/final_trap_map.png" id="15_387hy"]
 [ext_resource type="Texture2D" uid="uid://b1im57nbvbn67" path="res://Images/Final_trap_map_2.png" id="16_xhins"]
-[ext_resource type="PackedScene" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
+[ext_resource type="PackedScene" uid="uid://qex7lpjveo70" path="res://scenes/levels/boulder.tscn" id="17_3cixe"]
 [ext_resource type="Texture2D" uid="uid://cis4lqxkm7v51" path="res://Images/ancient_translation_letter.jpg" id="19_o7isg"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
@@ -148,7 +148,7 @@ size = Vector3(0.25, 27, 4)
 script = ExtResource("1_oiqrf")
 
 [node name="Player" parent="." instance=ExtResource("1_essu7")]
-transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -2.80907, 0.135655, 3.99227)
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -2.80907, 0.135655, -117.5)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
 offset_left = 2.0
@@ -735,6 +735,9 @@ transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-0
 
 [node name="BoulderRoom (Room4)" parent="." instance=ExtResource("17_3cixe")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -115.451)
+
+[node name="BoulderPlaceholder" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -115)
 
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
