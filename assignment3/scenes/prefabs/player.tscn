@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dppr8h85kj08i"]
+[gd_scene load_steps=12 format=3 uid="uid://dppr8h85kj08i"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hb760"]
-[ext_resource type="PackedScene" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
+[ext_resource type="PackedScene" uid="uid://bqmn6paej6ff7" path="res://scenes/prefabs/indiana_jones_like_character_final_attempt_3.tscn" id="2_hnyfr"]
+[ext_resource type="Script" path="res://Scripts/hover_cursor.gd" id="2_wx7vr"]
 [ext_resource type="Script" path="res://Scripts/pickupmessage.gd" id="3_2wlrg"]
-[ext_resource type="Script" path="res://Scripts/hover_cursor_without_checks.gd" id="3_ci6d7"]
 [ext_resource type="AudioStream" uid="uid://vrg71l02tmb5" path="res://assets/sounds/pickup_sound.wav" id="5_6danj"]
 [ext_resource type="AudioStream" uid="uid://dfhs8k3x8aco6" path="res://assets/sounds/place_item_sound.wav" id="6_rsshs"]
 [ext_resource type="AudioStream" uid="uid://b08e7r2w14yqm" path="res://assets/sounds/Background_music_1.mp3" id="7_ysna7"]
 [ext_resource type="AudioStream" uid="uid://cisp1jvof2y5d" path="res://assets/sounds/dark-guitar-130435.mp3" id="8_noa7u"]
+[ext_resource type="AudioStream" uid="uid://kiro8coo3pv3" path="res://assets/sounds/puzzle_solved_sound.mp3" id="9_o828e"]
+[ext_resource type="AudioStream" uid="uid://brtm1eqkm6d5s" path="res://assets/sounds/puzzle_failed_sound.mp3" id="10_prg7f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m3jx0"]
 size = Vector3(2.035, 6.98, 3.1)
@@ -76,7 +78,7 @@ offset_right = 21.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_ci6d7")
+script = ExtResource("2_wx7vr")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 2
@@ -115,7 +117,18 @@ wait_time = 15.35
 wait_time = 0.5
 one_shot = true
 
+[node name="EndDoorTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Puzzle_solved_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_o828e")
+
+[node name="Failed_puzzle_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_prg7f")
+volume_db = 5.0
+
 [connection signal="timeout" from="Control/Label/PickupTimer" to="Control/Label" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="Background_music_1/BackgroundMusicLoopTimer" to="." method="_on_background_music_loop_timer_timeout"]
 [connection signal="timeout" from="Death_sound/DeathSoundLoopTimer" to="." method="_on_death_sound_loop_timer_timeout"]
 [connection signal="timeout" from="Death_sound/DeathSoundDelay" to="." method="_on_death_sound_delay_timeout"]
+[connection signal="timeout" from="EndDoorTimer" to="." method="_on_end_door_timer_timeout"]
