@@ -181,7 +181,7 @@ noise = SubResource("FastNoiseLite_lniye")
 size = Vector3(0.25, 3.5, 22)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t5g76"]
-size = Vector3(0.25, 3.5, 22)
+size = Vector3(0.25, 3.5, 26)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ie8ng"]
 
@@ -577,7 +577,7 @@ transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.9
 shape = SubResource("BoxShape3D_8stx4")
 
 [node name="Wall29" type="StaticBody3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 29.6796, 0.18984, 8.5928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6796, 0.18984, 8.5928)
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall29"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
