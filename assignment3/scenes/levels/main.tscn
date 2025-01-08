@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
 [ext_resource type="Texture2D" uid="uid://bjymvt56bad17" path="res://Images/Letter_witch_code_sentence.jpg" id="20_p42sn"]
 [ext_resource type="PackedScene" uid="uid://c8nws4p4syfqh" path="res://scenes/levels/room_3.tscn" id="24_dvvo5"]
-[ext_resource type="PackedScene" uid="uid://ds5qyk0orx1dx" path="res://scenes/prefabs/Skeleton_related_stuff/Whole bodies/sitting_skeleton.tscn" id="25_uy1jq"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/Skeleton_related_stuff/Whole bodies/sitting_skeleton.tscn" id="25_uy1jq"]
 [ext_resource type="PackedScene" uid="uid://dn064hj652tir" path="res://scenes/prefabs/Skeleton_related_stuff/Individual bones/Skull_test2.glb" id="27_a8phs"]
 [ext_resource type="PackedScene" uid="uid://csw3lvsrl5uoy" path="res://scenes/prefabs/Skeleton_related_stuff/Multiple bones/Arm.right1.glb" id="28_vqdwg"]
 [ext_resource type="PackedScene" uid="uid://gxeiq53cw4u2" path="res://scenes/prefabs/Skeleton_related_stuff/Individual bones/Humerus.left1.glb" id="29_v75kf"]
@@ -186,7 +186,7 @@ size = Vector3(0.25, 27, 3)
 script = ExtResource("1_oiqrf")
 
 [node name="Player" parent="." instance=ExtResource("1_essu7")]
-transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -2.80907, 0.759546, -100.711)
+transform = Transform3D(-0.25, 0, 2.18557e-08, 0, 0.25, 0, -2.18557e-08, 0, -0.25, -10.8903, -45.0405, -394.808)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
 offset_left = 2.0
@@ -822,9 +822,6 @@ heightmap_texture = ExtResource("7_msxgo")
 noise_img = SubResource("NoiseTexture2D_g7yqn")
 UV_ratio = 0.433
 
-[node name="Ribcage+Pelvis1" parent="Corridor 3 - 4/Wall6" instance=ExtResource("17_eld60")]
-transform = Transform3D(0.0694025, -0.00280569, 0.393923, 0.393602, -0.0159119, -0.0694592, 0.0161574, 0.399674, -9.30605e-09, 0.347137, 0.826508, 5.77093)
-
 [node name="Ribcage+Pelvis3" parent="Corridor 3 - 4/Wall6" instance=ExtResource("17_eld60")]
 transform = Transform3D(0.00183331, 0.0232323, 0.399321, -0.0314138, -0.398083, 0.0233045, 0.39876, -0.0314672, -1.09009e-09, 0.331696, 0.408051, 2.76312)
 
@@ -977,6 +974,11 @@ transform = Transform3D(0.204032, -0.343353, -0.021909, 0.0194951, 0.0369685, -0
 [node name="Leg_left3" parent="." instance=ExtResource("35_2s6m3")]
 transform = Transform3D(0.195974, -0.347962, -0.0227323, 0.0194951, 0.0369685, -0.39781, 0.348158, 0.193793, 0.035071, -1.63179, -45.3829, -374.064)
 
+[node name="room4" parent="." instance=ExtResource("24_dvvo5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.22266, -45.8524, -386.482)
+
+[connection signal="piece_moved" from="Player" to="room3" method="_on_player_piece_moved"]
+[connection signal="piece_touched" from="Player" to="room3" method="_on_player_piece_touched"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
