@@ -321,7 +321,7 @@ func pickup(hand):
 				var button_name = String(item.name)
 				if not pressed_buttons.has(button_name):
 					item.is_pressed = true
-					$"../Rooms 1&2/CodeBoard/Button_pressed_sound".play()
+					$"../room3/walls/Wall9/CodeBoard/Button_pressed_sound".play()
 					pressed_buttons.append(button_name)
 					print(pressed_buttons)
 					check_code()
