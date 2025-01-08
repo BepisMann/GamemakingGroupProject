@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://br7nk15xybiky"
-path="res://.godot/imported/End door test8.glb-18a836be2a690bc1b4abdb8967cacf4f.scn"
+uid="uid://tauhgnpr5uey"
+path="res://.godot/imported/Sitting skeleton.glb-c2abe44c8ac10632400ffc537695f633.scn"
 
 [deps]
 
-source_file="res://scenes/prefabs/End door test8.glb"
-dest_files=["res://.godot/imported/End door test8.glb-18a836be2a690bc1b4abdb8967cacf4f.scn"]
+source_file="res://scenes/prefabs/Skeleton_related_stuff/Whole bodies/Sitting skeleton.glb"
+dest_files=["res://.godot/imported/Sitting skeleton.glb-c2abe44c8ac10632400ffc537695f633.scn"]
 
 [params]
 

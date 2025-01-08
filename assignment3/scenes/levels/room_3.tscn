@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://owuwwqyjraq0" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="11_16kps"]
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="12_83jc2"]
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="13_7isom"]
-[ext_resource type="PackedScene" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
+[ext_resource type="PackedScene" uid="uid://bpda3663a6slq" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
 size = Vector3(42, 0.25, 36)

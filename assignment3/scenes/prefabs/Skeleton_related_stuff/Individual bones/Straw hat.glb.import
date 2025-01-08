@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://br7nk15xybiky"
-path="res://.godot/imported/End door test8.glb-18a836be2a690bc1b4abdb8967cacf4f.scn"
+uid="uid://c08r0dtni5gf3"
+path="res://.godot/imported/Straw hat.glb-582fc59c3ecefd48b2a67c6ed1c9e99e.scn"
 
 [deps]
 
-source_file="res://scenes/prefabs/End door test8.glb"
-dest_files=["res://.godot/imported/End door test8.glb-18a836be2a690bc1b4abdb8967cacf4f.scn"]
+source_file="res://scenes/prefabs/Skeleton_related_stuff/Individual bones/Straw hat.glb"
+dest_files=["res://.godot/imported/Straw hat.glb-582fc59c3ecefd48b2a67c6ed1c9e99e.scn"]
 
 [params]
 
