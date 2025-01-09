@@ -13,6 +13,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func reset() -> void:
+	if $BoardManager.can_play:
+		$BoardManager.reset_board_to_position($BoardManager.puzzleMoveLog)
 
 func _on_room_3_piece_moved(body: Object) -> void:
 	emit_signal("piece_moved", body)
