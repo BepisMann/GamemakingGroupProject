@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://c8nws4p4syfqh"]
+[gd_scene load_steps=58 format=3 uid="uid://c8nws4p4syfqh"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_ey5jh"]
@@ -9,8 +9,10 @@
 [ext_resource type="Script" path="res://Scripts/floor.gd" id="7_vb3pm"]
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="8_pp5fe"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_r5g5s"]
+[ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="10_58aub"]
 [ext_resource type="PackedScene" uid="uid://c6h6et1fwxdi4" path="res://code_board.tscn" id="10_lyy32"]
 [ext_resource type="PackedScene" uid="uid://owuwwqyjraq0" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="11_16kps"]
+[ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="11_v1jtj"]
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="12_83jc2"]
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="13_7isom"]
 [ext_resource type="PackedScene" uid="uid://bpda3663a6slq" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
@@ -166,6 +168,11 @@ seed = 5
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_on4nd"]
 noise = SubResource("FastNoiseLite_lniye")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wjmko"]
+size = Vector3(1.2616, 2.07184, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hj73"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbc0c"]
 size = Vector3(0.19165, 0.457153, 0.535599)
 
@@ -177,6 +184,9 @@ size = Vector3(0.25, 3.5, 11)
 
 [sub_resource type="BoxMesh" id="BoxMesh_brmcq"]
 size = Vector3(0.25, 3.5, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7x0gu"]
+size = Vector3(0.1, 0.3, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xgsvx"]
 size = Vector3(0.25, 3.5, 4)
@@ -399,6 +409,28 @@ noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
+[node name="Final_torch holder_w1" parent="walls/Wall3" instance=ExtResource("10_58aub")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -0.834011, 1.8, 0)
+
+[node name="Torch" type="StaticBody3D" parent="walls/Wall3/Final_torch holder_w1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="walls/Wall3/Final_torch holder_w1/Torch" instance=ExtResource("11_v1jtj")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder_w1/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_wjmko")
+
+[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall3/Final_torch holder_w1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder_w1/HolderCollider"]
+shape = SubResource("BoxShape3D_1hj73")
+
 [node name="Wall9" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.1604, 0.18984, 2.97153)
 
@@ -596,6 +628,41 @@ transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 
 
 [node name="Box_Puzzle" parent="walls/Wall25/Node3D" instance=ExtResource("14_fg5kh")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="walls/Wall25/Node3D"]
+transform = Transform3D(1, -3.72413e-21, 3.55271e-15, -3.55271e-15, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+
+[node name="Letter_of_code" parent="walls/Wall25/Node3D" instance=ExtResource("12_83jc2")]
+transform = Transform3D(0.5, -1.79995e-21, -5.32907e-15, 5.32907e-15, -2.18557e-08, 0.5, -2.11758e-22, -0.5, -2.18557e-08, 0, 0.108787, 1.46)
+visible = false
+
+[node name="Area3D" type="Area3D" parent="walls/Wall25"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall25/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, 0.0847812, 0)
+shape = SubResource("BoxShape3D_7x0gu")
+
+[node name="Final_torch holder_w1" parent="walls/Wall25" instance=ExtResource("10_58aub")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 2.27202, 1.8, 1.65386)
+
+[node name="Torch" type="StaticBody3D" parent="walls/Wall25/Final_torch holder_w1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
+collision_layer = 3
+collision_mask = 3
+
+[node name="final_torch" parent="walls/Wall25/Final_torch holder_w1/Torch" instance=ExtResource("11_v1jtj")]
+transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall25/Final_torch holder_w1/Torch"]
+transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
+shape = SubResource("BoxShape3D_wjmko")
+
+[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall25/Final_torch holder_w1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall25/Final_torch holder_w1/HolderCollider"]
+shape = SubResource("BoxShape3D_1hj73")
 
 [node name="Wall4" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66643, 0.411634, 12.4694)
@@ -895,4 +962,5 @@ stream = ExtResource("18_fknua")
 
 [node name="Game_finish_particles" parent="Static_end_door/Finish_game_area" instance=ExtResource("19_2ah4d")]
 
+[connection signal="body_entered" from="walls/Wall25/Area3D" to="walls/Wall25/Node3D/Box_Puzzle" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Static_end_door/Finish_game_area" to="Static_end_door/Finish_game_area" method="_on_body_entered"]

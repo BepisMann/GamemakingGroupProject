@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://qf0vgex6tah1"]
+[gd_scene load_steps=5 format=3 uid="uid://qf0vgex6tah1"]
 
 [ext_resource type="Texture2D" uid="uid://cis4lqxkm7v51" path="res://Images/ancient_translation_letter.jpg" id="1_jiwqq"]
 
@@ -8,7 +8,10 @@ size = Vector2(2, 1.6)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bs8in"]
 albedo_texture = ExtResource("1_jiwqq")
 
-[node name="Letter_of_translation" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgipj"]
+size = Vector3(1, 0, 0.8)
+
+[node name="Letter_of_translation" type="StaticBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -20,3 +23,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bs8in")
 transform = Transform3D(0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, 0, 0)
 mesh = SubResource("PlaneMesh_aby54")
 surface_material_override/0 = SubResource("StandardMaterial3D_bs8in")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hgipj")
