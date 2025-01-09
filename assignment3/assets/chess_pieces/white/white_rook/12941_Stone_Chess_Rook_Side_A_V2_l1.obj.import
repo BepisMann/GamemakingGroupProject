@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://6vvst22ggi2c"
+path="res://.godot/imported/12941_Stone_Chess_Rook_Side_A_V2_l1.obj-e0cbb2bc0a9abe4760025bafa9926904.mesh"
+
+[deps]
+
+files=["res://.godot/imported/12941_Stone_Chess_Rook_Side_A_V2_l1.obj-e0cbb2bc0a9abe4760025bafa9926904.mesh"]
+
+source_file="res://assets/chess_pieces/white/white_rook/12941_Stone_Chess_Rook_Side_A_V2_l1.obj"
+dest_files=["res://.godot/imported/12941_Stone_Chess_Rook_Side_A_V2_l1.obj-e0cbb2bc0a9abe4760025bafa9926904.mesh", "res://.godot/imported/12941_Stone_Chess_Rook_Side_A_V2_l1.obj-e0cbb2bc0a9abe4760025bafa9926904.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
