@@ -21,6 +21,7 @@ radius = 14.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84iig"]
 albedo_texture = ExtResource("3_g5n8i")
 roughness_texture = ExtResource("8_bp18q")
+emission_enabled = true
 emission_texture = ExtResource("5_a3g01")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_moclx"]
