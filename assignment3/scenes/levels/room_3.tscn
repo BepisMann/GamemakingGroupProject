@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://c8nws4p4syfqh"]
+[gd_scene load_steps=66 format=3 uid="uid://c8nws4p4syfqh"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
 [ext_resource type="Script" path="res://scenes/levels/room_3.gd" id="1_sv716"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://owuwwqyjraq0" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="11_16kps"]
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="12_83jc2"]
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="13_7isom"]
-[ext_resource type="PackedScene" uid="uid://bpda3663a6slq" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
+[ext_resource type="PackedScene" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="14_xci4d"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="15_3ypb5"]
 [ext_resource type="PackedScene" uid="uid://djg0p82u2eujq" path="res://scenes/prefabs/End_door.tscn" id="15_7f4no"]
@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://btx8luf6251tf" path="res://particle_effects/game_finish_particles.tscn" id="19_2ah4d"]
 [ext_resource type="PackedScene" uid="uid://boxg1lyj0p2jk" path="res://scenes/prefabs/Furniture_stuff/Skeleton chess puzzle with chair and table.glb" id="20_ghn8g"]
 [ext_resource type="PackedScene" uid="uid://7svyrk2m3snk" path="res://scenes/levels/chess.tscn" id="21_twq6i"]
-[ext_resource type="PackedScene" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
+[ext_resource type="PackedScene" uid="uid://cfa2kd6h4t8r3" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
 size = Vector3(42, 0.25, 36)
@@ -122,8 +122,8 @@ size = Vector3(1.2616, 2.07184, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jmxdo"]
 size = Vector3(0.25, 3.5, 7)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bevkq"]
-size = Vector3(0.25, 3.5, 4)
+[sub_resource type="BoxShape3D" id="BoxShape3D_svq6m"]
+size = Vector3(0.25, 3.5, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0r56v"]
 size = Vector3(0.25, 3.5, 20)
@@ -196,6 +196,9 @@ size = Vector3(0.25, 3.5, 11)
 
 [sub_resource type="BoxMesh" id="BoxMesh_brmcq"]
 size = Vector3(0.25, 3.5, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bevkq"]
+size = Vector3(0.25, 3.5, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xgsvx"]
 size = Vector3(0.25, 3.5, 4)
@@ -470,7 +473,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.553
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-shape = SubResource("BoxShape3D_bevkq")
+shape = SubResource("BoxShape3D_svq6m")
 
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall2"]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.2, 0)

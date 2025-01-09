@@ -31,6 +31,7 @@ var held_torch_count: int = 0
 signal player_died
 signal piece_touched
 signal piece_moved
+signal change_letter_bool(new_value: bool)
 
 var pressed_buttons: Array = []
 var correct_code: Array = []
@@ -83,6 +84,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (can_control):
 		if event is InputEventMouseButton:
 			if event.pressed:
+				emit_signal("change_letter_bool", false)
+				print("Mouse clicked")
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 		elif event.is_action_pressed("ui_cancel"):

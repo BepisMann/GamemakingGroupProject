@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dwnyr0lhb6rsk"]
+[gd_scene load_steps=74 format=3 uid="uid://dwnyr0lhb6rsk"]
 
 [ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c3wlsp7vk20ys" path="res://scenes/prefabs/Skeleton_related_stuff/Individual bones/Ribcage+Pelvis1.glb" id="17_eld60"]
 [ext_resource type="Texture2D" uid="uid://cis4lqxkm7v51" path="res://Images/ancient_translation_letter.jpg" id="19_o7isg"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
+[ext_resource type="PackedScene" uid="uid://coiqfvcw7t0qd" path="res://letter.tscn" id="20_air8g"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
 [ext_resource type="Texture2D" uid="uid://bjymvt56bad17" path="res://Images/Letter_witch_code_sentence.jpg" id="20_p42sn"]
 [ext_resource type="PackedScene" uid="uid://b7vcm5whywh6l" path="res://scenes/prefabs/UI/finish_screen.tscn" id="21_bif6u"]
@@ -524,6 +525,8 @@ grow_vertical = 0
 scale = Vector2(0.67, 0.67)
 texture = ExtResource("16_xhins")
 
+[node name="Letter" parent="UI" instance=ExtResource("20_air8g")]
+
 [node name="LetterUI" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
@@ -977,6 +980,9 @@ transform = Transform3D(0.204032, -0.343353, -0.021909, 0.0194951, 0.0369685, -0
 
 [node name="Leg_left3" parent="." instance=ExtResource("35_2s6m3")]
 transform = Transform3D(0.195974, -0.347962, -0.0227323, 0.0194951, 0.0369685, -0.39781, 0.348158, 0.193793, 0.035071, -1.63179, -45.3829, -374.064)
+
+[node name="BoulderPlaceholder" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -115)
 
 [connection signal="piece_moved" from="Player" to="room3" method="_on_player_piece_moved"]
 [connection signal="piece_touched" from="Player" to="room3" method="_on_player_piece_touched"]

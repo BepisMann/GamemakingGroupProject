@@ -1,20 +1,11 @@
 extends Control
 
-signal letter_closed
-var is_open: bool = false
+var is_open: bool = true
 
+func _process(delta: float) -> void:
+	if is_open == false:
+		queue_free()
 
-func show_letter():
-	is_open = true
-	visible = true
-
-func _on_mouse_click():
-	if is_open:
-		is_open = false
-		visible = false
-		emit_signal("letter_closed") 
-
-func _unhandled_input(event):
-	if is_open:
-		print("Letter event")
-		_on_mouse_click()
+func set_letter_bool(new_value: bool):
+	is_open = new_value
+	print("Letter boolean updated to: ", is_open)
