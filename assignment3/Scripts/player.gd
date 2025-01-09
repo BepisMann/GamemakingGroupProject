@@ -85,9 +85,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.pressed:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-		elif event.is_action_pressed("ui_cancel"):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			if event is InputEventMouseMotion:
 				var sensitivity := 0.003
@@ -97,7 +94,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 				
 				toggle_hat_visibility(camera.rotation.x)
-
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 func interact_with_button(button: StaticBody3D) -> void:
 	if button.has_method("is_pressed"):
 		button.is_pressed = true
@@ -122,7 +120,12 @@ func _physics_process(delta: float) -> void:
 			move_selected_piece_to_location()
 		elif raycast_chess.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")):
 			interact_chess_piece()
-		
+		elif raycast2.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")) and raycast2.get_collider().name == "Box_Puzzle":
+			player.visible =  false
+			camera.current = false
+			var item = raycast2.get_collider()
+			item.interact(self)
+			can_control = false
 		elif Input.is_action_just_pressed("left_click"):
 			if left == "" and raycast2.is_colliding():
 				pickup("left")
@@ -157,6 +160,9 @@ func _physics_process(delta: float) -> void:
 				if raycast2.get_collider().name.begins_with("Button"):
 					pickup("right")
 			
+	elif !can_control:
+		if raycast2.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")) and raycast2.get_collider().name == "Box_Puzzle":
+			end_interaction()
 
 	# Handle jump and movement.
 	if (can_control):
@@ -546,3 +552,11 @@ func reset_item_rotation_right(item):
 		
 		"Letter_of_translation":
 			$"../UI/LetterUI/Translation_letter_right".visible = true
+
+
+func end_interaction():
+	player.visible =  false
+	camera.current = false
+	var item: Object = $"../room3/walls/Wall25/Node3D/Box_Puzzle"
+	item.interact(self)
+	can_control = true

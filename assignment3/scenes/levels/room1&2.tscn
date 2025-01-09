@@ -367,12 +367,12 @@ size = Vector3(20.2, 0.25, 20.2)
 [sub_resource type="BoxMesh" id="BoxMesh_u3sct"]
 size = Vector3(20.2, 0.25, 20.2)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_dmyah"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mrhrb"]
 noise_type = 3
 seed = 231552
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mewvl"]
-noise = SubResource("FastNoiseLite_dmyah")
+noise = SubResource("FastNoiseLite_mrhrb")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7wtcc"]
 noise_type = 3
