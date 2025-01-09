@@ -7,6 +7,7 @@ var solved: bool = false
 var interactable: bool = false
 var is_rotating: bool = false
 var check_speed: bool  = false
+var player_is_interacting: bool = false
 @onready var ball := $ball
 @onready var speed_check_timer := $speedcheck
 @onready var camera := $"../Camera3D"
@@ -51,6 +52,7 @@ func rotate_box(target_angle):
 
 func interact(playernode):
 	player = playernode
+	player_is_interacting = !player_is_interacting
 	if interactable:
 		camera.current = false
 		interactable = false
@@ -59,11 +61,12 @@ func interact(playernode):
 		interactable = true
 		
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	solved = true
-	letter.visible = true
-	camera.current = false
-	player.end_interaction()
-	print ("box puzzle solved")
+	if (player_is_interacting):
+		solved = true
+		letter.visible = true
+		camera.current = false
+		player.end_interaction()
+		print ("box puzzle solved")
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

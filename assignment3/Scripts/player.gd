@@ -160,7 +160,7 @@ func _physics_process(delta: float) -> void:
 				if raycast2.get_collider().name.begins_with("Button"):
 					pickup("right")
 			
-	elif not can_control:
+	elif !can_control:
 		if raycast2.is_colliding() && (Input.is_action_just_pressed("left_click") || Input.is_action_just_pressed("right_click")) and raycast2.get_collider().name == "Box_Puzzle":
 			end_interaction()
 
