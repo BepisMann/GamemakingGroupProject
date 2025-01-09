@@ -321,7 +321,7 @@ func pickup(hand):
 	if raycast2.get_collision_mask_value(2):
 		var item = raycast2.get_collider()
 		if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap" and item.name!= "HolderColliderLetter":
-			if item.name.to_lower().contains("button"):
+			if item.name.to_lower().contains("button") && !item.name.to_lower().contains("restart"):
 				if puzzle_solved:
 					return
 				var button_name = String(item.name)
@@ -331,6 +331,11 @@ func pickup(hand):
 					pressed_buttons.append(button_name)
 					print(pressed_buttons)
 					check_code()
+				return
+			if item.name.to_lower().contains("restart"):
+				item.is_pressed = true
+				$"../room3/walls/Wall9/CodeBoard/Button_pressed_sound".play()
+				$"../room3".reset_chess()
 				return
 			if !("is_locked" in item) || (item.is_locked == false):
 				if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling") and not item.name.to_lower().contains("end_door"):

@@ -11,10 +11,10 @@
 [ext_resource type="Shader" path="res://assets/rock/square_wall.gdshader" id="8_pp5fe"]
 [ext_resource type="Script" path="res://Scripts/wall.gd" id="9_r5g5s"]
 [ext_resource type="PackedScene" uid="uid://c6h6et1fwxdi4" path="res://code_board.tscn" id="10_lyy32"]
-[ext_resource type="PackedScene" uid="uid://owuwwqyjraq0" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="11_16kps"]
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="12_83jc2"]
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="13_7isom"]
 [ext_resource type="PackedScene" uid="uid://bpda3663a6slq" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
+[ext_resource type="PackedScene" uid="uid://owuwwqyjraq0" path="res://scenes/prefabs/Holders_of_objects_prefabs/letter_holder.tscn" id="14_r4bpm"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="14_xci4d"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="15_3ypb5"]
 [ext_resource type="PackedScene" uid="uid://djg0p82u2eujq" path="res://scenes/prefabs/End_door.tscn" id="15_7f4no"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://boxg1lyj0p2jk" path="res://scenes/prefabs/Furniture_stuff/Skeleton chess puzzle with chair and table.glb" id="20_ghn8g"]
 [ext_resource type="PackedScene" uid="uid://7svyrk2m3snk" path="res://scenes/levels/chess.tscn" id="21_twq6i"]
 [ext_resource type="PackedScene" uid="uid://cfa2kd6h4t8r3" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
+[ext_resource type="Script" path="res://button.gd" id="26_00e8k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
 size = Vector3(42, 0.25, 36)
@@ -187,12 +188,6 @@ size = Vector3(0.25, 3.5, 26)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ie8ng"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qbc0c"]
-size = Vector3(0.19165, 0.457153, 0.535599)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_n60lg"]
-size = Vector3(1, 0.228271, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_pfqir"]
 size = Vector3(0.25, 3.5, 11)
 
@@ -220,8 +215,16 @@ size = Vector3(3.14058, 6.77942, 2.4873)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lnef"]
 size = Vector3(5, 5.63379, 3.04797)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_esyql"]
-size = Vector3(1, 0.228271, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_p8sjp"]
+size = Vector3(0.15, 0.15, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8n7lv"]
+albedo_color = Color(0, 0, 0, 1)
+uv1_scale = Vector3(2.5, 2.5, 2.5)
+uv1_offset = Vector3(0.395, -0.15, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvk3u"]
+size = Vector3(0.166161, 0.162216, 0.127075)
 
 [node name="room3" type="Node3D"]
 script = ExtResource("1_sv716")
@@ -718,34 +721,6 @@ shape = SubResource("BoxShape3D_ie8ng")
 [node name="CodeBoard" parent="walls/Wall9" instance=ExtResource("10_lyy32")]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -7.48448, 1.3942, 9.8044)
 
-[node name="letter_holder" parent="walls/Wall9" instance=ExtResource("11_16kps")]
-transform = Transform3D(0.2, 0, -7.45058e-10, 0, 0.2, 0, 7.45058e-10, 0, 0.2, -8.21095, 1.35498, 9.48373)
-
-[node name="letter_holder2" parent="walls/Wall9" instance=ExtResource("11_16kps")]
-transform = Transform3D(0.2, 0, -7.45058e-10, 0, 0.2, 0, 7.45058e-10, 0, 0.2, -8.21095, 0.884738, 9.48373)
-
-[node name="Letter_of_code" type="StaticBody3D" parent="walls/Wall9"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.18472, 1.99607, 9.64152)
-
-[node name="Letter_of_code" parent="walls/Wall9/Letter_of_code" instance=ExtResource("12_83jc2")]
-transform = Transform3D(-2.18557e-08, 0.5, -2.18557e-08, 0, -2.18557e-08, -0.5, -0.5, -2.18557e-08, 9.55343e-16, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/Letter_of_code"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133057, -0.0055542, -0.0144119)
-shape = SubResource("BoxShape3D_qbc0c")
-
-[node name="Letter_of_translation" type="StaticBody3D" parent="walls/Wall9"]
-transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, -9.20176, 1.20317, 9.65801)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/Letter_of_translation"]
-transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, -0.0296631, 0)
-shape = SubResource("BoxShape3D_n60lg")
-
-[node name="Letter_of_translation" parent="walls/Wall9/Letter_of_translation" instance=ExtResource("13_7isom")]
-transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, 0, 0)
-
 [node name="Final_torch holder2" parent="walls/Wall9" instance=ExtResource("14_xci4d")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.206615, 1.7, -4.86425)
 
@@ -835,6 +810,12 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
+
+[node name="letter_holder" parent="walls/Wall16" instance=ExtResource("14_r4bpm")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -0.211, 0, -3.767)
+
+[node name="letter_holder2" parent="walls/Wall16" instance=ExtResource("14_r4bpm")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -0.211, 0, -2.983)
 
 [node name="Wall27" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.3503, 0.18984, 20.6091)
@@ -1521,13 +1502,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.12015)
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 27.6051, 0.621447, 8.10142)
 
 [node name="ChessRoom" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9856, 0.25, -2.122)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10.9856, 0.25, -2.122)
 
 [node name="Skeleton chess puzzle with chair and table" parent="ChessRoom" instance=ExtResource("20_ghn8g")]
 transform = Transform3D(-1.5299e-08, 0, -0.35, 0, 0.35, 0, 0.35, 0, -1.5299e-08, 0.967888, 0.261756, 0)
 
 [node name="ChessRoom" parent="ChessRoom" instance=ExtResource("21_twq6i")]
-transform = Transform3D(-7.43094e-10, 0, -0.017, 0, 0.017, 0, 0.017, 0, -7.43094e-10, -0.391945, 0.691042, -0.435269)
+transform = Transform3D(-7.43094e-10, 0, -0.017, 0, 0.017, 0, 0.017, 0, -7.43094e-10, -0.294335, 0.691042, -0.435269)
 
 [node name="Letter_of_translation_position" type="Node3D" parent="ChessRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052, 0.691, -0.094)
@@ -1535,17 +1516,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052, 0.691, -0.094)
 [node name="Letter_before_solution" type="Node3D" parent="ChessRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.97354)
 
-[node name="Letter_of_translation" type="StaticBody3D" parent="ChessRoom/Letter_before_solution"]
+[node name="Letter_of_translation" type="Node3D" parent="ChessRoom/Letter_before_solution"]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ChessRoom/Letter_before_solution/Letter_of_translation"]
-transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, -0.0296631, 0)
-shape = SubResource("BoxShape3D_esyql")
 
 [node name="Letter_of_translation" parent="ChessRoom/Letter_before_solution/Letter_of_translation" instance=ExtResource("13_7isom")]
 transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, 0, 0)
+
+[node name="RestartButton" type="StaticBody3D" parent="ChessRoom"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.386829, 0.696905, -0.0936378)
+collision_layer = 3
+script = ExtResource("26_00e8k")
+
+[node name="RestartButton" type="MeshInstance3D" parent="ChessRoom/RestartButton"]
+mesh = SubResource("BoxMesh_p8sjp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_8n7lv")
+
+[node name="Area3D" type="Area3D" parent="ChessRoom/RestartButton/RestartButton"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChessRoom/RestartButton/RestartButton/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44164e-05, -0.00179291, 0.00750732)
+shape = SubResource("BoxShape3D_bvk3u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChessRoom/RestartButton"]
+shape = SubResource("BoxShape3D_bvk3u")
+
+[node name="Label3D" type="Label3D" parent="ChessRoom/RestartButton"]
+transform = Transform3D(-4.37114e-08, 1, 0, 1, 4.37114e-08, 8.74228e-08, 8.74228e-08, 3.82137e-15, -1, -0.00576782, -0.000348926, -0.0265787)
+pixel_size = 0.0004
+text = "Press 
+this to 
+restart"
+font_size = 90
+autowrap_mode = 2
 
 [connection signal="piece_moved" from="." to="ChessRoom/ChessRoom" method="_on_room_3_piece_moved"]
 [connection signal="piece_touched" from="." to="ChessRoom/ChessRoom" method="_on_room_3_piece_touched"]

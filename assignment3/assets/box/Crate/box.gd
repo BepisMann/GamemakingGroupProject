@@ -15,4 +15,8 @@ func break_crate() -> void:
 
 
 func _on_audio_stream_player_3d_finished() -> void:
-	queue_free()
+	self.hide()
+	
+	await get_tree().create_timer(4.0).timeout
+	
+	self.show()

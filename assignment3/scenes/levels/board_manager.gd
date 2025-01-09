@@ -970,6 +970,11 @@ func resolve_move_bot_response(move: String) -> void:
 		var all_black_moves = all_black_moves_no_expose_king_check()
 		var valid_black_moves = validate_moves(all_black_moves)
 		
+		if valid_black_moves.size() == 0:
+			print("WHITE HAS WON BY CHECKMATE")
+			game_over = true
+			emit_signal("player_won")
+			return
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
 		var random_move = rng.randi_range(0, valid_black_moves.size()-1)
