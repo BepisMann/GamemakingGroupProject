@@ -372,11 +372,15 @@ func pickup(hand):
 								self.left = item.name
 								reset_item_rotation_left(item)
 								if item.name.begins_with("TrapMap"):
+									print(item.name)
 									item.get_parent().visible = false
-								if item.name.begins_with("Letter"):
+								elif item.name.begins_with("Letter"):
+									print(item.name)
 									item.get_parent().visible = false
-								if item.name.begins_with("Torch"):
-									held_torch_count += 1
+								else:
+									item.get_parent().visible = true
+									if item.name.begins_with("Torch"):
+										held_torch_count += 1
 							
 							else:
 								print("Adding item to right hand.")
@@ -385,10 +389,12 @@ func pickup(hand):
 								reset_item_rotation_right(item)
 								if item.name.begins_with("TrapMap"):
 									item.get_parent().visible = false
-								if item.name.begins_with("Letter"):
+								elif item.name.begins_with("Letter"):
 									item.get_parent().visible = false
-								if item.name.begins_with("Torch"):
-									held_torch_count += 1
+								else:
+									item.get_parent().visible = true
+									if item.name.begins_with("Torch"):
+										held_torch_count += 1
 						
 							print("Item parent after pickup:", item.get_parent().name)
 						
