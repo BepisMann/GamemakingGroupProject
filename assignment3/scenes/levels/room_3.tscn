@@ -1,7 +1,6 @@
-[gd_scene load_steps=65 format=3 uid="uid://c8nws4p4syfqh"]
+[gd_scene load_steps=53 format=3 uid="uid://c8nws4p4syfqh"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
-[ext_resource type="Script" path="res://scenes/levels/room_3.gd" id="1_sv716"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_ey5jh"]
 [ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="3_1vcoo"]
 [ext_resource type="Texture2D" uid="uid://bnkb36lbpvxix" path="res://assets/rock/rock_08_disp_4k.png" id="4_jpxnb"]
@@ -15,16 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://c4u74f3e7y5bc" path="res://scenes/prefabs/letter_of_code.tscn" id="12_83jc2"]
 [ext_resource type="PackedScene" uid="uid://qf0vgex6tah1" path="res://scenes/prefabs/translation_letter.tscn" id="13_7isom"]
 [ext_resource type="PackedScene" uid="uid://bpda3663a6slq" path="res://scenes/levels/box_puzzle.tscn" id="14_fg5kh"]
-[ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="14_xci4d"]
-[ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="15_3ypb5"]
 [ext_resource type="PackedScene" uid="uid://djg0p82u2eujq" path="res://scenes/prefabs/End_door.tscn" id="15_7f4no"]
 [ext_resource type="AudioStream" uid="uid://dblsyyc12elv4" path="res://assets/sounds/end_door_opening_sound.mp3" id="16_ona5v"]
 [ext_resource type="Script" path="res://scenes/levels/finish_game_area.gd" id="17_l1g4n"]
 [ext_resource type="AudioStream" uid="uid://bmr3rf0xk7e2" path="res://assets/sounds/finishing_game_sound.mp3" id="18_fknua"]
 [ext_resource type="PackedScene" uid="uid://btx8luf6251tf" path="res://particle_effects/game_finish_particles.tscn" id="19_2ah4d"]
-[ext_resource type="PackedScene" uid="uid://boxg1lyj0p2jk" path="res://scenes/prefabs/Furniture_stuff/Skeleton chess puzzle with chair and table.glb" id="20_ghn8g"]
-[ext_resource type="PackedScene" uid="uid://7svyrk2m3snk" path="res://scenes/levels/chess.tscn" id="21_twq6i"]
-[ext_resource type="PackedScene" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
 size = Vector3(42, 0.25, 36)
@@ -114,11 +108,6 @@ size = Vector3(0.25, 3.5, 7)
 [sub_resource type="BoxMesh" id="BoxMesh_gomqg"]
 size = Vector3(0.25, 3.5, 7)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2o6yc"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8stx4"]
-size = Vector3(1.2616, 2.07184, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_jmxdo"]
 size = Vector3(0.25, 3.5, 7)
 
@@ -177,14 +166,6 @@ seed = 5
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_on4nd"]
 noise = SubResource("FastNoiseLite_lniye")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rlffa"]
-size = Vector3(0.25, 3.5, 22)
-
-[sub_resource type="BoxMesh" id="BoxMesh_t5g76"]
-size = Vector3(0.25, 3.5, 26)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ie8ng"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbc0c"]
 size = Vector3(0.19165, 0.457153, 0.535599)
 
@@ -207,7 +188,7 @@ size = Vector3(0.25, 3.5, 4)
 size = Vector3(1.23451, 8.21259, 3.17221)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85yeu"]
-size = Vector3(0.696113, 8.21259, 2.72656)
+size = Vector3(1.16078, 8.21259, 2.72656)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ynl1y"]
 size = Vector3(3.14058, 6.77942, 2.4873)
@@ -215,11 +196,7 @@ size = Vector3(3.14058, 6.77942, 2.4873)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lnef"]
 size = Vector3(5, 5.63379, 3.04797)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_esyql"]
-size = Vector3(1, 0.228271, 1)
-
 [node name="room3" type="Node3D"]
-script = ExtResource("1_sv716")
 
 [node name="floor+ceiling" type="Node3D" parent="."]
 
@@ -311,28 +288,6 @@ noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Final_torch holder2" parent="walls/Wall8" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.245, 1.3, -0.102)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall8/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall8/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall8/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall8/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall8/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
 [node name="Wall19" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2275, 0.411634, 16.7799)
 
@@ -354,28 +309,6 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall19" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.0949745, 1.09717, -0.463665)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall19/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall19/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall19/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall19/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall19/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
 
 [node name="Wall20" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.7689, 0.411634, 20.2999)
@@ -399,28 +332,6 @@ noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Final_torch holder2" parent="walls/Wall20" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.245001, 1.17928, -0.102128)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall20/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall20/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall20/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall20/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall20/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
 [node name="Wall12" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.66134, 0.411634, -3.8966)
 
@@ -442,28 +353,6 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall12" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.297093, 1.7, -0.102128)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall12/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall12/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall12/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall12/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall12/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
 
 [node name="Wall2" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.55353, 0.411634, 6.97835)
@@ -510,161 +399,6 @@ noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Final_torch holder2" parent="walls/Wall3" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.245, 1.3, -8.221)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall3/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall3/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall3/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="Final_torch holder3" parent="walls/Wall3" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.245, 1.08697, 4.81968)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall3/Final_torch holder3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder3/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall3/Final_torch holder3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall3/Final_torch holder3/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder3/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="Final_torch holder4" parent="walls/Wall3" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.275, 1.488, -1.985)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall3/Final_torch holder4"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder4/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall3/Final_torch holder4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall3/Final_torch holder4/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall3/Final_torch holder4/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="Wall29" type="StaticBody3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6796, 0.18984, 8.5928)
-
-[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-shape = SubResource("BoxShape3D_rlffa")
-
-[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall29"]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.35, -0.0612741)
-material_override = SubResource("ShaderMaterial_2ooe2")
-mesh = SubResource("BoxMesh_t5g76")
-skeleton = NodePath("../../Wall3")
-script = ExtResource("9_r5g5s")
-albedo_texture = ExtResource("1_g24c8")
-roughness_texture = ExtResource("6_moc7v")
-emission_texture = ExtResource("3_1vcoo")
-normal_texture = ExtResource("5_o14mw")
-ambient_occlusion_texture = ExtResource("2_ey5jh")
-heightmap_texture = ExtResource("4_jpxnb")
-noise_img = SubResource("NoiseTexture2D_on4nd")
-maximum_amplitude = 0.1
-UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall29" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.205366, 1.3, -8.221)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall29/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall29/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall29/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall29/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall29/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="Final_torch holder3" parent="walls/Wall29" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.241268, 1.08697, 5.84248)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall29/Final_torch holder3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall29/Final_torch holder3/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall29/Final_torch holder3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall29/Final_torch holder3/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall29/Final_torch holder3/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="Final_torch holder4" parent="walls/Wall29" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.275, 1.488, -1.985)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall29/Final_torch holder4"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall29/Final_torch holder4/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall29/Final_torch holder4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall29/Final_torch holder4/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall29/Final_torch holder4/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
 [node name="Wall9" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.1604, 0.18984, 2.97153)
 
@@ -687,28 +421,6 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Final_torch holder_w1_env3" parent="walls/Wall9/MeshInstance3D1" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.14, 0, 0)
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall9/MeshInstance3D1/Final_torch holder_w1_env3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall9/MeshInstance3D1/Final_torch holder_w1_env3/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/MeshInstance3D1/Final_torch holder_w1_env3/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall9/MeshInstance3D1/Final_torch holder_w1_env3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/MeshInstance3D1/Final_torch holder_w1_env3/HolderCollider"]
-shape = SubResource("BoxShape3D_ie8ng")
 
 [node name="CodeBoard" parent="walls/Wall9" instance=ExtResource("10_lyy32")]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -7.48448, 1.3942, 9.8044)
@@ -740,50 +452,6 @@ shape = SubResource("BoxShape3D_n60lg")
 
 [node name="Letter_of_translation" parent="walls/Wall9/Letter_of_translation" instance=ExtResource("13_7isom")]
 transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, 0, 0)
-
-[node name="Final_torch holder2" parent="walls/Wall9" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.206615, 1.7, -4.86425)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall9/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall9/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall9/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="Final_torch holder3" parent="walls/Wall9" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.211813, 1.7, 3.57867)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall9/Final_torch holder3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/Final_torch holder3/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall9/Final_torch holder3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall9/Final_torch holder3/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall9/Final_torch holder3/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
 
 [node name="Wall14" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0873, 0.18984, -2.6102)
@@ -831,51 +499,6 @@ noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Wall27" type="StaticBody3D" parent="walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.3503, 0.18984, 20.6091)
-
-[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33836, 0)
-shape = SubResource("BoxShape3D_pfqir")
-
-[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall27"]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 1.35, 0)
-material_override = SubResource("ShaderMaterial_2ooe2")
-mesh = SubResource("BoxMesh_brmcq")
-skeleton = NodePath("../../Wall3")
-script = ExtResource("9_r5g5s")
-albedo_texture = ExtResource("1_g24c8")
-roughness_texture = ExtResource("6_moc7v")
-emission_texture = ExtResource("3_1vcoo")
-normal_texture = ExtResource("5_o14mw")
-ambient_occlusion_texture = ExtResource("2_ey5jh")
-heightmap_texture = ExtResource("4_jpxnb")
-noise_img = SubResource("NoiseTexture2D_on4nd")
-maximum_amplitude = 0.1
-UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall27" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.129438, 1.7, -0.808136)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall27/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall27/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall27/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall27/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall27/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
 [node name="Wall26" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0898, 0.18984, 2.28341)
 
@@ -898,73 +521,6 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall26" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.234842, 1.7, 3.15644)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall26/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall26/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall26/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall26/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall26/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="Wall28" type="StaticBody3D" parent="walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9519, 0.18984, -3.96312)
-
-[node name="CollisionShape3D1" type="CollisionShape3D" parent="walls/Wall28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33836, 0)
-shape = SubResource("BoxShape3D_pfqir")
-
-[node name="MeshInstance3D1" type="MeshInstance3D" parent="walls/Wall28"]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -0.840341, 1.35, 0)
-material_override = SubResource("ShaderMaterial_2ooe2")
-mesh = SubResource("BoxMesh_brmcq")
-skeleton = NodePath("../../Wall3")
-script = ExtResource("9_r5g5s")
-albedo_texture = ExtResource("1_g24c8")
-roughness_texture = ExtResource("6_moc7v")
-emission_texture = ExtResource("3_1vcoo")
-normal_texture = ExtResource("5_o14mw")
-ambient_occlusion_texture = ExtResource("2_ey5jh")
-heightmap_texture = ExtResource("4_jpxnb")
-noise_img = SubResource("NoiseTexture2D_on4nd")
-maximum_amplitude = 0.1
-UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall28" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.234842, 1.7, 3.15644)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall28/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall28/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall28/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall28/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall28/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
 
 [node name="Wall15" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.6542, 0.18984, -7.79524)
@@ -989,28 +545,6 @@ noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Final_torch holder_w1_env3" parent="walls/Wall15/MeshInstance3D1" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-1.4231e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.4231e-08, -0.14, 0, 0)
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall15/MeshInstance3D1/Final_torch holder_w1_env3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall15/MeshInstance3D1/Final_torch holder_w1_env3/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall15/MeshInstance3D1/Final_torch holder_w1_env3/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall15/MeshInstance3D1/Final_torch holder_w1_env3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall15/MeshInstance3D1/Final_torch holder_w1_env3/HolderCollider"]
-shape = SubResource("BoxShape3D_ie8ng")
-
 [node name="Wall24" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.79187, 0.18984, 24.2669)
 
@@ -1033,28 +567,6 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_on4nd")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall24" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.245001, 1.58606, -2.88564)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall24/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall24/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall24/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall24/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall24/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
 
 [node name="Wall25" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81696, 0.18984, 18.7165)
@@ -1195,28 +707,6 @@ noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Final_torch holder2" parent="walls/Wall22" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.219112, 1.30063, -0.861458)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall22/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall22/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall22/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall22/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall22/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
 [node name="Wall23" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1406, 0.411634, 23.2464)
 
@@ -1238,28 +728,6 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Final_torch holder2" parent="walls/Wall23" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.19915, 1.28026, -0.831276)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall23/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall23/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall23/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall23/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall23/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
 
 [node name="Wall21" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.158, 0.411634, 17.1213)
@@ -1305,28 +773,6 @@ noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Final_torch holder2" parent="walls/Wall6" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.194, 1.3, -1.209)
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall6/Final_torch holder2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall6/Final_torch holder2/HolderCollider"]
-shape = SubResource("BoxShape3D_2o6yc")
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall6/Final_torch holder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall6/Final_torch holder2/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall6/Final_torch holder2/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
 [node name="Wall7" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28768, 0.411634, 2.18145)
 
@@ -1371,28 +817,6 @@ noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
 
-[node name="Final_torch holder_w1_env3" parent="walls/Wall10/MeshInstance3D1" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.184, 0, 0)
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall10/MeshInstance3D1/Final_torch holder_w1_env3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall10/MeshInstance3D1/Final_torch holder_w1_env3/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall10/MeshInstance3D1/Final_torch holder_w1_env3/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall10/MeshInstance3D1/Final_torch holder_w1_env3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall10/MeshInstance3D1/Final_torch holder_w1_env3/HolderCollider"]
-shape = SubResource("BoxShape3D_ie8ng")
-
 [node name="Wall13" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0764, 0.349719, -4.69144)
 
@@ -1414,28 +838,6 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_3g254")
 maximum_amplitude = 0.1
 UV_ratio = 5.0
-
-[node name="Final_torch holder_w1_env3" parent="walls/Wall13/MeshInstance3D1" instance=ExtResource("14_xci4d")]
-transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 0.184, 0, 0)
-
-[node name="Torch" type="StaticBody3D" parent="walls/Wall13/MeshInstance3D1/Final_torch holder_w1_env3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0341578, -1.42946, -0.625848)
-collision_layer = 3
-collision_mask = 3
-
-[node name="final_torch" parent="walls/Wall13/MeshInstance3D1/Final_torch holder_w1_env3/Torch" instance=ExtResource("15_3ypb5")]
-transform = Transform3D(-4.32312e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall13/MeshInstance3D1/Final_torch holder_w1_env3/Torch"]
-transform = Transform3D(-4.3231e-08, 6.46095e-09, 1, 0.147809, 0.989016, 0, -0.989016, 0.147809, -4.37114e-08, 0, 1.96952, 0)
-shape = SubResource("BoxShape3D_8stx4")
-
-[node name="HolderCollider" type="StaticBody3D" parent="walls/Wall13/MeshInstance3D1/Final_torch holder_w1_env3"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall13/MeshInstance3D1/Final_torch holder_w1_env3/HolderCollider"]
-shape = SubResource("BoxShape3D_ie8ng")
 
 [node name="Wall11" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.26302, 0.411634, -0.786836)
@@ -1469,7 +871,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22142, 2.5936, 0.510696)
 shape = SubResource("BoxShape3D_t1h5m")
 
 [node name="right_hitbox" type="CollisionShape3D" parent="Static_end_door"]
-transform = Transform3D(0.99952, 0, -0.0309921, 0, 1, 0, 0.0309921, 0, 0.99952, 2.01361, 2.5936, 0.854954)
+transform = Transform3D(0.99952, 0, -0.0309921, 0, 1, 0, 0.0309921, 0, 0.99952, 2.24583, 2.5936, 0.862156)
 shape = SubResource("BoxShape3D_85yeu")
 
 [node name="middle_hitbox" type="CollisionShape3D" parent="Static_end_door"]
@@ -1492,39 +894,5 @@ shape = SubResource("BoxShape3D_7lnef")
 stream = ExtResource("18_fknua")
 
 [node name="Game_finish_particles" parent="Static_end_door/Finish_game_area" instance=ExtResource("19_2ah4d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.12015)
 
-[node name="Artifact" parent="." instance=ExtResource("22_xv6q3")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 27.6051, 0.621447, 8.10142)
-
-[node name="ChessRoom" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9856, 0.25, -2.122)
-
-[node name="Skeleton chess puzzle with chair and table" parent="ChessRoom" instance=ExtResource("20_ghn8g")]
-transform = Transform3D(-1.5299e-08, 0, -0.35, 0, 0.35, 0, 0.35, 0, -1.5299e-08, 0.967888, 0.261756, 0)
-
-[node name="ChessRoom" parent="ChessRoom" instance=ExtResource("21_twq6i")]
-transform = Transform3D(-7.43094e-10, 0, -0.017, 0, 0.017, 0, 0.017, 0, -7.43094e-10, -0.391945, 0.691042, -0.435269)
-
-[node name="Letter_of_translation_position" type="Node3D" parent="ChessRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052, 0.691, -0.094)
-
-[node name="Letter_before_solution" type="Node3D" parent="ChessRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.97354)
-
-[node name="Letter_of_translation" type="StaticBody3D" parent="ChessRoom/Letter_before_solution"]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ChessRoom/Letter_before_solution/Letter_of_translation"]
-transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, -0.0296631, 0)
-shape = SubResource("BoxShape3D_esyql")
-
-[node name="Letter_of_translation" parent="ChessRoom/Letter_before_solution/Letter_of_translation" instance=ExtResource("13_7isom")]
-transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, 0, 0)
-
-[connection signal="piece_moved" from="." to="ChessRoom/ChessRoom" method="_on_room_3_piece_moved"]
-[connection signal="piece_touched" from="." to="ChessRoom/ChessRoom" method="_on_room_3_piece_touched"]
 [connection signal="body_entered" from="Static_end_door/Finish_game_area" to="Static_end_door/Finish_game_area" method="_on_body_entered"]
-[connection signal="player_won_chess" from="ChessRoom/ChessRoom" to="." method="_on_chess_room_player_won_chess"]

@@ -1,36 +1,24 @@
 extends Node3D
 
+@onready var torch = $Torch
 @onready var holding_position = $Torch_holding_position
 @onready var holder_collider = $HolderCollider
 
-var torch: Node = null
 var is_occupied = false
-
-var raycast: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	raycast = find_raycast_from_group()
-	assign_torch()
-	
-	if is_occupied and torch:
+	if torch:
 		torch.global_transform = holding_position.global_transform
 		torch.position += Vector3(-0.02, -1.6, -0.17)
+	else: 
+		is_occupied = false
 		
 	if holder_collider:
 		holder_collider.collision_layer = 2
 		holder_collider.collision_mask = 2
 	update_holder_collider()
-
-func assign_torch() -> void:
-	if has_node("Torch"):
-		torch = $Torch
-		is_occupied = true
-	else:
-		torch = null
-		is_occupied = false
-
-
+		
 func get_is_occupied() -> bool:
 	return is_occupied
 
@@ -66,13 +54,6 @@ func update_holder_collider():
 		var collision_shape = holder_collider.get_node("CollisionShape3D")
 		if collision_shape:
 			collision_shape.disabled = is_occupied
-	# var raycast = get_node("../../Player/Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1")
+	var raycast = get_node("../../Player/Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1")
 	if raycast:
 		raycast.force_raycast_update()
-
-
-func find_raycast_from_group() -> Node:
-	var raycasts = get_tree().get_nodes_in_group("raycast_group")
-	if raycasts.size() > 0:
-		return raycasts[0]  # Return the first one found
-	return null

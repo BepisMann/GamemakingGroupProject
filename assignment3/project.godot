@@ -19,10 +19,6 @@ config/icon="res://assets/icon.svg"
 
 window/stretch/mode="canvas_items"
 
-[global_group]
-
-raycast_group=""
-
 [input]
 
 move_forward={

@@ -62,7 +62,7 @@ func _ready() -> void:
 	
 	correct_code = ["Button3", "Button13", "Button15", "Button6"]
 	for button_name in correct_code:
-		var button = $"../room3/walls/Wall9/CodeBoard/BackGroundBoard".get_node(button_name)
+		var button = $"../Rooms 1&2/CodeBoard/BackGroundBoard".get_node(button_name)
 		if button:
 			button.is_locked = false
 	
@@ -94,7 +94,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 				rotate_y(-event.relative.x * sensitivity)
 				camera.rotate_x(-event.relative.y * sensitivity)
-				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
 				
 				toggle_hat_visibility(camera.rotation.x)
 
@@ -312,91 +312,90 @@ func get_respawn_point() -> int:
 	return spawn_point
 
 func pickup(hand):
-	if raycast2.get_collision_mask_value(2):
-		var item = raycast2.get_collider()
-		if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap" and item.name!= "HolderColliderLetter":
-			if item.name.to_lower().contains("button"):
-				if puzzle_solved:
-					return
-				var button_name = String(item.name)
-				if not pressed_buttons.has(button_name):
-					item.is_pressed = true
-					$"../room3/walls/Wall9/CodeBoard/Button_pressed_sound".play()
-					pressed_buttons.append(button_name)
-					print(pressed_buttons)
-					check_code()
+	var item = raycast2.get_collider()
+	if item and item.name!="HolderCollider" and item.name!= "HolderColliderMedallion" and item.name != "HolderColliderMap" and item.name!= "HolderColliderLetter":
+		if item.name.to_lower().contains("button"):
+			if puzzle_solved:
 				return
-			if !("is_locked" in item) || (item.is_locked == false):
-				if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling") and not item.name.to_lower().contains("end_door"):
-					if item:
-						pickup_sound.playing = true
-						print("Picking up item:", item.name)
-						var collision_shape = item.get_node("CollisionShape3D")
-						if collision_shape:
-							collision_shape.disabled = true
-							
-						var parent = item.get_parent()
-						if parent and parent.has_method("remove_medallion"):
-							print("Removing medallion from holder.")
-							label.show_pickup_message("It's stuck in place!")
-							var medallion_from_holder = parent.remove_medallion()
-							if medallion_from_holder:
-								print(type_string(typeof(medallion_from_holder)))
-								if type_string(typeof(medallion_from_holder)) == "int":
-									label.show_pickup_message("It's stuck in place!")
-									item = null
-								else:
-									item = medallion_from_holder
-							else:
+			var button_name = String(item.name)
+			if not pressed_buttons.has(button_name):
+				item.is_pressed = true
+				$"../Rooms 1&2/CodeBoard/Button_pressed_sound".play()
+				pressed_buttons.append(button_name)
+				print(pressed_buttons)
+				check_code()
+			return
+		if !("is_locked" in item) || (item.is_locked == false):
+			if not item.name.to_lower().contains("wall") and not item.name.to_lower().contains("floor") and not item.name.to_lower().contains("ceiling"):
+				if item:
+					pickup_sound.playing = true
+					print("Picking up item:", item.name)
+					var collision_shape = item.get_node("CollisionShape3D")
+					if collision_shape:
+						collision_shape.disabled = true
+						
+					var parent = item.get_parent()
+					if parent and parent.has_method("remove_medallion"):
+						print("Removing medallion from holder.")
+						label.show_pickup_message("It's stuck in place!")
+						var medallion_from_holder = parent.remove_medallion()
+						if medallion_from_holder:
+							print(type_string(typeof(medallion_from_holder)))
+							if type_string(typeof(medallion_from_holder)) == "int":
+								label.show_pickup_message("It's stuck in place!")
 								item = null
-						if parent and parent.has_method("remove_torch"):
-							print("Removing torch from holder.")
-							parent.remove_torch()
-						if parent and parent.has_method("remove_map"):
-							print("Removing map from holder.")
-							parent.remove_map()
-						if parent and parent.has_method("remove_letter"):
-							print("Removing letter from holder.")
-							parent.remove_letter()
-						if not item == null:
-							parent.remove_child(item)
-							if hand == "left":
-								print("Adding item to left hand.")
-								left_hand_position.add_child(item)
-								self.left = item.name
-								reset_item_rotation_left(item)
-								if item.name.begins_with("TrapMap"):
-									item.get_parent().visible = false
-								if item.name.begins_with("Letter"):
-									item.get_parent().visible = false
-								if item.name.begins_with("Torch"):
-									held_torch_count += 1
-							
 							else:
-								print("Adding item to right hand.")
-								right_hand_position.add_child(item)
-								self.right = item.name
-								reset_item_rotation_right(item)
-								if item.name.begins_with("TrapMap"):
-									item.get_parent().visible = false
-								if item.name.begins_with("Letter"):
-									item.get_parent().visible = false
-								if item.name.begins_with("Torch"):
-									held_torch_count += 1
+								item = medallion_from_holder
+						else:
+							item = null
+					if parent and parent.has_method("remove_torch"):
+						print("Removing torch from holder.")
+						parent.remove_torch()
+					if parent and parent.has_method("remove_map"):
+						print("Removing map from holder.")
+						parent.remove_map()
+					if parent and parent.has_method("remove_letter"):
+						print("Removing letter from holder.")
+						parent.remove_letter()
+					if not item == null:
+						parent.remove_child(item)
+						if hand == "left":
+							print("Adding item to left hand.")
+							left_hand_position.add_child(item)
+							self.left = item.name
+							reset_item_rotation_left(item)
+							if item.name.begins_with("TrapMap"):
+								item.get_parent().visible = false
+							if item.name.begins_with("Letter"):
+								item.get_parent().visible = false
+							if item.name.begins_with("Torch"):
+								held_torch_count += 1
 						
-							print("Item parent after pickup:", item.get_parent().name)
-						
-							if not item.name.begins_with("TrapMap"):
-								item.visible = true
-							if not item.name.begins_with("Letter"):
-								item.visible = true
-						
-							item.collision_layer = 2
-							item.collision_mask = 2
-						
-							label.show_pickup_message("Picked up " + item.name + str(hand))
-					else:
-						print("Error: No valid item to pick up!")
+						else:
+							print("Adding item to right hand.")
+							right_hand_position.add_child(item)
+							self.right = item.name
+							reset_item_rotation_right(item)
+							if item.name.begins_with("TrapMap"):
+								item.get_parent().visible = false
+							if item.name.begins_with("Letter"):
+								item.get_parent().visible = false
+							if item.name.begins_with("Torch"):
+								held_torch_count += 1
+					
+						print("Item parent after pickup:", item.get_parent().name)
+					
+						if not item.name.begins_with("TrapMap"):
+							item.visible = true
+						if not item.name.begins_with("Letter"):
+							item.visible = true
+					
+						item.collision_layer = 2
+						item.collision_mask = 2
+					
+						label.show_pickup_message("Picked up " + item.name + str(hand))
+				else:
+					print("Error: No valid item to pick up!")
 
 func check_code():
 	if pressed_buttons.size() == 4:
@@ -407,11 +406,11 @@ func check_code():
 			$Puzzle_solved_sound.play()
 			lock_correct_buttons()
 			puzzle_solved = true
-			$"../room3/walls/Wall9/CodeBoard/puzzle_solved_particles".emitting = true
-			$"../room3/Static_end_door/AudioStreamPlayer3D".play()
-			$"../room3/Static_end_door/End_door/AnimationPlayer2".play("Spike_009Action_001")
-			$"../room3/Static_end_door/End_door/AnimationPlayer3".play("links schanieren_003Action")
-			$"../room3/Static_end_door/End_door/AnimationPlayer4".play("rechts schanieren_001Action")
+			$"../Rooms 1&2/CodeBoard/puzzle_solved_particles".emitting = true
+			$"../Rooms 1&2/Static_end_door/AudioStreamPlayer3D".play()
+			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer2".play("Spike_009Action_001")
+			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer3".play("links schanieren_003Action")
+			$"../Rooms 1&2/Static_end_door/End_door/AnimationPlayer4".play("rechts schanieren_001Action")
 			$EndDoorTimer.start()
 			
 		else:
@@ -419,11 +418,11 @@ func check_code():
 			
 
 func _on_end_door_timer_timeout() -> void:
-	$"../room3/Static_end_door/middle_hitbox".disabled = true
+	$"../Rooms 1&2/Static_end_door/middle_hitbox".disabled = true
 
 
 func lock_correct_buttons():
-	var codeboard = $"../room3/walls/Wall9/CodeBoard/BackGroundBoard"
+	var codeboard = $"../Rooms 1&2/CodeBoard/BackGroundBoard"
 	if codeboard:
 		for button in codeboard.get_children():
 			if button.has_method("is_locked"):  # Check if the button has 'is_locked
@@ -433,7 +432,7 @@ func lock_correct_buttons():
 
 func reset_buttons():
 	for button_name in pressed_buttons:
-		var button_path = NodePath("../room3/walls/Wall9/CodeBoard/BackGroundBoard/" + button_name)
+		var button_path = NodePath("../Rooms 1&2/CodeBoard/BackGroundBoard/" + button_name)
 		var button = get_node(button_path)
 		if button:
 			button.is_pressed = false

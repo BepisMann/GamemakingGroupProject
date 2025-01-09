@@ -120,7 +120,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_85lmm")
 
 [node name="Button1" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, 0.383718, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button1"]
@@ -139,12 +138,10 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button2" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, 0.383718, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00885215, 0, 0)
-layers = 3
 mesh = SubResource("BoxMesh_rhw38")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_018o3")
@@ -160,8 +157,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button3" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, 0.383718, -0.0523027)
-collision_layer = 3
-collision_mask = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button3"]
@@ -181,11 +176,9 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button4" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, 0.383718, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button4"]
-layers = 3
 mesh = SubResource("BoxMesh_rhw38")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qmhf1")
@@ -201,7 +194,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button5" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, 0.14544, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button5"]
@@ -220,7 +212,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button6" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, 0.14544, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button6"]
@@ -240,7 +231,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button7" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, 0.14544, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button7"]
@@ -260,7 +250,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button8" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, 0.14544, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button8"]
@@ -279,7 +268,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button9" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, -0.0985729, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button9"]
@@ -298,7 +286,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button10" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, -0.0985729, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button10"]
@@ -318,7 +305,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button11" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, -0.0985729, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button11"]
@@ -338,7 +324,6 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button12" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, -0.0985729, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button12"]
@@ -357,11 +342,9 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button13" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359208, -0.333896, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button13"]
-layers = 3
 mesh = SubResource("BoxMesh_rhw38")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_xenc2")
@@ -377,12 +360,10 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button14" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127796, -0.333896, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00885215, 0, 0)
-layers = 3
 mesh = SubResource("BoxMesh_rhw38")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_jrlmy")
@@ -398,12 +379,10 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button15" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979922, -0.333896, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0189664, 0, 0)
-layers = 3
 mesh = SubResource("BoxMesh_rhw38")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_kps1b")
@@ -419,11 +398,9 @@ shape = SubResource("BoxShape3D_wvyba")
 
 [node name="Button16" type="StaticBody3D" parent="BackGroundBoard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360423, -0.333896, -0.0523027)
-collision_layer = 3
 script = ExtResource("1_wwuaa")
 
 [node name="Button1" type="MeshInstance3D" parent="BackGroundBoard/Button16"]
-layers = 3
 mesh = SubResource("BoxMesh_rhw38")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_3ohh2")
