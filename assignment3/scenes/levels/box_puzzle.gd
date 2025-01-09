@@ -67,6 +67,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		camera.current = false
 		player.end_interaction()
 		print ("box puzzle solved")
+		$Puzzle_solved_sound.play()
+		$puzzle_solved_particles.emitting = true
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
