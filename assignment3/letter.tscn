@@ -12,14 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jj053")
 
-[node name="Instructions" type="Label" parent="."]
-layout_mode = 0
-offset_left = 487.0
-offset_top = 593.0
-offset_right = 687.0
-offset_bottom = 618.0
-text = "Press any key to continue"
-
 [node name="Letter" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -28,11 +20,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -218.0
-offset_top = -307.956
+offset_top = -20.0
 offset_right = 218.0
-offset_bottom = 307.956
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("1_mp2fx")
 expand_mode = 5
+
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 593.0
+offset_right = 687.0
+offset_bottom = 618.0
+text = "Press any key to continue"
