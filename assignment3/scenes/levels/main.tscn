@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dwnyr0lhb6rsk"]
+[gd_scene load_steps=74 format=3 uid="uid://dwnyr0lhb6rsk"]
 
 [ext_resource type="PackedScene" uid="uid://gubnpbmfc62b" path="res://scenes/levels/room1&2.tscn" id="1_deuee"]
 [ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="1_essu7"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://cis4lqxkm7v51" path="res://Images/ancient_translation_letter.jpg" id="19_o7isg"]
 [ext_resource type="PackedScene" uid="uid://deagsgelhmjqo" path="res://scenes/prefabs/Holders_of_objects_prefabs/final_torch_holder.tscn" id="19_u0t75"]
 [ext_resource type="PackedScene" uid="uid://cv1x3rxptu1pr" path="res://scenes/prefabs/Torch_prefabs/final_torch.tscn" id="20_f674f"]
+[ext_resource type="PackedScene" uid="uid://coiqfvcw7t0qd" path="res://letter.tscn" id="20_mqjtm"]
 [ext_resource type="Texture2D" uid="uid://bjymvt56bad17" path="res://Images/Letter_witch_code_sentence.jpg" id="20_p42sn"]
 [ext_resource type="PackedScene" uid="uid://b7vcm5whywh6l" path="res://scenes/prefabs/UI/finish_screen.tscn" id="21_bif6u"]
 [ext_resource type="PackedScene" uid="uid://c8nws4p4syfqh" path="res://scenes/levels/room_3.tscn" id="24_dvvo5"]
@@ -187,7 +188,7 @@ size = Vector3(0.25, 27, 3)
 script = ExtResource("1_oiqrf")
 
 [node name="Player" parent="." instance=ExtResource("1_essu7")]
-transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 9.25741, -45.4503, -390.25)
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 9.25741, 0.826096, -108.074)
 
 [node name="Death" parent="." instance=ExtResource("2_dhrqi")]
 offset_left = 2.0
@@ -455,6 +456,8 @@ noise_img = SubResource("NoiseTexture2D_ojle2")
 UV_ratio = 0.667
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Letter" parent="UI" instance=ExtResource("20_mqjtm")]
 
 [node name="TrapMapUI" type="Control" parent="UI"]
 layout_mode = 3
@@ -984,4 +987,5 @@ transform = Transform3D(0.195974, -0.347962, -0.0227323, 0.0194951, 0.0369685, -
 [connection signal="respawn" from="Death" to="." method="_on_death_respawn"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="playerDied" from="TrapRoom (Room 3)" to="Player" method="_on_trap_room_room_3_player_died"]
+[connection signal="letter_closed" from="UI/Letter" to="." method="_on_letter_closed"]
 [connection signal="playerDied" from="BoulderRoom (Room4)" to="Player" method="_on_trap_room_room_3_player_died"]

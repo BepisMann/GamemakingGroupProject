@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://coiqfvcw7t0qd"]
+[gd_scene load_steps=3 format=3 uid="uid://coiqfvcw7t0qd"]
 
 [ext_resource type="Texture2D" uid="uid://dok3yd2dm7xeu" path="res://Images/THE NATIONAL HISTORY MUSEUM_page-0001.jpg" id="1_mp2fx"]
+[ext_resource type="Script" path="res://letter.gd" id="1_wr334"]
 
 [node name="Letter" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wr334")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -26,4 +28,10 @@ grow_vertical = 2
 texture = ExtResource("1_mp2fx")
 expand_mode = 5
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 593.0
+offset_right = 687.0
+offset_bottom = 618.0
+text = "Press any key to continue"
