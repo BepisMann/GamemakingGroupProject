@@ -43,6 +43,9 @@ func _on_death_timer_timeout() -> void:
 	$UI.hide()
 	$Death.show()
 	$Death.play()
+	
+func _on_letter_closed():
+	$Player.can_control = true
 
 
 func _on_trap_room_room_3_player_died() -> void:
