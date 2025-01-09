@@ -1,0 +1,194 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfa2kd6h4t8r3"]
+
+[ext_resource type="Script" path="res://artifact.gd" id="1_2scet"]
+[ext_resource type="Material" uid="uid://cgsq36ht8dwqm" path="res://colors/gold_color.tres" id="2_slm5i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s6rl8"]
+top_radius = 0.1
+bottom_radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jh2jb"]
+albedo_color = Color(0.490196, 0.133333, 0.133333, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iqmw4"]
+top_radius = 0.25
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al4xl"]
+albedo_color = Color(0.490196, 0.133333, 0.133333, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pgya2"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1btb"]
+albedo_color = Color(0.698039, 0.133333, 0.133333, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yj8ij"]
+top_radius = 0.01
+bottom_radius = 0.05
+height = 0.5
+
+[sub_resource type="Animation" id="Animation_krkod"]
+resource_name = "Up_and_down"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 2.80669, 0, 0.4995, 1, 0, 3.66626, 0, 0.5994, 1, 0, 3.66626, 0, 0.999, 1, 0, 2.807, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnite"]
+_data = {
+"Up_and_down": SubResource("Animation_krkod")
+}
+
+[node name="Artifact" type="Node3D"]
+script = ExtResource("1_2scet")
+
+[node name="Upper_cilinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32275, 0)
+mesh = SubResource("CylinderMesh_s6rl8")
+surface_material_override/0 = SubResource("StandardMaterial3D_jh2jb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0740899, 0)
+mesh = SubResource("CylinderMesh_iqmw4")
+surface_material_override/0 = SubResource("StandardMaterial3D_al4xl")
+
+[node name="Circle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.807, 0)
+mesh = SubResource("SphereMesh_pgya2")
+surface_material_override/0 = SubResource("StandardMaterial3D_n1btb")
+
+[node name="Spike1" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326787, 0.213611, 0)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike2" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.347497, 0.698651, 0.625406, -0.895362, 0.445339, 0, -0.278517, -0.559965, 0.780299, 0.106185, 0.089901, -0.146526)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike3" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(-0.385845, -0.77575, 0.499335, -0.895362, 0.445339, -1.16274e-08, -0.222373, -0.447086, -0.866409, -0.0403296, 0.154925, -0.18389)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike4" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.109073, 0.673865, -0.730759, -0.817155, -0.357809, -0.451919, -0.566005, 0.646435, 0.511625, 0.0604828, -0.157828, 0.126388)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike5" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.877915, -0.349339, 0.327456, 0.147538, 0.847974, 0.50909, -0.455519, -0.398625, 0.79599, -0.00720673, 0.203365, -0.0567176)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike6" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.526656, 0.274418, 0.804567, -0.849765, 0.195641, 0.489514, -0.0230746, -0.941499, 0.336226, 0.0525613, 0.0347116, -0.15752)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike7" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(-0.098772, -0.983017, 0.154663, -0.929379, 0.035576, -0.367409, 0.355667, -0.18003, -0.91711, -0.111016, 0.049212, -0.146442)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike8" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.195879, 0.928272, -0.316137, -0.964981, 0.125102, -0.230568, -0.17448, 0.35023, 0.92027, 0.169351, 0.0133209, 0.185908)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike9" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(-0.453955, -0.667476, 0.590254, 0.14996, 0.595762, 0.789037, -0.878315, 0.446702, -0.170354, -0.0397449, 0.184035, 0.0228047)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike10" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.132367, -0.931237, -0.339525, -0.690802, -0.332317, 0.642152, -0.710825, 0.149545, -0.687288, -0.185379, -0.0400462, -0.0720569)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike11" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.641533, -0.208992, -0.738077, -0.766745, -0.203783, -0.608748, -0.0231837, 0.956449, -0.290977, -0.0759726, -0.00697231, 0.212604)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike12" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.353209, 0.781872, 0.51373, -0.917072, 0.397945, 0.0248696, -0.184992, -0.479912, 0.857591, 0.205594, 0.154182, 0.00607269)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike13" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(-0.588866, -0.773549, -0.23422, -0.268636, -0.0859925, 0.959396, -0.762281, 0.627875, -0.157165, -0.180669, -0.00739789, 0.118751)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike14" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.314501, -0.810883, -0.493517, -0.445487, -0.58517, 0.677582, -0.838231, 0.00675577, -0.545274, -0.0223362, -0.043854, -0.047739)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike15" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.875111, 0.316235, -0.366301, -0.287866, -0.268269, -0.919328, -0.388992, 0.909959, -0.143731, 0.048781, -0.0510042, 0.243653)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike16" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.452194, -0.298171, 0.840604, -0.683196, 0.490079, 0.541355, -0.573379, -0.819095, 0.0179012, 0.0613321, 0.172937, -0.161026)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike17" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.649924, 0.620143, 0.439341, -0.716903, 0.308357, 0.625272, 0.252284, -0.721345, 0.644992, 0.199564, -0.143434, -0.155735)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike18" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.469746, 0.876366, 0.1064, -0.716903, 0.308357, 0.625272, 0.515158, -0.369997, 0.77312, 0.199564, -0.0662694, 0.0142678)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike19" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(-0.48842, 0.417848, -0.766061, -0.716903, 0.308357, 0.625272, 0.497489, 0.854587, 0.148949, 0.0717069, 0.129761, 0.188378)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike20" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(-0.683106, -0.489938, -0.541597, -0.72763, 0.393, 0.562232, -0.0626106, 0.778146, -0.624955, -0.149872, 0.157562, 0.188378)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike21" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.782185, -0.604496, 0.150899, -0.548475, -0.553169, 0.62704, -0.295571, -0.573225, -0.764232, -0.075964, -0.0366085, -0.157144)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike22" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.803301, -0.140406, 0.578786, -0.548475, -0.553169, 0.62704, 0.232126, -0.821151, -0.521371, 0.00212894, -0.17785, -0.157144)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="Spike23" type="MeshInstance3D" parent="Circle"]
+transform = Transform3D(0.291731, 0.576183, 0.763483, -0.548475, -0.553169, 0.62704, 0.783625, -0.601678, 0.154645, 0.119898, -0.247723, -0.0948965)
+mesh = SubResource("CylinderMesh_yj8ij")
+surface_material_override/0 = ExtResource("2_slm5i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pnite")
+}
+speed_scale = 0.3

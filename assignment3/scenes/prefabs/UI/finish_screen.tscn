@@ -73,15 +73,23 @@ shortcut = SubResource("Shortcut_nmhcv")
 text = "Exit"
 script = ExtResource("1_6a76s")
 
-[node name="TextEdit" type="TextEdit" parent="pop_up_screen"]
-layout_mode = 0
-offset_left = 10.5437
-offset_top = 4.49647
-offset_right = 190.544
-offset_bottom = 104.496
-scale = Vector2(0.3, 0.391)
-text = "Congratulations! 
+[node name="Label" type="Label" parent="pop_up_screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0952
+offset_top = -20.5091
+offset_right = 158.905
+offset_bottom = 54.4909
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.186599, 0.278558)
+text = "Congratulations!
 
-You escaped the cave."
+You found the artifact!"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="pop_up_screen/Exit_button" to="pop_up_screen/Exit_button" method="_on_pressed"]

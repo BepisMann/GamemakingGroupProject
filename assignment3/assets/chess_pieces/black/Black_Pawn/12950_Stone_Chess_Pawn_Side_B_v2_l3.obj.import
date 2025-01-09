@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://jinfp8338fg1"
+path="res://.godot/imported/12950_Stone_Chess_Pawn_Side_B_v2_l3.obj-23dc21bf3cf87cb9e92312cb63cf2ea7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/12950_Stone_Chess_Pawn_Side_B_v2_l3.obj-23dc21bf3cf87cb9e92312cb63cf2ea7.mesh"]
+
+source_file="res://assets/chess_pieces/black/Black_Pawn/12950_Stone_Chess_Pawn_Side_B_v2_l3.obj"
+dest_files=["res://.godot/imported/12950_Stone_Chess_Pawn_Side_B_v2_l3.obj-23dc21bf3cf87cb9e92312cb63cf2ea7.mesh", "res://.godot/imported/12950_Stone_Chess_Pawn_Side_B_v2_l3.obj-23dc21bf3cf87cb9e92312cb63cf2ea7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

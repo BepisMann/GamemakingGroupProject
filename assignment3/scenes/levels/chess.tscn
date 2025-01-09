@@ -1,6 +1,7 @@
-[gd_scene load_steps=59 format=3 uid="uid://7svyrk2m3snk"]
+[gd_scene load_steps=41 format=3 uid="uid://7svyrk2m3snk"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_8nalr"]
+[ext_resource type="Script" path="res://scenes/levels/chess.gd" id="1_s5rc3"]
 [ext_resource type="Script" path="res://scenes/levels/board_manager.gd" id="1_wx36i"]
 [ext_resource type="Texture2D" uid="uid://g82gad658um7" path="res://assets/rock/rock_08_ao_4k.png" id="2_spgsg"]
 [ext_resource type="Texture2D" uid="uid://cutvqaxxifhf1" path="res://assets/rock/rock_08_spec_4k.png" id="3_qe1v7"]
@@ -13,8 +14,18 @@
 [ext_resource type="Texture2D" uid="uid://psmqjpsp2vhi" path="res://assets/rock2/rock_face_disp_4k.png" id="10_3rd08"]
 [ext_resource type="Texture2D" uid="uid://bq4ws5klrwdmm" path="res://assets/rock2/rock_face_rough_4k.png" id="11_c3es0"]
 [ext_resource type="Texture2D" uid="uid://lnv2s7sg7u31" path="res://assets/rock2/rock_face_nor_gl_4k.png" id="12_m230a"]
-[ext_resource type="PackedScene" uid="uid://dppr8h85kj08i" path="res://scenes/prefabs/player.tscn" id="14_knduy"]
-[ext_resource type="Script" path="res://scenes/levels/piece.gd" id="15_oppdh"]
+[ext_resource type="PackedScene" uid="uid://tvjhu3rk56u" path="res://scenes/prefabs/chess_pieces/white/WhiteKnight.tscn" id="16_5j6wh"]
+[ext_resource type="PackedScene" uid="uid://b6s1o5gjye6yr" path="res://scenes/prefabs/chess_pieces/white/WhiteQueen.tscn" id="18_pybkf"]
+[ext_resource type="PackedScene" uid="uid://otwjsbk7lmy3" path="res://scenes/prefabs/chess_pieces/white/WhiteKing.tscn" id="20_l05y7"]
+[ext_resource type="PackedScene" uid="uid://cxypcisfyc863" path="res://scenes/prefabs/chess_pieces/white/WhiteBishop.tscn" id="21_4lq5q"]
+[ext_resource type="PackedScene" uid="uid://bkrwbdb51lnfh" path="res://scenes/prefabs/chess_pieces/white/WhiteRook.tscn" id="21_wfqgt"]
+[ext_resource type="PackedScene" uid="uid://pjbwgjmu7h8s" path="res://scenes/prefabs/chess_pieces/black/BlackPawn.tscn" id="22_g1dam"]
+[ext_resource type="PackedScene" uid="uid://dcnymtdlr7ejd" path="res://scenes/prefabs/chess_pieces/white/WhitePawn.tscn" id="22_r6v00"]
+[ext_resource type="PackedScene" uid="uid://bmh3ii4teh2sk" path="res://scenes/prefabs/chess_pieces/black/BlackRook.tscn" id="23_t1nr6"]
+[ext_resource type="PackedScene" uid="uid://dq7s71ciy42il" path="res://scenes/prefabs/chess_pieces/black/BlackBishop.tscn" id="25_nr7pf"]
+[ext_resource type="PackedScene" uid="uid://dulkp1ymikmv7" path="res://scenes/prefabs/chess_pieces/black/BlackQueen.tscn" id="26_1d1rh"]
+[ext_resource type="PackedScene" uid="uid://dlixfb285r67o" path="res://scenes/prefabs/chess_pieces/black/BlackKing.tscn" id="27_4dh3l"]
+[ext_resource type="PackedScene" uid="uid://dy1u3n7f126uh" path="res://scenes/prefabs/chess_pieces/black/BlackKnight.tscn" id="28_ljty4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ksfii"]
 size = Vector3(5, 0.25, 5)
@@ -88,16 +99,6 @@ _data = {
 "float_indicator": SubResource("Animation_1kphf")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_urlx5"]
-size = Vector3(4, 0.25, 4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5w3au"]
-
-[sub_resource type="TextMesh" id="TextMesh_folor"]
-material = SubResource("StandardMaterial3D_5w3au")
-text = "R"
-font_size = 127
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_aayl1"]
 size = Vector3(5, 0.25, 5)
 
@@ -126,127 +127,8 @@ seed = -10
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8qwa5"]
 noise = SubResource("FastNoiseLite_2kq3j")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxpca"]
-
-[sub_resource type="TextMesh" id="TextMesh_nfnit"]
-material = SubResource("StandardMaterial3D_kxpca")
-text = "N
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amcwa"]
-
-[sub_resource type="TextMesh" id="TextMesh_h1fcn"]
-material = SubResource("StandardMaterial3D_amcwa")
-text = "B
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m370i"]
-
-[sub_resource type="TextMesh" id="TextMesh_g083a"]
-material = SubResource("StandardMaterial3D_m370i")
-text = "Q
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bbir"]
-
-[sub_resource type="TextMesh" id="TextMesh_uy3b5"]
-material = SubResource("StandardMaterial3D_6bbir")
-text = "K
-"
-font_size = 127
-
-[sub_resource type="TextMesh" id="TextMesh_7svpb"]
-material = SubResource("StandardMaterial3D_5w3au")
-text = "P
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1hym"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_eqwiw"]
-material = SubResource("StandardMaterial3D_t1hym")
-text = "P
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x78pr"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_rqiyk"]
-material = SubResource("StandardMaterial3D_x78pr")
-text = "R"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3rp0"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_bl203"]
-material = SubResource("StandardMaterial3D_q3rp0")
-text = "N
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu5el"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_4j2bk"]
-material = SubResource("StandardMaterial3D_lu5el")
-text = "B
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pee1b"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_3o0j7"]
-material = SubResource("StandardMaterial3D_pee1b")
-text = "Q
-"
-font_size = 127
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyqnh"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_3fj7w"]
-material = SubResource("StandardMaterial3D_tyqnh")
-text = "K
-"
-font_size = 127
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ch7v3"]
-size = Vector3(40, 0.25, 40)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1dpd"]
-albedo_texture = ExtResource("1_8nalr")
-roughness_texture = ExtResource("6_2p5nt")
-emission_enabled = true
-emission_texture = ExtResource("3_qe1v7")
-normal_enabled = true
-normal_texture = ExtResource("5_4i7x4")
-ao_enabled = true
-ao_texture = ExtResource("2_spgsg")
-heightmap_enabled = true
-heightmap_scale = 1.0
-heightmap_texture = ExtResource("4_r7qbh")
-uv1_scale = Vector3(5, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_etcgl"]
-size = Vector3(40, 0.25, 40)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_52iug"]
-seed = 12345676
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_grnms"]
-noise = SubResource("FastNoiseLite_52iug")
-
 [node name="ChessRoom" type="Node3D"]
-
-[node name="Player" parent="." instance=ExtResource("14_knduy")]
-transform = Transform3D(-1.99918, 0, 0.0574136, 0, 2, 0, -0.0574136, 0, -1.99918, 18.3069, 2.09242, 13.0171)
+script = ExtResource("1_s5rc3")
 
 [node name="BoardManager" type="Node3D" parent="."]
 script = ExtResource("1_wx36i")
@@ -294,22 +176,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteRook" type="Node3D" parent="Board/1/a"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/a/WhiteRook"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/a/WhiteRook/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/a/WhiteRook/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_folor")
+[node name="WhiteRook" parent="Board/1/a" instance=ExtResource("21_wfqgt")]
 
 [node name="b" type="StaticBody3D" parent="Board/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
@@ -349,22 +216,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteKnight" type="Node3D" parent="Board/1/b"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/b/WhiteKnight"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/b/WhiteKnight/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/b/WhiteKnight/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_nfnit")
+[node name="WhiteKnight" parent="Board/1/b" instance=ExtResource("16_5j6wh")]
 
 [node name="c" type="StaticBody3D" parent="Board/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -2.5)
@@ -405,22 +257,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteBishop" type="Node3D" parent="Board/1/c"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/c/WhiteBishop"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/c/WhiteBishop/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/c/WhiteBishop/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_h1fcn")
+[node name="WhiteBishop" parent="Board/1/c" instance=ExtResource("21_4lq5q")]
 
 [node name="d" type="StaticBody3D" parent="Board/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0, -2.5)
@@ -460,22 +297,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteQueen" type="Node3D" parent="Board/1/d"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/d/WhiteQueen"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/d/WhiteQueen/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/d/WhiteQueen/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_g083a")
+[node name="WhiteQueen" parent="Board/1/d" instance=ExtResource("18_pybkf")]
 
 [node name="e" type="StaticBody3D" parent="Board/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, -2.5)
@@ -516,22 +338,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteKing" type="Node3D" parent="Board/1/e"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/e/WhiteKing"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/e/WhiteKing/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/e/WhiteKing/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_uy3b5")
+[node name="WhiteKing" parent="Board/1/e" instance=ExtResource("20_l05y7")]
 
 [node name="f" type="StaticBody3D" parent="Board/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, -2.5)
@@ -571,22 +378,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteBishop" type="Node3D" parent="Board/1/f"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/f/WhiteBishop"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/f/WhiteBishop/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/f/WhiteBishop/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_h1fcn")
+[node name="WhiteBishop" parent="Board/1/f" instance=ExtResource("21_4lq5q")]
 
 [node name="g" type="StaticBody3D" parent="Board/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 0, -2.5)
@@ -627,22 +419,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteKnight" type="Node3D" parent="Board/1/g"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/g/WhiteKnight"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/g/WhiteKnight/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/g/WhiteKnight/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_nfnit")
+[node name="WhiteKnight" parent="Board/1/g" instance=ExtResource("16_5j6wh")]
 
 [node name="h" type="StaticBody3D" parent="Board/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, -2.5)
@@ -682,22 +459,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhiteRook" type="Node3D" parent="Board/1/h"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/1/h/WhiteRook"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/1/h/WhiteRook/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/1/h/WhiteRook/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_folor")
+[node name="WhiteRook" parent="Board/1/h" instance=ExtResource("21_wfqgt")]
 
 [node name="2" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
@@ -740,22 +502,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/a"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/2/a/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/a/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/a/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/a" instance=ExtResource("22_r6v00")]
 
 [node name="b" type="StaticBody3D" parent="Board/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
@@ -796,22 +543,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/b"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/2/b/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/b/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/b/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/b" instance=ExtResource("22_r6v00")]
 
 [node name="c" type="StaticBody3D" parent="Board/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -2.5)
@@ -851,22 +583,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/c"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/2/c/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/c/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/c/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/c" instance=ExtResource("22_r6v00")]
 
 [node name="d" type="StaticBody3D" parent="Board/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0, -2.5)
@@ -907,22 +624,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/d"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/2/d/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/d/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/d/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/d" instance=ExtResource("22_r6v00")]
 
 [node name="e" type="StaticBody3D" parent="Board/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, -2.5)
@@ -962,22 +664,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/e"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/2/e/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/e/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/e/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/e" instance=ExtResource("22_r6v00")]
 
 [node name="f" type="StaticBody3D" parent="Board/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, -2.5)
@@ -1018,22 +705,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/f"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/2/f/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/f/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/f/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/f" instance=ExtResource("22_r6v00")]
 
 [node name="g" type="StaticBody3D" parent="Board/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 0, -2.5)
@@ -1073,22 +745,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/g"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/2/g/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/g/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/g/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/g" instance=ExtResource("22_r6v00")]
 
 [node name="h" type="StaticBody3D" parent="Board/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, -2.5)
@@ -1129,22 +786,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="WhitePawn" type="Node3D" parent="Board/2/h"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="StaticBody3D" parent="Board/2/h/WhitePawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/2/h/WhitePawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/2/h/WhitePawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_7svpb")
+[node name="WhitePawn" parent="Board/2/h" instance=ExtResource("22_r6v00")]
 
 [node name="3" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -2432,22 +2074,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/a"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/a/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/a/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/a/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/a" instance=ExtResource("22_g1dam")]
 
 [node name="b" type="StaticBody3D" parent="Board/7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
@@ -2487,22 +2114,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/b"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/b/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/b/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/b/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/b" instance=ExtResource("22_g1dam")]
 
 [node name="c" type="StaticBody3D" parent="Board/7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -2.5)
@@ -2543,22 +2155,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/c"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/c/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/c/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/c/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/c" instance=ExtResource("22_g1dam")]
 
 [node name="d" type="StaticBody3D" parent="Board/7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0, -2.5)
@@ -2598,22 +2195,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/d"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/d/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/d/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/d/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/d" instance=ExtResource("22_g1dam")]
 
 [node name="e" type="StaticBody3D" parent="Board/7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, -2.5)
@@ -2654,22 +2236,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/e"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/e/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/e/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/e/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/e" instance=ExtResource("22_g1dam")]
 
 [node name="f" type="StaticBody3D" parent="Board/7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, -2.5)
@@ -2709,22 +2276,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/f"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/f/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/f/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/f/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/f" instance=ExtResource("22_g1dam")]
 
 [node name="g" type="StaticBody3D" parent="Board/7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 0, -2.5)
@@ -2765,22 +2317,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/g"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/g/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/g/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/g/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/g" instance=ExtResource("22_g1dam")]
 
 [node name="h" type="StaticBody3D" parent="Board/7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, -2.5)
@@ -2820,22 +2357,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackPawn" type="Node3D" parent="Board/7/h"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/7/h/BlackPawn"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/7/h/BlackPawn/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/7/h/BlackPawn/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_eqwiw")
+[node name="BlackPawn" parent="Board/7/h" instance=ExtResource("22_g1dam")]
 
 [node name="8" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35)
@@ -2878,22 +2400,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackRook" type="Node3D" parent="Board/8/a"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/a/BlackRook"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/a/BlackRook/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/a/BlackRook/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_rqiyk")
+[node name="BlackRook" parent="Board/8/a" instance=ExtResource("23_t1nr6")]
 
 [node name="b" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
@@ -2934,22 +2441,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackKnight" type="Node3D" parent="Board/8/b"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/b/BlackKnight"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/b/BlackKnight/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/b/BlackKnight/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_bl203")
+[node name="BlackKnight" parent="Board/8/b" instance=ExtResource("28_ljty4")]
 
 [node name="c" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -2.5)
@@ -2989,22 +2481,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackBishop" type="Node3D" parent="Board/8/c"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/c/BlackBishop"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/c/BlackBishop/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/c/BlackBishop/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_4j2bk")
+[node name="BlackBishop" parent="Board/8/c" instance=ExtResource("25_nr7pf")]
 
 [node name="d" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0, -2.5)
@@ -3045,22 +2522,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackQueen" type="Node3D" parent="Board/8/d"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/d/BlackQueen"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/d/BlackQueen/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/d/BlackQueen/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_3o0j7")
+[node name="BlackQueen" parent="Board/8/d" instance=ExtResource("26_1d1rh")]
 
 [node name="e" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, -2.5)
@@ -3100,22 +2562,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackKing" type="Node3D" parent="Board/8/e"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/e/BlackKing"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/e/BlackKing/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/e/BlackKing/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_3fj7w")
+[node name="BlackKing" parent="Board/8/e" instance=ExtResource("27_4dh3l")]
 
 [node name="f" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, -2.5)
@@ -3156,22 +2603,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackBishop" type="Node3D" parent="Board/8/f"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/f/BlackBishop"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/f/BlackBishop/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/f/BlackBishop/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_4j2bk")
+[node name="BlackBishop" parent="Board/8/f" instance=ExtResource("25_nr7pf")]
 
 [node name="g" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 0, -2.5)
@@ -3211,22 +2643,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackKnight" type="Node3D" parent="Board/8/g"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/g/BlackKnight"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/8/g/BlackKnight/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/g/BlackKnight/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_bl203")
+[node name="BlackKnight" parent="Board/8/g" instance=ExtResource("28_ljty4")]
 
 [node name="h" type="StaticBody3D" parent="Board/8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, -2.5)
@@ -3267,27 +2684,12 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="BlackRook" type="Node3D" parent="Board/8/h"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-script = ExtResource("15_oppdh")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Board/8/h/BlackRook"]
-collision_layer = 5
-collision_mask = 5
-collision_priority = 3.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/8/h/BlackRook/RigidBody3D"]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 1, 0)
-mesh = SubResource("TextMesh_rqiyk")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Board/8/h/BlackRook/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_urlx5")
+[node name="BlackRook" parent="Board/8/h" instance=ExtResource("23_t1nr6")]
 
 [node name="Temp" type="Node3D" parent="Board"]
 
 [node name="temp_tile" type="StaticBody3D" parent="Board/Temp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5065, 0, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5e+09, 0, -2.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Temp/temp_tile"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00587463, 0, 0.00256348)
@@ -3324,28 +2726,6 @@ libraries = {
 "": SubResource("AnimationLibrary_nit4g")
 }
 
-[node name="floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 13.2172)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.214, 0, 7.088)
-shape = SubResource("BoxShape3D_ch7v3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2137, 0, 7.08785)
-material_override = SubResource("StandardMaterial3D_o1dpd")
-mesh = SubResource("BoxMesh_etcgl")
-script = ExtResource("7_65vmq")
-albedo_texture = ExtResource("1_8nalr")
-roughness_texture = ExtResource("6_2p5nt")
-emission_texture = ExtResource("3_qe1v7")
-normal_texture = ExtResource("5_4i7x4")
-ambient_occlusion_texture = ExtResource("2_spgsg")
-heightmap_texture = ExtResource("4_r7qbh")
-noise_img = SubResource("NoiseTexture2D_grnms")
-UV_ratio = 0.667
-
-[connection signal="piece_moved" from="Player" to="BoardManager" method="_on_player_piece_moved"]
-[connection signal="piece_touched" from="Player" to="BoardManager" method="_on_player_piece_touched"]
+[connection signal="piece_moved" from="." to="BoardManager" method="_on_player_piece_moved"]
+[connection signal="piece_touched" from="." to="BoardManager" method="_on_player_piece_touched"]
+[connection signal="player_won" from="BoardManager" to="." method="_on_board_manager_player_won"]
