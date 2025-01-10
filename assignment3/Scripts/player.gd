@@ -448,7 +448,6 @@ func pickup(hand):
 							item.collision_layer = 2
 							item.collision_mask = 2
 						
-							label.show_pickup_message("Picked up " + item.name + str(hand))
 					else:
 						print("Error: No valid item to pick up!")
 
