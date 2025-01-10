@@ -10,3 +10,4 @@ func _on_body_entered(body: Node3D) -> void:
 		body.can_control = false
 		body.velocity = Vector3.ZERO
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
