@@ -69,5 +69,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_o00qt")
 text = "Quit"
 script = ExtResource("5_stlrf")
 
+[node name="Label" type="Label" parent="."]
+offset_top = 80.0
+offset_right = 1152.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "The Mysterious Cave"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/QuitButton" to="Control/QuitButton" method="_on_pressed"]
