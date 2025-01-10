@@ -136,7 +136,7 @@ seed = 31255668
 noise = SubResource("FastNoiseLite_m0isy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85e3v"]
-size = Vector3(6, 3.5, 4)
+size = Vector3(10.1528, 3.5, 4)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fhqli"]
 noise_type = 3
@@ -542,7 +542,7 @@ transform = Transform3D(2.38498e-08, 0, -2, 0, 2, 0, 2, 0, 2.38498e-08, 0.15, 0.
 [node name="Area3D" type="Area3D" parent="room 1/movable_wall_node"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room 1/movable_wall_node/Area3D"]
-transform = Transform3D(1, 0, 1.77636e-13, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+transform = Transform3D(1, 0, 1.77636e-13, 0, 1, 0, 0, 0, 1, -2.07642, 1.75, 0)
 shape = SubResource("BoxShape3D_85e3v")
 
 [node name="Wall4" type="StaticBody3D" parent="room 1"]

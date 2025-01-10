@@ -159,6 +159,10 @@ func _physics_process(delta: float) -> void:
 			var item = raycast2.get_collider()
 			item.interact(self)
 			can_control = false
+			if self.left == "Letter_of_translation":
+				$"../UI/LetterUI/Translation_letter_left".visible = false
+			elif self.right == "Letter_of_translation":
+				$"../UI/LetterUI/Translation_letter_right".visible = false	
 		elif Input.is_action_just_pressed("left_click"):
 			if left == "" and raycast2.is_colliding():
 				pickup("left")
@@ -604,3 +608,7 @@ func end_interaction():
 	var item: Object = $"../room3/walls/Wall25/Node3D/Box_Puzzle"
 	item.interact(self)
 	can_control = true
+	if self.left == "Letter_of_translation":
+		$"../UI/LetterUI/Translation_letter_left".visible = true
+	elif self.right == "Letter_of_translation":
+		$"../UI/LetterUI/Translation_letter_right".visible = true
