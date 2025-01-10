@@ -33,13 +33,15 @@ func _process(delta: float) -> void:
 		if collider and collider.has_method("get_collision_layer"):
 			var collider_layer = collider.collision_layer
 			if collider_layer & (1<<1):
-				if left == null and right == null and parent !=null and parent.has_method("get_is_occupied") and parent.get_is_occupied() == false:
+				if left and right and ((parent.has_method("get_is_occupied") and parent.get_is_occupied() == true) or (collider.name.contains("Letter") or collider.name.contains("Medallion"))):
 					DOT_COLOR = Color.RED
-				elif left and right and parent.has_method("get_is_occupied") and parent.get_is_occupied() == true:
+				elif parent.name.contains("torch") and not (left.contains("Torch") or right.contains("Torch")) and parent.has_method("get_is_occupied") and parent.get_is_occupied() == false:
 					DOT_COLOR = Color.RED
-				elif parent.name.contains("Torch") and not (left_hand.name.to_lower().contains("torch") or right_hand.name.to_lower().contains("torch")):
+				elif parent.name.contains("letter") and not (left.contains("Letter") or right.contains("Letter")) and parent.has_method("get_is_occupied") and parent.get_is_occupied() == false:
 					DOT_COLOR = Color.RED
-				elif parent.name.contains("letter") and not (left.contains("letter") or right.contains("letter")):
+				elif parent.name.contains("Medaillon") and not (left.contains("Medallion") or right.contains("Medallion")) and parent.has_method("get_is_occupied") and parent.get_is_occupied() == false:
+					DOT_COLOR = Color.RED
+				elif parent.name.contains("map") and not (left.contains("Map") or right.contains("Map")) and parent.has_method("get_is_occupied") and parent.get_is_occupied() == false:
 					DOT_COLOR = Color.RED
 				else:
 					DOT_COLOR = Color.GREEN
