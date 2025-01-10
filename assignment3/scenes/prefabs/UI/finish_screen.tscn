@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7vcm5whywh6l"]
+[gd_scene load_steps=17 format=3 uid="uid://b7vcm5whywh6l"]
 
 [ext_resource type="Script" path="res://exit_button.gd" id="1_6a76s"]
+[ext_resource type="Script" path="res://scenes/prefabs/UI/credits_button.gd" id="2_o5yrq"]
+[ext_resource type="Script" path="res://scenes/prefabs/UI/exit_credits_screen_button.gd" id="3_rnva5"]
 
 [sub_resource type="Gradient" id="Gradient_3m11a"]
 colors = PackedColorArray(0.41, 0.4059, 0.4059, 0.160784, 1, 1, 1, 1)
@@ -41,6 +43,33 @@ keycode = 4194309
 
 [sub_resource type="Shortcut" id="Shortcut_nmhcv"]
 events = [SubResource("InputEventKey_d4mca"), SubResource("InputEventKey_8pxbf")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycpok"]
+bg_color = Color(0.06, 0.3, 0.06, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xstu6"]
+bg_color = Color(0.076, 0.38, 0.076, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srshv"]
+bg_color = Color(0.096, 0.48, 0.096, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Gradient" id="Gradient_q7v3o"]
+colors = PackedColorArray(0.2, 0.301961, 0.243137, 1, 0.201, 0.3, 0.2439, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r3qkf"]
+gradient = SubResource("Gradient_q7v3o")
 
 [node name="Finish screen" type="Control"]
 layout_mode = 3
@@ -92,4 +121,159 @@ text = "Congratulations!
 You found the artifact!"
 horizontal_alignment = 1
 
+[node name="Credits_button" type="Button" parent="pop_up_screen"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.84165
+offset_top = -15.5384
+offset_right = 70.2116
+offset_bottom = 15.4616
+grow_vertical = 0
+scale = Vector2(0.229421, 0.328497)
+theme_override_styles/hover = SubResource("StyleBoxFlat_ycpok")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xstu6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_srshv")
+shortcut = SubResource("Shortcut_nmhcv")
+text = "Credits"
+script = ExtResource("2_o5yrq")
+
+[node name="Credits_screen" type="TextureRect" parent="pop_up_screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.7414
+offset_top = -50.9849
+offset_right = 192.259
+offset_bottom = -10.9849
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.496089, 2.69623)
+texture = SubResource("GradientTexture1D_r3qkf")
+
+[node name="Label" type="Label" parent="pop_up_screen/Credits_screen"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.43991
+offset_top = -18.5794
+offset_right = 555.44
+offset_bottom = 602.421
+grow_vertical = 2
+scale = Vector2(0.2, 0.06)
+text = "Pickup sound
+https://freesound.org/people/el_boss/sounds/665183/
+
+Item placing sound
+https://freesound.org/people/waveplaySFX/sounds/250537/
+
+Torch fire woosh
+https://freesound.org/people/tc630/sounds/47835/
+
+moving wall
+https://freesound.org/people/Timbre/sounds/70753/
+
+opening door to trap room
+https://freesound.org/people/Qat/sounds/107640/
+https://freesound.org/people/LittleRobotSoundFactory/sounds/270468/
+
+Pit Trap sound
+https://pixabay.com/sound-effects/small-rock-break-194553/
+
+Death music
+https://pixabay.com/sound-effects/dark-guitar-130435/
+
+Background music
+https://freesound.org/people/Bertsz/sounds/671900/
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="pop_up_screen/Credits_screen"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -116.482
+offset_top = -18.5176
+offset_right = 436.518
+offset_bottom = 531.482
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.2, 0.06)
+text = "Final_gate_opening
+https://pixabay.com/sound-effects/search/gate%20opening/
+
+
+Puzzle_solved_sound
+https://pixabay.com/sound-effects/search/ding/
+
+
+Button pressed sound
+https://pixabay.com/sound-effects/search/button%20pressed/
+
+
+Puzzle failed sound
+https://pixabay.com/sound-effects/search/error/
+
+
+Finishing game sound
+https://pixabay.com/sound-effects/search/winnar/
+
+Boulder falling
+https://pixabay.com/sound-effects/stones-falling-6375/
+"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="pop_up_screen/Credits_screen"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -138.441
+offset_top = -5.16416
+offset_right = 1533.56
+offset_bottom = 194.836
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.08, 0.03)
+text = "Chess pieces
+https://free3d.com/3d-model/stone-chess-king-side-a-v2--993356.html, https://free3d.com/3d-model/stone-chess-knight-side-a-v2--600782.html, https://free3d.com/3d-model/stone-chess-queen-side-a-v2--229047.html, 
+https://free3d.com/3d-model/stone-chess-bishop-side-a-v2--930554.html, https://free3d.com/3d-model/stone-chess-rook-side-a-v2--803959.html, https://free3d.com/3d-model/stone-chess-pawn-side-a-v2--356154.html, 
+https://free3d.com/3d-model/stone-chess-king-side-b-v2--37809.html, https://free3d.com/3d-model/stone-chess-bishop-side-b-v2--20858.html, https://free3d.com/3d-model/stone-chess-queen-side-b-v2--167505.html, 
+https://free3d.com/3d-model/stone-chess-rook-side-b-v2--765424.html, https://free3d.com/3d-model/stone-chess-knight-side-b-v2--477346.html, https://free3d.com/3d-model/stone-chess-pawn-side-b-v2--887322.html
+"
+horizontal_alignment = 1
+
+[node name="Exit_credits_screen_button" type="Button" parent="pop_up_screen/Credits_screen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.9936
+offset_top = -11.9584
+offset_right = 25.0064
+offset_bottom = 19.0416
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.620828, 0.179506)
+theme_override_styles/hover = SubResource("StyleBoxFlat_uyju8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e452i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jmy25")
+shortcut = SubResource("Shortcut_nmhcv")
+text = "Exit"
+script = ExtResource("3_rnva5")
+
 [connection signal="pressed" from="pop_up_screen/Exit_button" to="pop_up_screen/Exit_button" method="_on_pressed"]
+[connection signal="pressed" from="pop_up_screen/Credits_button" to="pop_up_screen/Credits_button" method="_on_pressed"]
+[connection signal="pressed" from="pop_up_screen/Credits_screen/Exit_credits_screen_button" to="pop_up_screen/Credits_screen/Exit_credits_screen_button" method="_on_pressed"]
