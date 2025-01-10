@@ -102,28 +102,26 @@ func start_running() -> void:
 	var itemLeftHand = $Indiana_jones_like_character_final_attempt3/LeftHandPosition.get_child(0)
 	var itemRightHand = $Indiana_jones_like_character_final_attempt3/LeftHandPosition.get_child(0)
 	
-	print(itemLeftHand.name)
-	print(itemRightHand.name)
-	
-	if itemLeftHand.name.to_lower().contains("trapmap1"):
-		itemLeftHand.queue_free()
-		$"../UI/TrapMapUI/Pit_trap_left".visible = false
-		left = ""
-		
-	elif itemLeftHand.name.to_lower().contains("trapmap2"):
-		itemLeftHand.queue_free()
-		$"../UI/TrapMapUI/Spike_trap_left".visible = false
-		left = ""
-	
-	if itemRightHand.name.to_lower().contains("trapmap1"):
-		itemRightHand.queue_free()
-		$"../UI/TrapMapUI/Pit_trap_right".visible = false
-		right = ""
-		
-	if itemRightHand.name.to_lower().contains("trapmap2"):
-		itemRightHand.queue_free()
-		$"../UI/TrapMapUI/Spike_trap_right".visible = false
-		right = ""
+	if itemLeftHand != null:
+		if itemLeftHand.name.to_lower().contains("trapmap1"):
+			itemLeftHand.queue_free()
+			$"../UI/TrapMapUI/Pit_trap_left".visible = false
+			left = ""
+			
+		elif itemLeftHand.name.to_lower().contains("trapmap2"):
+			itemLeftHand.queue_free()
+			$"../UI/TrapMapUI/Spike_trap_left".visible = false
+			left = ""
+	if itemRightHand != null:
+		if itemRightHand.name.to_lower().contains("trapmap1"):
+			itemRightHand.queue_free()
+			$"../UI/TrapMapUI/Pit_trap_right".visible = false
+			right = ""
+			
+		if itemRightHand.name.to_lower().contains("trapmap2"):
+			itemRightHand.queue_free()
+			$"../UI/TrapMapUI/Spike_trap_right".visible = false
+			right = ""
 	
 func stop_running() -> void:
 	is_running = false	
