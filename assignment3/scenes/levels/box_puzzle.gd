@@ -45,6 +45,7 @@ func rotate_box(target_angle):
 		ball.custom_integrator = true
 	var rotate_tween := create_tween()
 	rotate_tween.tween_property(self,"rotation_degrees:y", rad_to_deg(target_angle),rotation_duration)
+	$Rotating_box_puzzle_sound.play()
 	await rotate_tween.finished
 	if ball and ball is RigidBody3D:
 		ball.custom_integrator = false

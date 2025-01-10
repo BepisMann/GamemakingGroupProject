@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dto7w5agnsb15"]
 
-[ext_resource type="Texture2D" path="res://Images/Cave_image_3.webp" id="1_q38kh"]
+[ext_resource type="Texture2D" uid="uid://dco4hax4vp4t" path="res://Images/Cave_image_3.webp" id="1_q38kh"]
 [ext_resource type="StyleBox" uid="uid://gjct8r882top" path="res://colors/new_game_green.tres" id="2_bmuw6"]
 [ext_resource type="Script" path="res://scenes/levels/new_game_button.gd" id="3_3c76i"]
 [ext_resource type="StyleBox" uid="uid://b2opbml2etk6c" path="res://colors/Quit_red.tres" id="3_4opt1"]

@@ -38,7 +38,7 @@ var correct_code: Array = []
 var puzzle_solved: bool = false
 
 var is_jumping: bool = false
-var is_running: float = true
+var is_running: float = false
 var current_speed: float = SPEED
 var can_control: bool = true
 var can_jump: bool = true
@@ -96,6 +96,37 @@ func _unhandled_input(event: InputEvent) -> void:
 				toggle_hat_visibility(camera.rotation.x)
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+func start_running() -> void:
+	is_running = true
+	var itemLeftHand = $Indiana_jones_like_character_final_attempt3/LeftHandPosition.get_child(0)
+	var itemRightHand = $Indiana_jones_like_character_final_attempt3/LeftHandPosition.get_child(0)
+	
+	if itemLeftHand != null:
+		if itemLeftHand.name.to_lower().contains("trapmap1"):
+			itemLeftHand.queue_free()
+			$"../UI/TrapMapUI/Pit_trap_left".visible = false
+			left = ""
+			
+		elif itemLeftHand.name.to_lower().contains("trapmap2"):
+			itemLeftHand.queue_free()
+			$"../UI/TrapMapUI/Spike_trap_left".visible = false
+			left = ""
+	if itemRightHand != null:
+		if itemRightHand.name.to_lower().contains("trapmap1"):
+			itemRightHand.queue_free()
+			$"../UI/TrapMapUI/Pit_trap_right".visible = false
+			right = ""
+			
+		if itemRightHand.name.to_lower().contains("trapmap2"):
+			itemRightHand.queue_free()
+			$"../UI/TrapMapUI/Spike_trap_right".visible = false
+			right = ""
+	
+func stop_running() -> void:
+	is_running = false	
+	
+		
 func interact_with_button(button: StaticBody3D) -> void:
 	if button.has_method("is_pressed"):
 		button.is_pressed = true
