@@ -140,6 +140,7 @@ text = "Credits"
 script = ExtResource("2_o5yrq")
 
 [node name="Credits_screen" type="TextureRect" parent="pop_up_screen"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
