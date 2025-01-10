@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-@export var move_distance: float = -0.02
+@export var move_distance: float = -0.05
 @export var move_speed: float = 5.0
 @onready var initial_position: Vector3 = Vector3.ZERO
 var is_pressed: bool = false

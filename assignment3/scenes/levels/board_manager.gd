@@ -979,6 +979,7 @@ func resolve_move_bot_response(move: String) -> void:
 		rng.randomize()
 		var random_move = rng.randi_range(0, valid_black_moves.size()-1)
 		resolve_move(valid_black_moves[random_move])
+		$"../../Moved_chess_piece_sound".play()
 
 
 ## POSSIBLE MOVES
