@@ -4,6 +4,10 @@ extends CenterContainer
 @export var DOT_COLOR: Color = Color.WHITE
 @onready var raycast1 := get_node("../../Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast1")
 @onready var raycast2 := get_node("../../Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCast2")
+var left_hand : Node3D 
+var right_hand : Node3D
+var left : String
+var right : String
 @onready var raycast_chess := get_node("../../Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCastChess")
 @onready var raycast_chess_move_piece := get_node("../../Indiana_jones_like_character_final_attempt3/Neck/Camera3D/RayCastChessMovePiece")
 
@@ -20,12 +24,25 @@ func set_raycast(raycast_node: RayCast3D, ray):
 	queue_redraw()
 
 func _process(delta: float) -> void:
+	
 	if raycast2 and raycast2.is_colliding():
 		var collider = raycast2.get_collider()
+		var parent = null
+		if collider.has_method("get_parent"):
+			parent = collider.get_parent()
 		if collider and collider.has_method("get_collision_layer"):
 			var collider_layer = collider.collision_layer
 			if collider_layer & (1<<1):
-				DOT_COLOR = Color.GREEN
+				if left == null and right == null and parent !=null and parent.has_method("get_is_occupied") and parent.get_is_occupied() == false:
+					DOT_COLOR = Color.RED
+				elif left and right and parent.has_method("get_is_occupied") and parent.get_is_occupied() == true:
+					DOT_COLOR = Color.RED
+				elif parent.name.contains("Torch") and not (left_hand.name.to_lower().contains("torch") or right_hand.name.to_lower().contains("torch")):
+					DOT_COLOR = Color.RED
+				elif parent.name.contains("letter") and not (left.contains("letter") or right.contains("letter")):
+					DOT_COLOR = Color.RED
+				else:
+					DOT_COLOR = Color.GREEN
 			else:
 				DOT_COLOR = Color.WHITE
 	elif raycast1 and raycast1.is_colliding():
@@ -41,6 +58,11 @@ func _process(delta: float) -> void:
 
 	queue_redraw()
 
+func set_left_and_right_hand(left_s, right_s, left_h, right_h):
+	left_hand = left_h
+	right_hand = right_h
+	left = left_s
+	right = right_s
 func _draw():
 	var center = get_rect().size / 2
 	draw_circle(center, DOT_RADIUS, DOT_COLOR)  # Draw the hover dot

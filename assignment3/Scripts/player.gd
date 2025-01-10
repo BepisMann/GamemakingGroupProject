@@ -111,6 +111,8 @@ func toggle_hat_visibility(pitch: float) -> void:
 		hair.visible = true
 
 func _physics_process(delta: float) -> void:
+	if control:
+		control.set_left_and_right_hand(left, right, left_hand_position, right_hand_position)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
