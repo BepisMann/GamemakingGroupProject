@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c8nws4p4syfqh"]
+[gd_scene load_steps=74 format=3 uid="uid://c8nws4p4syfqh"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
 [ext_resource type="Script" path="res://scenes/levels/room_3.gd" id="1_sv716"]
@@ -29,8 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://boxg1lyj0p2jk" path="res://scenes/prefabs/Furniture_stuff/Skeleton chess puzzle with chair and table.glb" id="20_ghn8g"]
 [ext_resource type="PackedScene" uid="uid://7svyrk2m3snk" path="res://scenes/levels/chess.tscn" id="21_twq6i"]
 [ext_resource type="PackedScene" uid="uid://cfa2kd6h4t8r3" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
-[ext_resource type="Script" path="res://button.gd" id="26_00e8k"]
 [ext_resource type="AudioStream" uid="uid://dlvv6gfiuhja7" path="res://assets/sounds/moving_chess_piece.mp3" id="29_ouwqm"]
+[ext_resource type="Script" path="res://scenes/levels/restart_button.gd" id="30_31ilc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
 size = Vector3(42, 0.25, 36)
@@ -61,6 +61,9 @@ seed = -10
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yvl81"]
 noise = SubResource("FastNoiseLite_5b6b1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ki3ep"]
+size = Vector3(3, 4, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qiqyf"]
 size = Vector3(0.25, 3.5, 6)
@@ -256,6 +259,13 @@ heightmap_texture = ExtResource("4_jpxnb")
 noise_img = SubResource("NoiseTexture2D_yvl81")
 maximum_amplitude = 0.2
 UV_ratio = 5.0
+
+[node name="Area3D" type="Area3D" parent="floor+ceiling/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3137, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor+ceiling/floor/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_ki3ep")
 
 [node name="ceiling" type="StaticBody3D" parent="floor+ceiling"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.44058, 3.15672, 8.27427)
@@ -1555,7 +1565,7 @@ transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, 0, 0
 [node name="RestartButton" type="StaticBody3D" parent="ChessRoom"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.386829, 0.696905, -0.0936378)
 collision_layer = 3
-script = ExtResource("26_00e8k")
+script = ExtResource("30_31ilc")
 
 [node name="RestartButton" type="MeshInstance3D" parent="ChessRoom/RestartButton"]
 mesh = SubResource("BoxMesh_p8sjp")
@@ -1581,12 +1591,14 @@ font_size = 90
 autowrap_mode = 2
 
 [node name="puzzle_solved_particles" parent="ChessRoom" instance=ExtResource("19_tgscj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0435767, 0.727066, -0.0800509)
 
 [node name="Moved_chess_piece_sound" type="AudioStreamPlayer3D" parent="ChessRoom"]
 stream = ExtResource("29_ouwqm")
 
 [connection signal="piece_moved" from="." to="ChessRoom/ChessRoom" method="_on_room_3_piece_moved"]
 [connection signal="piece_touched" from="." to="ChessRoom/ChessRoom" method="_on_room_3_piece_touched"]
+[connection signal="body_entered" from="floor+ceiling/floor/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="walls/Wall25/Area3D" to="walls/Wall25/Node3D/Box_Puzzle" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Static_end_door/Finish_game_area" to="Static_end_door/Finish_game_area" method="_on_body_entered"]
 [connection signal="player_won_chess" from="ChessRoom/ChessRoom" to="." method="_on_chess_room_player_won_chess"]

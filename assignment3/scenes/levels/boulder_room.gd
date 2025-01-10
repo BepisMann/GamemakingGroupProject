@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func _on_boulder_drop_area_body_entered(body: Node3D) -> void:
 	if body.name == "Player" and !wall_deleted:
 		body.set_spawn_point_2()
+		body.start_running()
 		wall_deleted = true
 		$Hallway/BoulderTrapActivated.play()
 		get_node("Hallway/Breakable_ceiling_location/Ceiling_Breakable").reparent(get_node("Hallway/Breakable_ceiling_location_broken"), false)

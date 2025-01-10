@@ -32,3 +32,8 @@ func _on_chess_room_player_won_chess() -> void:
 	$ChessRoom/Letter_before_solution/Letter_of_translation.reparent($ChessRoom/Letter_of_translation_position, false)
 	$"../Player/Puzzle_solved_sound".play()
 	$ChessRoom/puzzle_solved_particles.emitting = true
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.name.to_lower().contains("player"):
+		body.stop_running()
