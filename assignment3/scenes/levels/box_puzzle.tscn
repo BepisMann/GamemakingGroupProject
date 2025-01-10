@@ -261,7 +261,6 @@ UV_ratio = 1.0
 
 [node name="ball" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.625, -4)
-collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ball"]
 material_override = SubResource("StandardMaterial3D_3bjxg")
