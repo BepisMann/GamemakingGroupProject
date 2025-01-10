@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://d1flbjuic6lrh" path="res://particle_effects/puzzle_solved_particles.tscn" id="19_tgscj"]
 [ext_resource type="PackedScene" uid="uid://boxg1lyj0p2jk" path="res://scenes/prefabs/Furniture_stuff/Skeleton chess puzzle with chair and table.glb" id="20_ghn8g"]
 [ext_resource type="PackedScene" uid="uid://7svyrk2m3snk" path="res://scenes/levels/chess.tscn" id="21_twq6i"]
-[ext_resource type="PackedScene" uid="uid://cfa2kd6h4t8r3" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
 [ext_resource type="AudioStream" uid="uid://dlvv6gfiuhja7" path="res://assets/sounds/moving_chess_piece.mp3" id="29_ouwqm"]
 [ext_resource type="Script" path="res://scenes/levels/restart_button.gd" id="30_31ilc"]
 
