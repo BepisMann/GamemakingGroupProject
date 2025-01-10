@@ -1,4 +1,4 @@
-extends Node3D
+extends StaticBody3D
 
 @export var rotation_duration: float = 1.0  # Duration of the rotation
 @export var rotation_angle: float = PI / 2  # 90 degrees in radians
@@ -73,9 +73,10 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == ball:
+		print("solved")
 		ball.queue_free()
 		ball = null
-	
+		self.set_collision_layer_value(2, false)
 
 
 func _on_speedcheck_timeout() -> void:

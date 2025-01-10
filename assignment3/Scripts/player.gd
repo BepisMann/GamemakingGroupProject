@@ -566,8 +566,8 @@ func reset_item_rotation_right(item):
 
 
 func end_interaction():
-	player.visible =  false
-	camera.current = false
+	player.visible =  true
+	camera.current = true
 	var item: Object = $"../room3/walls/Wall25/Node3D/Box_Puzzle"
 	item.interact(self)
 	can_control = true

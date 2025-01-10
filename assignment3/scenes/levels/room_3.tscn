@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://c8nws4p4syfqh"]
+[gd_scene load_steps=69 format=3 uid="uid://c8nws4p4syfqh"]
 
 [ext_resource type="Texture2D" uid="uid://b62bwf1sggh2k" path="res://assets/rock/rock_08_diff_4k.png" id="1_g24c8"]
 [ext_resource type="Script" path="res://scenes/levels/room_3.gd" id="1_sv716"]
@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://d1flbjuic6lrh" path="res://particle_effects/puzzle_solved_particles.tscn" id="19_tgscj"]
 [ext_resource type="PackedScene" uid="uid://boxg1lyj0p2jk" path="res://scenes/prefabs/Furniture_stuff/Skeleton chess puzzle with chair and table.glb" id="20_ghn8g"]
 [ext_resource type="PackedScene" uid="uid://7svyrk2m3snk" path="res://scenes/levels/chess.tscn" id="21_twq6i"]
-[ext_resource type="PackedScene" uid="uid://cfa2kd6h4t8r3" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/artifact.tscn" id="22_xv6q3"]
 [ext_resource type="Script" path="res://button.gd" id="26_00e8k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uq63"]
@@ -195,7 +195,7 @@ size = Vector3(0.25, 3.5, 11)
 size = Vector3(0.25, 3.5, 11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7x0gu"]
-size = Vector3(0.1, 0.3, 0.1)
+size = Vector3(0.1, 0.5, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xgsvx"]
 size = Vector3(0.25, 3.5, 4)
@@ -1086,7 +1086,7 @@ visible = false
 [node name="Area3D" type="Area3D" parent="walls/Wall25"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls/Wall25/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, 0.0847812, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.08, 0)
 shape = SubResource("BoxShape3D_7x0gu")
 
 [node name="Wall4" type="StaticBody3D" parent="walls"]
